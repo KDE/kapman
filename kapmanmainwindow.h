@@ -8,6 +8,8 @@
  */
 class KapmanMainWindow : public KXmlGuiWindow {
 
+	Q_OBJECT
+
 	public:
 
 		/**

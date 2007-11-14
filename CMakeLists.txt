@@ -16,8 +16,13 @@ else(DEPEND_PACKAGE_LibKDEGames)
 endif(DEPEND_PACKAGE_LibKDEGames)
 
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES}
-	${KDEGAMES_INCLUDE_DIR}/highscore/)
+
+include_directories (
+	${CMAKE_SOURCE_DIR}
+	${CMAKE_BINARY_DIR}
+	${KDE4_INCLUDES}
+	${KDEGAMES_INCLUDE_DIR}/highscore/
+)
 
 # display log message
 macro_display_feature_log()
@@ -35,3 +40,7 @@ target_link_libraries(kapman
 	${KDE4_KDEUI_LIBS}
 	kdegames
 )
+
+# install the binary
+install(TARGETS kapman DESTINATION ${BIN_INSTALL_DIR})
+install(FILES kapmanui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kapman)
