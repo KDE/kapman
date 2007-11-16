@@ -25,9 +25,19 @@ class KapmanMainWindow : public KXmlGuiWindow {
 	public slots:
 
 		/**
+		 * Asks for a new game
+		 */
+		void askNewGame();
+
+		/**
+		 * Asks for exit
+		 */
+		void askClose();
+
+		/**
 		 * Launches a new game
 		 */
-		void newGame();	
+		void newGame();
 };
 
 #endif
