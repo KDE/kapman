@@ -31,8 +31,9 @@ macro_display_feature_log()
 set(kapmanSources
 	main.cpp
 	kapmanmainwindow.cpp
-	kapman.cpp
-	kapmanview.cpp)
+	#kapman.cpp
+	#kapmanview.cpp
+)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
