@@ -46,4 +46,4 @@ target_link_libraries(kapman
 
 # install the binary
 install(TARGETS kapman DESTINATION ${BIN_INSTALL_DIR})
-install(FILES kapmanui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kapman)
+#install(FILES kapmanui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kapman)
