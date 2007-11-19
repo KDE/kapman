@@ -1,14 +1,16 @@
 #include <KActionCollection>
 #include <KStandardGameAction>
+#include <QGraphicsView>
+#include <QGraphicsScene>
 #include <KDialog>
 #include <KLocalizedString>
 #include <QLabel>
+#include <QSize>
 #include "kapmanmainwindow.h"
 
 KapmanMainWindow::KapmanMainWindow() {
-	KStandardGameAction::gameNew(this, SLOT(askNewGame()), actionCollection());
-	KStandardGameAction::quit(this, SLOT(askClose()), actionCollection());
-	setupGUI();
+	init();
+	setupGUI(QSize(800, 600));
 }
 
 KapmanMainWindow::~KapmanMainWindow() {
@@ -35,6 +37,17 @@ void KapmanMainWindow::askClose() {
 	dialog->show();
 }
 
+void KapmanMainWindow::init(){
+	KStandardGameAction::gameNew(this, SLOT(askNewGame()), actionCollection());
+	KStandardGameAction::quit(this, SLOT(askClose()), actionCollection());
+		
+	m_game = new Game();
+	QGraphicsView * view = new QGraphicsView(m_game->getScene());
+	view->setBackgroundBrush(Qt::black);
+	setCentralWidget(view);
+}
+
 void KapmanMainWindow::newGame() {
-	// new game
+	delete m_game;
+	m_game = new Game();
 }
