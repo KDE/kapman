@@ -2,19 +2,20 @@
 #include <KStandardGameAction>
 #include <KMessageBox>
 #include <KLocalizedString>
-#include <QGraphicsView>
-#include <QGraphicsScene>
-#include <QLabel>
 #include "kapmanmainwindow.h"
+
+void KapmanMainWindow::resizeEvent(QResizeEvent* event) {
+	// Resize the scene to fit in the viewport
+	m_view->fitInView(m_view->sceneRect(), Qt::KeepAspectRatio);
+}
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Create the game
 	m_game = new Game();
 	// Create the view displaying the game scene
-	QGraphicsView* view = new QGraphicsView(m_game->getScene());
-	// Set a black background
-	view->setBackgroundBrush(Qt::black);
-	setCentralWidget(view);
+	m_view = new QGraphicsView(m_game->getScene());
+	m_view->setBackgroundBrush(Qt::black);
+	setCentralWidget(m_view);
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());

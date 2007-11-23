@@ -2,6 +2,7 @@
 #define __KAPMANMAINWINDOW_H
 
 #include <KXmlGuiWindow>
+#include <QGraphicsView>
 #include "game.h"
 
 /**
@@ -13,7 +14,10 @@ class KapmanMainWindow : public KXmlGuiWindow {
 
 	private :
 		
-		/** A Kapman Game */
+		/** The game view */
+		QGraphicsView* m_view;
+
+		/** A Kapman game */
 		Game* m_game;
 		
 	public:
@@ -27,6 +31,14 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * Deletes the KapmanMainWindow instance
 		 */
 		~KapmanMainWindow();
+
+	protected:
+
+		/**
+		 * Handled when the window is resized
+		 * @param event the resize event
+		 */
+		virtual void resizeEvent(QResizeEvent* event);
 
 	public slots:
 
