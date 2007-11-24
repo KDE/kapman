@@ -1,21 +1,19 @@
+#include <KStandardDirs>
 #include "game.h"
 #include "mazeview.h"
 
 Game::Game() {
-	init();
+	m_scene = new QGraphicsScene();
+	m_maze = new Maze();
+	m_scene->addItem(new MazeView(
+		KStandardDirs::locate("appdata", "dessin_test.svg")));
 }
 	
 Game::~Game() {
-
-}
-
-void Game::init() {
-	m_scene = new QGraphicsScene();
-	m_maze = new Maze();
-	
-	m_scene->addItem(new MazeView ("images/dessin_test.svg"));
+	delete m_scene;
+	delete m_maze;
 }
 		
-QGraphicsScene * Game::getScene() {
+QGraphicsScene * Game::getScene() const {
 	return m_scene;
 }

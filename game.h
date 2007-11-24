@@ -2,7 +2,6 @@
 #define __GAME_H
 
 #include <QGraphicsScene>
-
 #include "maze.h"
 
 /**
@@ -11,9 +10,12 @@
 class Game : public QObject {
 
 	Q_OBJECT
+
 	private :
+
 		/** Game Scene */
 		QGraphicsScene * m_scene;
+		
 		/** Game Maze */
 		Maze * m_maze;
 		
@@ -28,16 +30,11 @@ class Game : public QObject {
 		 * Deletes the Game instance
 		 */
 		~Game();
-		
-		/**
-		 * Game initialisation 
-		 */
-		void init();
 
 		/**
 		 * @return Scene
 		 */
-		QGraphicsScene * getScene();
+		QGraphicsScene* getScene() const;
 
 	public slots:
 

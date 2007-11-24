@@ -38,7 +38,7 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * Handled when the window is resized
 		 * @param event the resize event
 		 */
-		virtual void resizeEvent(QResizeEvent* event);
+		virtual void resizeEvent(QResizeEvent* p_event);
 
 	public slots:
 
