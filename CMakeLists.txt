@@ -32,13 +32,17 @@ set(kapmanSources
 	main.cpp
 	kapmanmainwindow.cpp
 	game.cpp
+	gameview.cpp
 	maze.cpp
-	mazeview.cpp)
+	mazeview.cpp
+	kapman.cpp
+	kapmanview.cpp)
 
 # resources
 set(kapmanResources
 	kapmanui.rc
-	images/dessin_test.svg)
+	images/dessin_test.svg
+	images/kapman_test.svg)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})

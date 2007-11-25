@@ -32,14 +32,6 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 */
 		~KapmanMainWindow();
 
-	protected:
-
-		/**
-		 * Handled when the window is resized
-		 * @param event the resize event
-		 */
-		virtual void resizeEvent(QResizeEvent* p_event);
-
 	public slots:
 
 		/**

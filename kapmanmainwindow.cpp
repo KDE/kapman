@@ -3,13 +3,17 @@
 #include <KMessageBox>
 #include <KLocalizedString>
 #include "kapmanmainwindow.h"
+#include "gameview.h"
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Create the game
 	m_game = new Game();
 	// Create the view displaying the game scene
-	m_view = new QGraphicsView(m_game->getScene());
+	m_view = new GameView(m_game->getScene());
 	m_view->setBackgroundBrush(Qt::black);
+	// Connect the key events to the game manager
+	connect(m_view, SIGNAL(keyPressed(QKeyEvent*)),
+		m_game, SLOT(keyPressEvent(QKeyEvent*)));
 	setCentralWidget(m_view);
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
@@ -20,11 +24,6 @@ KapmanMainWindow::KapmanMainWindow() {
 KapmanMainWindow::~KapmanMainWindow() {
 	delete m_game;
 	delete m_view;
-}
-
-void KapmanMainWindow::resizeEvent(QResizeEvent* p_event) {
-	// Resize the scene to fit in the viewport
-	m_view->fitInView(m_view->sceneRect(), Qt::KeepAspectRatio);
 }
 
 void KapmanMainWindow::newGame() {

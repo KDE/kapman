@@ -2,7 +2,9 @@
 #define __GAME_H
 
 #include <QGraphicsScene>
+#include <QKeyEvent>
 #include "maze.h"
+#include "kapman.h"
 
 /**
  * This class represents the game manager
@@ -13,11 +15,14 @@ class Game : public QObject {
 
 	private :
 
-		/** Game Scene */
-		QGraphicsScene * m_scene;
+		/** The scene containing the items to be displayed */
+		QGraphicsScene* m_scene;
 		
 		/** Game Maze */
-		Maze * m_maze;
+		Maze* m_maze;
+
+		/** Main character */
+		Kapman* m_kapman;
 		
 	public:
 
@@ -32,12 +37,17 @@ class Game : public QObject {
 		~Game();
 
 		/**
-		 * @return Scene
+		 * @return the game scene
 		 */
 		QGraphicsScene* getScene() const;
 
 	public slots:
 
+		/**
+		 * Called on key press event
+		 * @param p_event the key press event
+		 */
+		void keyPressEvent(QKeyEvent* p_event);
 };
 
 #endif

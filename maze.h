@@ -23,7 +23,7 @@ class Maze : public QObject {
 		~Maze();
 		
 		/**
-		 * Maze initialisation with all the cells of the XML file
+		 * Initializes the maze from an XML file
 		 */
 		void init();
 		
