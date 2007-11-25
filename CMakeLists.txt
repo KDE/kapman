@@ -41,7 +41,7 @@ set(kapmanSources
 # resources
 set(kapmanResources
 	kapmanui.rc
-	images/dessin_test.svg
+	images/kapmanMaze.svg
 	images/kapman_test.svg)
 
 # build exec
