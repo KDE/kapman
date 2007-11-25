@@ -66,6 +66,11 @@ class Game : public QObject {
 		 * @param p_event the key press event
 		 */
 		void keyPressEvent(QKeyEvent* p_event);
+
+		/**
+		 * Called on each timer signal to update the game data
+		 */
+		void update();
 };
 
 #endif

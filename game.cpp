@@ -16,9 +16,8 @@
    02110-1301, USA
 */
 
-
 #include <KStandardDirs>
-
+#include <QTimer>
 #include "game.h"
 #include "mazeview.h"
 #include "kapmanview.h"
@@ -27,10 +26,15 @@ Game::Game() {
 	m_scene = new QGraphicsScene();
 	m_maze = new Maze();
 	m_kapman = new Kapman();
+	// Add the items to the scene
 	m_scene->addItem(new MazeView(
 		KStandardDirs::locate("appdata", "kapmanMaze.svg")));
 	m_scene->addItem(new KapmanView(
 		m_kapman, KStandardDirs::locate("appdata", "kapman_test.svg")));
+	// Start the timer to move the characters regulary
+	QTimer* timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+	timer->start(15); // 60 FPS
 }
 
 Game::~Game() {
@@ -48,21 +52,21 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 	switch (p_event->key()) {
 		case Qt::Key_Up:
 			m_kapman->goUp();
-			m_kapman->move();
 			break;
 		case Qt::Key_Down:
 			m_kapman->goDown();
-			m_kapman->move();
 			break;
 		case Qt::Key_Right:
 			m_kapman->goRight();
-			m_kapman->move();
 			break;
 		case Qt::Key_Left:
 			m_kapman->goLeft();
-			m_kapman->move();
 			break;
 		default:
 			break;
 	}
+}
+
+void Game::update() {
+	m_kapman->move();
 }
