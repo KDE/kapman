@@ -33,7 +33,6 @@ class GameView : public QGraphicsView {
 
 		/**
 		 * Creates a new GameView instance
-		 * @param p_scene the scene to visualize
 		 */
 		GameView(QGraphicsScene* p_scene);
 

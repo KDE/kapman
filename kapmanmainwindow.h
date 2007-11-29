@@ -51,6 +51,13 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 */
 		~KapmanMainWindow();
 
+	private:
+
+		/**
+		 * Initializes a game
+		 */
+		void initGame();
+
 	public slots:
 
 		/**

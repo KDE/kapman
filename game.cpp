@@ -17,7 +17,6 @@
 */
 
 #include <KStandardDirs>
-#include <QTimer>
 #include "game.h"
 #include "mazeview.h"
 #include "kapmanview.h"
@@ -32,15 +31,24 @@ Game::Game() {
 	m_scene->addItem(new KapmanView(
 		m_kapman, KStandardDirs::locate("appdata", "kapman_test.svg")));
 	// Start the timer to move the characters regulary
-	QTimer* timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-	timer->start(15); // 60 FPS
+	m_timer = new QTimer(this);
+	m_timer->setInterval(15); // 60 FPS
+	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
+	m_timer->start();
 }
 
 Game::~Game() {
 	delete m_scene;
 	delete m_maze;
 	delete m_kapman;
+}
+
+void Game::start() {
+	m_timer->start();
+}
+
+void Game::pause() {
+	m_timer->stop();
 }
 
 QGraphicsScene* Game::getScene() const {

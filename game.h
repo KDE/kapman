@@ -19,6 +19,7 @@
 #ifndef __GAME_H
 #define __GAME_H
 
+#include <QTimer>
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include "maze.h"
@@ -32,6 +33,9 @@ class Game : public QObject {
 	Q_OBJECT
 
 	private :
+
+		/** Game timer */
+		QTimer* m_timer;
 
 		/** The scene containing the items to be displayed */
 		QGraphicsScene* m_scene;
@@ -53,6 +57,16 @@ class Game : public QObject {
 		 * Deletes the Game instance
 		 */
 		~Game();
+
+		/**
+		 * Starts the game
+		 */
+		void start();
+
+		/**
+		 * Pauses the game
+		 */
+		void pause();
 
 		/**
 		 * @return the game scene
