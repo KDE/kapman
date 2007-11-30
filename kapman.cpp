@@ -15,6 +15,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
 */
+#include <QGraphicsScene>
 
 #include "kapman.h"
 
@@ -51,7 +52,13 @@ void Kapman::goLeft() {
 void Kapman::move() {
 	m_x += m_xSpeed;
 	m_y += m_ySpeed;
+	
 	emit(moved(m_x, m_y));
+}
+
+/** Accessors */
+int Kapman::getSPEED() const {
+	return SPEED;
 }
 
 int Kapman::getX() const {
@@ -60,4 +67,18 @@ int Kapman::getX() const {
 
 int Kapman::getY() const {
 	return m_y;
+}
+
+int Kapman::getXSpeed() const {
+	return m_xSpeed;
+}
+
+int Kapman::getYSpeed() const {
+	return m_ySpeed;
+}
+
+/** SLOTS */
+void Kapman::changeMazeSide(int p_newX, int p_newY) {
+	m_x = p_newX;
+	m_y = p_newY;
 }

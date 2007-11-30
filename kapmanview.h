@@ -44,6 +44,16 @@ class KapmanView : public QGraphicsSvgItem {
 		 */
 		~KapmanView();
 
+	signals:
+
+		/**
+		 * Warns the kapman model that his coordinates have to be changed
+		 * Emitted when the kapman reaches a border of the maze
+		 * @param p_newX the new (or unchanged) X coordinate
+		 * @param p_newY the new (or unchanged) Y coordinate
+		 */
+		void borderReached(int p_newX, int p_newY);
+
 	public slots:
 
 		/**

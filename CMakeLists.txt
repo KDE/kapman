@@ -47,10 +47,23 @@ set(kapmanResources
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
 
+# Tests unit
+kde4_add_unit_test(kapmanGameTest
+	kapman.cpp
+	./tests/kapmanTest.cpp
+)
+
 # libraries needed
 target_link_libraries(kapman
 	${KDE4_KDEUI_LIBS}
 	kdegames
+)
+
+# libraries needed for tests
+target_link_libraries(kapmanGameTest
+	${KDE4_KDEUI_LIBS}
+	kdegames
+	${QT_QTTEST_LIBRARY}
 )
 
 # install the binary

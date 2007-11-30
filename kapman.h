@@ -76,6 +76,12 @@ class Kapman : public QObject {
 		 */
 		void move();
 
+
+		/**
+		 * @return the kapman's global speed
+		 */
+		int getSPEED() const;
+
 		/**
 		 * @return the x-coordinate
 		 */
@@ -86,6 +92,16 @@ class Kapman : public QObject {
 		 */
 		int getY() const;
 
+		/**
+		 * @return the x speed coordinate
+		 */
+		int getXSpeed() const;
+
+		/**
+		 * @return the y speed coordinate
+		 */
+		int getYSpeed() const;
+
 	signals:
 
 		/**
@@ -94,6 +110,15 @@ class Kapman : public QObject {
 		 * @param p_y the new y-coordinate
 		 */
 		void moved(int p_x, int p_y);
+
+	public slots:
+
+		/**
+		 * Makes the kapman "circle around" the maze when reaching a border
+		 * @param p_newX the new X coordinate
+		 * @param p_newY the new Y coordinate
+		 */
+		void changeMazeSide(int p_newX, int p_newY);
 };
 
 #endif
