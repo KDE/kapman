@@ -20,16 +20,27 @@
 #include "game.h"
 #include "mazeview.h"
 #include "kapmanview.h"
+#include "ghostview.h"
 
 Game::Game() {
 	m_scene = new QGraphicsScene();
 	m_maze = new Maze();
 	m_kapman = new Kapman();
+	m_ghostList.append(new Ghost(260.0, 215.0, "redGhost_test.svg"));
+	m_ghostList.append(new Ghost(260.0, 275.0, "redGhost_test.svg"));
+	m_ghostList.append(new Ghost(222.0, 275.0, "redGhost_test.svg"));
+	m_ghostList.append(new Ghost(298.0, 275.0, "redGhost_test.svg"));
+	
 	// Add the items to the scene
 	m_scene->addItem(new MazeView(
 		KStandardDirs::locate("appdata", "kapmanMaze.svg")));
 	m_scene->addItem(new KapmanView(
 		m_kapman, KStandardDirs::locate("appdata", "kapman_test.svg")));
+	for(int i=0; i<m_ghostList.size(); i++) {
+		m_scene->addItem(new GhostView(
+			m_ghostList.at(i), KStandardDirs::locate("appdata", m_ghostList.at(i)->getImageURL())));
+	}
+	
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
 	m_timer->setInterval(15); // 60 FPS

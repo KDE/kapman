@@ -16,69 +16,72 @@
    02110-1301, USA
 */
 
-#ifndef __KAPMAN_H
-#define __KAPMAN_H
+#ifndef __GHOST_H
+#define __GHOST_H
 
 #include <QObject>
 
 /**
- * This class represents the main character of the game
+ * This class represents the ghost
  */
-class Kapman : public QObject {
+class Ghost : public QObject {
 
 	Q_OBJECT
 
 	private:
 
-		/** The Kapman moving speed */
+		/** The Ghost moving speed */
 		static const qreal SPEED;
 
-		/** Kapman coordinates */
+		/** Ghost coordinates */
 		qreal m_x, m_y;
 
-		/** Kapman speed */
+		/** Ghost speed */
 		qreal m_xSpeed, m_ySpeed;
+		
+		/** URL to the ghost's image */
+		QString m_imageURL;
 
 	public:
 
 		/**
-		 * Creates a new Kapman instance
+		 * Creates a new Ghost instance
 		 */
-		Kapman();
+		Ghost(qreal p_x, qreal p_y, QString p_imageURL);
 
 		/**
-		 * Deletes the Kapman instance
+		 * Deletes the Ghost instance
 		 */
-		~Kapman();
+		~Ghost();
 
 		/**
-		 * Makes the Kapman go up
+		 * Makes the Ghost go up
 		 */
 		void goUp();
 
 		/**
-		 * Makes the Kapman go down
+		 * Makes the Ghost go down
 		 */
 		void goDown();
 
 		/**
-		 * Makes the Kapman go to the right
+		 * Makes the Ghost go to the right
 		 */
 		void goRight();
 
 		/**
-		 * Makes the Kapman go to the left
+		 * Makes the Ghost go to the left
 		 */
 		void goLeft();
 
 		/**
-		 * Moves the Kapman function of its coordinates and speed
+		 * Moves the Ghost function of its coordinates and speed
 		 */
 		void move();
 
 
 		/**
-		 * @return the kapman's global speed
+		 * @return the Ghost's global speed
 		 */
 		qreal getSPEED() const;
 
@@ -101,11 +104,16 @@ class Kapman : public QObject {
 		 * @return the y speed coordinate
 		 */
 		qreal getYSpeed() const;
-
+		
+		/**
+		 * @return the URL to the ghost's image
+		 */
+		QString getImageURL() const;
+		
 	signals:
 
 		/**
-		 * On Kapman move
+		 * On Ghost move
 		 * @param p_x the new x-coordinate
 		 * @param p_y the new y-coordinate
 		 */
@@ -114,7 +122,7 @@ class Kapman : public QObject {
 	public slots:
 
 		/**
-		 * Makes the kapman "circle around" the maze when reaching a border
+		 * Makes the Ghost "circle around" the maze when reaching a border
 		 * @param p_newX the new X coordinate
 		 * @param p_newY the new Y coordinate
 		 */

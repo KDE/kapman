@@ -22,8 +22,10 @@
 #include <QTimer>
 #include <QGraphicsScene>
 #include <QKeyEvent>
+
 #include "maze.h"
 #include "kapman.h"
+#include "ghost.h"
 
 /**
  * This class represents the game manager
@@ -45,6 +47,9 @@ class Game : public QObject {
 
 		/** Main character */
 		Kapman* m_kapman;
+		
+		/** Ghosts */
+		QList<Ghost*> m_ghostList;
 		
 	public:
 

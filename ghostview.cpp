@@ -17,26 +17,26 @@
 */
 #include <QGraphicsScene>
 
-#include "kapmanview.h"
+#include "ghostview.h"
 
-KapmanView::KapmanView(Kapman* p_model, QString p_imagePath) :
+GhostView::GhostView(Ghost* p_model, QString p_imagePath) :
 		QGraphicsSvgItem(p_imagePath) {
 	// Init the view coordinates
 	setPos(p_model->getX(), p_model->getY());
 	// Connects the model to the view
 	connect(p_model, SIGNAL(moved(qreal, qreal)), this, SLOT(update(qreal, qreal)));
 
-	// Connects the view to the model to make the kapman change side on the maze when reaching a border
+	// Connects the view to the model to make the Ghost change side on the maze when reaching a border
 	connect(this, SIGNAL(borderReached(qreal, qreal)), p_model, SLOT(changeMazeSide(qreal, qreal)));
 }
 
-KapmanView::~KapmanView() {
+GhostView::~GhostView() {
 
 }
 
-void KapmanView::update(qreal p_x, qreal p_y) {
-	// If the Kapman reaches a border, he has to "circle around" the maze and continu his way from the other side
-	// When this is done, a signal warns the kapman model that his coordinates have changed
+void GhostView::update(qreal p_x, qreal p_y) {
+	// If the Ghost reaches a border, he has to "circle around" the maze and continu his way from the other side
+	// When this is done, a signal warns the Ghost model that his coordinates have changed
 	// West side test
 	if(p_x <= 0) {
 		// 

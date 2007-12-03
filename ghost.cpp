@@ -17,39 +17,41 @@
 */
 #include <QGraphicsScene>
 
-#include "kapman.h"
+#include "ghost.h"
 
-const qreal Kapman::SPEED = 2.5;
+const qreal Ghost::SPEED = 2.5;
 
-Kapman::Kapman() : m_x(260), m_y(335), m_xSpeed(0), m_ySpeed(0) {
+Ghost::Ghost(qreal p_x, qreal p_y, QString p_imageURL) : m_xSpeed(0), m_ySpeed(0) {
+	m_x = p_x;
+	m_y = p_y;
+	m_imageURL = p_imageURL;
+}
+
+Ghost::~Ghost() {
 
 }
 
-Kapman::~Kapman() {
-
-}
-
-void Kapman::goUp() {
+void Ghost::goUp() {
 	m_xSpeed = 0;
 	m_ySpeed = -SPEED;
 }
 
-void Kapman::goDown() {
+void Ghost::goDown() {
 	m_xSpeed = 0;
 	m_ySpeed = SPEED;
 }
 
-void Kapman::goRight() {
+void Ghost::goRight() {
 	m_xSpeed = SPEED;
 	m_ySpeed = 0;
 }
 
-void Kapman::goLeft() {
+void Ghost::goLeft() {
 	m_xSpeed = -SPEED;
 	m_ySpeed = 0;
 }
 
-void Kapman::move() {
+void Ghost::move() {
 	m_x += m_xSpeed;
 	m_y += m_ySpeed;
 	
@@ -57,28 +59,32 @@ void Kapman::move() {
 }
 
 /** Accessors */
-qreal Kapman::getSPEED() const {
+qreal Ghost::getSPEED() const {
 	return SPEED;
 }
 
-qreal Kapman::getX() const {
+qreal Ghost::getX() const {
 	return m_x;
 }
 
-qreal Kapman::getY() const {
+qreal Ghost::getY() const {
 	return m_y;
 }
 
-qreal Kapman::getXSpeed() const {
+qreal Ghost::getXSpeed() const {
 	return m_xSpeed;
 }
 
-qreal Kapman::getYSpeed() const {
+qreal Ghost::getYSpeed() const {
 	return m_ySpeed;
 }
 
+QString Ghost::getImageURL() const  {
+	return m_imageURL;
+}
+
 /** SLOTS */
-void Kapman::changeMazeSide(qreal p_newX, qreal p_newY) {
+void Ghost::changeMazeSide(qreal p_newX, qreal p_newY) {
 	m_x = p_newX;
 	m_y = p_newY;
 }

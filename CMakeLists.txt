@@ -36,13 +36,16 @@ set(kapmanSources
 	maze.cpp
 	mazeview.cpp
 	kapman.cpp
-	kapmanview.cpp)
+	kapmanview.cpp
+	ghost.cpp
+	ghostview.cpp)
 
 # resources
 set(kapmanResources
 	kapmanui.rc
 	images/kapmanMaze.svg
-	images/kapman_test.svg)
+	images/kapman_test.svg
+	images/redGhost_test.svg)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
@@ -50,7 +53,9 @@ kde4_add_executable(kapman ${kapmanSources})
 # Tests unit
 kde4_add_unit_test(kapmanGameTest
 	kapman.cpp
-	./tests/kapmanTest.cpp
+	ghost.cpp
+	./tests/ghosttest.cpp
+	./tests/kapmantest.cpp
 )
 
 # libraries needed
