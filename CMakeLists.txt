@@ -20,6 +20,7 @@ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories (
 	${CMAKE_SOURCE_DIR}
 	${CMAKE_BINARY_DIR}
+   ${kapman_SOURCE_DIR}/tests
 	${KDE4_INCLUDES}
 	${KDEGAMES_INCLUDE_DIR}/highscore/
 )
