@@ -20,7 +20,6 @@ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories (
 	${CMAKE_SOURCE_DIR}
 	${CMAKE_BINARY_DIR}
-   ${kapman_SOURCE_DIR}/tests
 	${KDE4_INCLUDES}
 	${KDEGAMES_INCLUDE_DIR}/highscore/
 )
@@ -35,41 +34,28 @@ set(kapmanSources
 	game.cpp
 	gameview.cpp
 	maze.cpp
+	mazeparser.cpp
 	mazeview.cpp
 	kapman.cpp
 	kapmanview.cpp
 	ghost.cpp
-	ghostview.cpp)
+	ghostview.cpp
+)
 
 # resources
 set(kapmanResources
 	kapmanui.rc
+	defaultmaze.xml
 	images/kapmanMaze.svg
-	images/kapman_test.svg
-	images/redGhost_test.svg)
+	images/kapman_test.svg)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
-
-# Tests unit
-kde4_add_unit_test(kapmanGameTest
-	kapman.cpp
-	ghost.cpp
-	./tests/ghosttest.cpp
-	./tests/kapmantest.cpp
-)
 
 # libraries needed
 target_link_libraries(kapman
 	${KDE4_KDEUI_LIBS}
 	kdegames
-)
-
-# libraries needed for tests
-target_link_libraries(kapmanGameTest
-	${KDE4_KDEUI_LIBS}
-	kdegames
-	${QT_QTTEST_LIBRARY}
 )
 
 # install the binary

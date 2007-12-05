@@ -28,6 +28,17 @@ class Maze : public QObject {
 
 	Q_OBJECT
 	
+	private:
+		
+		/** Number of rows of m_mazeArray */
+		int m_nbRows;
+		
+		/** Number of columns of m_mazeArray */
+		int m_nbColumns;
+		
+		/** Maze matrix */
+		int** m_mazeArray;
+	
 	public:
 
 		/**
@@ -41,10 +52,20 @@ class Maze : public QObject {
 		~Maze();
 		
 		/**
-		 * Initializes the maze from an XML file
+		 * Initializes the maze matrix
+		 * @param p_rows the number of rows
+		 * @param p_columns the number of columns
 		 */
-		void init();
+		void init(int p_nbRows, int p_nbColumns);
 		
+		/**
+		 * Sets the allowed move value of a cell
+		 * @param p_row the cell row
+		 * @param p_column the cell column
+		 * @param p_value the allowed move value :
+		 *				  0 if not allowed, 1 if allowed
+		 */
+		void setAllowedMove(int p_row, int p_column, int p_value);
 };
 
 #endif
