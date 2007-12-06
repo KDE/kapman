@@ -18,9 +18,9 @@
 
 #include <KStandardDirs>
 #include "game.h"
-#include "mazeview.h"
-#include "kapmanview.h"
-#include "ghostview.h"
+#include "mazeitem.h"
+#include "kapmanitem.h"
+#include "ghostitem.h"
 
 Game::Game() {
 	m_scene = new QGraphicsScene();
@@ -32,13 +32,14 @@ Game::Game() {
 	m_ghostList.append(new Ghost(298.0, 275.0, "redGhost_test.svg"));
 	
 	// Add the items to the scene
-	m_scene->addItem(new MazeView(
+	m_scene->addItem(new MazeItem(
 		KStandardDirs::locate("appdata", "kapmanMaze.svg")));
-	m_scene->addItem(new KapmanView(
+	m_scene->addItem(new KapmanItem(
 		m_kapman, KStandardDirs::locate("appdata", "kapman_test.svg")));
 	for(int i=0; i<m_ghostList.size(); i++) {
-		m_scene->addItem(new GhostView(
-			m_ghostList.at(i), KStandardDirs::locate("appdata", m_ghostList.at(i)->getImageURL())));
+		m_scene->addItem(new GhostItem(
+			m_ghostList.at(i), KStandardDirs::locate(
+				"appdata", m_ghostList.at(i)->getImageURL())));
 	}
 	
 	// Start the timer to move the characters regulary

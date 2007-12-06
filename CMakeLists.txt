@@ -35,11 +35,11 @@ set(kapmanSources
 	gameview.cpp
 	maze.cpp
 	mazeparser.cpp
-	mazeview.cpp
+	mazeitem.cpp
 	kapman.cpp
-	kapmanview.cpp
+	kapmanitem.cpp
 	ghost.cpp
-	ghostview.cpp
+	ghostitem.cpp
 )
 
 # resources

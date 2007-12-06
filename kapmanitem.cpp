@@ -17,9 +17,9 @@
 */
 #include <QGraphicsScene>
 
-#include "kapmanview.h"
+#include "kapmanitem.h"
 
-KapmanView::KapmanView(Kapman* p_model, QString p_imagePath) :
+KapmanItem::KapmanItem(Kapman* p_model, QString p_imagePath) :
 		QGraphicsSvgItem(p_imagePath) {
 	// Init the view coordinates
 	setPos(p_model->getX(), p_model->getY());
@@ -30,11 +30,11 @@ KapmanView::KapmanView(Kapman* p_model, QString p_imagePath) :
 	connect(this, SIGNAL(borderReached(qreal, qreal)), p_model, SLOT(changeMazeSide(qreal, qreal)));
 }
 
-KapmanView::~KapmanView() {
+KapmanItem::~KapmanItem() {
 
 }
 
-void KapmanView::update(qreal p_x, qreal p_y) {
+void KapmanItem::update(qreal p_x, qreal p_y) {
 	// If the Kapman reaches a border, he has to "circle around" the maze and continu his way from the other side
 	// When this is done, a signal warns the kapman model that his coordinates have changed
 	// West side test

@@ -17,9 +17,9 @@
 */
 #include <QGraphicsScene>
 
-#include "ghostview.h"
+#include "ghostitem.h"
 
-GhostView::GhostView(Ghost* p_model, QString p_imagePath) :
+GhostItem::GhostItem(Ghost* p_model, QString p_imagePath) :
 		QGraphicsSvgItem(p_imagePath) {
 	// Init the view coordinates
 	setPos(p_model->getX(), p_model->getY());
@@ -30,11 +30,11 @@ GhostView::GhostView(Ghost* p_model, QString p_imagePath) :
 	connect(this, SIGNAL(borderReached(qreal, qreal)), p_model, SLOT(changeMazeSide(qreal, qreal)));
 }
 
-GhostView::~GhostView() {
+GhostItem::~GhostItem() {
 
 }
 
-void GhostView::update(qreal p_x, qreal p_y) {
+void GhostItem::update(qreal p_x, qreal p_y) {
 	// If the Ghost reaches a border, he has to "circle around" the maze and continu his way from the other side
 	// When this is done, a signal warns the Ghost model that his coordinates have changed
 	// West side test

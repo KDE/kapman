@@ -1,4 +1,4 @@
-#include "kapmanTest.h"
+#include "kapmantest.h"
 #include "kapman.h"
 
 void KapmanTest::testKapman() {

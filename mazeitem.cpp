@@ -16,30 +16,12 @@
    02110-1301, USA
 */
 
-#ifndef __MAZEVIEW_H
-#define __MAZEVIEW_H
+#include "mazeitem.h"
 
-#include <QGraphicsSvgItem>
+MazeItem::MazeItem(QString p_imagePath) : QGraphicsSvgItem(p_imagePath) {
+		
+}
 
-/**
- * This class represents the view of the maze
- */
-class MazeView : public QGraphicsSvgItem {
- 
- 	Q_OBJECT
- 	
-	public:
+MazeItem::~MazeItem() {
 
-		/**
-		 * Creates a new MazeView
-		 * @param p_imagePath the path to the maze image
-		 */
-		MazeView(QString p_imagePath);
-
-		/**
-		 * Deletes the MazeView
-		 */
-		~MazeView();
-};
-
-#endif
+}

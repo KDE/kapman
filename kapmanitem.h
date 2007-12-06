@@ -16,38 +16,39 @@
    02110-1301, USA
 */
 
-#ifndef __GHOSTVIEW_H
-#define __GHOSTVIEW_H
+#ifndef __KAPMANITEM_H
+#define __KAPMANITEM_H
 
 #include <QGraphicsSvgItem>
 #include <QString>
-#include "ghost.h"
+#include "kapman.h"
 
 /**
  * This class is the graphical representation of the main character
  */
-class GhostView : public QGraphicsSvgItem {
+class KapmanItem : public QGraphicsSvgItem {
 
 	Q_OBJECT
 
 	public:
 
 		/**
-		 * Creates a new GhostView instance
-		 * @param p_model the Ghost
+		 * Creates a new KapmanItem instance
+		 * @param p_model the Kapman model
+		 * @param p_imagePath the Kapman image path
 		 */
-		GhostView(Ghost* p_model, QString p_imagePath);
+		KapmanItem(Kapman* p_model, QString p_imagePath);
 
 		/**
-		 * Deletes the GhostView instance
+		 * Deletes the KapmanItem instance
 		 */
-		~GhostView();
+		~KapmanItem();
 
 	signals:
 
 		/**
-		 * Warns the Ghost model that his coordinates have to be changed
-		 * Emitted when the Ghost reaches a border of the maze
+		 * Warns the kapman model that his coordinates have to be changed
+		 * Emitted when the kapman reaches a border of the maze
 		 * @param p_newX the new (or unchanged) X coordinate
 		 * @param p_newY the new (or unchanged) Y coordinate
 		 */
