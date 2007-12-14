@@ -99,10 +99,12 @@ qreal Kapman::getAskedYSpeed() const {
 
 void Kapman::setX(qreal p_x) {
 	m_x = p_x;
+	emit(moved(m_x, m_y));
 }
 
 void Kapman::setY(qreal p_y) {
 	m_y = p_y;
+	emit(moved(m_x, m_y));
 }
 
 /** SLOTS */

@@ -141,7 +141,7 @@
 	<Cell rowIndex="4" columnIndex="26" allowedMove="1" />
 	<Cell rowIndex="4" columnIndex="27" allowedMove="0" />
 	<Cell rowIndex="5" columnIndex="0" allowedMove="0" />
-	<Cell rowIndex="5" columnIndex="1" allowedMove="0" />
+	<Cell rowIndex="5" columnIndex="1" allowedMove="1" />
 	<Cell rowIndex="5" columnIndex="2" allowedMove="1" />
 	<Cell rowIndex="5" columnIndex="3" allowedMove="1" />
 	<Cell rowIndex="5" columnIndex="4" allowedMove="1" />
@@ -392,7 +392,7 @@
 	<Cell rowIndex="13" columnIndex="25" allowedMove="0" />
 	<Cell rowIndex="13" columnIndex="26" allowedMove="0" />
 	<Cell rowIndex="13" columnIndex="27" allowedMove="0" />
-	<Cell rowIndex="14" columnIndex="0" allowedMove="1" />
+	<Cell rowIndex="14" columnIndex="0" allowedMove="0" />
 	<Cell rowIndex="14" columnIndex="1" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="2" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="3" allowedMove="1" />
@@ -419,7 +419,7 @@
 	<Cell rowIndex="14" columnIndex="24" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="25" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="26" allowedMove="1" />
-	<Cell rowIndex="14" columnIndex="27" allowedMove="1" />
+	<Cell rowIndex="14" columnIndex="27" allowedMove="0" />
 	<Cell rowIndex="15" columnIndex="0" allowedMove="0" />
 	<Cell rowIndex="15" columnIndex="1" allowedMove="0" />
 	<Cell rowIndex="15" columnIndex="2" allowedMove="0" />
@@ -813,7 +813,7 @@
 	<Cell rowIndex="28" columnIndex="26" allowedMove="1" />
 	<Cell rowIndex="28" columnIndex="27" allowedMove="0" />
 	<Cell rowIndex="29" columnIndex="0" allowedMove="0" />
-	<Cell rowIndex="29" columnIndex="1" allowedMove="0" />
+	<Cell rowIndex="29" columnIndex="1" allowedMove="1" />
 	<Cell rowIndex="29" columnIndex="2" allowedMove="1" />
 	<Cell rowIndex="29" columnIndex="3" allowedMove="1" />
 	<Cell rowIndex="29" columnIndex="4" allowedMove="1" />
@@ -839,7 +839,7 @@
 	<Cell rowIndex="29" columnIndex="24" allowedMove="1" />
 	<Cell rowIndex="29" columnIndex="25" allowedMove="1" />
 	<Cell rowIndex="29" columnIndex="26" allowedMove="1" />
-	<Cell rowIndex="29" columnIndex="27" allowedMove="1" />
+	<Cell rowIndex="29" columnIndex="27" allowedMove="0" />
 	<Cell rowIndex="30" columnIndex="0" allowedMove="0" />
 	<Cell rowIndex="30" columnIndex="1" allowedMove="0" />
 	<Cell rowIndex="30" columnIndex="2" allowedMove="0" />

@@ -125,7 +125,7 @@ Cell Game::getNextCell(Kapman* p_character) {
 		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
 	}
 	else if (p_character->getYSpeed() < 0) {
-		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
+		nextCell = m_maze->getCell(curCellRow - 1, curCellCol);
 	}
 
 	return nextCell;
@@ -148,7 +148,7 @@ Cell Game::getAskedNextCell(Kapman* p_character) {
 		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
 	}
 	else if (p_character->getAskedYSpeed() < 0) {
-		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
+		nextCell = m_maze->getCell(curCellRow - 1, curCellCol);
 	}
 
 	return nextCell;
@@ -184,6 +184,8 @@ void Game::update() {
 			m_kapman->getAskedYSpeed() == -m_kapman->getYSpeed()) {
 			// Go back
 			m_kapman->updateDirection();
+			// Move the kapman
+			m_kapman->move();
 		}
 		else {
 			// If the kapman gets on a cell center
@@ -208,6 +210,10 @@ void Game::update() {
 							// Stop moving
 							m_kapman->stopMoving();
 						}
+						else {
+							// Move the kapman
+							m_kapman->move();
+						}
 					}
 				}
 				else {
@@ -218,10 +224,18 @@ void Game::update() {
 						// Stop moving
 						m_kapman->stopMoving();
 					}
+					else {
+						// Move the kapman
+						m_kapman->move();
+					}
 				}
+			}
+			else {
+				// Move the kapman
+				m_kapman->move();
 			}
 		}
 	}
 	// Move the kapman
-	m_kapman->move();
+	//m_kapman->move();
 }
