@@ -14,7 +14,7 @@ void KapmanTest::testKapman() {
 void KapmanTest::testGoUp() {
 
 	Kapman kap;
-	qreal kapSpeed = kap.getSPEED();
+	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goUp();
 
@@ -25,7 +25,7 @@ void KapmanTest::testGoUp() {
 void KapmanTest::testGoDown() {
 
 	Kapman kap;
-	qreal kapSpeed = kap.getSPEED();
+	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goDown();
 
@@ -36,7 +36,7 @@ void KapmanTest::testGoDown() {
 void KapmanTest::testGoRight() {
 
 	Kapman kap;
-	qreal kapSpeed = kap.getSPEED();
+	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goRight();
 
@@ -47,7 +47,7 @@ void KapmanTest::testGoRight() {
 void KapmanTest::testGoLeft() {
 
 	Kapman kap;
-	qreal kapSpeed = kap.getSPEED();
+	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goLeft();
 
@@ -70,32 +70,32 @@ void KapmanTest::testMove() {
 	
 	// test of the new coordinates
 	QCOMPARE(kap->getX(), kapX);
-	QCOMPARE(kap->getY(), kapY - kap->getSPEED());
+	QCOMPARE(kap->getY(), kapY - Kapman::SPEED);
 	
 	kap->move();
 	
 	// test of the new coordinates
 	QCOMPARE(kap->getX(), kapX);
-	QCOMPARE(kap->getY(), kapY - 2*kap->getSPEED());
+	QCOMPARE(kap->getY(), kapY - 2*Kapman::SPEED);
 	
 	kap->goRight();
 	kap->move();
 	
 	// test of the new coordinates
-	QCOMPARE(kap->getX(), kapX + kap->getSPEED());
-	QCOMPARE(kap->getY(), kapY - 2*kap->getSPEED());
+	QCOMPARE(kap->getX(), kapX + Kapman::SPEED);
+	QCOMPARE(kap->getY(), kapY - 2*Kapman::SPEED);
 	
 	// results of the spy viewUpdate
 	QCOMPARE(viewUpdate.count(), 3);
 	
 	QCOMPARE(viewUpdate.at(0).at(0).toDouble(), kapX);
-	QCOMPARE(viewUpdate.at(0).at(1).toDouble(), kapY - kap->getSPEED());
+	QCOMPARE(viewUpdate.at(0).at(1).toDouble(), kapY - Kapman::SPEED);
 	
 	QCOMPARE(viewUpdate.at(1).at(0).toDouble(), kapX);
-	QCOMPARE(viewUpdate.at(1).at(1).toDouble(), kapY - 2*kap->getSPEED());
+	QCOMPARE(viewUpdate.at(1).at(1).toDouble(), kapY - 2*Kapman::SPEED);
 	
-	QCOMPARE(viewUpdate.at(2).at(0).toDouble(), kapX + kap->getSPEED());
-	QCOMPARE(viewUpdate.at(2).at(1).toDouble(), kapY - 2*kap->getSPEED());
+	QCOMPARE(viewUpdate.at(2).at(0).toDouble(), kapX + Kapman::SPEED);
+	QCOMPARE(viewUpdate.at(2).at(1).toDouble(), kapY - 2*Kapman::SPEED);
 }
 
 

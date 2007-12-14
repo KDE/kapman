@@ -78,6 +78,36 @@ class Game : public QObject {
 		 */
 		QGraphicsScene* getScene() const;
 
+	private:
+
+		/**
+		 * If the given character goes past the next center it mets during its
+		 * next movement, then we put it right ON the center
+		 * @param p_character the character which movement must be checked
+		 * @return true if the character is put on a center, false otherwise
+		 */
+		bool onCenter(Kapman* p_character);
+
+		/**
+		 * Moves the given character on its current cell center
+		 * @param p_character the character to move
+		 */
+		void moveOnCenter(Kapman* p_character);
+
+		/**
+		 * @param p_character the character we want to get the next cell
+		 * @return the next cell the character will move on with its
+		 *		   current direction
+		 */
+		Cell getNextCell(Kapman* p_character);
+
+		/**
+		 * @param p_character the character we want to get the next cell
+		 * @return the next cell the character will move on with its
+		 *		   asked direction
+		 */
+		Cell getAskedNextCell(Kapman* p_character);
+
 	public slots:
 
 		/**

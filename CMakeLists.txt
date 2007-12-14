@@ -34,6 +34,7 @@ set(kapmanSources
 	game.cpp
 	gameview.cpp
 	maze.cpp
+	cell.cpp
 	mazeparser.cpp
 	mazeitem.cpp
 	kapman.cpp
@@ -47,7 +48,8 @@ set(kapmanResources
 	kapmanui.rc
 	defaultmaze.xml
 	images/kapmanMaze.svg
-	images/kapman_test.svg)
+	images/kapman_test.svg
+	images/redGhost_test.svg)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})

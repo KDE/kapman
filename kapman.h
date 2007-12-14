@@ -28,10 +28,12 @@ class Kapman : public QObject {
 
 	Q_OBJECT
 
-	private:
+	public:
 
 		/** The Kapman moving speed */
 		static const qreal SPEED;
+
+	private:
 
 		/** Kapman coordinates */
 		qreal m_x, m_y;
@@ -39,12 +41,17 @@ class Kapman : public QObject {
 		/** Kapman speed */
 		qreal m_xSpeed, m_ySpeed;
 
+		/** Kapman required speed */
+		qreal m_askedXSpeed, m_askedYSpeed;
+
 	public:
 
 		/**
 		 * Creates a new Kapman instance
+		 * @param p_x the initial x coordinate
+		 * @param p_y the initial y coordinate
 		 */
-		Kapman();
+		Kapman(qreal p_x, qreal p_y);
 
 		/**
 		 * Deletes the Kapman instance
@@ -72,15 +79,19 @@ class Kapman : public QObject {
 		void goLeft();
 
 		/**
+		 * Updates the Kapman direction with the asked direction
+		 */
+		void updateDirection();
+
+		/**
 		 * Moves the Kapman function of its coordinates and speed
 		 */
 		void move();
 
-
 		/**
-		 * @return the kapman's global speed
+		 * Stops moving the Kapman
 		 */
-		qreal getSPEED() const;
+		void stopMoving();
 
 		/**
 		 * @return the x-coordinate
@@ -93,14 +104,36 @@ class Kapman : public QObject {
 		qreal getY() const;
 
 		/**
-		 * @return the x speed coordinate
+		 * @return the x speed value
 		 */
 		qreal getXSpeed() const;
 
 		/**
-		 * @return the y speed coordinate
+		 * @return the y speed value
 		 */
 		qreal getYSpeed() const;
+
+		/**
+		 * @return the asked x speed value
+		 */
+		qreal getAskedXSpeed() const;
+
+		/**
+		 * @return the asked y speed value
+		 */
+		qreal getAskedYSpeed() const;
+
+		/**
+		 * Sets the x coordinate to the given value
+		 * @param p_x the new x coordinate to set
+		 */
+		void setX(qreal p_x);
+
+		/**
+		 * Sets the y coordinate to the given value
+		 * @param p_y the new y coordinate to set
+		 */
+		void setY(qreal p_y);
 
 	signals:
 

@@ -20,6 +20,7 @@
 #define __MAZE_H
 
 #include <QObject>
+#include "cell.h"
 
 /**
  * This class represents the maze of kapman
@@ -37,7 +38,7 @@ class Maze : public QObject {
 		int m_nbColumns;
 		
 		/** Maze matrix */
-		int** m_mazeArray;
+		Cell** m_cells;
 	
 	public:
 
@@ -57,15 +58,33 @@ class Maze : public QObject {
 		 * @param p_columns the number of columns
 		 */
 		void init(int p_nbRows, int p_nbColumns);
-		
+
 		/**
-		 * Sets the allowed move value of a cell
+		 * Sets the given cell type
 		 * @param p_row the cell row
 		 * @param p_column the cell column
-		 * @param p_value the allowed move value :
-		 *				  0 if not allowed, 1 if allowed
+		 * @param p_type the cell new type
 		 */
-		void setAllowedMove(int p_row, int p_column, int p_value);
+		void setCellType(int p_row, int p_column, Cell::CellType p_type);
+
+		/**
+		 * @param p_row the row index
+		 * @param p_column the column index
+		 * @return the cell at the given row and column
+		 */
+		Cell getCell(int p_row, int p_column);
+
+		/**
+		 * @param p_y the y coordinate to convert into row index
+		 * @return the row index corresponding to the given y coordinate
+		 */
+		int getRowFromY(qreal p_y);
+
+		/**
+		 * @param p_x the x coordinate to convert into column index
+		 * @return the column index corresponding to the given x coordinate
+		 */
+		int getColFromX(qreal p_x);
 };
 
 #endif

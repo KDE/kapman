@@ -59,10 +59,6 @@ void Ghost::move() {
 }
 
 /** Accessors */
-qreal Ghost::getSPEED() const {
-	return SPEED;
-}
-
 qreal Ghost::getX() const {
 	return m_x;
 }

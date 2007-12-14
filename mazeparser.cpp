@@ -48,7 +48,7 @@ bool MazeParser::startElement(const QString&, const QString&,
 	if(p_qName == "Cell") {
 		int rowIndex = 0;
 		int columnIndex = 0;
-		int allowedMove = 0;
+		int cellType = 0;
 		
 		for(int i = 0 ; i < p_atts.count() ; i++) {
 			if(p_atts.qName(i) == "rowIndex") {
@@ -60,11 +60,11 @@ bool MazeParser::startElement(const QString&, const QString&,
 			}
 			
 			if(p_atts.qName(i) == "allowedMove") {
-				allowedMove = p_atts.value(i).toInt();
+				cellType = p_atts.value(i).toInt();
 			}
 		}
-		
-		m_maze->setAllowedMove(rowIndex, columnIndex, allowedMove);
+
+		m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType);
 	}
 	
 	return true;

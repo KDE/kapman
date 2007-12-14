@@ -21,7 +21,9 @@
 
 const qreal Kapman::SPEED = 2.5;
 
-Kapman::Kapman() : m_x(260), m_y(335), m_xSpeed(0), m_ySpeed(0) {
+Kapman::Kapman(qreal p_x, qreal p_y) :
+		m_x(p_x), m_y(p_y), m_xSpeed(0), m_ySpeed(0),
+		m_askedXSpeed(0), m_askedYSpeed(0) {
 
 }
 
@@ -30,23 +32,30 @@ Kapman::~Kapman() {
 }
 
 void Kapman::goUp() {
-	m_xSpeed = 0;
-	m_ySpeed = -SPEED;
+	m_askedXSpeed = 0;
+	m_askedYSpeed = -SPEED;
 }
 
 void Kapman::goDown() {
-	m_xSpeed = 0;
-	m_ySpeed = SPEED;
+	m_askedXSpeed = 0;
+	m_askedYSpeed = SPEED;
 }
 
 void Kapman::goRight() {
-	m_xSpeed = SPEED;
-	m_ySpeed = 0;
+	m_askedXSpeed = SPEED;
+	m_askedYSpeed = 0;
 }
 
 void Kapman::goLeft() {
-	m_xSpeed = -SPEED;
-	m_ySpeed = 0;
+	m_askedXSpeed = -SPEED;
+	m_askedYSpeed = 0;
+}
+
+void Kapman::updateDirection() {
+	m_xSpeed = m_askedXSpeed;
+	m_ySpeed = m_askedYSpeed;
+	m_askedXSpeed = 0;
+	m_askedYSpeed = 0;
 }
 
 void Kapman::move() {
@@ -56,11 +65,14 @@ void Kapman::move() {
 	emit(moved(m_x, m_y));
 }
 
-/** Accessors */
-qreal Kapman::getSPEED() const {
-	return SPEED;
+void Kapman::stopMoving() {
+	m_xSpeed = 0;
+	m_ySpeed = 0;
+	m_askedXSpeed = 0;
+	m_askedYSpeed = 0;
 }
 
+/** Accessors */
 qreal Kapman::getX() const {
 	return m_x;
 }
@@ -75,6 +87,22 @@ qreal Kapman::getXSpeed() const {
 
 qreal Kapman::getYSpeed() const {
 	return m_ySpeed;
+}
+
+qreal Kapman::getAskedXSpeed() const {
+	return m_askedXSpeed;
+}
+
+qreal Kapman::getAskedYSpeed() const {
+	return m_askedYSpeed;
+}
+
+void Kapman::setX(qreal p_x) {
+	m_x = p_x;
+}
+
+void Kapman::setY(qreal p_y) {
+	m_y = p_y;
 }
 
 /** SLOTS */

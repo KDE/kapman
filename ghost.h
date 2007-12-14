@@ -28,10 +28,12 @@ class Ghost : public QObject {
 
 	Q_OBJECT
 
-	private:
+	public:
 
 		/** The Ghost moving speed */
 		static const qreal SPEED;
+
+	private:
 
 		/** Ghost coordinates */
 		qreal m_x, m_y;
@@ -78,12 +80,6 @@ class Ghost : public QObject {
 		 * Moves the Ghost function of its coordinates and speed
 		 */
 		void move();
-
-
-		/**
-		 * @return the Ghost's global speed
-		 */
-		qreal getSPEED() const;
 
 		/**
 		 * @return the x-coordinate

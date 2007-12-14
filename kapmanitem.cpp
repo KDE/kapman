@@ -22,7 +22,8 @@
 KapmanItem::KapmanItem(Kapman* p_model, QString p_imagePath) :
 		QGraphicsSvgItem(p_imagePath) {
 	// Init the view coordinates
-	setPos(p_model->getX(), p_model->getY());
+	setPos(p_model->getX() - boundingRect().width() / 2,
+		   p_model->getY() - boundingRect().height() / 2);
 	// Connects the model to the view
 	connect(p_model, SIGNAL(moved(qreal, qreal)), this, SLOT(update(qreal, qreal)));
 
@@ -35,30 +36,38 @@ KapmanItem::~KapmanItem() {
 }
 
 void KapmanItem::update(qreal p_x, qreal p_y) {
-	// If the Kapman reaches a border, he has to "circle around" the maze and continu his way from the other side
+	// Compute the top-right coordinates of the item
+	qreal x = p_x - boundingRect().width() / 2;
+	qreal y = p_y - boundingRect().height() / 2;
+	// If the Kapman reaches a border, he has to "circle around" the maze and
+	// continu his way from the other side
 	// When this is done, a signal warns the kapman model that his coordinates have changed
 	// West side test
-	if(p_x <= 0) {
+	if(x <= 0) {
 		// 
-		p_x += scene()->itemsBoundingRect().width() - this->boundingRect().width();
-		emit(borderReached(p_x, p_y));
+		x += scene()->itemsBoundingRect().width() -
+				this->boundingRect().width();
+		emit(borderReached(x, y));
 	}
 	// East side test
-	else if(p_x > (scene()->itemsBoundingRect().width() - this->boundingRect().width())) {
-		p_x = 1;
-		emit(borderReached(p_x, p_y));
+	else if(x > (scene()->itemsBoundingRect().width() -
+					this->boundingRect().width())) {
+		x = 1;
+		emit(borderReached(x, y));
 	}
 	// North side test
-	else if(p_y <= 0) {
-		p_y += scene()->itemsBoundingRect().height() - this->boundingRect().height();
-		emit(borderReached(p_x, p_y));
+	else if(y <= 0) {
+		y += scene()->itemsBoundingRect().height() -
+				this->boundingRect().height();
+		emit(borderReached(x, y));
 	}
 	// South side test
-	else if(p_y > (scene()->itemsBoundingRect().height() - this->boundingRect().height())) {
-		p_y = 1;
-		emit(borderReached(p_x, p_y));
+	else if(y > (scene()->itemsBoundingRect().height() -
+					this->boundingRect().height())) {
+		y = 1;
+		emit(borderReached(x, y));
 	}
 
 	// Updates the view coordinates
-	setPos(p_x, p_y);
+	setPos(x, y);
 }
