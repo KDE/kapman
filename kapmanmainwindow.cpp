@@ -37,11 +37,18 @@ KapmanMainWindow::~KapmanMainWindow() {
 	delete m_view;
 }
 
+void KapmanMainWindow::resizeEvent(QResizeEvent* p_event) {
+	// pause the game to manage the the scene of the view 
+	m_game->pause();
+	m_view->resizeManager();
+	m_game->start();
+}
+
 void KapmanMainWindow::initGame() {
 	// Create the game
 	m_game = new Game();
 	// Create the view displaying the game scene
-	m_view = new GameView(m_game->getScene());
+	m_view = new GameView(m_game);
 	m_view->setBackgroundBrush(Qt::black);
 	setCentralWidget(m_view);
 	// Connect the key events to the game manager

@@ -1,4 +1,4 @@
-#include "ghostTest.h"
+#include "ghosttest.h"
 #include "ghost.h"
 
 void GhostTest::testGhost() {

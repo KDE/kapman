@@ -40,6 +40,7 @@ set(kapmanSources
 	kapman.cpp
 	kapmanitem.cpp
 	ghost.cpp
+	gamescene.cpp
 	ghostitem.cpp
 )
 
@@ -49,15 +50,34 @@ set(kapmanResources
 	defaultmaze.xml
 	images/kapmanMaze.svg
 	images/kapman_test.svg
-	images/redGhost_test.svg)
+	images/redGhost_test.svg
+	images/greenGhost_test.svg
+	images/blueGhost_test.svg
+	images/pinkGhost_test.svg
+	images/kapman_test.svg)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
+
+# Tests unit
+kde4_add_unit_test(kapmanGameTest
+	kapman.cpp
+	ghost.cpp
+	./tests/kapmantest.cpp
+	./tests/ghosttest.cpp
+)
 
 # libraries needed
 target_link_libraries(kapman
 	${KDE4_KDEUI_LIBS}
 	kdegames
+)
+
+# libraries needed for tests
+target_link_libraries(kapmanGameTest
+	${KDE4_KDEUI_LIBS}
+	kdegames
+	${QT_QTTEST_LIBRARY}
 )
 
 # install the binary

@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Thomas Gallinari <tg8187@yahoo.fr>
+   Created by Alexandre GALINIER <alex.galinier@hotmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -16,57 +16,34 @@
    02110-1301, USA
 */
 
-#ifndef __GAMEVIEW_H
-#define __GAMEVIEW_H
-
-#include <QGraphicsView>
-#include <QKeyEvent>
+#include <QGraphicsScene>
 #include <QSize>
 
 #include "game.h"
 
 /**
- * This class represents the view that visualizes the scene
+ * This class represents the game Scene
  */
-class GameView : public QGraphicsView {
+class GameScene : public QGraphicsScene {
 
 	Q_OBJECT
 		
-	private:
-		
-		QSize m_size;
-	
 	public:
 
 		/**
-		 * Creates a new GameView instance
+		 * Creates a new GameScene instance
+		 *@param p_kapman the kapman model instance
+		 *@param p_ghost the the lsit of ghost models instance
 		 */
-		GameView(Game * p_game);
+		GameScene(Game * p_game);
 
 		/**
-		 * Deletes the GameView instance
+		 * Deletes the Game instance
 		 */
-		~GameView();
+		~GameScene();
 		
 		/**
-		 * Called on window resizing
+		 *Change the size of the scene
 		 */
-		void resizeManager();
-
-	protected:
-		/**
-		 * Called on key press
-		 * @param p_event the key press event
-		 */
-		void keyPressEvent(QKeyEvent * p_event);
-
-	signals:
-
-		/**
-		 * Emitted on key press
-		 * @param p_event the key press event
-		 */
-		void keyPressed(QKeyEvent * p_event);
+		void resizeScene(QSize p_newSize);
 };
-
-#endif

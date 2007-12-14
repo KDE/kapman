@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Pierre-Benoît Besse <besse.pb@gmail.com>
+   Created by Alexandre GALINIER <alex.galinier@hotmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -20,7 +20,7 @@
 #define __GAME_H
 
 #include <QTimer>
-#include <QGraphicsScene>
+/*#include <QGraphicsScene>*/
 #include <QKeyEvent>
 
 #include "maze.h"
@@ -38,9 +38,6 @@ class Game : public QObject {
 
 		/** Game timer */
 		QTimer* m_timer;
-
-		/** The scene containing the items to be displayed */
-		QGraphicsScene* m_scene;
 		
 		/** Game Maze */
 		Maze* m_maze;
@@ -72,12 +69,17 @@ class Game : public QObject {
 		 * Pauses the game
 		 */
 		void pause();
-
+		
 		/**
-		 * @return the game scene
+		 * @return the kapman model
 		 */
-		QGraphicsScene* getScene() const;
-
+		Kapman* getKapman() const;
+		
+		/**
+		 * @return the lsit of ghosts models
+		 */
+		QList<Ghost*> getGhostList () const;
+	
 	private:
 
 		/**

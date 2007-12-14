@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Pierre-Benoît Besse <besse.pb@gmail.com>
+   Created by Alexandre GALINIER <alex.galinier@hotmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -18,30 +18,15 @@
 
 #include <KStandardDirs>
 #include "game.h"
-#include "mazeitem.h"
-#include "kapmanitem.h"
-#include "ghostitem.h"
 #include <KDebug>
 
 Game::Game() {
-	m_scene = new QGraphicsScene();
 	m_maze = new Maze();
 	m_kapman = new Kapman(30, 30);
 	m_ghostList.append(new Ghost(260.0, 215.0, "redGhost_test.svg"));
-	m_ghostList.append(new Ghost(260.0, 275.0, "redGhost_test.svg"));
-	m_ghostList.append(new Ghost(222.0, 275.0, "redGhost_test.svg"));
-	m_ghostList.append(new Ghost(298.0, 275.0, "redGhost_test.svg"));
-
-	// Add the items to the scene
-	m_scene->addItem(new MazeItem(
-		KStandardDirs::locate("appdata", "kapmanMaze.svg")));
-	m_scene->addItem(new KapmanItem(
-		m_kapman, KStandardDirs::locate("appdata", "kapman_test.svg")));
-	for(int i=0; i<m_ghostList.size(); i++) {
-		m_scene->addItem(new GhostItem(
-			m_ghostList[i], KStandardDirs::locate(
-				"appdata", m_ghostList[i]->getImageURL())));
-	}
+	m_ghostList.append(new Ghost(260.0, 275.0, "greenGhost_test.svg"));
+	m_ghostList.append(new Ghost(222.0, 275.0, "blueGhost_test.svg"));
+	m_ghostList.append(new Ghost(298.0, 275.0, "pinkGhost_test.svg"));
 
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
@@ -51,7 +36,7 @@ Game::Game() {
 }
 
 Game::~Game() {
-	delete m_scene;
+	/*delete m_scene;*/
 	delete m_maze;
 	delete m_kapman;
 	for (int i = 0; i < m_ghostList.size(); i++) {
@@ -67,8 +52,12 @@ void Game::pause() {
 	m_timer->stop();
 }
 
-QGraphicsScene* Game::getScene() const {
-	return m_scene;
+Kapman * Game::getKapman() const {
+	return m_kapman;
+}
+		
+QList<Ghost*> Game::getGhostList () const {
+	return m_ghostList;
 }
 
 bool Game::onCenter(Kapman* p_character) {
@@ -194,8 +183,7 @@ void Game::update() {
 				if (m_kapman->getAskedXSpeed() != 0 ||
 					m_kapman->getAskedYSpeed() != 0) {
 					// Check the next cell with the kapman asked direction
-					if (getAskedNextCell(m_kapman).getType() ==
-															Cell::CORRIDOR) {
+					if (getAskedNextCell(m_kapman).getType() == Cell::CORRIDOR) {
 						// Move the kapman on the cell center
 						moveOnCenter(m_kapman);
 						// Update the direction
@@ -203,8 +191,7 @@ void Game::update() {
 					}
 					else {
 						// Check the next cell with the kapman current direction
-						if (getNextCell(m_kapman).getType() !=
-															Cell::CORRIDOR) {
+						if (getNextCell(m_kapman).getType() != Cell::CORRIDOR) {
 							// Move the kapman on the cell center
 							moveOnCenter(m_kapman);
 							// Stop moving

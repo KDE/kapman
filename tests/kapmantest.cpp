@@ -3,7 +3,7 @@
 
 void KapmanTest::testKapman() {
 
-	Kapman kap;
+	Kapman kap (0.0, 0.0);
 	
 	QCOMPARE(kap.getX(), 0.0);
 	QCOMPARE(kap.getY(), 0.0);
@@ -13,7 +13,7 @@ void KapmanTest::testKapman() {
 
 void KapmanTest::testGoUp() {
 
-	Kapman kap;
+	Kapman kap (0.0, 0.0);
 	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goUp();
@@ -24,7 +24,7 @@ void KapmanTest::testGoUp() {
 
 void KapmanTest::testGoDown() {
 
-	Kapman kap;
+	Kapman kap (0.0, 0.0);
 	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goDown();
@@ -35,7 +35,7 @@ void KapmanTest::testGoDown() {
 
 void KapmanTest::testGoRight() {
 
-	Kapman kap;
+	Kapman kap (0.0, 0.0);
 	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goRight();
@@ -46,7 +46,7 @@ void KapmanTest::testGoRight() {
 
 void KapmanTest::testGoLeft() {
 
-	Kapman kap;
+	Kapman kap (0.0, 0.0);
 	qreal kapSpeed = Kapman::SPEED;
 
 	kap.goLeft();
@@ -57,7 +57,7 @@ void KapmanTest::testGoLeft() {
 
 void KapmanTest::testMove() {	
 	
-	Kapman * kap = new Kapman();
+	Kapman * kap = new Kapman(0.0, 0.0);
 	
 	qreal kapX = kap->getX();	// The x coordinate before calling move()
 	qreal kapY = kap->getY();	// The y coordinate before calling move()
@@ -98,5 +98,5 @@ void KapmanTest::testMove() {
 	QCOMPARE(viewUpdate.at(2).at(1).toDouble(), kapY - 2*Kapman::SPEED);
 }
 
-
 QTEST_KDEMAIN_CORE(KapmanTest)
+

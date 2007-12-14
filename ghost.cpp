@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Thomas Gallinari <tg8187@yahoo.fr>
+   Created by Alexandre GALINIER <alex.galinier@hotmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
