@@ -15,14 +15,14 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
 */
-#include <QGraphicsScene>
 
+#include <QGraphicsScene>
 #include "kapman.h"
 
-const qreal Kapman::SPEED = 2.5;
+const qreal Kapman::SPEED = 2.0;
 
 Kapman::Kapman(qreal p_x, qreal p_y) :
-		m_x(p_x), m_y(p_y), m_xSpeed(0), m_ySpeed(0),
+		m_x(p_x), m_y(p_y), m_xSpeed(-SPEED), m_ySpeed(0),
 		m_askedXSpeed(0), m_askedYSpeed(0) {
 
 }

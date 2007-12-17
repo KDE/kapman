@@ -51,9 +51,6 @@ void KapmanMainWindow::initGame() {
 	m_view = new GameView(m_game);
 	m_view->setBackgroundBrush(Qt::black);
 	setCentralWidget(m_view);
-	// Connect the key events to the game manager
-	connect(m_view, SIGNAL(keyPressed(QKeyEvent*)),
-		m_game, SLOT(keyPressEvent(QKeyEvent*)));
 }
 
 void KapmanMainWindow::newGame() {

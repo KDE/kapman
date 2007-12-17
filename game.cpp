@@ -18,11 +18,10 @@
 
 #include <KStandardDirs>
 #include "game.h"
-#include <KDebug>
 
 Game::Game() {
 	m_maze = new Maze();
-	m_kapman = new Kapman(30, 30);
+	m_kapman = new Kapman(Cell::SIZE * 14, Cell::SIZE * 17.5);
 	m_ghostList.append(new Ghost(260.0, 215.0, "redGhost_test.svg"));
 	m_ghostList.append(new Ghost(260.0, 275.0, "greenGhost_test.svg"));
 	m_ghostList.append(new Ghost(222.0, 275.0, "blueGhost_test.svg"));
@@ -36,7 +35,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-	/*delete m_scene;*/
 	delete m_maze;
 	delete m_kapman;
 	for (int i = 0; i < m_ghostList.size(); i++) {
@@ -69,21 +67,34 @@ bool Game::onCenter(Kapman* p_character) {
 	bool willGoPast = false;
 
 	// Will the character go past the center of the cell it's on ?
-	if (p_character->getXSpeed() >= 0) {
-		willGoPast = (p_character->getX() + p_character->getXSpeed() >=
-						centerX);
+	// If goes right
+	if (p_character->getXSpeed() > 0) {
+		willGoPast = (p_character->getX() <= centerX &&
+					  p_character->getX() + p_character->getXSpeed() >=
+					  centerX);
 	}
+	// If goes down
+	else if (p_character->getXSpeed() < 0) {
+		willGoPast = (p_character->getX() >= centerX &&
+					  p_character->getX() + p_character->getXSpeed() <=
+					  centerX);
+	}
+	// If goes down
+	else if (p_character->getYSpeed() > 0) {
+		willGoPast = (p_character->getY() <= centerY &&
+					  p_character->getY() + p_character->getYSpeed() >=
+					  centerY);
+	}
+	// If goes up
+	else if (p_character->getYSpeed() < 0) {
+		willGoPast = (p_character->getY() >= centerY &&
+					  p_character->getY() + p_character->getYSpeed() <=
+					  centerY);
+	}
+	// If does not move
 	else {
-		willGoPast = (p_character->getX() + p_character->getXSpeed() <=
-						centerX);
-	}
-	if (p_character->getYSpeed() >= 0) {
-		willGoPast = (p_character->getY() + p_character->getYSpeed() >=
-						centerY);
-	}
-	else {
-		willGoPast = (p_character->getY() + p_character->getYSpeed() <=
-						centerY);
+		willGoPast = (p_character->getX() == centerX &&
+					  p_character->getY() == centerY);
 	}
 
 	return willGoPast;
@@ -98,10 +109,10 @@ void Game::moveOnCenter(Kapman* p_character) {
 }
 
 Cell Game::getNextCell(Kapman* p_character) {
+	Cell nextCell;
 	// Get the current cell coordinates from the character coordinates
 	int curCellRow = m_maze->getRowFromY(p_character->getY());
 	int curCellCol = m_maze->getColFromX(p_character->getX());
-	Cell nextCell;
 
 	// Get the next cell function of the character direction
 	if (p_character->getXSpeed() > 0) {
@@ -163,10 +174,23 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 }
 
 void Game::update() {
-	// If the kapman gets moving
-	if (m_kapman->getXSpeed() != 0 || m_kapman->getYSpeed() != 0 ||
-		m_kapman->getAskedXSpeed() != 0 || m_kapman->getAskedYSpeed() != 0) {
-		// If the kapman wants to go back
+	// If the kapman does not move
+	if (m_kapman->getXSpeed() == 0 && m_kapman->getYSpeed() == 0) {
+		// If the user asks for moving
+		if (m_kapman->getAskedXSpeed() != 0 ||
+			m_kapman->getAskedYSpeed() != 0) {
+			// Check the next cell with the asked direction
+			if (getAskedNextCell(m_kapman).getType() == Cell::CORRIDOR) {
+					// Update the direction
+					m_kapman->updateDirection();
+					// Move the kapman
+					m_kapman->move();
+			}
+		}
+	}
+	// If the kapman is already moving
+	else {
+		// If the kapman wants to go back it does not wait to be on a center
 		if (m_kapman->getXSpeed() != 0 &&
 			m_kapman->getAskedXSpeed() == -m_kapman->getXSpeed() ||
 			m_kapman->getYSpeed() != 0 &&
@@ -180,10 +204,13 @@ void Game::update() {
 			// If the kapman gets on a cell center
 			if (onCenter(m_kapman)) {
 				// If there is an asked direction (but not a half-turn)
-				if (m_kapman->getAskedXSpeed() != 0 ||
-					m_kapman->getAskedYSpeed() != 0) {
+				if ((m_kapman->getAskedXSpeed() != 0 ||
+					 m_kapman->getAskedYSpeed() != 0) &&
+					(m_kapman->getAskedXSpeed() != m_kapman->getXSpeed() ||
+					 m_kapman->getAskedYSpeed() != m_kapman->getYSpeed())) {
 					// Check the next cell with the kapman asked direction
-					if (getAskedNextCell(m_kapman).getType() == Cell::CORRIDOR) {
+					if (getAskedNextCell(m_kapman).getType() ==
+							Cell::CORRIDOR) {
 						// Move the kapman on the cell center
 						moveOnCenter(m_kapman);
 						// Update the direction
@@ -223,6 +250,4 @@ void Game::update() {
 			}
 		}
 	}
-	// Move the kapman
-	//m_kapman->move();
 }

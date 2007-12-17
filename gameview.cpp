@@ -15,12 +15,14 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
 */
-#include <KDebug>
+
 #include "gameview.h"
 #include "gamescene.h"
 
 GameView::GameView(Game * p_game) : QGraphicsView(new GameScene(p_game)) {
-	m_size = size();
+	// Connect the key events to the game manager
+	connect(this, SIGNAL(keyPressed(QKeyEvent*)),
+			p_game, SLOT(keyPressEvent(QKeyEvent*)));
 }
 
 GameView::~GameView() {
@@ -29,9 +31,8 @@ GameView::~GameView() {
 
 void GameView::resizeManager() {
 	// Resize the scene to fit in the viewport
-	//will be replaced when the resizeScene procedure will be implemented
+	// TODO replace with the resizeScene() method
 	fitInView(sceneRect(), Qt::KeepAspectRatio);
-	((GameScene*)scene())->resizeScene(size());
 }
 
 void GameView::keyPressEvent(QKeyEvent* p_event) {

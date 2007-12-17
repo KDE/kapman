@@ -17,32 +17,24 @@
 */
 
 #include <KStandardDirs>
-#include <KDebug>
-#include <QRectF>
-
 #include "gamescene.h"
 #include "mazeitem.h"
 #include "kapmanitem.h"
 #include "ghostitem.h"
 
 GameScene::GameScene(Game * p_game) {
-		
-	/*add all the items*/
+	// Add all the items
 	addItem(new MazeItem(
 		KStandardDirs::locate("appdata", "kapmanMaze.svg")));
-	addItem(new KapmanItem(
-		p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
+	addItem(new KapmanItem(p_game->getKapman(),
+		KStandardDirs::locate("appdata", "kapman_test.svg")));
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
-		addItem(new GhostItem(
-			p_game->getGhostList().at(i), KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL())));
+		addItem(new GhostItem(p_game->getGhostList().at(i),
+			KStandardDirs::locate("appdata",
+			p_game->getGhostList().at(i)->getImageURL())));
 	}
 }
 
 GameScene::~GameScene() {
 
-}
-
-void GameScene::resizeScene(QSize p_newSize) {
-	/*change the size of all the items proportionally*/
-	/*TO DO !*/
 }

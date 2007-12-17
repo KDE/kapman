@@ -20,9 +20,7 @@
 #define __GAME_H
 
 #include <QTimer>
-/*#include <QGraphicsScene>*/
 #include <QKeyEvent>
-
 #include "maze.h"
 #include "kapman.h"
 #include "ghost.h"

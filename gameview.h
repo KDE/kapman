@@ -31,10 +31,6 @@
 class GameView : public QGraphicsView {
 
 	Q_OBJECT
-		
-	private:
-		
-		QSize m_size;
 	
 	public:
 
@@ -54,6 +50,7 @@ class GameView : public QGraphicsView {
 		void resizeManager();
 
 	protected:
+
 		/**
 		 * Called on key press
 		 * @param p_event the key press event

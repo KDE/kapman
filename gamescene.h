@@ -41,9 +41,4 @@ class GameScene : public QGraphicsScene {
 		 * Deletes the Game instance
 		 */
 		~GameScene();
-		
-		/**
-		 *Change the size of the scene
-		 */
-		void resizeScene(QSize p_newSize);
 };
