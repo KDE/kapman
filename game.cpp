@@ -17,6 +17,11 @@
 */
 
 #include <KStandardDirs>
+#include <KDebug>
+
+#include "time.h"
+#include "stdlib.h"
+
 #include "game.h"
 
 Game::Game() {
@@ -32,6 +37,9 @@ Game::Game() {
 	m_timer->setInterval(15); // 60 FPS
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
 	m_timer->start();
+	
+	// Initialize the random-number generator
+	srand(time(NULL));
 }
 
 Game::~Game() {
@@ -58,7 +66,11 @@ QList<Ghost*> Game::getGhostList () const {
 	return m_ghostList;
 }
 
-bool Game::onCenter(Kapman* p_character) {
+QTimer * Game::getTimer() const {
+	return m_timer;
+}
+
+bool Game::onCenter(Character* p_character) {
 	// Get the current cell center coordinates
 	qreal centerX = (m_maze->getColFromX(p_character->getX()) + 0.5) *
 					Cell::SIZE;
@@ -73,7 +85,7 @@ bool Game::onCenter(Kapman* p_character) {
 					  p_character->getX() + p_character->getXSpeed() >=
 					  centerX);
 	}
-	// If goes down
+	// If goes left
 	else if (p_character->getXSpeed() < 0) {
 		willGoPast = (p_character->getX() >= centerX &&
 					  p_character->getX() + p_character->getXSpeed() <=
@@ -100,7 +112,7 @@ bool Game::onCenter(Kapman* p_character) {
 	return willGoPast;
 }
 
-void Game::moveOnCenter(Kapman* p_character) {
+void Game::moveOnCenter(Character* p_character) {
 	p_character->setX((m_maze->getColFromX(p_character->getX()) + 0.5) *
 					Cell::SIZE);
 	p_character->setY((m_maze->getRowFromY(p_character->getY()) + 0.5) *
@@ -108,7 +120,7 @@ void Game::moveOnCenter(Kapman* p_character) {
 	
 }
 
-Cell Game::getNextCell(Kapman* p_character) {
+Cell Game::getNextCell(Character* p_character) {
 	Cell nextCell;
 	// Get the current cell coordinates from the character coordinates
 	int curCellRow = m_maze->getRowFromY(p_character->getY());
@@ -154,6 +166,137 @@ Cell Game::getAskedNextCell(Kapman* p_character) {
 	return nextCell;
 }
 
+void Game::manageKapmanMove(Kapman* p_kapman) {
+	// If the kapman does not move
+	if (p_kapman->getXSpeed() == 0 && p_kapman->getYSpeed() == 0) {
+		// If the user asks for moving
+		if (p_kapman->getAskedXSpeed() != 0 ||
+			p_kapman->getAskedYSpeed() != 0) {
+			// Check the next cell with the asked direction
+			if (getAskedNextCell(p_kapman).getType() == Cell::CORRIDOR) {
+					// Update the direction
+					p_kapman->updateDirection();
+					// Move the kapman
+					p_kapman->move();
+			}
+		}
+	}
+	// If the kapman is already moving
+	else {
+		// If the kapman wants to go back it does not wait to be on a center
+		if (p_kapman->getXSpeed() != 0 &&
+			p_kapman->getAskedXSpeed() == -p_kapman->getXSpeed() ||
+			p_kapman->getYSpeed() != 0 &&
+			p_kapman->getAskedYSpeed() == -p_kapman->getYSpeed()) {
+			// Go back
+			p_kapman->updateDirection();
+			// Move the kapman
+			p_kapman->move();
+		}
+		else {
+			// If the kapman gets on a cell center
+			if (onCenter(p_kapman)) {
+				// If there is an asked direction (but not a half-turn)
+				if ((p_kapman->getAskedXSpeed() != 0 ||
+					 p_kapman->getAskedYSpeed() != 0) &&
+					(p_kapman->getAskedXSpeed() != p_kapman->getXSpeed() ||
+					 p_kapman->getAskedYSpeed() != p_kapman->getYSpeed())) {
+					// Check the next cell with the kapman asked direction
+					if (getAskedNextCell(p_kapman).getType() ==
+							Cell::CORRIDOR) {
+						// Move the kapman on the cell center
+						moveOnCenter(p_kapman);
+						// Update the direction
+						p_kapman->updateDirection();
+					}
+					else {
+						// Check the next cell with the kapman current direction
+						if (getNextCell(p_kapman).getType() != Cell::CORRIDOR) {
+							// Move the kapman on the cell center
+							moveOnCenter(p_kapman);
+							// Stop moving
+							p_kapman->stopMoving();
+						}
+						else {
+							// Move the kapman
+							p_kapman->move();
+						}
+					}
+				}
+				else {
+					// Check the next cell with the kapman current direction
+					if (getNextCell(p_kapman).getType() != Cell::CORRIDOR) {
+						// Move the kapman on the cell center
+						moveOnCenter(p_kapman);
+						// Stop moving
+						p_kapman->stopMoving();
+					}
+					else {
+						// Move the kapman
+						p_kapman->move();
+					}
+				}
+			}
+			else {
+				// Move the kapman
+				p_kapman->move();
+			}
+		}
+	}
+}
+
+// void Game::manageGhostMove(Ghost* p_ghost) {
+// 	// Get the current cell coordinates from the character coordinates
+// 	int curCellRow = m_maze->getRowFromY(p_ghost->getY());
+// 	int curCellCol = m_maze->getColFromX(p_ghost->getX());
+// 	
+// 	// This list is to contain the different directions a ghost can choose when 
+// 	QList<QPointF*> directionsList;
+// 	kDebug() << "coucou";
+// 	
+// 	// If the ghost gets on a Cell center
+// 	if( onCenter(p_ghost) ) {
+// 	
+// 		kDebug() << "Row : " << curCellRow;
+// 		kDebug() << "Col : " << curCellCol;
+// 	
+// 		// We retrieve all the directions the ghost can choose (save the half turn)
+// 		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR) {
+// 			if(p_ghost->getXSpeed() >= 0) {
+// 				directionsList.append(new QPointF(0, Ghost::SPEED));
+// 			}
+// 		}
+// 		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR) {
+// 			if(p_ghost->getYSpeed() >= 0) {
+// 				directionsList.append(new QPointF(Ghost::SPEED, 0));
+// 			}
+// 		}
+// 		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR) {
+// 			if(p_ghost->getYSpeed() <= 0) {
+// 				directionsList.append(new QPointF(-Ghost::SPEED, 0));
+// 			}
+// 		}
+// 		
+// 		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR) {
+// 			if(p_ghost->getXSpeed() <= 0) {
+// 				directionsList.append(new QPointF(0, -Ghost::SPEED));
+// 			}
+// 		}
+// 		// If there is more than one direction, we randomly choose one
+// 		kDebug() << "list size : " << directionsList.size();
+// 		if(directionsList.size() > 0) {
+// 			int nb = int( double( rand() ) / ( double( RAND_MAX) + 1 ) * (directionsList.size() - 1) );
+// 			
+// 			kDebug() << "generated number : " << nb;
+// 			p_ghost->setXSpeed(directionsList[nb]->x());
+// 			p_ghost->setYSpeed(directionsList[nb]->y());
+// 		}
+// 	}
+// 	
+// 	// We move the ghost
+// 	p_ghost->move();
+// }
+
 void Game::keyPressEvent(QKeyEvent* p_event) {
 	switch (p_event->key()) {
 		case Qt::Key_Up:
@@ -168,86 +311,21 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 		case Qt::Key_Left:
 			m_kapman->goLeft();
 			break;
+		case Qt::Key_P:
+			// If the game isn't paused yet, we stop the timer
+			if(m_timer->isActive()) {
+				m_timer->stop();
+			}
+			// If the game is already paused, we restart the timer
+			else {
+				m_timer->start();
+			}
 		default:
 			break;
 	}
 }
 
 void Game::update() {
-	// If the kapman does not move
-	if (m_kapman->getXSpeed() == 0 && m_kapman->getYSpeed() == 0) {
-		// If the user asks for moving
-		if (m_kapman->getAskedXSpeed() != 0 ||
-			m_kapman->getAskedYSpeed() != 0) {
-			// Check the next cell with the asked direction
-			if (getAskedNextCell(m_kapman).getType() == Cell::CORRIDOR) {
-					// Update the direction
-					m_kapman->updateDirection();
-					// Move the kapman
-					m_kapman->move();
-			}
-		}
-	}
-	// If the kapman is already moving
-	else {
-		// If the kapman wants to go back it does not wait to be on a center
-		if (m_kapman->getXSpeed() != 0 &&
-			m_kapman->getAskedXSpeed() == -m_kapman->getXSpeed() ||
-			m_kapman->getYSpeed() != 0 &&
-			m_kapman->getAskedYSpeed() == -m_kapman->getYSpeed()) {
-			// Go back
-			m_kapman->updateDirection();
-			// Move the kapman
-			m_kapman->move();
-		}
-		else {
-			// If the kapman gets on a cell center
-			if (onCenter(m_kapman)) {
-				// If there is an asked direction (but not a half-turn)
-				if ((m_kapman->getAskedXSpeed() != 0 ||
-					 m_kapman->getAskedYSpeed() != 0) &&
-					(m_kapman->getAskedXSpeed() != m_kapman->getXSpeed() ||
-					 m_kapman->getAskedYSpeed() != m_kapman->getYSpeed())) {
-					// Check the next cell with the kapman asked direction
-					if (getAskedNextCell(m_kapman).getType() ==
-							Cell::CORRIDOR) {
-						// Move the kapman on the cell center
-						moveOnCenter(m_kapman);
-						// Update the direction
-						m_kapman->updateDirection();
-					}
-					else {
-						// Check the next cell with the kapman current direction
-						if (getNextCell(m_kapman).getType() != Cell::CORRIDOR) {
-							// Move the kapman on the cell center
-							moveOnCenter(m_kapman);
-							// Stop moving
-							m_kapman->stopMoving();
-						}
-						else {
-							// Move the kapman
-							m_kapman->move();
-						}
-					}
-				}
-				else {
-					// Check the next cell with the kapman current direction
-					if (getNextCell(m_kapman).getType() != Cell::CORRIDOR) {
-						// Move the kapman on the cell center
-						moveOnCenter(m_kapman);
-						// Stop moving
-						m_kapman->stopMoving();
-					}
-					else {
-						// Move the kapman
-						m_kapman->move();
-					}
-				}
-			}
-			else {
-				// Move the kapman
-				m_kapman->move();
-			}
-		}
-	}
+	manageKapmanMove(m_kapman);
+// 	manageGhostMove(m_ghostList[0]);
 }

@@ -19,29 +19,23 @@
 #ifndef __KAPMAN_H
 #define __KAPMAN_H
 
-#include <QObject>
+#include "character.h"
 
 /**
  * This class represents the main character of the game
  */
-class Kapman : public QObject {
+class Kapman : public Character {
 
 	Q_OBJECT
 
 	public:
 
 		/** The Kapman moving speed */
-		static const qreal SPEED;
+ 		static const qreal SPEED;
 
 	private:
 
-		/** Kapman coordinates */
-		qreal m_x, m_y;
-
-		/** Kapman speed */
-		qreal m_xSpeed, m_ySpeed;
-
-		/** Kapman required speed */
+		/** Kapman asked speed */
 		qreal m_askedXSpeed, m_askedYSpeed;
 
 	public:
@@ -59,22 +53,22 @@ class Kapman : public QObject {
 		~Kapman();
 
 		/**
-		 * Makes the Kapman go up
+		 * Makes the Kapman ask to go up
 		 */
 		void goUp();
 
 		/**
-		 * Makes the Kapman go down
+		 * Makes the Kapman ask to go down
 		 */
 		void goDown();
 
 		/**
-		 * Makes the Kapman go to the right
+		 * Makes the Kapman ask to go to the right
 		 */
 		void goRight();
 
 		/**
-		 * Makes the Kapman go to the left
+		 * Makes the Kapman ask to go to the left
 		 */
 		void goLeft();
 
@@ -84,34 +78,9 @@ class Kapman : public QObject {
 		void updateDirection();
 
 		/**
-		 * Moves the Kapman function of its coordinates and speed
-		 */
-		void move();
-
-		/**
 		 * Stops moving the Kapman
 		 */
 		void stopMoving();
-
-		/**
-		 * @return the x-coordinate
-		 */
-		qreal getX() const;
-
-		/**
-		 * @return the y-coordinate
-		 */
-		qreal getY() const;
-
-		/**
-		 * @return the x speed value
-		 */
-		qreal getXSpeed() const;
-
-		/**
-		 * @return the y speed value
-		 */
-		qreal getYSpeed() const;
 
 		/**
 		 * @return the asked x speed value
@@ -122,36 +91,6 @@ class Kapman : public QObject {
 		 * @return the asked y speed value
 		 */
 		qreal getAskedYSpeed() const;
-
-		/**
-		 * Sets the x coordinate to the given value
-		 * @param p_x the new x coordinate to set
-		 */
-		void setX(qreal p_x);
-
-		/**
-		 * Sets the y coordinate to the given value
-		 * @param p_y the new y coordinate to set
-		 */
-		void setY(qreal p_y);
-
-	signals:
-
-		/**
-		 * On Kapman move
-		 * @param p_x the new x-coordinate
-		 * @param p_y the new y-coordinate
-		 */
-		void moved(qreal p_x, qreal p_y);
-
-	public slots:
-
-		/**
-		 * Makes the kapman "circle around" the maze when reaching a border
-		 * @param p_newX the new X coordinate
-		 * @param p_newY the new Y coordinate
-		 */
-		void changeMazeSide(qreal p_newX, qreal p_newY);
 };
 
 #endif

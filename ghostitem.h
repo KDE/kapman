@@ -50,8 +50,9 @@ class GhostItem : public QGraphicsSvgItem {
 		 * Emitted when the Ghost reaches a border of the maze
 		 * @param p_newX the new (or unchanged) X coordinate
 		 * @param p_newY the new (or unchanged) Y coordinate
+		 * TODO re-develop it according to new architecture
 		 */
-		void borderReached(qreal p_newX, qreal p_newY);
+// 		void borderReached(qreal p_newX, qreal p_newY);
 
 	public slots:
 

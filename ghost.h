@@ -19,27 +19,27 @@
 #ifndef __GHOST_H
 #define __GHOST_H
 
-#include <QObject>
+#include "character.h"
 
 /**
  * This class represents the ghost
  */
-class Ghost : public QObject {
+class Ghost : public Character {
 
 	Q_OBJECT
 
 	public:
 
 		/** The Ghost moving speed */
-		static const qreal SPEED;
+ 		static const qreal SPEED;
 
 	private:
 
 		/** Ghost coordinates */
-		qreal m_x, m_y;
+// 		qreal m_x, m_y;
 
 		/** Ghost speed */
-		qreal m_xSpeed, m_ySpeed;
+// 		qreal m_xSpeed, m_ySpeed;
 		
 		/** URL to the ghost's image */
 		QString m_imageURL;
@@ -77,52 +77,10 @@ class Ghost : public QObject {
 		void goLeft();
 
 		/**
-		 * Moves the Ghost function of its coordinates and speed
-		 */
-		void move();
-
-		/**
-		 * @return the x-coordinate
-		 */
-		qreal getX() const;
-
-		/**
-		 * @return the y-coordinate
-		 */
-		qreal getY() const;
-
-		/**
-		 * @return the x speed coordinate
-		 */
-		qreal getXSpeed() const;
-
-		/**
-		 * @return the y speed coordinate
-		 */
-		qreal getYSpeed() const;
-		
-		/**
 		 * @return the URL to the ghost's image
 		 */
 		QString getImageURL() const;
-		
-	signals:
 
-		/**
-		 * On Ghost move
-		 * @param p_x the new x-coordinate
-		 * @param p_y the new y-coordinate
-		 */
-		void moved(qreal p_x, qreal p_y);
-
-	public slots:
-
-		/**
-		 * Makes the Ghost "circle around" the maze when reaching a border
-		 * @param p_newX the new X coordinate
-		 * @param p_newY the new Y coordinate
-		 */
-		void changeMazeSide(qreal p_newX, qreal p_newY);
 };
 
 #endif

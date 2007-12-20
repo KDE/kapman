@@ -21,6 +21,7 @@
 
 #include <QTimer>
 #include <QKeyEvent>
+
 #include "maze.h"
 #include "kapman.h"
 #include "ghost.h"
@@ -45,6 +46,15 @@ class Game : public QObject {
 		
 		/** Ghosts */
 		QList<Ghost*> m_ghostList;
+		
+		/** The possible directions for a character */
+		enum Direction {
+			NONE = 0,
+			UP = -1,
+			DOWN = 1,
+			LEFT = -2,
+			RIGHT = 2
+		};
 		
 	public:
 
@@ -74,9 +84,14 @@ class Game : public QObject {
 		Kapman* getKapman() const;
 		
 		/**
-		 * @return the lsit of ghosts models
+		 * @return the list of ghosts models
 		 */
 		QList<Ghost*> getGhostList () const;
+		
+		/**
+		 * @return the timer
+		 */
+		 QTimer * getTimer() const;
 	
 	private:
 
@@ -86,20 +101,20 @@ class Game : public QObject {
 		 * @param p_character the character which movement must be checked
 		 * @return true if the character is put on a center, false otherwise
 		 */
-		bool onCenter(Kapman* p_character);
+		bool onCenter(Character* p_character);
 
 		/**
 		 * Moves the given character on its current cell center
 		 * @param p_character the character to move
 		 */
-		void moveOnCenter(Kapman* p_character);
+		void moveOnCenter(Character* p_character);
 
 		/**
 		 * @param p_character the character we want to get the next cell
 		 * @return the next cell the character will move on with its
 		 *		   current direction
 		 */
-		Cell getNextCell(Kapman* p_character);
+		Cell getNextCell(Character* p_character);
 
 		/**
 		 * @param p_character the character we want to get the next cell
@@ -107,6 +122,18 @@ class Game : public QObject {
 		 *		   asked direction
 		 */
 		Cell getAskedNextCell(Kapman* p_character);
+		
+		/**
+		 * Manage the Kapman move
+		 * @param p_kapman the kapman model we interact with
+		 */
+		 void manageKapmanMove(Kapman* p_kapman);
+		 
+		/**
+		 * Manage a Ghost move
+		 * @param p_ghost the ghost model we interact with
+		 */
+// 		 void manageGhostMove(Ghost* p_ghost);
 
 	public slots:
 

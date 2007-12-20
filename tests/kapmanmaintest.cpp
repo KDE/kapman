@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Alexandre GALINIER <alex.galinier@hotmail.com>
+   Created by Pierre-Benoit Besse <besse.pb@gmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -15,42 +15,26 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
 */
+#include <QTest>
 
-#include "ghost.h"
+#include "kapmantest.h"
+#include "ghosttest.h"
+#include "charactertest.h"
+#include "gametest.h"
 
-const qreal Ghost::SPEED = 2.5;
+int main() {
 
-Ghost::Ghost(qreal p_x, qreal p_y, QString p_imageURL) : Character(p_x, p_y) {
-	m_imageURL = p_imageURL;
+	KapmanTest kapObj;
+	QTest::qExec(&kapObj);
+
+	GhostTest ghoObj;
+	QTest::qExec(&ghoObj);
 	
-	// Makes the ghost move as soon as the game is created
-	goLeft();
-}
+	CharacterTest chaObj;
+	QTest::qExec(&chaObj);
+	
+	GameTest gamObj;
+	QTest::qExec(&gamObj);
 
-Ghost::~Ghost() {
-
-}
-
-void Ghost::goUp() {
-	m_xSpeed = 0;
- 	m_ySpeed = -SPEED;
-}
- 
-void Ghost::goDown() {
-	m_xSpeed = 0;
-	m_ySpeed = SPEED;
-}
-
-void Ghost::goRight() {
-	m_xSpeed = SPEED;
-	m_ySpeed = 0;
-}
-
-void Ghost::goLeft() {
-	m_xSpeed = -SPEED;
-	m_ySpeed = 0;
-}
-
-QString Ghost::getImageURL() const  {
-	return m_imageURL;
+	return 0;
 }

@@ -27,7 +27,8 @@ GhostItem::GhostItem(Ghost* p_model, QString p_imagePath) :
 	connect(p_model, SIGNAL(moved(qreal, qreal)), this, SLOT(update(qreal, qreal)));
 
 	// Connects the view to the model to make the Ghost change side on the maze when reaching a border
-	connect(this, SIGNAL(borderReached(qreal, qreal)), p_model, SLOT(changeMazeSide(qreal, qreal)));
+	// TODO re-develop it according to new architecture
+	//connect(this, SIGNAL(borderReached(qreal, qreal)), p_model, SLOT(changeMazeSide(qreal, qreal)));
 }
 
 GhostItem::~GhostItem() {
@@ -37,27 +38,28 @@ GhostItem::~GhostItem() {
 void GhostItem::update(qreal p_x, qreal p_y) {
 	// If the Ghost reaches a border, he has to "circle around" the maze and continu his way from the other side
 	// When this is done, a signal warns the Ghost model that his coordinates have changed
-	// West side test
-	if(p_x <= 0) {
-		// 
-		p_x += scene()->itemsBoundingRect().width() - this->boundingRect().width();
-		emit(borderReached(p_x, p_y));
-	}
-	// East side test
-	else if(p_x > (scene()->itemsBoundingRect().width() - this->boundingRect().width())) {
-		p_x = 1;
-		emit(borderReached(p_x, p_y));
-	}
-	// North side test
-	else if(p_y <= 0) {
-		p_y += scene()->itemsBoundingRect().height() - this->boundingRect().height();
-		emit(borderReached(p_x, p_y));
-	}
-	// South side test
-	else if(p_y > (scene()->itemsBoundingRect().height() - this->boundingRect().height())) {
-		p_y = 1;
-		emit(borderReached(p_x, p_y));
-	}
+	// TODO re-develop it according to new architecture
+// 	// West side test
+// 	if(p_x <= 0) {
+// 		// 
+// 		p_x += scene()->itemsBoundingRect().width() - this->boundingRect().width();
+// 		emit(borderReached(p_x, p_y));
+// 	}
+// 	// East side test
+// 	else if(p_x > (scene()->itemsBoundingRect().width() - this->boundingRect().width())) {
+// 		p_x = 1;
+// 		emit(borderReached(p_x, p_y));
+// 	}
+// 	// North side test
+// 	else if(p_y <= 0) {
+// 		p_y += scene()->itemsBoundingRect().height() - this->boundingRect().height();
+// 		emit(borderReached(p_x, p_y));
+// 	}
+// 	// South side test
+// 	else if(p_y > (scene()->itemsBoundingRect().height() - this->boundingRect().height())) {
+// 		p_y = 1;
+// 		emit(borderReached(p_x, p_y));
+// 	}
 
 	// Updates the view coordinates
 	setPos(p_x, p_y);
