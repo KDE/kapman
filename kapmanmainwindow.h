@@ -51,13 +51,6 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * Deletes the KapmanMainWindow instance
 		 */
 		~KapmanMainWindow();
-		
-	protected:
-		/**
-		 * Called on window resizing
-		 * @param event the resize event
-		 */
-		void resizeEvent(QResizeEvent * p_event);
 
 	private:
 

@@ -29,11 +29,10 @@ GameView::~GameView() {
 
 }
 
-void GameView::resizeManager() {
-	// Resize the scene to fit in the viewport
-	// TODO replace with the resizeScene() method
+void GameView::resizeEvent(QResizeEvent* p_event) {
 	fitInView(sceneRect(), Qt::KeepAspectRatio);
 }
+
 
 void GameView::keyPressEvent(QKeyEvent* p_event) {
 	emit(keyPressed(p_event));

@@ -43,11 +43,12 @@ class GameView : public QGraphicsView {
 		 * Deletes the GameView instance
 		 */
 		~GameView();
-		
+
 		/**
-		 * Called on window resizing
+		 * Called on view resizing
+		 * @param p_event the resize event
 		 */
-		void resizeManager();
+		void resizeEvent(QResizeEvent* p_event);
 
 	protected:
 
