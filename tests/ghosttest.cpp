@@ -69,3 +69,5 @@ void GhostTest::testGoLeft() {
 	QCOMPARE(ghost.getXSpeed(), -Ghost::SPEED);	
 	QCOMPARE(ghost.getYSpeed(), 0.0);
 }
+
+QTEST_KDEMAIN_CORE(GhostTest)

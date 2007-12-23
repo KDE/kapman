@@ -79,6 +79,11 @@ class Game : public QObject {
 		void pause();
 		
 		/**
+		 * Manage the game pause when 'P' key is pressed
+		 */
+		void doPause();
+		
+		/**
 		 * @return the kapman model
 		 */
 		Kapman* getKapman() const;
@@ -92,8 +97,13 @@ class Game : public QObject {
 		 * @return the timer
 		 */
 		 QTimer * getTimer() const;
+		 
+		 /**
+		  * @return the maze
+		  */
+		 Maze * getMaze() const;
 	
-	private:
+// 	private:
 
 		/**
 		 * If the given character goes past the next center it mets during its
@@ -133,7 +143,15 @@ class Game : public QObject {
 		 * Manage a Ghost move
 		 * @param p_ghost the ghost model we interact with
 		 */
-// 		 void manageGhostMove(Ghost* p_ghost);
+		 void manageGhostMove(Ghost* p_ghost);
+		 
+	signals:
+	
+		/**
+		 * Signals to the scene to display/remove the 'PAUSE' label
+		 * @param pauseGame indicates if the game is to be paused or not
+		 */
+		void managePause(bool pauseGame);
 
 	public slots:
 

@@ -19,8 +19,8 @@
 #include <KStandardDirs>
 #include <KDebug>
 
+#include <cstdlib>
 #include "time.h"
-#include "stdlib.h"
 
 #include "game.h"
 
@@ -37,6 +37,9 @@ Game::Game() {
 	m_timer->setInterval(15); // 60 FPS
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
 	m_timer->start();
+	
+	// Put the red ghost on the center of its starting cell (FOR TESTS)
+	moveOnCenter(m_ghostList[0]);
 	
 	// Initialize the random-number generator
 	srand(time(NULL));
@@ -58,6 +61,30 @@ void Game::pause() {
 	m_timer->stop();
 }
 
+void Game::doPause() {
+	// If the game isn't paused yet, we stop the timer
+	if(m_timer->isActive()) {
+		pause();
+
+		// Signal to the scene to add a 'PAUSE' label
+		emit(managePause(true));
+		
+		// TODO Disable arrows detection
+		
+	}
+	// If the game is already paused, we restart the timer
+	else {
+		start();
+		
+		// Signal to the scene to remove the 'PAUSE' label
+		emit(managePause(false));
+		
+		
+		// TODO Enable arrows detection
+		
+	}
+}
+
 Kapman * Game::getKapman() const {
 	return m_kapman;
 }
@@ -68,6 +95,10 @@ QList<Ghost*> Game::getGhostList () const {
 
 QTimer * Game::getTimer() const {
 	return m_timer;
+}
+
+Maze * Game::getMaze() const {
+	return m_maze;
 }
 
 bool Game::onCenter(Character* p_character) {
@@ -245,57 +276,80 @@ void Game::manageKapmanMove(Kapman* p_kapman) {
 	}
 }
 
-// void Game::manageGhostMove(Ghost* p_ghost) {
-// 	// Get the current cell coordinates from the character coordinates
-// 	int curCellRow = m_maze->getRowFromY(p_ghost->getY());
-// 	int curCellCol = m_maze->getColFromX(p_ghost->getX());
-// 	
-// 	// This list is to contain the different directions a ghost can choose when 
-// 	QList<QPointF*> directionsList;
-// 	kDebug() << "coucou";
-// 	
-// 	// If the ghost gets on a Cell center
-// 	if( onCenter(p_ghost) ) {
-// 	
-// 		kDebug() << "Row : " << curCellRow;
-// 		kDebug() << "Col : " << curCellCol;
-// 	
-// 		// We retrieve all the directions the ghost can choose (save the half turn)
-// 		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR) {
-// 			if(p_ghost->getXSpeed() >= 0) {
-// 				directionsList.append(new QPointF(0, Ghost::SPEED));
-// 			}
-// 		}
-// 		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR) {
-// 			if(p_ghost->getYSpeed() >= 0) {
-// 				directionsList.append(new QPointF(Ghost::SPEED, 0));
-// 			}
-// 		}
-// 		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR) {
-// 			if(p_ghost->getYSpeed() <= 0) {
-// 				directionsList.append(new QPointF(-Ghost::SPEED, 0));
-// 			}
-// 		}
-// 		
-// 		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR) {
-// 			if(p_ghost->getXSpeed() <= 0) {
-// 				directionsList.append(new QPointF(0, -Ghost::SPEED));
-// 			}
-// 		}
-// 		// If there is more than one direction, we randomly choose one
-// 		kDebug() << "list size : " << directionsList.size();
-// 		if(directionsList.size() > 0) {
-// 			int nb = int( double( rand() ) / ( double( RAND_MAX) + 1 ) * (directionsList.size() - 1) );
-// 			
-// 			kDebug() << "generated number : " << nb;
-// 			p_ghost->setXSpeed(directionsList[nb]->x());
-// 			p_ghost->setYSpeed(directionsList[nb]->y());
-// 		}
-// 	}
-// 	
-// 	// We move the ghost
-// 	p_ghost->move();
-// }
+void Game::manageGhostMove(Ghost* p_ghost) {
+	// Get the current cell coordinates from the character coordinates
+	int curCellRow = m_maze->getRowFromY(p_ghost->getY());
+	int curCellCol = m_maze->getColFromX(p_ghost->getX());
+	
+	// Indicates if the character hasn't any choice of direction save backward
+	bool halfTurnRequired = true;
+	
+	// This list is to contain the different directions a ghost can choose when on a cell center
+	QList<QPointF*> directionsList;
+	kDebug() << "Test onCenter()";
+	
+	// If the ghost gets on a Cell center
+	if( onCenter(p_ghost) ) {
+		
+		kDebug() << "X : " << p_ghost->getX();
+		kDebug() << "Y : " << p_ghost->getY();
+		kDebug() << "onCenter -> TRUE";
+		
+		kDebug() << "Col : " << curCellCol;
+		kDebug() << "Row : " << curCellRow;
+	
+		// We retrieve all the directions the ghost can choose (save the half turn)
+		// 
+		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR) {
+			if( !(p_ghost->getXSpeed()<0) ) {
+				directionsList.append(new QPointF(Ghost::SPEED, 0.0));
+				kDebug() << "Right cell is free";
+				halfTurnRequired = false;
+			}
+		}
+		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR) {
+			if( !(p_ghost->getYSpeed()<0) ) {
+				directionsList.append(new QPointF(0.0, Ghost::SPEED));
+				kDebug() << "Down cell is free";
+				halfTurnRequired = false;
+			}
+		}
+		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR) {
+			if( !(p_ghost->getYSpeed()>0) ) {
+				directionsList.append(new QPointF(0.0, -Ghost::SPEED));
+				kDebug() << "Up cell is free";
+				halfTurnRequired = false;
+			}
+		}
+		
+		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR) {
+			if( !(p_ghost->getXSpeed()>0) ) {
+				directionsList.append(new QPointF(-Ghost::SPEED, 0.0));
+				kDebug() << "Left cell is free";
+				halfTurnRequired = false;
+			}
+		}
+		
+		// Random number generation to choose one of the directions
+		int nb = int( double(rand()) / (double(RAND_MAX) + 1) * directionsList.size() );
+		
+		// If there is no directions in the lists, the character goes backward
+		if(directionsList.size() == 0) {
+			p_ghost->setXSpeed(-p_ghost->getXSpeed());	
+			p_ghost->setYSpeed(-p_ghost->getYSpeed());
+		}
+		// If the choosed direction isn't forward, we move the ghost on the center of the cell and update the directions
+		else if( (p_ghost->getXSpeed()!=0 && p_ghost->getXSpeed()!=directionsList[nb]->x()) 
+				|| (p_ghost->getYSpeed()!=0 && p_ghost->getYSpeed()!=directionsList[nb]->y()) ) {
+			moveOnCenter(p_ghost);
+			p_ghost->setXSpeed(directionsList[nb]->x());
+			p_ghost->setYSpeed(directionsList[nb]->y());
+		}	
+	}
+	
+	// We move the ghost
+	p_ghost->move();
+}
 
 void Game::keyPressEvent(QKeyEvent* p_event) {
 	switch (p_event->key()) {
@@ -312,14 +366,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			m_kapman->goLeft();
 			break;
 		case Qt::Key_P:
-			// If the game isn't paused yet, we stop the timer
-			if(m_timer->isActive()) {
-				m_timer->stop();
-			}
-			// If the game is already paused, we restart the timer
-			else {
-				m_timer->start();
-			}
+			doPause();
 		default:
 			break;
 	}
@@ -327,5 +374,8 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 
 void Game::update() {
 	manageKapmanMove(m_kapman);
-// 	manageGhostMove(m_ghostList[0]);
+	manageGhostMove(m_ghostList[0]);
+// 	for(int i=0; i<m_ghostList.size(); i++) {
+// 		manageGhostMove(m_ghostList[i]);
+// 	}
 }

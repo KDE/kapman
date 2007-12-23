@@ -36,6 +36,10 @@ GhostItem::~GhostItem() {
 }
 
 void GhostItem::update(qreal p_x, qreal p_y) {
+	// Compute the top-right coordinates of the item
+	qreal x = p_x - boundingRect().width() / 2;
+	qreal y = p_y - boundingRect().height() / 2;
+	
 	// If the Ghost reaches a border, he has to "circle around" the maze and continu his way from the other side
 	// When this is done, a signal warns the Ghost model that his coordinates have changed
 	// TODO re-develop it according to new architecture
@@ -62,5 +66,5 @@ void GhostItem::update(qreal p_x, qreal p_y) {
 // 	}
 
 	// Updates the view coordinates
-	setPos(p_x, p_y);
+	setPos(x, y);
 }

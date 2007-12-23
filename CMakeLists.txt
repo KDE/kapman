@@ -59,9 +59,31 @@ set(kapmanResources
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
 
-# Tests unit
-kde4_add_unit_test(kapmanGameTest
-	./tests/kapmanmaintest.cpp
+# libraries needed
+target_link_libraries(kapman
+	${KDE4_KDEUI_LIBS}
+	kdegames
+)
+
+# Kapman test unit
+kde4_add_unit_test(kapmanTest
+	kapman.cpp
+	character.cpp
+	./tests/kapmantest.cpp
+)
+# Ghost test unit
+kde4_add_unit_test(ghostTest
+	ghost.cpp
+	character.cpp
+	./tests/ghosttest.cpp
+)
+# Character test unit
+kde4_add_unit_test(characterTest
+	character.cpp
+	./tests/charactertest.cpp
+)
+# Game test unit
+kde4_add_unit_test(gameTest
 	kapman.cpp
 	ghost.cpp
 	character.cpp
@@ -69,20 +91,29 @@ kde4_add_unit_test(kapmanGameTest
 	maze.cpp
 	cell.cpp
 	mazeparser.cpp
-	./tests/kapmantest.cpp
-	./tests/ghosttest.cpp
-	./tests/charactertest.cpp
 	./tests/gametest.cpp
 )
 
-# libraries needed
-target_link_libraries(kapman
+# libraries needed for kapman tests
+target_link_libraries(kapmanTest
 	${KDE4_KDEUI_LIBS}
 	kdegames
+	${QT_QTTEST_LIBRARY}
 )
-
-# libraries needed for tests
-target_link_libraries(kapmanGameTest
+# libraries needed for ghost tests
+target_link_libraries(ghostTest
+	${KDE4_KDEUI_LIBS}
+	kdegames
+	${QT_QTTEST_LIBRARY}
+)
+# libraries needed for character tests
+target_link_libraries(characterTest
+	${KDE4_KDEUI_LIBS}
+	kdegames
+	${QT_QTTEST_LIBRARY}
+)
+# libraries needed for game tests
+target_link_libraries(gameTest
 	${KDE4_KDEUI_LIBS}
 	kdegames
 	${QT_QTTEST_LIBRARY}

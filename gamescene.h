@@ -28,6 +28,11 @@ class GameScene : public QGraphicsScene {
 
 	Q_OBJECT
 		
+	private:
+	
+		/** The PAUSE label to display whan the game is paused */
+		QGraphicsTextItem * pauseLabel;
+		
 	public:
 
 		/**
@@ -41,4 +46,12 @@ class GameScene : public QGraphicsScene {
 		 * Deletes the Game instance
 		 */
 		~GameScene();
+		
+	public slots:
+	
+		/**
+		 * Display/remove the 'PAUSE' label when 'P' key is pressed
+		 * @param gameIsPaused indicates if the game is paused or not
+		 */
+		void managePause(bool pauseGame);
 };

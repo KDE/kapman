@@ -70,3 +70,5 @@ void CharacterTest::testMove() {
 	QCOMPARE(viewUpdate.at(2).at(0).toDouble(), chaX + 4.0);
 	QCOMPARE(viewUpdate.at(2).at(1).toDouble(), chaY - 3.0);
 }
+
+QTEST_KDEMAIN_CORE(CharacterTest)
