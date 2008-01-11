@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Alexandre Galinier <blluetroy@hotmail.com>
+   Created by Pierre-Benoit Besse <besse.pb@gmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -29,18 +29,9 @@ class GhostTest : public QObject {
 	
 		/** Ghost constructor, initialize all coordinates (position and speed) to 0 */
 		void testGhost();
-		
-		/** This function changes the Ghost's speed coordinates to make it move upward */
-		void testGoUp();
 
-		/** This function changes the Ghost's speed coordinates to make it move downward */
-		void testGoDown();
-
-		/** This function changes the Ghost's speed coordinates to make it move to the right */
-		void testGoRight();
-
-		/** This function changes the Ghost's speed coordinates to make it move to the left */
-		void testGoLeft();
+		/** TODO This function manage all the ghosts movments */
+// 		void testUpdateMove();
 };
 
 #endif

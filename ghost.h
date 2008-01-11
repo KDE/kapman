@@ -28,19 +28,8 @@ class Ghost : public Character {
 
 	Q_OBJECT
 
-	public:
-
-		/** The Ghost moving speed */
- 		static const qreal SPEED;
-
 	private:
 
-		/** Ghost coordinates */
-// 		qreal m_x, m_y;
-
-		/** Ghost speed */
-// 		qreal m_xSpeed, m_ySpeed;
-		
 		/** URL to the ghost's image */
 		QString m_imageURL;
 
@@ -48,14 +37,29 @@ class Ghost : public Character {
 
 		/**
 		 * Creates a new Ghost instance
+		 * @param p_x the initial x-coordinate
+		 * @param p_x the initial x-coordinate
+		 * @param p_maze the maze the Ghost is on
 		 */
-		Ghost(qreal p_x, qreal p_y, QString p_imageURL);
+		Ghost(qreal p_x, qreal p_y, QString p_imageURL, Maze* p_maze);
 
 		/**
 		 * Deletes the Ghost instance
 		 */
 		~Ghost();
 
+
+		/**
+		 * Updates the Ghost move
+		 */
+		void updateMove();
+
+		/**
+		 * @return the URL to the ghost's image
+		 */
+		QString getImageURL() const;
+
+	private:
 		/**
 		 * Makes the Ghost go up
 		 */
@@ -75,12 +79,6 @@ class Ghost : public Character {
 		 * Makes the Ghost go to the left
 		 */
 		void goLeft();
-
-		/**
-		 * @return the URL to the ghost's image
-		 */
-		QString getImageURL() const;
-
 };
 
 #endif

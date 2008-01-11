@@ -73,3 +73,5 @@ void KapmanMainWindow::close() {
 		m_game->start();
 	}
 }
+
+

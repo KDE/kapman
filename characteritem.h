@@ -16,44 +16,33 @@
    02110-1301, USA
 */
 
-#ifndef __KAPMANITEM_H
-#define __KAPMANITEM_H
+#ifndef __CHARACTERITEM_H
+#define __CHARACTERITEM_H
 
 #include <QGraphicsSvgItem>
 #include <QString>
-#include "kapman.h"
+#include "character.h"
 
 /**
- * This class is the graphical representation of the main character
+ * This class is the graphical representation of a character
  */
-class KapmanItem : public QGraphicsSvgItem {
+class CharacterItem : public QGraphicsSvgItem {
 
 	Q_OBJECT
 
 	public:
 
 		/**
-		 * Creates a new KapmanItem instance
-		 * @param p_model the Kapman model
-		 * @param p_imagePath the Kapman image path
+		 * Creates a new CharacterItem instance
+		 * @param p_model the character model
+		 * @param p_imagePath the character image path
 		 */
-		KapmanItem(Kapman* p_model, QString p_imagePath);
+		CharacterItem(Character* p_model, QString p_imagePath);
 
 		/**
-		 * Deletes the KapmanItem instance
+		 * Deletes the CharacterItem instance
 		 */
-		~KapmanItem();
-
-	signals:
-
-		/**
-		 * Warns the kapman model that his coordinates have to be changed
-		 * Emitted when the kapman reaches a border of the maze
-		 * @param p_newX the new (or unchanged) X coordinate
-		 * @param p_newY the new (or unchanged) Y coordinate
-		 * TODO re-develop it according to new architecture
-		 */
-// 		void borderReached(qreal p_newX, qreal p_newY);
+		~CharacterItem();
 
 	public slots:
 

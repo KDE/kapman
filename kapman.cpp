@@ -18,9 +18,7 @@
 
 #include "kapman.h"
 
-const qreal Kapman::SPEED = 2.0;
-
-Kapman::Kapman(qreal p_x, qreal p_y) : Character(p_x, p_y) {
+Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	// Makes the Kapman move as soon as the game is created
 	goLeft();
 }
@@ -56,11 +54,75 @@ void Kapman::updateDirection() {
 	m_askedYSpeed = 0;
 }
 
-void Kapman::stopMoving() {
-	setXSpeed(0);
-	setYSpeed(0);
-	m_askedXSpeed = 0;
-	m_askedYSpeed = 0;
+void Kapman::updateMove() {
+	// If the kapman does not move
+	if (m_xSpeed == 0 && m_ySpeed == 0) {
+		// If the user asks for moving
+		if (m_askedXSpeed != 0 || m_askedYSpeed != 0) {
+			// Check the next cell with the asked direction
+			if (getAskedNextCell().getType() == Cell::CORRIDOR) {
+				// Update the direction
+				updateDirection();
+				// Move the kapman
+				move();
+			}
+		}
+	}
+	// If the kapman is already moving
+	else {
+		// If the kapman wants to go back it does not wait to be on a center
+		if (m_xSpeed != 0 && m_askedXSpeed == -m_xSpeed || m_ySpeed != 0 && m_askedYSpeed == -m_ySpeed) {
+			// Go back
+			updateDirection();
+			// Move the kapman
+			move();
+		}
+		else {
+			// If the kapman gets on a cell center
+			if (onCenter()) {
+				// If there is an asked direction (but not a half-turn)
+				if ((m_askedXSpeed != 0 || m_askedYSpeed != 0) && (m_askedXSpeed != m_xSpeed || m_askedYSpeed != m_ySpeed)) {
+					// Check the next cell with the kapman asked direction
+					if (getAskedNextCell().getType() == Cell::CORRIDOR) {
+						// Move the kapman on the cell center
+						moveOnCenter();
+						// Update the direction
+						updateDirection();
+					}
+					else {
+						// Check the next cell with the kapman current direction
+						if (getNextCell().getType() != Cell::CORRIDOR) {
+							// Move the kapman on the cell center
+							moveOnCenter();
+							// Stop moving
+							stopMoving();
+						}
+						else {
+							// Move the kapman
+							move();
+						}
+					}
+				}
+				else {
+					// Check the next cell with the kapman current direction
+					if (getNextCell().getType() != Cell::CORRIDOR) {
+						// Move the kapman on the cell center
+						moveOnCenter();
+						// Stop moving
+						stopMoving();
+					}
+					else {
+						// Move the kapman
+						move();
+					}
+				}
+			}
+			else {
+				// Move the kapman
+				move();
+			}
+		}
+	}
 }
 
 /** Accessors */
@@ -70,4 +132,35 @@ qreal Kapman::getAskedXSpeed() const {
 
 qreal Kapman::getAskedYSpeed() const {
 	return m_askedYSpeed;
+}
+
+/** Private */
+Cell Kapman::getAskedNextCell() {
+	// Get the current cell coordinates from the character coordinates
+	int curCellRow = m_maze->getRowFromY(m_y);
+	int curCellCol = m_maze->getColFromX(m_x);
+	Cell nextCell;
+
+	// Get the next cell function of the character asked direction
+	if (m_askedXSpeed > 0) {
+		nextCell = m_maze->getCell(curCellRow, curCellCol + 1);
+	}
+	else if (m_askedXSpeed < 0) {
+		nextCell = m_maze->getCell(curCellRow, curCellCol - 1);
+	}
+	else if (m_askedYSpeed > 0) {
+		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
+	}
+	else if (m_askedYSpeed < 0) {
+		nextCell = m_maze->getCell(curCellRow - 1, curCellCol);
+	}
+
+	return nextCell;
+}
+
+void Kapman::stopMoving() {
+	setXSpeed(0);
+	setYSpeed(0);
+	m_askedXSpeed = 0;
+	m_askedYSpeed = 0;
 }

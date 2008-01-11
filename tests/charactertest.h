@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Alexandre Galinier <blluetroy@hotmail.com>
+   Created by Pierre-Benoit Besse <besse.pb@gmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -32,6 +32,22 @@ class CharacterTest : public QObject {
 		
 		/** This function changes the Ghost's speed coordinates to make it move upward */
 		void testMove();
+
+		/**
+		 * This function return TRUE if the character will go past
+		 * the center of a cell with it's  next movement, FALSE otherwise
+		 */
+// 		void testOnCenter();
+		
+		/** This function put the character right on the center of the cell it's on */
+// 		void testMoveOnCenter();
+		
+		/** 
+		 * TODO
+		 * This function returns the next cell the character will reach
+		 * with its current movement
+		 */
+// 		void testGetNextCell();
 
 		/** TODO Test changeMazeSide when finished */
 };

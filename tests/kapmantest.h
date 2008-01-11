@@ -43,10 +43,20 @@ class KapmanTest : public QObject {
 		void testGoLeft();
 		
 		/** This function updates the kapman's real speed with it's asked speed */
-		void testUpdateDirection();
+// 		void testUpdateDirection();
+
+		/**
+		 * TODO
+		 * This function returns the next cell the character will reach
+		 * with its asked movement (kapman only)
+		 */
+// 		void testGetAskedNextCell();
 		
 		/** This function stop all kapman's movement (real speed AND asked speed) */
-		void testStopMoving();
+// 		void testStopMoving();
+
+		/** This method tests the kapman movement in the maze */
+		void testUpdateMove();
 };
 
 #endif

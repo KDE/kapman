@@ -349,8 +349,8 @@
 	<Cell rowIndex="12" columnIndex="10" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="11" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="12" allowedMove="0" />
-	<Cell rowIndex="12" columnIndex="13" allowedMove="0" />
-	<Cell rowIndex="12" columnIndex="14" allowedMove="0" />
+	<Cell rowIndex="12" columnIndex="13" allowedMove="1" />
+	<Cell rowIndex="12" columnIndex="14" allowedMove="1" />
 	<Cell rowIndex="12" columnIndex="15" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="16" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="17" allowedMove="0" />

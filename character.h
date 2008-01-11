@@ -20,6 +20,7 @@
 #define __CHARACTER_H
 
 #include <QObject>
+#include <maze.h>
 
 /**
  * This class describes the main characteristics of the Kapman and the ghosts
@@ -27,6 +28,11 @@
 class Character : public QObject {
 
 	Q_OBJECT
+
+	public:
+
+		/** The Ghost moving speed */
+ 		static const qreal SPEED;
 
 	protected:
 
@@ -36,14 +42,18 @@ class Character : public QObject {
 		/** Character speed */
 		qreal m_xSpeed, m_ySpeed;
 
+		/** The maze the character is on */
+		Maze* m_maze;
+
 	public:
 
 		/**
 		 * Creates a new Character instance
 		 * @param p_x the initial x coordinate
 		 * @param p_y the initial y coordinate
+		 * @param p_maze the maze the character is on
 		 */
-		Character(qreal p_x, qreal p_y);
+		Character(qreal p_x, qreal p_y, Maze* p_maze);
 
 		/**
 		 * Deletes the Character instance
@@ -53,22 +63,27 @@ class Character : public QObject {
 		/**
 		 * Makes the Character go up
 		 */
-// 		void goUp();
+		virtual void goUp() = 0;
 
 		/**
 		 * Makes the Character go down
 		 */
-// 		void goDown();
+		virtual void goDown() = 0;
 
 		/**
 		 * Makes the Character go to the right
 		 */
-// 		void goRight();
+		virtual void goRight() = 0;
 
 		/**
 		 * Makes the Character go to the left
 		 */
-// 		void goLeft();
+		virtual void goLeft() = 0;
+
+		/**
+		 * Updates the character move
+		 */
+		virtual void updateMove() = 0;
 
 		/**
 		 * Moves the Character function of its coordinates and speed
@@ -118,6 +133,24 @@ class Character : public QObject {
 		 * @param p_ySpeed the y speed attribute
 		 */
 		 void setYSpeed(qreal p_ySpeed);
+
+	protected:
+
+		/**
+		 * @return the next cell the character will move on with its current direction
+		 */
+		Cell getNextCell();
+
+		/**
+		 * If the character goes past the next center it mets during its next movement
+		 * @return true if the character is on a center, false otherwise
+		 */
+		bool onCenter();
+
+		/**
+		 * Moves the character on its current cell center
+		 */
+		void moveOnCenter();
 
 	signals:
 

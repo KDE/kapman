@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Alexandre Galinier <blluetroy@hotmail.com>
+   Created by Pierre-Benoit Besse <besse.pb@gmail.com>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -29,36 +29,6 @@ class GameTest : public QObject {
 	
 		/** Tests the constructor */
 		void testGame();
-		
-		/**
-		 * TODO
-		 * This function return TRUE if the character will go past
-		 * the center of a cell with it's  next movement, FALSE otherwise
-		 */
-		void testOnCenter();
-		
-		/** TODO This function put the character right on the center of the cell it's on */
-		void testMoveOnCenter();
-		
-		/** 
-		 * TODO
-		 * This function returns the next cell the character will reach
-		 * with its current movement
-		 */
-		void testGetNextCell();
-		
-		/**
-		 * TODO
-		 * This function returns the next cell the character will reach
-		 * with its asked movement (kapman only)
-		 */
-		void testGetAskedNextCell();
-		
-		/** TODO This function manage all the kapman's movements */
-		void testManageKapmanMove();
-		
-		/** TODO This function manage all the ghosts movments */
-// 		void testManageGhostMove();
 };
 
 #endif

@@ -28,11 +28,6 @@ class Kapman : public Character {
 
 	Q_OBJECT
 
-	public:
-
-		/** The Kapman moving speed */
- 		static const qreal SPEED;
-
 	private:
 
 		/** Kapman asked speed */
@@ -44,8 +39,9 @@ class Kapman : public Character {
 		 * Creates a new Kapman instance
 		 * @param p_x the initial x coordinate
 		 * @param p_y the initial y coordinate
+		 * @param p_maze the maze the Kapman is on
 		 */
-		Kapman(qreal p_x, qreal p_y);
+		Kapman(qreal p_x, qreal p_y, Maze* m_maze);
 
 		/**
 		 * Deletes the Kapman instance
@@ -73,14 +69,9 @@ class Kapman : public Character {
 		void goLeft();
 
 		/**
-		 * Updates the Kapman direction with the asked direction
+		 * Updates the Kapman move
 		 */
-		void updateDirection();
-
-		/**
-		 * Stops moving the Kapman
-		 */
-		void stopMoving();
+		void updateMove();
 
 		/**
 		 * @return the asked x speed value
@@ -91,6 +82,23 @@ class Kapman : public Character {
 		 * @return the asked y speed value
 		 */
 		qreal getAskedYSpeed() const;
+
+	private:
+
+		/**
+		 * Updates the Kapman direction with the asked direction
+		 */
+		void updateDirection();
+
+		/**
+		 * @return the next cell the kapman will move on with its asked direction
+		 */
+		Cell getAskedNextCell();
+
+		/**
+		 * Stops moving the Kapman
+		 */
+		void stopMoving();
 };
 
 #endif

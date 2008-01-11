@@ -15,28 +15,23 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
 */
+
 #include <QGraphicsScene>
+#include "characteritem.h"
 
-#include "kapmanitem.h"
-
-KapmanItem::KapmanItem(Kapman* p_model, QString p_imagePath) :
-		QGraphicsSvgItem(p_imagePath) {
+CharacterItem::CharacterItem(Character* p_model, QString p_imagePath) :	QGraphicsSvgItem(p_imagePath) {
 	// Init the view coordinates
 	setPos(p_model->getX() - boundingRect().width() / 2,
 		   p_model->getY() - boundingRect().height() / 2);
 	// Connects the model to the view
 	connect(p_model, SIGNAL(moved(qreal, qreal)), this, SLOT(update(qreal, qreal)));
-
-	// Connects the view to the model to make the kapman change side on the maze when reaching a border
-	// TODO re-develop it according to new architecture
-	//connect(this, SIGNAL(borderReached(qreal, qreal)), p_model, SLOT(changeMazeSide(qreal, qreal)));
 }
 
-KapmanItem::~KapmanItem() {
+CharacterItem::~CharacterItem() {
 
 }
 
-void KapmanItem::update(qreal p_x, qreal p_y) {
+void CharacterItem::update(qreal p_x, qreal p_y) {
 	// Compute the top-right coordinates of the item
 	qreal x = p_x - boundingRect().width() / 2;
 	qreal y = p_y - boundingRect().height() / 2;

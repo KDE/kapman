@@ -38,11 +38,10 @@ set(kapmanSources
 	mazeparser.cpp
 	mazeitem.cpp
 	kapman.cpp
-	kapmanitem.cpp
 	ghost.cpp
 	gamescene.cpp
-	ghostitem.cpp
 	character.cpp
+	characteritem.cpp
 )
 
 # resources
@@ -69,17 +68,27 @@ target_link_libraries(kapman
 kde4_add_unit_test(kapmanTest
 	kapman.cpp
 	character.cpp
+	maze.cpp
+	mazeparser.cpp
+	cell.cpp
 	./tests/kapmantest.cpp
 )
 # Ghost test unit
 kde4_add_unit_test(ghostTest
 	ghost.cpp
 	character.cpp
+	maze.cpp
+	mazeparser.cpp
+	cell.cpp
 	./tests/ghosttest.cpp
 )
 # Character test unit
 kde4_add_unit_test(characterTest
 	character.cpp
+	maze.cpp
+	mazeparser.cpp
+	cell.cpp
+	kapman.cpp
 	./tests/charactertest.cpp
 )
 # Game test unit

@@ -46,15 +46,9 @@ class Game : public QObject {
 		
 		/** Ghosts */
 		QList<Ghost*> m_ghostList;
-		
-		/** The possible directions for a character */
-		enum Direction {
-			NONE = 0,
-			UP = -1,
-			DOWN = 1,
-			LEFT = -2,
-			RIGHT = 2
-		};
+
+		/** pause flag */
+		bool m_isPaused;
 		
 	public:
 
@@ -79,11 +73,6 @@ class Game : public QObject {
 		void pause();
 		
 		/**
-		 * Manage the game pause when 'P' key is pressed
-		 */
-		void doPause();
-		
-		/**
 		 * @return the kapman model
 		 */
 		Kapman* getKapman() const;
@@ -102,48 +91,12 @@ class Game : public QObject {
 		  * @return the maze
 		  */
 		 Maze * getMaze() const;
-	
-// 	private:
 
+	private:
 		/**
-		 * If the given character goes past the next center it mets during its
-		 * next movement, then we put it right ON the center
-		 * @param p_character the character which movement must be checked
-		 * @return true if the character is put on a center, false otherwise
+		 * Manage the game pause when 'P' key is pressed
 		 */
-		bool onCenter(Character* p_character);
-
-		/**
-		 * Moves the given character on its current cell center
-		 * @param p_character the character to move
-		 */
-		void moveOnCenter(Character* p_character);
-
-		/**
-		 * @param p_character the character we want to get the next cell
-		 * @return the next cell the character will move on with its
-		 *		   current direction
-		 */
-		Cell getNextCell(Character* p_character);
-
-		/**
-		 * @param p_character the character we want to get the next cell
-		 * @return the next cell the character will move on with its
-		 *		   asked direction
-		 */
-		Cell getAskedNextCell(Kapman* p_character);
-		
-		/**
-		 * Manage the Kapman move
-		 * @param p_kapman the kapman model we interact with
-		 */
-		 void manageKapmanMove(Kapman* p_kapman);
-		 
-		/**
-		 * Manage a Ghost move
-		 * @param p_ghost the ghost model we interact with
-		 */
-		 void manageGhostMove(Ghost* p_ghost);
+		void doPause();
 		 
 	signals:
 	

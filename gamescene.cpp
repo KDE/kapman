@@ -20,23 +20,19 @@
 #include <KLocalizedString>
 #include "gamescene.h"
 #include "mazeitem.h"
-#include "kapmanitem.h"
-#include "ghostitem.h"
+#include "characteritem.h"
 
 GameScene::GameScene(Game * p_game) {
 	// Create the 'PAUSE' label
 	pauseLabel = new QGraphicsTextItem( ki18n("PAUSE").toString() );
 	pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
-	
 	pauseLabel->setDefaultTextColor( QColor("#FFFF00") );
 
 	// Add all the items
-	addItem(new MazeItem(
-		KStandardDirs::locate("appdata", "kapmanMaze.svg")));
-	addItem(new KapmanItem(p_game->getKapman(),
-		KStandardDirs::locate("appdata", "kapman_test.svg")));
+	addItem(new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg")));
+	addItem(new CharacterItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
-		addItem(new GhostItem(p_game->getGhostList().at(i),
+		addItem(new CharacterItem(p_game->getGhostList().at(i),
 			KStandardDirs::locate("appdata",
 			p_game->getGhostList().at(i)->getImageURL())));
 	}

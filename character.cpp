@@ -7,7 +7,7 @@
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
    General Public License for more details.
 
    You should have received a copy of the GNU General Public License
@@ -18,36 +18,16 @@
 
 #include "character.h"
 
-// const qreal Character::SPEED = 2.0;
+const qreal Character::SPEED = 2.0;
 
-Character::Character(qreal p_x, qreal p_y) :
-		m_x(p_x), m_y(p_y), m_xSpeed(0), m_ySpeed(0) {
+Character::Character(qreal p_x, qreal p_y, Maze* p_maze) :
+		m_x(p_x), m_y(p_y), m_xSpeed(0), m_ySpeed(0), m_maze(p_maze) {
 
 }
 
 Character::~Character() {
 
 }
-
-// void Character::goUp() {
-// 	m_xSpeed = 0;
-// 	m_ySpeed = -SPEED;
-// }
-// 
-// void Character::goDown() {
-// 	m_xSpeed = 0;
-// 	m_ySpeed = SPEED;
-// }
-// 
-// void Character::goRight() {
-// 	m_xSpeed = SPEED;
-// 	m_ySpeed = 0;
-// }
-// 
-// void Character::goLeft() {
-// 	m_xSpeed = -SPEED;
-// 	m_ySpeed = 0;
-// }
 
 void Character::move() {
 	m_x += m_xSpeed;
@@ -89,6 +69,66 @@ void Character::setXSpeed(qreal p_xSpeed) {
 
 void Character::setYSpeed(qreal p_ySpeed) {
 	m_ySpeed = p_ySpeed;
+}
+
+/** Private */
+Cell Character::getNextCell() {
+	Cell nextCell;
+	// Get the current cell coordinates from the character coordinates
+	int curCellRow = m_maze->getRowFromY(m_y);
+	int curCellCol = m_maze->getColFromX(m_x);
+
+	// Get the next cell function of the character direction
+	if (m_xSpeed > 0) {
+		nextCell = m_maze->getCell(curCellRow, curCellCol + 1);
+	}
+	else if (m_xSpeed < 0) {
+		nextCell = m_maze->getCell(curCellRow, curCellCol - 1);
+	}
+	else if (m_ySpeed > 0) {
+		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
+	}
+	else if (m_ySpeed < 0) {
+		nextCell = m_maze->getCell(curCellRow - 1, curCellCol);
+	}
+
+	return nextCell;
+}
+
+bool Character::onCenter() {
+	// Get the current cell center coordinates
+	qreal centerX = (m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE;
+	qreal centerY = (m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE;
+	bool willGoPast = false;
+
+	// Will the character go past the center of the cell it's on ?
+	// If goes right
+	if (m_xSpeed > 0) {
+		willGoPast = (m_x <= centerX && m_x + m_xSpeed >= centerX);
+	}
+	// If goes left
+	else if (m_xSpeed < 0) {
+		willGoPast = (m_x >= centerX && m_x + m_xSpeed <= centerX);
+	}
+	// If goes down
+	else if (m_ySpeed > 0) {
+		willGoPast = (m_y <= centerY && m_y + m_ySpeed >= centerY);
+	}
+	// If goes up
+	else if (m_ySpeed < 0) {
+		willGoPast = (m_y >= centerY && m_y + m_ySpeed <= centerY);
+	}
+	// If does not move
+	else {
+		willGoPast = (m_x == centerX && m_y == centerY);
+	}
+
+	return willGoPast;
+}
+
+void Character::moveOnCenter() {
+	setX((m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE);
+	setY((m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE);
 }
 
 /** SLOTS */

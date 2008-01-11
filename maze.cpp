@@ -24,8 +24,7 @@
 Maze::Maze() {
 	MazeParser mazeParser(this);
 
-	QFile* mazeXmlFile = new QFile(KStandardDirs::locate(
-										"appdata", "defaultmaze.xml"));
+	QFile* mazeXmlFile = new QFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
 	QXmlInputSource source(mazeXmlFile);
 
 	QXmlSimpleReader reader;
