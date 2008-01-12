@@ -87,6 +87,8 @@ class Character : public QObject {
 
 		/**
 		 * Moves the Character function of its coordinates and speed
+		 * If the character reaches a border, it circles around the maze
+		 * and continue its way from the other side
 		 */
 		void move();
 

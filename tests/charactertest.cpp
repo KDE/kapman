@@ -33,7 +33,7 @@ void CharacterTest::testCharacter() {
 void CharacterTest::testMove() {	
 	
 	Maze * maze = new Maze();
-	Kapman * kap = new Kapman(0.0, 0.0, maze);
+	Kapman * kap = new Kapman(50.0, 30.0, maze);
 	
 	qreal kapX = kap->getX();	// The x coordinate before calling move()
 	qreal kapY = kap->getY();	// The y coordinate before calling move()

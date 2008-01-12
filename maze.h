@@ -85,6 +85,16 @@ class Maze : public QObject {
 		 * @return the column index corresponding to the given x coordinate
 		 */
 		int getColFromX(qreal p_x);
+		
+		/**
+		 * @return the number of colums of the maze
+		 */
+		int getNbColumns();
+		 
+		/**
+		 * @return the number of rows of the maze
+		 */
+		int getNbRows();
 };
 
 #endif

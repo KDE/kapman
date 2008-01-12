@@ -30,6 +30,19 @@ Character::~Character() {
 }
 
 void Character::move() {
+	if(m_maze->getColFromX(m_x + m_xSpeed) == 0) {
+		m_x = (m_maze->getNbColumns()-1.5) * Cell::SIZE;
+	}
+	else if(m_maze->getColFromX(m_x + m_xSpeed) == m_maze->getNbColumns()-1) {
+		m_x = 1.5 * Cell::SIZE;
+	}
+	else if(m_maze->getRowFromY(m_y + m_ySpeed) == 0) {
+		m_y = (m_maze->getNbRows()-1.5) * Cell::SIZE;
+	}
+	else if(m_maze->getRowFromY(m_y + m_ySpeed) == m_maze->getNbRows()-1) {
+		m_y = 1.5 * Cell::SIZE;
+	}
+	
 	m_x += m_xSpeed;
 	m_y += m_ySpeed;
 	

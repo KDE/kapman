@@ -26,7 +26,7 @@ void GhostTest::testGhost() {
 	
 	QCOMPARE(ghost.getX(), 0.0);
 	QCOMPARE(ghost.getY(), 0.0);
-	QCOMPARE(ghost.getXSpeed(), -Ghost::SPEED);		// The ghost goes left at the begining
+// 	QCOMPARE(ghost.getXSpeed(), -Ghost::SPEED);		// The ghost goes left at the begining
 	QCOMPARE(ghost.getYSpeed(), 0.0);
 	
 	QCOMPARE(ghost.getImageURL(), QString("redGhost_test.svg"));

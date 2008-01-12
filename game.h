@@ -85,12 +85,17 @@ class Game : public QObject {
 		/**
 		 * @return the timer
 		 */
-		 QTimer * getTimer() const;
+		QTimer * getTimer() const;
 		 
 		 /**
 		  * @return the maze
 		  */
 		 Maze * getMaze() const;
+		 
+		/**
+		 * @return m_isPaused attribute
+		 */
+		bool isPaused() const; 
 
 	private:
 		/**

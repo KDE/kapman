@@ -72,3 +72,11 @@ int Maze::getRowFromY(qreal p_y) {
 int Maze::getColFromX(qreal p_x) {
 	return (int)(p_x / Cell::SIZE);
 }
+
+int Maze::getNbColumns() {
+	return m_nbColumns;
+}
+
+int Maze::getNbRows() {
+	return m_nbRows;
+}

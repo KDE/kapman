@@ -24,7 +24,8 @@
 void GameTest::testGame() {
 	Game * game = new Game();
 	
-	QCOMPARE(game->getTimer()->isActive(), TRUE);
+	QCOMPARE(game->getTimer()->isActive(), FALSE);
+	QCOMPARE(game->isPaused(), FALSE);
 	QCOMPARE(game->getTimer()->interval(), 15);
 }
 
