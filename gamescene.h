@@ -30,8 +30,12 @@ class GameScene : public QGraphicsScene {
 		
 	private:
 	
-		/** The PAUSE label to display whan the game is paused */
+		/** The PAUSE label to display when the game is paused */
 		QGraphicsTextItem * pauseLabel;
+		
+		/** The INTRO label to display at the beginning */
+		QGraphicsTextItem * introLabel;
+		QGraphicsTextItem * introLabel2;
 		
 	public:
 
@@ -54,4 +58,9 @@ class GameScene : public QGraphicsScene {
 		 * @param gameIsPaused indicates if the game is paused or not
 		 */
 		void managePause(bool pauseGame);
+		
+		/**
+		 * Remove the 'INTRO' label when a key is pressed
+		 */
+		void removeIntro(); 
 };

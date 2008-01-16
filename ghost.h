@@ -28,13 +28,11 @@ class Ghost : public Character {
 
 	Q_OBJECT
 
-	private:
-
+	private:		
 		/** URL to the ghost's image */
 		QString m_imageURL;
 
 	public:
-
 		/**
 		 * Creates a new Ghost instance
 		 * @param p_x the initial x-coordinate

@@ -34,7 +34,8 @@ class Cell {
 		/** The cell possible types */
 		enum CellType {
 			WALL = 0,
-			CORRIDOR = 1
+			CORRIDOR = 1,
+			GHOSTCAMP = 2
 		};
 
 	private:

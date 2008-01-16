@@ -110,6 +110,11 @@ class Game : public QObject {
 		 * @param pauseGame indicates if the game is to be paused or not
 		 */
 		void managePause(bool pauseGame);
+		
+		/**
+		 * Signals to the scene to remove the 'INTRO' label
+		 */
+		void removeIntro();
 
 	public slots:
 

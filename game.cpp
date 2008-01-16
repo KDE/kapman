@@ -98,6 +98,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 	// At the beggining, we start the timer when a key is pressed
 	if(!m_isPaused && !m_timer->isActive()) {
 		m_timer->start();
+		emit(removeIntro());
 	}
 	// Behaviour when the game has begun
 	switch (p_event->key()) {

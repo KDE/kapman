@@ -24,9 +24,6 @@
 Ghost::Ghost(qreal p_x, qreal p_y, QString p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	m_imageURL = p_imageURL;
 
-	// Put the red ghost on the center of its starting cell (FOR TESTS)
-	moveOnCenter();
-
 	// Initialize the random-number generator
 	srand(time(NULL));
 
@@ -73,26 +70,26 @@ void Ghost::updateMove() {
 	if( onCenter() ) {
 	
 		// We retrieve all the directions the ghost can choose (save the half turn)
-		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR) {
+		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::GHOSTCAMP)) {
 			if(m_xSpeed >= 0) {
 				directionsList.append(new QPointF(Ghost::SPEED, 0.0));
 				halfTurnRequired = false;
 			}
 		}
-		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR) {
+		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 			if(m_ySpeed >= 0) {
 				directionsList.append(new QPointF(0.0, Ghost::SPEED));
 				halfTurnRequired = false;
 			}
 		}
-		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR) {
+		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 			if(m_ySpeed <= 0) {
 				directionsList.append(new QPointF(0.0, -Ghost::SPEED));
 				halfTurnRequired = false;
 			}
 		}
 		
-		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR) {
+		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::GHOSTCAMP)) {
 			if(m_xSpeed <= 0) {
 				directionsList.append(new QPointF(-Ghost::SPEED, 0.0));
 				halfTurnRequired = false;
@@ -123,3 +120,5 @@ void Ghost::updateMove() {
 QString Ghost::getImageURL() const  {
 	return m_imageURL;
 }
+
+

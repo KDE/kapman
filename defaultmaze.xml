@@ -349,7 +349,7 @@
 	<Cell rowIndex="12" columnIndex="10" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="11" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="12" allowedMove="0" />
-	<Cell rowIndex="12" columnIndex="13" allowedMove="1" />
+	<Cell rowIndex="12" columnIndex="13" allowedMove="2" />
 	<Cell rowIndex="12" columnIndex="14" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="15" allowedMove="0" />
 	<Cell rowIndex="12" columnIndex="16" allowedMove="0" />
@@ -377,7 +377,7 @@
 	<Cell rowIndex="13" columnIndex="10" allowedMove="0" />
 	<Cell rowIndex="13" columnIndex="11" allowedMove="0" />
 	<Cell rowIndex="13" columnIndex="12" allowedMove="0" />
-	<Cell rowIndex="13" columnIndex="13" allowedMove="1" />
+	<Cell rowIndex="13" columnIndex="13" allowedMove="2" />
 	<Cell rowIndex="13" columnIndex="14" allowedMove="0" />
 	<Cell rowIndex="13" columnIndex="15" allowedMove="0" />
 	<Cell rowIndex="13" columnIndex="16" allowedMove="0" />
@@ -403,12 +403,12 @@
 	<Cell rowIndex="14" columnIndex="8" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="9" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="10" allowedMove="0" />
-	<Cell rowIndex="14" columnIndex="11" allowedMove="1" />
-	<Cell rowIndex="14" columnIndex="12" allowedMove="1" />
-	<Cell rowIndex="14" columnIndex="13" allowedMove="1" />
-	<Cell rowIndex="14" columnIndex="14" allowedMove="1" />
-	<Cell rowIndex="14" columnIndex="15" allowedMove="1" />
-	<Cell rowIndex="14" columnIndex="16" allowedMove="1" />
+	<Cell rowIndex="14" columnIndex="11" allowedMove="2" />
+	<Cell rowIndex="14" columnIndex="12" allowedMove="2" />
+	<Cell rowIndex="14" columnIndex="13" allowedMove="2" />
+	<Cell rowIndex="14" columnIndex="14" allowedMove="2" />
+	<Cell rowIndex="14" columnIndex="15" allowedMove="2" />
+	<Cell rowIndex="14" columnIndex="16" allowedMove="2" />
 	<Cell rowIndex="14" columnIndex="17" allowedMove="0" />
 	<Cell rowIndex="14" columnIndex="18" allowedMove="1" />
 	<Cell rowIndex="14" columnIndex="19" allowedMove="1" />
