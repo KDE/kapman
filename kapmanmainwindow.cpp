@@ -31,6 +31,8 @@ KapmanMainWindow::KapmanMainWindow() {
 	KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 	setupGUI();
+	// Give the focus to the view
+	m_view->setFocus();
 }
 
 KapmanMainWindow::~KapmanMainWindow() {
