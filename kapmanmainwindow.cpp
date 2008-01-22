@@ -1,3 +1,4 @@
+
 /* This file is part of Kapman.
    Created by Thomas Gallinari <tg8187@yahoo.fr>
 
@@ -15,7 +16,7 @@
    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
    02110-1301, USA
 */
-
+#include <KDebug>
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KMessageBox>
@@ -47,7 +48,10 @@ void KapmanMainWindow::initGame() {
 }
 
 void KapmanMainWindow::newGame() {
-	m_game->pause();
+	// timer (is active if play is already beginning)
+	bool timer = m_game->getTimer()->isActive();
+	if(timer)
+		m_game->pause();
 	if(KMessageBox::warningYesNo(this,
 		ki18n("Are you sure you want to quit the current game ?").toString(),
 		ki18n("New game").toString()) == KMessageBox::Yes) {
@@ -57,12 +61,16 @@ void KapmanMainWindow::newGame() {
 		initGame();
 	}
 	else {
-		m_game->start();
+		if(timer)
+			m_game->start();
 	}
 }
 
 void KapmanMainWindow::close() {
-	m_game->pause();
+	// timer (is active if play is already beginning)
+	bool timer = m_game->getTimer()->isActive();
+	if(timer)
+		m_game->pause();
 	if(KMessageBox::warningYesNo(this,
 		ki18n("Are you sure you want to quit Kapman ?").toString(),
 		ki18n("Quit").toString()) == KMessageBox::Yes) {
@@ -70,8 +78,8 @@ void KapmanMainWindow::close() {
 		KXmlGuiWindow::close();
 	}
 	else {
-		m_game->start();
+		if(timer)
+			m_game->start();
 	}
+	
 }
-
-
