@@ -22,7 +22,7 @@
 #include "mazeitem.h"
 #include "characteritem.h"
 
-GameScene::GameScene(Game * p_game) {
+GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Create the 'PAUSE' label
 	pauseLabel = new QGraphicsTextItem( ki18n("PAUSE").toString() );
 	pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
@@ -65,6 +65,10 @@ GameScene::GameScene(Game * p_game) {
 
 GameScene::~GameScene() {
 
+}
+
+Game* GameScene::getGame() const {
+	return m_game;
 }
 
 void GameScene::managePause(bool pauseGame) {

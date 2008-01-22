@@ -71,6 +71,11 @@ class Game : public QObject {
 		 * Pauses the game
 		 */
 		void pause();
+
+		/**
+		 * Manages the game pause when 'P' key is pressed
+		 */
+		void doPause();
 		
 		/**
 		 * @return the kapman model
@@ -95,13 +100,7 @@ class Game : public QObject {
 		/**
 		 * @return m_isPaused attribute
 		 */
-		bool isPaused() const; 
-
-	private:
-		/**
-		 * Manage the game pause when 'P' key is pressed
-		 */
-		void doPause();
+		bool isPaused() const;
 		 
 	signals:
 	

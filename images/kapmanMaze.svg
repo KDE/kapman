@@ -12,11 +12,12 @@
    height="622.72498"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.45.1"
-   sodipodi:docbase="/home/faldor/Desktop"
+   inkscape:version="0.45"
+   sodipodi:docbase="/home/kde-devel/kapman/src/images"
    sodipodi:docname="kapmanMaze.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   version="1.0">
+   version="1.0"
+   sodipodi:modified="true">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -28,12 +29,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.017292"
      inkscape:cx="372.04724"
-     inkscape:cy="292.50205"
+     inkscape:cy="369.16767"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1280"
-     inkscape:window-height="951"
+     inkscape:window-height="722"
      inkscape:window-x="0"
      inkscape:window-y="0"
      width="800px"
@@ -64,7 +65,7 @@
     <g
        id="g5123"
        style="fill:#000000;fill-opacity:0;stroke:#0000ff;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       transform="matrix(1.0035249,0,0,0.9984133,-2.2908225,1.3083685)">
+       transform="matrix(1.0014411,0,0,0.9956148,-2.1006786,3.6200904)">
       <g
          style="fill:#000000;fill-opacity:0;stroke:#0000ff;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          transform="translate(271.51284,1751.7051)"

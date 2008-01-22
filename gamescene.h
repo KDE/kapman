@@ -29,6 +29,9 @@ class GameScene : public QGraphicsScene {
 	Q_OBJECT
 		
 	private:
+
+		/** The game */
+		Game* m_game;
 	
 		/** The PAUSE label to display when the game is paused */
 		QGraphicsTextItem * pauseLabel;
@@ -50,6 +53,11 @@ class GameScene : public QGraphicsScene {
 		 * Deletes the Game instance
 		 */
 		~GameScene();
+
+		/**
+		 * @return the game
+		 */
+		Game* getGame() const;
 		
 	public slots:
 	

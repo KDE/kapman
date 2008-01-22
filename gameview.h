@@ -58,6 +58,11 @@ class GameView : public QGraphicsView {
 		 */
 		void keyPressEvent(QKeyEvent * p_event);
 
+		/**
+		 * Overrides the QWidget method
+		 */
+		void focusOutEvent(QFocusEvent* p_evt);
+
 	signals:
 
 		/**
