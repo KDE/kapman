@@ -38,6 +38,7 @@ set(kapmanSources
 	mazeparser.cpp
 	mazeitem.cpp
 	kapman.cpp
+	kapmanitem.cpp
 	ghost.cpp
 	gamescene.cpp
 	character.cpp

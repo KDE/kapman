@@ -83,6 +83,11 @@ class Kapman : public Character {
 		 */
 		qreal getAskedYSpeed() const;
 
+		/**
+		 * Manages the loss of a life
+		 */
+		void loseLife();
+
 	private:
 
 		/**
@@ -99,6 +104,13 @@ class Kapman : public Character {
 		 * Stops moving the Kapman
 		 */
 		void stopMoving();
+
+	signals:
+		
+		/**
+		 * Signals to the game that the kapman lost a life
+		 */
+		void lifeLost();
 };
 
 #endif

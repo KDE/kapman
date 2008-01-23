@@ -20,6 +20,7 @@
 #define __GHOST_H
 
 #include "character.h"
+#include "kapman.h"
 
 /**
  * This class represents the ghost
@@ -56,6 +57,11 @@ class Ghost : public Character {
 		 * @return the URL to the ghost's image
 		 */
 		QString getImageURL() const;
+		
+		/**
+		 * Manages the collison with the kapman
+		 */
+		 void doActionOnCollision(Kapman * p_kapman);
 
 	private:
 		/**

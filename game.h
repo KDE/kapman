@@ -101,6 +101,13 @@ class Game : public QObject {
 		 * Manage the game pause when 'P' key is pressed
 		 */
 		void doPause();
+		
+	private:
+	
+		/**
+		 * Initialize the characters position when the game begin or when the kapman lose a life
+		 */
+		void initCharactersPosition();
 		 
 	signals:
 	
@@ -127,6 +134,11 @@ class Game : public QObject {
 		 * Called on each timer signal to update the game data
 		 */
 		void update();
+		
+		/**
+		 * Manages the loss of a life
+		 */
+		void kapmanDeath();
 };
 
 #endif

@@ -21,6 +21,7 @@
 #include "gamescene.h"
 #include "mazeitem.h"
 #include "characteritem.h"
+#include "kapmanitem.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Create the 'PAUSE' label
@@ -38,8 +39,10 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	introLabel2->setDefaultTextColor( QColor("#FF0000") );
 
 	// Add all the items
-	addItem(new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg")));
-	addItem(new CharacterItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
+	MazeItem* mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
+	addItem(mazeItem);
+	mazeItem->setZValue(-1);
+	addItem(new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
 		addItem(new CharacterItem(p_game->getGhostList().at(i),
 			KStandardDirs::locate("appdata",

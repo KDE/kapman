@@ -20,6 +20,7 @@
 #include "characteritem.h"
 
 CharacterItem::CharacterItem(Character* p_model, QString p_imagePath) :	QGraphicsSvgItem(p_imagePath) {
+	m_model = p_model;
 	// Init the view coordinates
 	setPos(p_model->getX() - boundingRect().width() / 2,
 		   p_model->getY() - boundingRect().height() / 2);
@@ -29,6 +30,10 @@ CharacterItem::CharacterItem(Character* p_model, QString p_imagePath) :	QGraphic
 
 CharacterItem::~CharacterItem() {
 
+}
+
+Character* CharacterItem::getModel() const {
+	return m_model;
 }
 
 void CharacterItem::update(qreal p_x, qreal p_y) {

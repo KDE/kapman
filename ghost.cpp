@@ -16,6 +16,7 @@
    02110-1301, USA
 */
 
+#include <KDebug>
 #include "ghost.h"
 #include <cstdlib>
 #include <QPointF>
@@ -119,6 +120,10 @@ void Ghost::updateMove() {
 
 QString Ghost::getImageURL() const  {
 	return m_imageURL;
+}
+
+void Ghost::doActionOnCollision(Kapman * p_kapman) {
+	p_kapman->loseLife();
 }
 
 

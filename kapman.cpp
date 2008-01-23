@@ -19,8 +19,6 @@
 #include "kapman.h"
 
 Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
-	// Makes the Kapman move as soon as the game is created
-	goLeft();
 }
 
 Kapman::~Kapman() {
@@ -52,6 +50,11 @@ void Kapman::updateDirection() {
 	setYSpeed(m_askedYSpeed);
 	m_askedXSpeed = 0;
 	m_askedYSpeed = 0;
+}
+
+void Kapman::loseLife() {
+	// Emits a signal to the game
+	emit(lifeLost());
 }
 
 void Kapman::updateMove() {

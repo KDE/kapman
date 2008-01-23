@@ -17,7 +17,6 @@
 */
 
 #include <KStandardDirs>
-#include <KDebug>
 
 #include "game.h"
 
@@ -29,14 +28,16 @@ Game::Game() {
 	m_ghostList.append(new Ghost(Cell::SIZE * 14, Cell::SIZE * 14.5, "blueGhost_test.svg", m_maze));
 	m_ghostList.append(new Ghost(Cell::SIZE * 16, Cell::SIZE * 14.5, "pinkGhost_test.svg", m_maze));
 
+	// Connects the kapman to the "kapmanDeath" slot
+	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
+
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
 	m_timer->setInterval(15); // 60 FPS
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
-
-	// At the begining, the timer is stopped but the game isn't paused (to allow keyPressedEvent detection)
-	m_timer->stop();
-	m_isPaused = false;
+	m_timer->start();
+	
+	initCharactersPosition();
 }
 
 Game::~Game() {
@@ -94,6 +95,32 @@ bool Game::isPaused() const {
 	return m_isPaused;
 }
 
+/** Private */
+void Game::initCharactersPosition() {
+	// If the timer is stopped, it means that collisions are already being handled
+	if(m_timer->isActive()) {
+		
+		// At the begining, the timer is stopped but the game isn't paused (to allow keyPressedEvent detection)
+		m_timer->stop();
+		m_isPaused = false;		
+		
+		// Initialize ghosts position
+		// TODO Mettre un attribut "initialPosition" dans chaque character, initialisé à partir du XML
+		m_ghostList[0]->setX(Cell::SIZE * 14);
+		m_ghostList[0]->setY(Cell::SIZE * 11.5);
+		m_ghostList[1]->setX(Cell::SIZE * 12);
+		m_ghostList[1]->setY(Cell::SIZE * 14.5);
+		m_ghostList[2]->setX(Cell::SIZE * 14);
+		m_ghostList[2]->setY(Cell::SIZE * 14.5);
+		m_ghostList[3]->setX(Cell::SIZE * 16);
+		m_ghostList[3]->setY(Cell::SIZE * 14.5);
+		
+		// Initialize the kapman position
+		m_kapman->setX(Cell::SIZE * 14);
+		m_kapman->setY(Cell::SIZE * 17.5);
+	}
+}
+
 void Game::keyPressEvent(QKeyEvent* p_event) {
 	// At the beggining, we start the timer when a key is pressed
 	if(!m_isPaused && !m_timer->isActive()) {
@@ -129,9 +156,15 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 	}
 }
 
+/** SLOTS */
 void Game::update() {
-	m_kapman->updateMove();
 	for(int i=0; i<m_ghostList.size(); i++) {
 		m_ghostList[i]->updateMove();
 	}
+	m_kapman->updateMove();
+}
+
+void Game::kapmanDeath() {
+	// Replace all characters to their initial positions
+	initCharactersPosition();
 }

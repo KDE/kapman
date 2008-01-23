@@ -29,6 +29,11 @@
 class CharacterItem : public QGraphicsSvgItem {
 
 	Q_OBJECT
+	
+	private:
+	
+		/** pointer on the model */
+		Character * m_model;
 
 	public:
 
@@ -43,6 +48,11 @@ class CharacterItem : public QGraphicsSvgItem {
 		 * Deletes the CharacterItem instance
 		 */
 		~CharacterItem();
+		
+		/**
+		 * @return the model
+		 */
+		Character* getModel() const;
 
 	public slots:
 
@@ -51,7 +61,7 @@ class CharacterItem : public QGraphicsSvgItem {
 		 * @param p_x the new x-coordinate
 		 * @param p_y the new y-coordinate
 		 */
-		void update(qreal p_x, qreal p_y);
+		virtual void update(qreal p_x, qreal p_y);
 };
 
 #endif
