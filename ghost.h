@@ -54,6 +54,11 @@ class Ghost : public Character {
 		void updateMove();
 
 		/**
+		 * Updates the Ghost such as the it goes to the given coordinates
+		 */
+		void updateMove(int p_Row, int p_Col);
+		 
+		/**
 		 * @return the URL to the ghost's image
 		 */
 		QString getImageURL() const;

@@ -84,6 +84,59 @@ void Character::setYSpeed(qreal p_ySpeed) {
 	m_ySpeed = p_ySpeed;
 }
 
+bool Character::isInLineSight(Character * p_c) {
+	int curCallerRow, curCallerCol, curCharacterRow, curCharacterCol;
+	
+	//init
+	curCallerRow = m_maze->getRowFromY(m_y);
+	curCallerCol = m_maze->getColFromX(m_x);
+	curCharacterRow = m_maze->getRowFromY(p_c->getY());
+	curCharacterCol = m_maze->getColFromX(p_c->getX());
+	
+	//Same row
+	if(curCallerRow == curCharacterRow ) {
+		if(curCallerCol > curCharacterCol && m_xSpeed < 0) {
+			//foreach column, test if it's a wall or not between the two cells
+			for(int i=curCharacterCol; i<curCallerCol; i++) {
+				if(m_maze->getCell(curCallerRow, i).getType() != Cell::CORRIDOR) {
+					return false;
+				}
+			}
+			return true;
+		}
+		else if(curCallerCol < curCharacterCol && m_xSpeed > 0) {
+			for(int i=curCallerCol; i<curCharacterCol; i++) {
+				if(m_maze->getCell(curCallerRow, i).getType() != Cell::CORRIDOR) {
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+	//Same column
+	else if (curCallerCol == curCharacterCol) {
+		if(curCallerRow > curCharacterRow && m_ySpeed < 0) {
+			//foreach row, test if it's a wall or not between the two cells
+			for(int i=curCharacterRow; i<curCallerRow; i++) {
+				if(m_maze->getCell(i, curCallerCol).getType() != Cell::CORRIDOR) {
+					return false;
+				}
+			}
+			return true;
+		}
+		else if(curCallerRow < curCharacterRow && m_ySpeed > 0) {
+			for(int i=curCallerRow; i<curCharacterRow; i++) {
+				if(m_maze->getCell(i, curCallerCol).getType() != Cell::CORRIDOR) {
+					return false;
+				}
+			}
+			return true;
+		}
+	}
+	return false;
+	
+}
+
 /** Private */
 Cell Character::getNextCell() {
 	Cell nextCell;
@@ -143,9 +196,3 @@ void Character::moveOnCenter() {
 	setX((m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE);
 	setY((m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE);
 }
-
-/** SLOTS */
-// void Character::changeMazeSide(qreal p_newX, qreal p_newY) {
-// 	m_x = p_newX;
-// 	m_y = p_newY;
-// }

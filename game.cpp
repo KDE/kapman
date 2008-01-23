@@ -158,9 +158,20 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 
 /** SLOTS */
 void Game::update() {
+	int curKapmanRow, curKapmanCol;
+	
+	//check if the kapman is in the line of sight of a ghost
+	curKapmanRow = m_maze->getRowFromY(m_kapman->getY());
+	curKapmanCol = m_maze->getColFromX(m_kapman->getX());
+	
 	for(int i=0; i<m_ghostList.size(); i++) {
-		m_ghostList[i]->updateMove();
-	}
+		if(m_ghostList[i]->isInLineSight(m_kapman)) {
+			m_ghostList[i]->updateMove(curKapmanRow, curKapmanCol);
+		}
+		else {
+			m_ghostList[i]->updateMove();
+		}
+	}	
 	m_kapman->updateMove();
 }
 

@@ -135,6 +135,14 @@ class Character : public QObject {
 		 * @param p_ySpeed the y speed attribute
 		 */
 		 void setYSpeed(qreal p_ySpeed);
+		 
+		 /**
+		 * @param p_c 
+		 * @return true if the caller is in the same line than the character
+		 *	   without wall between them and if it doesn't have to make a 
+		 *	   half turn
+		 */
+		bool isInLineSight(Character * p_c);
 
 	protected:
 

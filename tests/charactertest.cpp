@@ -18,6 +18,7 @@
 #include "charactertest.h"
 #include "character.h"
 #include "kapman.h"
+#include "cell.h"
 
 void CharacterTest::testCharacter() {
 
@@ -191,5 +192,56 @@ void CharacterTest::testMove() {
 // 	gho->goUp();
 // 	//QCOMPARE(gho->getNextCell(), game->getMaze()->getCell(6, 2));
 // }
+
+void CharacterTest::isInLineSight() {
+	//initialisation
+// 	Maze * maze = new Maze();
+// 	Kapman * characterBase = new Kapman(Cell::SIZE * 13, Cell::SIZE * 17, maze);
+// 	Kapman * characterTested = new Kapman(0, 0, maze);
+	
+	//Same row and characterTested column > characterBase column
+// 	characterTested->setX(Cell::SIZE * 14);
+// 	characterTested->setY(Cell::SIZE * 17);
+//   	characterBase->setXSpeed(Character::SPEED);
+//  	characterBase->setYSpeed(0.0);
+// 	QCOMPARE(characterBase->isInLineSight(characterTested), false);
+	/*
+	//Same row and characterTested column < characterBase column
+	characterTested->setX(Cell::SIZE * 12);
+	characterTested->setY(Cell::SIZE * 17.5);
+	characterBase->setXSpeed(-Character::SPEED);
+	characterBase->setYSpeed(0);
+	
+	QCOMPARE(characterBase->isInLineSight(characterTested), true);
+	
+	characterBase->setX(Cell::SIZE * 6);
+	characterBase->setY(Cell::SIZE * 13);
+	
+	//Same column and characterTested row > characterBase row
+	characterTested->setX(Cell::SIZE * 6);
+	characterTested->setY(Cell::SIZE * 14);
+	characterBase->setXSpeed(0);
+	characterBase->setYSpeed(Character::SPEED);
+	
+	QCOMPARE(characterBase->isInLineSight(characterTested), true);
+	
+	//Same column and characterTested row < characterBase row
+	characterTested->setX(Cell::SIZE * 6);
+	characterTested->setY(Cell::SIZE * 12);
+	characterBase->setXSpeed(0);
+	characterBase->setYSpeed(-Character::SPEED);
+	
+	QCOMPARE(characterBase->isInLineSight(characterTested), true);
+	
+	//A wall between them
+	characterTested->setX(Cell::SIZE * 14);
+	characterTested->setY(Cell::SIZE * 11.5);
+	characterBase->setX(Cell::SIZE * 14);
+	characterBase->setY(Cell::SIZE * 17.5);
+	characterBase->setXSpeed(0);
+	characterBase->setYSpeed(-Character::SPEED);
+	
+	QCOMPARE(characterBase->isInLineSight(characterTested), false);*/
+}
 
 QTEST_KDEMAIN_CORE(CharacterTest)

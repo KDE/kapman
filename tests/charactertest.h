@@ -50,6 +50,9 @@ class CharacterTest : public QObject {
 // 		void testGetNextCell();
 
 		/** TODO Test changeMazeSide when finished */
+		
+		void isInLineSight();
+
 };
 
 #endif

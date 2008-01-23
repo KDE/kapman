@@ -118,6 +118,37 @@ void Ghost::updateMove() {
 	move();
 }
 
+void Ghost::updateMove(int p_Row, int p_Col) {
+	// Get the current cell coordinates from the ghost coordinates
+	int curGhostRow = m_maze->getRowFromY(m_y);
+	int curGhostCol = m_maze->getColFromX(m_x);
+	
+	if(onCenter()) {
+		if(curGhostRow == p_Row) {
+			if(p_Col > curGhostCol) {
+				m_xSpeed = SPEED;
+				m_ySpeed = 0;
+			}
+			else {
+				m_xSpeed = -SPEED;
+				m_ySpeed = 0;
+			}
+		}
+		else {	
+			if(p_Row > curGhostRow) {
+				m_xSpeed = 0;
+				m_ySpeed = SPEED;
+			}
+			else {
+				m_xSpeed = 0;
+				m_ySpeed = -SPEED;
+			}
+		}
+	}
+	// We move the ghost
+	move();
+}
+
 QString Ghost::getImageURL() const  {
 	return m_imageURL;
 }
@@ -125,5 +156,4 @@ QString Ghost::getImageURL() const  {
 void Ghost::doActionOnCollision(Kapman * p_kapman) {
 	p_kapman->loseLife();
 }
-
 

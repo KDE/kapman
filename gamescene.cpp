@@ -84,12 +84,17 @@ void GameScene::managePause(bool pauseGame) {
 	}
 	else {
 	// If the label is displayed, remove it
-		removeItem(pauseLabel);
+		if(items().contains(pauseLabel)) {
+			removeItem(pauseLabel);
+		}
 	}
 }
 
 void GameScene::removeIntro() {
-	removeItem(introLabel);
-	removeItem(introLabel2);
+	//If the Intro Label is displayed, remove it
+	if(items().contains(introLabel)) {
+		removeItem(introLabel);
+		removeItem(introLabel2);
+	}
 }
 
