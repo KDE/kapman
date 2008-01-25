@@ -81,6 +81,7 @@ kde4_add_unit_test(ghostTest
 	maze.cpp
 	mazeparser.cpp
 	cell.cpp
+	kapman.cpp
 	./tests/ghosttest.cpp
 )
 # Character test unit
