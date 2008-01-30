@@ -43,6 +43,7 @@ Game::Game() {
 Game::~Game() {
 	delete m_maze;
 	delete m_kapman;
+	delete m_timer;
 	for (int i = 0; i < m_ghostList.size(); i++) {
 		delete m_ghostList[i];
 	}
