@@ -129,6 +129,10 @@ void Kapman::loseLife() {
 	emit(lifeLost());
 }
 
+void Kapman::emitGameUpdated() {
+	emit(gameUpdated());
+}
+
 /** Accessors */
 qreal Kapman::getAskedXSpeed() const {
 	return m_askedXSpeed;

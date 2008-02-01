@@ -74,11 +74,6 @@ class Kapman : public Character {
 		void updateMove();
 
 		/**
-		 * Manages the loss of a life
-		 */
-		void loseLife();
-
-		/**
 		 * @return the asked x speed value
 		 */
 		qreal getAskedXSpeed() const;
@@ -87,6 +82,16 @@ class Kapman : public Character {
 		 * @return the asked y speed value
 		 */
 		qreal getAskedYSpeed() const;
+
+		/**
+		 * Manages the loss of a life
+		 */
+		void loseLife();
+		
+		/**
+		 * Emits a signal to Kapmanitem in order to manage collisions
+		 */
+		void emitGameUpdated();
 
 	private:
 
@@ -111,6 +116,11 @@ class Kapman : public Character {
 		 * Signals to the game that the kapman lost a life
 		 */
 		void lifeLost();
+		
+		/**
+		 * Signals to Kapmanitem that the game has been updated
+		 */
+		 void gameUpdated();
 };
 
 #endif

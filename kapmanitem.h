@@ -46,11 +46,9 @@ class KapmanItem : public CharacterItem {
 	public slots:
 
 		/**
-		 * Updates the view coordinates
-		 * @param p_x the new x-coordinate
-		 * @param p_y the new y-coordinate
+		 * Manages the colllisions between kapman and the other elements
 		 */
-		void update(qreal p_x, qreal p_y);
+		void manageCollision();
 };
 
 #endif

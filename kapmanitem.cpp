@@ -22,21 +22,21 @@
 #include "ghost.h"
 
 KapmanItem::KapmanItem(Kapman* p_model, QString p_imagePath) :	CharacterItem(p_model, p_imagePath) {
+	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 }
 
 KapmanItem::~KapmanItem() {
 
 }
 
-void KapmanItem::update(qreal p_x, qreal p_y) {
-	CharacterItem::update(p_x, p_y);
-
+void KapmanItem::manageCollision() {
 	QList<QGraphicsItem *> collidingList = collidingItems();
 
 	// The signal is emitted only if the list contains more than 1 items (to exclude the case
-	// when the kapman only collides with the maze
+	// when the kapman only collides with the maze)
 	if(collidingList.size() > 1) {
 		for(int i = 0 ; i < collidingList.size() ; i++) {
+			// The maze has a negative zValue which allows to exclude it from the treatment of collisions
 			if (collidingList[i]->zValue() >= 0) {
 				((ElementItem*)collidingList[i])->getModel()->doActionOnCollision((Kapman*)getModel());
 			}

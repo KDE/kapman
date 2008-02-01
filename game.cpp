@@ -174,6 +174,9 @@ void Game::update() {
 		}
 	}	
 	m_kapman->updateMove();
+	
+	// tells to kapman to call the function that will emit a signal to Kapmanitem (in order to manage collisions)
+	m_kapman->emitGameUpdated();
 }
 
 void Game::kapmanDeath() {
