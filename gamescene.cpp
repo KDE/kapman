@@ -25,7 +25,7 @@
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Create the 'PAUSE' label
-	pauseLabel = new QGraphicsTextItem( ki18n("PAUSE").toString() );
+	pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
 	pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
 	pauseLabel->setDefaultTextColor( QColor("#FFFF00") );
 
@@ -44,9 +44,8 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	mazeItem->setZValue(-1);
 	addItem(new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
-		addItem(new CharacterItem(p_game->getGhostList().at(i),
-			KStandardDirs::locate("appdata",
-			p_game->getGhostList().at(i)->getImageURL())));
+		addItem(new CharacterItem(p_game->getGhostList().at(i), 
+			KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL())));
 	}
 	
 	addItem(introLabel);

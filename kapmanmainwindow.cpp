@@ -66,6 +66,8 @@ void KapmanMainWindow::newGame() {
 		if(timer)
 			m_game->start();
 	}
+	// Give the focus to the view
+	m_view->setFocus();
 }
 
 void KapmanMainWindow::close() {

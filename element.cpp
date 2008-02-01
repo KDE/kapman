@@ -16,12 +16,35 @@
    02110-1301, USA
 */
 
-#include "characteritem.h"
+#include "element.h"
 
-CharacterItem::CharacterItem(Character* p_model, QString p_imagePath) :	ElementItem (p_model, p_imagePath) {
+Element::Element(qreal p_x, qreal p_y, Maze* p_maze) :	m_x(p_x), m_y(p_y), m_maze(p_maze) {
 
 }
 
-CharacterItem::~CharacterItem() {
+Element::~Element() {
 
+}
+
+void Element::doActionOnCollision(Kapman* p_kapman) {
+	// Do nothing by default : will be redefined within the subclasses
+}
+
+/** Accessors */
+qreal Element::getX() const {
+	return m_x;
+}
+
+qreal Element::getY() const {
+	return m_y;
+}
+
+void Element::setX(qreal p_x) {
+	m_x = p_x;
+	emit(moved(m_x, m_y));
+}
+
+void Element::setY(qreal p_y) {
+	m_y = p_y;
+	emit(moved(m_x, m_y));
 }

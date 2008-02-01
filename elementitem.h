@@ -16,32 +16,51 @@
    02110-1301, USA
 */
 
-#ifndef __CHARACTERITEM_H
-#define __CHARACTERITEM_H
+#ifndef __ELEMENTITEM_H
+#define __ELEMENTITEM_H
 
-#include "elementitem.h"
-#include "character.h"
+#include <QGraphicsSvgItem>
+#include "element.h"
 
 /**
- * This class is the graphical representation of a character
+ * This class is the graphical representation of a game element
  */
-class CharacterItem : public ElementItem {
+class ElementItem : public QGraphicsSvgItem {
 
 	Q_OBJECT
+	
+	protected:
+	
+		/** Pointer on the model */
+		Element * m_model;
 
 	public:
 
 		/**
-		 * Creates a new CharacterItem instance
-		 * @param p_model the character model
-		 * @param p_imagePath the character image path
+		 * Creates a new ElementItem instance
+		 * @param p_model the element model
+		 * @param p_imagePath the element image path
 		 */
-		CharacterItem(Character* p_model, QString p_imagePath);
+		ElementItem(Element* p_model, QString p_imagePath);
 
 		/**
-		 * Deletes the CharacterItem instance
+		 * Deletes the ElementItem instance
 		 */
-		~CharacterItem();
+		~ElementItem();
+		
+		/**
+		 * @return the model
+		 */
+		Element* getModel() const;
+
+	public slots:
+
+		/**
+		 * Updates the view coordinates
+		 * @param p_x the new x-coordinate
+		 * @param p_y the new y-coordinate
+		 */
+		virtual void update(qreal p_x, qreal p_y);
 };
 
 #endif

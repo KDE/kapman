@@ -17,16 +17,15 @@
 */
 
 #include <KStandardDirs>
-
 #include "game.h"
 
 Game::Game() {
 	m_maze = new Maze();
-	m_kapman = new Kapman(Cell::SIZE * 14, Cell::SIZE * 17.5, m_maze);
-	m_ghostList.append(new Ghost(Cell::SIZE * 14, Cell::SIZE * 11.5, "redGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(Cell::SIZE * 12, Cell::SIZE * 14.5, "greenGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(Cell::SIZE * 14, Cell::SIZE * 14.5, "blueGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(Cell::SIZE * 16, Cell::SIZE * 14.5, "pinkGhost_test.svg", m_maze));
+	m_kapman = new Kapman(0, 0, m_maze);
+	m_ghostList.append(new Ghost(0, 0, "redGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0, 0, "greenGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0, 0, "blueGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0, 0, "pinkGhost_test.svg", m_maze));
 
 	// Connects the kapman to the "kapmanDeath" slot
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
@@ -118,7 +117,7 @@ void Game::initCharactersPosition() {
 		
 		// Initialize the kapman position
 		m_kapman->setX(Cell::SIZE * 14);
-		m_kapman->setY(Cell::SIZE * 17.5);
+		m_kapman->setY(Cell::SIZE * 23.5);
 	}
 }
 
@@ -152,6 +151,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			break;
 		case Qt::Key_P:
 			doPause();
+			break;
 		default:
 			break;
 	}

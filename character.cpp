@@ -20,8 +20,7 @@
 
 const qreal Character::SPEED = 2.0;
 
-Character::Character(qreal p_x, qreal p_y, Maze* p_maze) :
-		m_x(p_x), m_y(p_y), m_xSpeed(0), m_ySpeed(0), m_maze(p_maze) {
+Character::Character(qreal p_x, qreal p_y, Maze* p_maze) : Element(p_x, p_y, p_maze), m_xSpeed(0), m_ySpeed(0) {
 
 }
 
@@ -50,13 +49,6 @@ void Character::move() {
 }
 
 /** Accessors */
-qreal Character::getX() const {
-	return m_x;
-}
-
-qreal Character::getY() const {
-	return m_y;
-}
 
 qreal Character::getXSpeed() const {
 	return m_xSpeed;
@@ -64,16 +56,6 @@ qreal Character::getXSpeed() const {
 
 qreal Character::getYSpeed() const {
 	return m_ySpeed;
-}
-
-void Character::setX(qreal p_x) {
-	m_x = p_x;
-	emit(moved(m_x, m_y));
-}
-
-void Character::setY(qreal p_y) {
-	m_y = p_y;
-	emit(moved(m_x, m_y));
 }
 
 void Character::setXSpeed(qreal p_xSpeed) {

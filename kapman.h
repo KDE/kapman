@@ -74,6 +74,11 @@ class Kapman : public Character {
 		void updateMove();
 
 		/**
+		 * Manages the loss of a life
+		 */
+		void loseLife();
+
+		/**
 		 * @return the asked x speed value
 		 */
 		qreal getAskedXSpeed() const;
@@ -82,11 +87,6 @@ class Kapman : public Character {
 		 * @return the asked y speed value
 		 */
 		qreal getAskedYSpeed() const;
-
-		/**
-		 * Manages the loss of a life
-		 */
-		void loseLife();
 
 	private:
 

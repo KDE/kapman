@@ -29,20 +29,22 @@ macro_display_feature_log()
 
 # project sources
 set(kapmanSources
-	main.cpp
-	kapmanmainwindow.cpp
-	game.cpp
-	gameview.cpp
-	maze.cpp
 	cell.cpp
-	mazeparser.cpp
-	mazeitem.cpp
-	kapman.cpp
-	kapmanitem.cpp
-	ghost.cpp
-	gamescene.cpp
 	character.cpp
 	characteritem.cpp
+	element.cpp
+	elementitem.cpp
+	game.cpp
+	gamescene.cpp
+	gameview.cpp
+	ghost.cpp
+	kapman.cpp
+	kapmanitem.cpp
+	kapmanmainwindow.cpp
+	main.cpp
+	maze.cpp
+	mazeitem.cpp
+	mazeparser.cpp
 )
 
 # resources

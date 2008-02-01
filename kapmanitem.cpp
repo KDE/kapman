@@ -29,27 +29,16 @@ KapmanItem::~KapmanItem() {
 }
 
 void KapmanItem::update(qreal p_x, qreal p_y) {
-	// Compute the top-right coordinates of the item
-	qreal x = p_x - boundingRect().width() / 2;
-	qreal y = p_y - boundingRect().height() / 2;
-
-	// Updates the view coordinates
-	setPos(x, y);
+	CharacterItem::update(p_x, p_y);
 
 	QList<QGraphicsItem *> collidingList = collidingItems();
 
 	// The signal is emitted only if the list contains more than 1 items (to exclude the case
 	// when the kapman only collides with the maze
 	if(collidingList.size() > 1) {
-// 		QList<QGraphicsItem *>::iterator i;
-// 		for(i = collidingList.begin() ; i < collidingList.end() ; i++) {
-// 			if ((*i)->zValue() >= 0) {
-// 				((Ghost*)((CharacterItem*)(*i))->getModel())->doActionOnCollision((Kapman*)getModel());
-// 			}
-// 		}
 		for(int i = 0 ; i < collidingList.size() ; i++) {
 			if (collidingList[i]->zValue() >= 0) {
-				((Ghost*)((CharacterItem*)collidingList[i])->getModel())->doActionOnCollision((Kapman*)getModel());
+				((ElementItem*)collidingList[i])->getModel()->doActionOnCollision((Kapman*)getModel());
 			}
 		}
 	}

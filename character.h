@@ -19,13 +19,12 @@
 #ifndef __CHARACTER_H
 #define __CHARACTER_H
 
-#include <QObject>
-#include <maze.h>
+#include "element.h"
 
 /**
  * This class describes the main characteristics of the Kapman and the ghosts
  */
-class Character : public QObject {
+class Character : public Element {
 
 	Q_OBJECT
 
@@ -36,14 +35,8 @@ class Character : public QObject {
 
 	protected:
 
-		/** Character coordinates */
-		qreal m_x, m_y;
-
 		/** Character speed */
 		qreal m_xSpeed, m_ySpeed;
-
-		/** The maze the character is on */
-		Maze* m_maze;
 
 	public:
 
@@ -93,16 +86,6 @@ class Character : public QObject {
 		void move();
 
 		/**
-		 * @return the x-coordinate
-		 */
-		qreal getX() const;
-
-		/**
-		 * @return the y-coordinate
-		 */
-		qreal getY() const;
-
-		/**
 		 * @return the x speed value
 		 */
 		qreal getXSpeed() const;
@@ -111,18 +94,6 @@ class Character : public QObject {
 		 * @return the y speed value
 		 */
 		qreal getYSpeed() const;
-
-		/**
-		 * Sets the x coordinate to the given value
-		 * @param p_x the new x coordinate to set
-		 */
-		void setX(qreal p_x);
-
-		/**
-		 * Sets the y coordinate to the given value
-		 * @param p_y the new y coordinate to set
-		 */
-		void setY(qreal p_y);
 		
 		/**
 		 * Set the X speed attribute
@@ -161,25 +132,6 @@ class Character : public QObject {
 		 * Moves the character on its current cell center
 		 */
 		void moveOnCenter();
-
-	signals:
-
-		/**
-		 * On Character move
-		 * @param p_x the new x-coordinate
-		 * @param p_y the new y-coordinate
-		 */
-		void moved(qreal p_x, qreal p_y);
-
-	public slots:
-
-		/**
-		 * Makes the Character "circle around" the maze when reaching a border
-		 * @param p_newX the new X coordinate
-		 * @param p_newY the new Y coordinate
-		 * TODO re-develop it according to new architecture
-		 */
-		//void changeMazeSide(qreal p_newX, qreal p_newY);
 };
 
 #endif

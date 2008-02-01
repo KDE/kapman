@@ -66,7 +66,7 @@ class Ghost : public Character {
 		/**
 		 * Manages the collison with the kapman
 		 */
-		 void doActionOnCollision(Kapman * p_kapman);
+		 void doActionOnCollision(Kapman* p_element);
 
 	private:
 		/**
