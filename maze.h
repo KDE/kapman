@@ -65,7 +65,7 @@ class Maze : public QObject {
 		 * @param p_column the cell column
 		 * @param p_type the cell new type
 		 */
-		void setCellType(int p_row, int p_column, Cell::CellType p_type);
+		void setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element);
 
 		/**
 		 * @param p_row the row index

@@ -49,12 +49,12 @@ void Maze::init(int p_nbRows, int p_nbColumns) {
 	}
 }
 
-void Maze::setCellType(int p_row, int p_column, Cell::CellType p_type) {
-	if (p_row < 0 || p_row >= m_nbRows ||
-		p_column < 0 || p_column >= m_nbColumns) {
+void Maze::setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element) {
+	if (p_row < 0 || p_row >= m_nbRows || p_column < 0 || p_column >= m_nbColumns) {
 		kDebug() << "Bad maze coordinates";
 	}
 	m_cells[p_row][p_column].setType(p_type);
+	m_cells[p_row][p_column].setElement(p_element);
 }
 
 Cell Maze::getCell(int p_row, int p_column) {

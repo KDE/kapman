@@ -1,5 +1,5 @@
 /* This file is part of Kapman.
-   Created by Thomas Gallinari <tg8187@yahoo.fr>
+   Created by Gaël Courcelle & Allanic Alexia <tg8187@yahoo.fr>
 
    Kapman is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public
@@ -16,43 +16,20 @@
    02110-1301, USA
 */
 
-#include "element.h"
+#include "pill.h"
 
-Element::Element(qreal p_x, qreal p_y, Maze* p_maze) :	m_x(p_x), m_y(p_y), m_maze(p_maze) {
+const qreal Pill::POINTS = 10.0;
+
+Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, QString p_imageUrl) : Element(p_x, p_y, p_maze) {
+	Element::setImageUrl(p_imageUrl);
+}
+
+Pill::~Pill() {
 
 }
 
-Element::~Element() {
-
+void Pill::doActionOnCollision(Kapman* p_kapman) {
+	//TO DO
 }
 
-void Element::doActionOnCollision(Kapman* p_kapman) {
-	// Do nothing by default : will be redefined within the subclasses
-}
 
-/** Accessors */
-qreal Element::getX() const {
-	return m_x;
-}
-
-qreal Element::getY() const {
-	return m_y;
-}
-
-void Element::setX(qreal p_x) {
-	m_x = p_x;
-	emit(moved(m_x, m_y));
-}
-
-void Element::setY(qreal p_y) {
-	m_y = p_y;
-	emit(moved(m_x, m_y));
-}
-
-QString Element::getImageUrl(){
-	return m_imageUrl;
-}
-
-void  Element::setImageUrl(QString p_imageUrl){
-	m_imageUrl = p_imageUrl;
-}

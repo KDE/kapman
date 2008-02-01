@@ -39,6 +39,9 @@ class Element : public QObject {
 		/** The maze the element is on */
 		Maze* m_maze;
 
+		/** The Url of the element */
+		QString m_imageUrl;
+
 	public:
 
 		/**
@@ -59,6 +62,16 @@ class Element : public QObject {
 		 * @param p_element the kapman that collides with this element
 		 */
 		virtual void doActionOnCollision(Kapman* p_kapman);
+
+		/**
+		 * @return the type of the Element
+		 */
+		QString getImageUrl();
+
+		/**
+		 * @return the type of the Element
+		 */
+		void setImageUrl(QString p_imageUrl);
 
 		/**
 		 * @return the x-coordinate

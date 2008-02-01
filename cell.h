@@ -20,6 +20,7 @@
 #define __CELL_H
 
 #include <QtGlobal>
+class Element;
 
 /**
  * This class represents a cell of the Kapman maze
@@ -40,8 +41,11 @@ class Cell {
 
 	private:
 
-		/** The cell type */
+		/** The cell's type */
 		CellType m_type;
+
+		/** The cell's element */
+		Element * m_element;
 
 	public:
 
@@ -65,6 +69,17 @@ class Cell {
 		 * @param p_type the new type to set
 		 */
 		void setType(CellType p_type);
+
+		/**
+		 * @return the cell Element
+		 */
+		Element * getElement();
+
+		/**
+		 * Sets the cell's item
+		 * @param p_item the new item to set
+		 */
+		void setElement(Element* p_element);
 };
 
 #endif

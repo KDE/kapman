@@ -35,3 +35,11 @@ Cell::CellType Cell::getType() {
 void Cell::setType(Cell::CellType p_type) {
 	m_type = p_type;
 }
+
+Element * Cell::getElement() {
+	return m_element;
+}
+
+void Cell::setElement(Element * p_element) {
+	m_element = p_element;
+}

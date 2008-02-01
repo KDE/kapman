@@ -118,6 +118,17 @@ void Game::initCharactersPosition() {
 		// Initialize the kapman position
 		m_kapman->setX(Cell::SIZE * 14);
 		m_kapman->setY(Cell::SIZE * 23.5);
+
+		// Initialize the Pills & Energizers positions
+
+		for(int i=0; i<m_maze->getNbRows(); i++) {
+			for(int j=0; j<m_maze->getNbColumns(); j++) {
+				if(m_maze->getCell(i,j).getElement() != NULL){
+					m_maze->getCell(i,j).getElement()->setX(Cell::SIZE * (j + 0.5));
+					m_maze->getCell(i,j).getElement()->setY(Cell::SIZE * (i + 0.5));
+				}
+			}
+		}
 	}
 }
 

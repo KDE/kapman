@@ -34,6 +34,7 @@ set(kapmanSources
 	characteritem.cpp
 	element.cpp
 	elementitem.cpp
+	energizer.cpp
 	game.cpp
 	gamescene.cpp
 	gameview.cpp
@@ -45,6 +46,9 @@ set(kapmanSources
 	maze.cpp
 	mazeitem.cpp
 	mazeparser.cpp
+	pill.cpp
+
+	
 )
 
 # resources
@@ -56,7 +60,9 @@ set(kapmanResources
 	images/redGhost_test.svg
 	images/greenGhost_test.svg
 	images/blueGhost_test.svg
-	images/pinkGhost_test.svg)
+	images/pinkGhost_test.svg
+	images/energizer_test.svg
+	images/pill_test.svg)
 
 # build exec
 kde4_add_executable(kapman ${kapmanSources})
