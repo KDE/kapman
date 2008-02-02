@@ -17,7 +17,6 @@
 */
 
 #include <KStandardDirs>
-#include <KDebug>
 #include <KLocalizedString>
 #include "gamescene.h"
 #include "mazeitem.h"
@@ -40,23 +39,27 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	introLabel2->setDefaultTextColor( QColor("#FF0000") );
 
 	// Add all the items
+	// Maze
 	MazeItem* mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
 	addItem(mazeItem);
 	mazeItem->setZValue(-1);
-	addItem(new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
-	for(int i=0; i<p_game->getGhostList().size(); i++) {
-		addItem(new CharacterItem(p_game->getGhostList().at(i), 
-			KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL())));
-	}
+	// Items
 	for(int i=0; i<p_game->getMaze()->getNbRows(); i++) {
 		for(int j=0; j<p_game->getMaze()->getNbColumns(); j++) {
 			if(p_game->getMaze()->getCell(i,j).getElement() != NULL){
 				QString itemType = p_game->getMaze()->getCell(i,j).getElement()->getImageUrl();
-				kDebug() << i << " | " << j;
 				addItem(new ElementItem(p_game->getMaze()->getCell(i,j).getElement(),KStandardDirs::locate("appdata", itemType) ));
 			}
 		}
 	}
+	// Kapman
+	addItem(new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
+	// Ghosts
+	for(int i=0; i<p_game->getGhostList().size(); i++) {
+		addItem(new CharacterItem(p_game->getGhostList().at(i), 
+			KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL())));
+	}
+	// Start labels
 	addItem(introLabel);
 		introLabel->setPos(this->width()/2 - introLabel->boundingRect().width()/2, this->height()/2 - introLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items

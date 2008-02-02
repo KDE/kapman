@@ -16,7 +16,6 @@
    02110-1301, USA
 */
 
-#include <KDebug>
 #include "ghost.h"
 #include <cstdlib>
 #include <QPointF>

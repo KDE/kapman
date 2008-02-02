@@ -16,8 +16,8 @@
    02110-1301, USA
 */
 
-#include <KStandardDirs>
 #include <KDebug>
+#include <KStandardDirs>
 #include "maze.h"
 #include "mazeparser.h"
 
