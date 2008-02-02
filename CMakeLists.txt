@@ -81,6 +81,8 @@ kde4_add_unit_test(kapmanTest
 	mazeparser.cpp
 	cell.cpp
 	element.cpp
+	pill.cpp
+	energizer.cpp
 	./tests/kapmantest.cpp
 )
 # Ghost test unit
@@ -92,6 +94,8 @@ kde4_add_unit_test(ghostTest
 	cell.cpp
 	kapman.cpp
 	element.cpp
+	pill.cpp
+	energizer.cpp
 	./tests/ghosttest.cpp
 )
 # Character test unit
@@ -102,6 +106,8 @@ kde4_add_unit_test(characterTest
 	cell.cpp
 	kapman.cpp
 	element.cpp
+	pill.cpp
+	energizer.cpp
 	./tests/charactertest.cpp
 )
 # Game test unit
@@ -114,6 +120,8 @@ kde4_add_unit_test(gameTest
 	cell.cpp
 	mazeparser.cpp
 	element.cpp
+	pill.cpp
+	energizer.cpp
 	./tests/gametest.cpp
 )
 
