@@ -18,9 +18,8 @@
 
 #include <QGraphicsScene>
 #include <QSize>
-
 #include "game.h"
-
+#include "elementitem.h"
 /**
  * This class represents the game Scene
  */
@@ -32,6 +31,9 @@ class GameScene : public QGraphicsScene {
 
 		/** The game */
 		Game* m_game;
+		
+		/** The list of the ElementItem Pills or Energizer*/
+		ElementItem *** m_elementItemList;
 	
 		/** The PAUSE label to display when the game is paused */
 		QGraphicsTextItem * pauseLabel;
@@ -71,4 +73,11 @@ class GameScene : public QGraphicsScene {
 		 * Remove the 'INTRO' label when a key is pressed
 		 */
 		void removeIntro(); 
+		
+		/**
+		 * Remove the Pill or Energizer when the Kapman eat them
+		 */
+		void killElement(qreal, qreal); 
+				
+				
 };

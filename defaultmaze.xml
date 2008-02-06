@@ -657,8 +657,8 @@
 	<Cell rowIndex="23" columnIndex="10" allowedMove="1" item="1"/>
 	<Cell rowIndex="23" columnIndex="11" allowedMove="1" item="1"/>
 	<Cell rowIndex="23" columnIndex="12" allowedMove="1" item="1"/>
-	<Cell rowIndex="23" columnIndex="13" allowedMove="1" item="1"/>
-	<Cell rowIndex="23" columnIndex="14" allowedMove="1" item="1"/>
+	<Cell rowIndex="23" columnIndex="13" allowedMove="1" />
+	<Cell rowIndex="23" columnIndex="14" allowedMove="1" />
 	<Cell rowIndex="23" columnIndex="15" allowedMove="1" item="1"/>
 	<Cell rowIndex="23" columnIndex="16" allowedMove="1" item="1"/>
 	<Cell rowIndex="23" columnIndex="17" allowedMove="1" item="1"/>

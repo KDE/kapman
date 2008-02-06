@@ -17,6 +17,7 @@
 */
 
 #include "pill.h"
+#include "kapman.h"
 
 const qreal Pill::POINTS = 10.0;
 
@@ -30,6 +31,7 @@ Pill::~Pill() {
 
 void Pill::doActionOnCollision(Kapman* p_kapman) {
 	//TO DO
+	p_kapman->winPoints(POINTS, this->getX(), this->getY());
 }
 
 

@@ -17,6 +17,7 @@
 */
 
 #include "cell.h"
+#include "element.h"
 
 const qreal Cell::SIZE = 20.0;
 
@@ -25,7 +26,8 @@ Cell::Cell() : m_type(Cell::WALL) {
 }
 
 Cell::~Cell() {
-
+	m_element = NULL;
+	delete m_element;	
 }
 
 Cell::CellType Cell::getType() {

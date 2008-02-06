@@ -129,6 +129,11 @@ void Kapman::loseLife() {
 	emit(lifeLost());
 }
 
+void Kapman::winPoints(qreal p_points, qreal p_x, qreal p_y) {
+	// Emits a signal to the game
+	emit(sWinPoints(p_points, p_x, p_y));
+}
+
 void Kapman::emitGameUpdated() {
 	emit(gameUpdated());
 }

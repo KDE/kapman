@@ -17,6 +17,7 @@
 */
 
 #include "energizer.h"
+#include "kapman.h"
 
 const qreal Energizer::POINTS = 10.0;
 
@@ -29,6 +30,6 @@ Energizer::~Energizer() {
 }
 
 void Energizer::doActionOnCollision(Kapman* p_kapman) {
-	//TO DO
+	p_kapman->winPoints(POINTS, this->getX(), this->getY());
 }
 

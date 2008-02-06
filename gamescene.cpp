@@ -18,6 +18,7 @@
 
 #include <KStandardDirs>
 #include <KLocalizedString>
+#include "cell.h"
 #include "gamescene.h"
 #include "mazeitem.h"
 #include "characteritem.h"
@@ -43,12 +44,19 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	MazeItem* mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
 	addItem(mazeItem);
 	mazeItem->setZValue(-1);
+	
+	m_elementItemList = new ElementItem ** [p_game->getMaze()->getNbRows()];
+	for(int i = 0; i < p_game->getMaze()->getNbRows(); i++) {
+		m_elementItemList[i] = new ElementItem * [p_game->getMaze()->getNbColumns()];
+	}
+	
 	// Items
 	for(int i=0; i<p_game->getMaze()->getNbRows(); i++) {
 		for(int j=0; j<p_game->getMaze()->getNbColumns(); j++) {
 			if(p_game->getMaze()->getCell(i,j).getElement() != NULL){
 				QString itemType = p_game->getMaze()->getCell(i,j).getElement()->getImageUrl();
-				addItem(new ElementItem(p_game->getMaze()->getCell(i,j).getElement(),KStandardDirs::locate("appdata", itemType) ));
+				m_elementItemList[i][j] = new ElementItem(p_game->getMaze()->getCell(i,j).getElement(),KStandardDirs::locate("appdata", itemType));
+				addItem(m_elementItemList[i][j]);
 			}
 		}
 	}
@@ -75,6 +83,9 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	//Connect removeIntro signal to the scene
 	connect(p_game, SIGNAL(removeIntro()), this, SLOT(removeIntro()));
+	
+	// Connects killElement signal to the scene
+	connect(p_game, SIGNAL(sKillElement(qreal, qreal)), this, SLOT(killElement(qreal, qreal)));	
 }
 
 GameScene::~GameScene() {
@@ -109,3 +120,10 @@ void GameScene::removeIntro() {
 	}
 }
 
+void GameScene::killElement(qreal p_x, qreal p_y) {
+	int x, y;
+	x = (int)((p_x - (Cell::SIZE * 0.5))/Cell::SIZE);
+	y = (int)((p_y - (Cell::SIZE * 0.5))/Cell::SIZE);
+	removeItem(m_elementItemList[y][x]);
+	m_elementItemList[y][x] = NULL;
+}

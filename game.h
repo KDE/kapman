@@ -49,6 +49,9 @@ class Game : public QObject {
 
 		/** pause flag */
 		bool m_isPaused;
+
+		/** pause flag */
+		qreal m_points;
 		
 	public:
 
@@ -121,6 +124,11 @@ class Game : public QObject {
 		 * Signals to the scene to remove the 'INTRO' label
 		 */
 		void removeIntro();
+		
+		/**
+		 * Signals to the scene to remove the Pills or Energizer label
+		 */
+		void sKillElement(qreal p_x, qreal p_y);
 
 	public slots:
 
@@ -139,6 +147,11 @@ class Game : public QObject {
 		 * Manages the loss of a life
 		 */
 		void kapmanDeath();
+
+		/**
+		 * Manages the points won
+		 */
+		void winPoints(qreal p_points, qreal p_x, qreal q_y);
 };
 
 #endif

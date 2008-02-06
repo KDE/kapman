@@ -27,6 +27,7 @@ ElementItem::ElementItem(Element* p_model, QString p_imagePath) : QGraphicsSvgIt
 }
 
 ElementItem::~ElementItem() {
+	delete m_model;
 
 }
 

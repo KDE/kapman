@@ -13,7 +13,7 @@
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
-   sodipodi:docbase="/home/galinier/Desktop"
+   sodipodi:docbase="/home/kde-devel/kapman/images"
    sodipodi:docname="kapman_test.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0">
@@ -31,7 +31,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="7.9195959"
      inkscape:cx="43.03781"
-     inkscape:cy="5.7057094"
+     inkscape:cy="34.65208"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      inkscape:window-width="1280"
@@ -62,11 +62,9 @@
        sodipodi:cy="325.21933"
        sodipodi:rx="18.571428"
        sodipodi:ry="18.571428"
-       d="M 314.28572 325.21933 A 18.571428 18.571428 0 1 1  277.14287,325.21933 A 18.571428 18.571428 0 1 1  314.28572 325.21933 z" />
-    <path
-       style="fill:#000000;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 0,7.0806658 L 19.697975,17.939806 L 0.12626907,30.440443"
-       id="path2316"
-       transform="translate(276.64287,306.1479)" />
+       d="M 314.28572,325.21933 A 18.571428,18.571428 0 1 1 305.82955,309.64436 L 295.71429,325.21933 z"
+       sodipodi:start="0"
+       sodipodi:end="5.2883817"
+       transform="matrix(-0.8660254,-0.5,0.5,-0.8660254,389.20072,754.72468)" />
   </g>
 </svg>

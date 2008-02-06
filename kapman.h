@@ -87,6 +87,11 @@ class Kapman : public Character {
 		 * Manages the loss of a life
 		 */
 		void loseLife();
+
+		/**
+		 * Manages the points won
+		 */
+		void winPoints(qreal p_points, qreal p_x, qreal p_y);
 		
 		/**
 		 * Emits a signal to Kapmanitem in order to manage collisions
@@ -116,6 +121,11 @@ class Kapman : public Character {
 		 * Signals to the game that the kapman lost a life
 		 */
 		void lifeLost();
+		
+		/**
+		 * Signals to the game that the kapman win points
+		 */
+		void sWinPoints(qreal p_points, qreal p_x, qreal p_y);
 		
 		/**
 		 * Signals to Kapmanitem that the game has been updated

@@ -19,6 +19,7 @@
 #include <KStandardDirs>
 #include "game.h"
 
+
 Game::Game() {
 	m_maze = new Maze();
 	m_kapman = new Kapman(0, 0, m_maze);
@@ -29,6 +30,9 @@ Game::Game() {
 
 	// Connects the kapman to the "kapmanDeath" slot
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
+
+	// Connects the kapman to the "winPoints" slot
+	connect(m_kapman, SIGNAL(sWinPoints(qreal, qreal, qreal)), this, SLOT(winPoints(qreal, qreal, qreal)));	
 
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
@@ -193,4 +197,11 @@ void Game::update() {
 void Game::kapmanDeath() {
 	// Replace all characters to their initial positions
 	initCharactersPosition();
+}
+
+void Game::winPoints(qreal p_points, qreal p_x, qreal p_y) {
+	// win points
+	m_points += p_points;
+	emit(sKillElement(p_x, p_y));
+
 }
