@@ -8,15 +8,16 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="38.142857"
-   height="38.142857"
+   width="5.5000014"
+   height="5.5000014"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.45.1"
-   sodipodi:docbase="/home/kde-devel/kapman/images"
+   inkscape:version="0.45"
+   sodipodi:docbase="/home/kde-devel/kapman/src/images"
    sodipodi:docname="pill_test.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   version="1.0">
+   version="1.0"
+   sodipodi:modified="true">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -34,7 +35,7 @@
      inkscape:cy="5.7057094"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     inkscape:window-width="1280"
+     inkscape:window-width="1278"
      inkscape:window-height="727"
      inkscape:window-x="0"
      inkscape:window-y="0" />
@@ -53,7 +54,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-276.64287,-306.1479)">
+     transform="translate(-292.64287,-322.79076)">
     <path
        sodipodi:type="arc"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-opacity:1"

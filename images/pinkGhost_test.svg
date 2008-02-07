@@ -8,15 +8,16 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="38.142857"
-   height="38.142857"
+   width="38.147537"
+   height="38.592091"
    id="svg2260"
    sodipodi:version="0.32"
-   inkscape:version="0.45.1"
+   inkscape:version="0.45"
    version="1.0"
-   sodipodi:docbase="/home/galinier"
+   sodipodi:docbase="/home/kde-devel/kapman/src/images"
    sodipodi:docname="pinkGhost_test.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true">
   <defs
      id="defs2262" />
   <sodipodi:namedview
@@ -31,7 +32,7 @@
      inkscape:cy="42.415169"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     inkscape:window-width="1280"
+     inkscape:window-width="1278"
      inkscape:window-height="727"
      inkscape:window-x="0"
      inkscape:window-y="0" />
@@ -50,7 +51,7 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-286.64286,-333.29075)">
+     transform="translate(-286.63818,-333.29075)">
     <path
        transform="translate(9.9999913,27.142853)"
        sodipodi:type="arc"
