@@ -1,20 +1,19 @@
-/* This file is part of Kapman.
-   Created by Alexandre GALINIER <alex.galinier@hotmail.com>
-
-   Kapman is free software; you can redistribute it and/or
-   modify it under the terms of the GNU General Public
-   License as published by the Free Software Foundation, version 2.
-
-   This program is distributed in the hope that it will be useful,
-   but WITHOUT ANY WARRANTY; without even the implied warranty of
-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-   General Public License for more details.
-
-   You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
-   02110-1301, USA
-*/
+/**
+ * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of 
+ * the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <KStandardDirs>
 #include <KLocalizedString>
@@ -26,18 +25,18 @@
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Create the 'PAUSE' label
-	pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
-	pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
-	pauseLabel->setDefaultTextColor( QColor("#FFFF00") );
+	m_pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
+	m_pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
+	m_pauseLabel->setDefaultTextColor( QColor("#FFFF00") );
 
 	// Create the 'INTRO' label
-	introLabel = new QGraphicsTextItem( ki18n("GET READY !!!").toString() );
-	introLabel->setFont( QFont("Helvetica", 25, QFont::Bold, false) );
-	introLabel->setDefaultTextColor( QColor("#FFFF00") );
+	m_introLabel = new QGraphicsTextItem( ki18n("GET READY !!!").toString() );
+	m_introLabel->setFont( QFont("Helvetica", 25, QFont::Bold, false) );
+	m_introLabel->setDefaultTextColor( QColor("#FFFF00") );
 	
-	introLabel2 = new QGraphicsTextItem( ki18n("Press any key to start").toString() );
-	introLabel2->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
-	introLabel2->setDefaultTextColor( QColor("#FF0000") );
+	m_introLabel2 = new QGraphicsTextItem( ki18n("Press any key to start").toString() );
+	m_introLabel2->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
+	m_introLabel2->setDefaultTextColor( QColor("#FF0000") );
 
 	// Add all the items
 	// Maze
@@ -68,15 +67,15 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 			KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL())));
 	}
 	// Start labels
-	addItem(introLabel);
-		introLabel->setPos(this->width()/2 - introLabel->boundingRect().width()/2, this->height()/2 - introLabel->boundingRect().height()/2);
+	addItem(m_introLabel);
+		m_introLabel->setPos(this->width()/2 - m_introLabel->boundingRect().width()/2, this->height()/2 - m_introLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		introLabel->setZValue(2.0);
+		m_introLabel->setZValue(2.0);
 		
-	addItem(introLabel2);
-		introLabel2->setPos(this->width()/2 - introLabel2->boundingRect().width()/2, this->height()/2 - introLabel2->boundingRect().height()/2 + introLabel->boundingRect().height()/2);
+	addItem(m_introLabel2);
+		m_introLabel2->setPos(this->width()/2 - m_introLabel2->boundingRect().width()/2, this->height()/2 - m_introLabel2->boundingRect().height()/2 + m_introLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		introLabel2->setZValue(2.0);
+		m_introLabel2->setZValue(2.0);
 	
 	// Connect managePause signal to the scene
 	connect(p_game, SIGNAL(managePause(bool)), this, SLOT(managePause(bool)));
@@ -89,7 +88,10 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 }
 
 GameScene::~GameScene() {
-
+	delete m_game;
+	delete m_pauseLabel;
+	delete m_introLabel;
+	delete m_introLabel2;
 }
 
 Game* GameScene::getGame() const {
@@ -99,24 +101,24 @@ Game* GameScene::getGame() const {
 void GameScene::managePause(bool pauseGame) {
 	// If the label is not displayed yet, display it
 	if(pauseGame) {
-		addItem(pauseLabel);
-		pauseLabel->setPos(this->width()/2 - pauseLabel->boundingRect().width()/2, this->height()/2 - pauseLabel->boundingRect().height()/2);
+		addItem(m_pauseLabel);
+		m_pauseLabel->setPos(this->width()/2 - m_pauseLabel->boundingRect().width()/2, this->height()/2 - m_pauseLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		pauseLabel->setZValue(2.0);
+		m_pauseLabel->setZValue(2.0);
 	}
 	else {
 	// If the label is displayed, remove it
-		if(items().contains(pauseLabel)) {
-			removeItem(pauseLabel);
+		if(items().contains(m_pauseLabel)) {
+			removeItem(m_pauseLabel);
 		}
 	}
 }
 
 void GameScene::removeIntro() {
 	//If the Intro Label is displayed, remove it
-	if(items().contains(introLabel)) {
-		removeItem(introLabel);
-		removeItem(introLabel2);
+	if(items().contains(m_introLabel)) {
+		removeItem(m_introLabel);
+		removeItem(m_introLabel2);
 	}
 }
 
