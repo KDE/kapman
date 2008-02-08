@@ -40,6 +40,8 @@ class GameScene : public QGraphicsScene {
 		/** The INTRO label to display at the beginning */
 		QGraphicsTextItem * m_introLabel;
 		QGraphicsTextItem * m_introLabel2;
+		QGraphicsTextItem * m_scoreLabel;
+		QGraphicsTextItem * m_lifesLabel;
 		
 	public:
 
@@ -77,6 +79,9 @@ class GameScene : public QGraphicsScene {
 		 * Remove the Pill or Energizer when the Kapman eat them
 		 */
 		void killElement(qreal, qreal); 
-				
-				
+	
+		/**
+		 * Upadate the score and lifes' labels
+		 */
+		void updateInfos();
 };

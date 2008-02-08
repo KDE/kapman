@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #include <KStandardDirs>
 #include "game.h"
 
@@ -30,8 +31,16 @@ Game::Game() {
 	// Connects the kapman to the "kapmanDeath" slot
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 
+
+	// Player's lifes init to 3
+	m_lifes = 3;
+	
+	// Player's Score init to 0
+	m_points = 0;
+
 	// Connects the kapman to the "winPoints" slot
 	connect(m_kapman, SIGNAL(sWinPoints(qreal, qreal, qreal)), this, SLOT(winPoints(qreal, qreal, qreal)));	
+
 
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
@@ -96,6 +105,13 @@ Maze * Game::getMaze() const {
 
 bool Game::isPaused() const {
 	return m_isPaused;
+}
+
+qreal Game::getScore(){
+	return m_points;
+}
+int Game::getLifes(){
+	return m_lifes;
 }
 
 /** Private */
@@ -194,13 +210,22 @@ void Game::update() {
 }
 
 void Game::kapmanDeath() {
-	// Replace all characters to their initial positions
-	initCharactersPosition();
+	m_lifes -= 1;
+	emit(updatingInfos());
+	if(m_lifes == 0){
+		emit(startnewgame(true));
+	}
+	else{
+		// Replace all characters to their initial positions
+		initCharactersPosition();
+	}
 }
 
 void Game::winPoints(qreal p_points, qreal p_x, qreal p_y) {
 	// win points
 	m_points += p_points;
+	emit(updatingInfos());
 	emit(sKillElement(p_x, p_y));
+	
 
 }

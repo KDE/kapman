@@ -38,6 +38,19 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_introLabel2->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
 	m_introLabel2->setDefaultTextColor( QColor("#FF0000") );
 
+	//Create the 'Score' label
+
+	m_scoreLabel = new QGraphicsTextItem( ki18n("Score : ").toString() );
+	m_scoreLabel->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
+	m_scoreLabel->setDefaultTextColor( QColor("#FFFFFF") );
+
+	QString lifes("Lifes : ");
+		lifes += QString::number((double)m_game->getLifes());
+	//Create the 'Lifes' label
+	m_lifesLabel = new QGraphicsTextItem( ki18n(lifes.toAscii().data()).toString() );
+	m_lifesLabel->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
+	m_lifesLabel->setDefaultTextColor( QColor("#FFFFFF") );
+	
 	// Add all the items
 	// Maze
 	MazeItem* mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
@@ -77,6 +90,19 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 		// Ensure that the Label will overcome all items
 		m_introLabel2->setZValue(2.0);
 	
+
+	//Score
+	addItem(m_scoreLabel);
+		m_scoreLabel->setPos(Cell::SIZE, this->height() + Cell::SIZE);
+		// Ensure that the Label will overcome all items
+		m_scoreLabel->setZValue(2.0);
+	//Lifes
+	addItem(m_lifesLabel);
+		m_lifesLabel->setPos(this->width() -m_lifesLabel->boundingRect().width() , this->height() - Cell::SIZE- m_scoreLabel->boundingRect().height()/2);
+		// Ensure that the Label will overcome all items
+		m_lifesLabel->setZValue(3.0);
+
+
 	// Connect managePause signal to the scene
 	connect(p_game, SIGNAL(managePause(bool)), this, SLOT(managePause(bool)));
 	
@@ -85,6 +111,10 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	// Connects killElement signal to the scene
 	connect(p_game, SIGNAL(sKillElement(qreal, qreal)), this, SLOT(killElement(qreal, qreal)));	
+
+	// Connects the kapman to the "updateInfos()" slot
+	connect(p_game, SIGNAL(updatingInfos()), this, SLOT(updateInfos()));	
+
 }
 
 GameScene::~GameScene() {
@@ -93,6 +123,20 @@ GameScene::~GameScene() {
 	delete m_introLabel;
 	delete m_introLabel2;
 }
+
+
+	
+
+void GameScene::updateInfos() {
+	QString lifes("Lifes : ");
+		lifes += QString::number((double)m_game->getLifes());
+	m_lifesLabel->setPlainText(lifes);
+
+	QString score("Score : ");
+		score += QString::number((double)m_game->getScore());
+	m_scoreLabel->setPlainText(score);
+}
+
 
 Game* GameScene::getGame() const {
 	return m_game;

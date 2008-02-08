@@ -26,9 +26,10 @@ KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
 	initGame();
 	// Set the window menus
-	KStandardGameAction::gameNew(this, SLOT(newGame()), actionCollection());
+	KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 	setupGUI();
+
 	// Give the focus to the view
 	m_view->setFocus();
 }
@@ -41,28 +42,44 @@ KapmanMainWindow::~KapmanMainWindow() {
 void KapmanMainWindow::initGame() {
 	// Create the game
 	m_game = new Game();
+	// connect the signal startnewgame to the newgame slot
+	connect(m_game, SIGNAL(startnewgame(bool)), this, SLOT(newGame(bool)));
 	// Create the view displaying the game scene
 	m_view = new GameView(m_game);
 	m_view->setBackgroundBrush(Qt::black);
 	setCentralWidget(m_view);
 }
 
-void KapmanMainWindow::newGame() {
+void KapmanMainWindow::newGame(bool gamefinished = false) {
 	// timer (is active if play is already beginning)
 	bool timer = m_game->getTimer()->isActive();
 	if(timer)
 		m_game->pause();
-	if(KMessageBox::warningYesNo(this,
-		ki18n("Are you sure you want to quit the current game ?").toString(),
-		ki18n("New game").toString()) == KMessageBox::Yes) {
-		// Start a new game
-		delete m_game;
-		delete m_view;
-		initGame();
+
+	if( gamefinished == false ){	
+		if(KMessageBox::warningYesNo(this,
+			ki18n("Are you sure you want to quit the current game ?").toString(),
+			ki18n("New game").toString()) == KMessageBox::Yes) {
+			// Start a new game
+			delete m_game;
+			delete m_view;
+			initGame();
+		}
+		else {
+			if(timer)
+				m_game->start();
+		}
 	}
-	else {
-		if(timer)
-			m_game->start();
+	else{
+		QString score ("Your Score : ");
+		score += QString::number((double)m_game->getScore());
+		KMessageBox::information(this,
+			ki18n(score.toAscii().data()).toString(),
+			ki18n("Game Over").toString());
+			// Start a new game
+			delete m_game;
+			delete m_view;
+			initGame();
 	}
 	// Give the focus to the view
 	m_view->setFocus();

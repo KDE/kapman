@@ -49,6 +49,10 @@ class Game : public QObject {
 		/** pause flag */
 		bool m_isPaused;
 
+	
+		/** Player's lifes */
+		int m_lifes;
+
 		/** pause flag */
 		qreal m_points;
 		
@@ -103,7 +107,22 @@ class Game : public QObject {
 		 * Manage the game pause when 'P' key is pressed
 		 */
 		void doPause();
+
+		/**
+		 * @return the score
+		*/
+		qreal getScore();
+
+		/**
+		 * @return the lifes
+		*/
+		int getLifes();
 		
+	signals: 
+				/**
+		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lifes
+		 */
+		  void startnewgame(bool gamefinished);
 	private:
 	
 		/**
@@ -128,6 +147,12 @@ class Game : public QObject {
 		 * Signals to the scene to remove the Pills or Energizer label
 		 */
 		void sKillElement(qreal p_x, qreal p_y);
+		
+		/**
+		 * Signals to the scene to update the score and lifes' labels
+		 */
+		 void updatingInfos();
+
 
 	public slots:
 
