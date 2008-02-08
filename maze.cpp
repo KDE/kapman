@@ -15,10 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KDebug>
-#include <KStandardDirs>
 #include "maze.h"
 #include "mazeparser.h"
+
+#include <KDebug>
+#include <KStandardDirs>
 
 Maze::Maze() {
 	MazeParser mazeParser(this);

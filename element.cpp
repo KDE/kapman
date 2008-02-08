@@ -52,6 +52,6 @@ QString Element::getImageUrl(){
 	return m_imageUrl;
 }
 
-void  Element::setImageUrl(QString p_imageUrl){
+void  Element::setImageUrl(QString & p_imageUrl){
 	m_imageUrl = p_imageUrl;
 }

@@ -20,6 +20,8 @@
 #include "pill.h"
 #include "energizer.h"
 
+#include <KStandardDirs>
+
 MazeParser::MazeParser(Maze* p_maze) {
 	m_maze = p_maze;
 }
@@ -28,6 +30,8 @@ MazeParser::~MazeParser() {
 }
 
 bool MazeParser::startElement(const QString&, const QString&, const QString& p_qName, const QXmlAttributes& p_atts) {
+	QString itemImage;
+	
 	if(p_qName == "Maze") {
 		int nbRows = 0;
 		int nbColumns = 0;
@@ -75,10 +79,12 @@ bool MazeParser::startElement(const QString&, const QString&, const QString& p_q
 				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, NULL);
 				break;
 			case 1:
-				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, (Element *)new Pill(rowIndex, columnIndex, m_maze, "pill_test.svg"));
+				itemImage = KStandardDirs::locate("appdata", "pill_test.svg");
+				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, new Pill(rowIndex, columnIndex, m_maze, itemImage));
 				break;
 			case 2:
-				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, new Energizer(rowIndex, columnIndex, m_maze, "energizer_test.svg"));
+				itemImage = KStandardDirs::locate("appdata", "energizer_test.svg");
+				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, new Energizer(rowIndex, columnIndex, m_maze, itemImage));
 				break;
 		}
 

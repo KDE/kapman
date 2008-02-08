@@ -15,10 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QGraphicsScene>
-#include <QSize>
 #include "game.h"
 #include "elementitem.h"
+
+#include <QGraphicsScene>
+
 /**
  * This class represents the game Scene
  */

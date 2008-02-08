@@ -20,7 +20,7 @@
 #include <QPointF>
 #include "time.h"
 
-Ghost::Ghost(qreal p_x, qreal p_y, QString p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
+Ghost::Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	m_imageURL = p_imageURL;
 
 	// Initialize the random-number generator
@@ -103,7 +103,7 @@ void Ghost::updateMove() {
 			m_xSpeed = -m_xSpeed;	
 			m_ySpeed = -m_ySpeed;
 		}
-		// If the choosed direction isn't forward, we move the ghost on the center of the cell and update the directions
+		// If the chosen direction isn't forward, we move the ghost on the center of the cell and update the directions
 		else if( (m_xSpeed != 0 && m_xSpeed != directionsList[nb]->x()) 
 				|| (m_ySpeed !=0 && m_ySpeed != directionsList[nb]->y())) {
 			moveOnCenter();

@@ -17,7 +17,7 @@
 
 #include "mazeitem.h"
 
-MazeItem::MazeItem(QString p_imagePath) : QGraphicsSvgItem(p_imagePath) {
+MazeItem::MazeItem(QString & p_imagePath) : QGraphicsSvgItem(p_imagePath) {
 		
 }
 

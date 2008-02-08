@@ -39,13 +39,12 @@ class Ghost : public Character {
 		 * @param p_x the initial x-coordinate
 		 * @param p_maze the maze the Ghost is on
 		 */
-		Ghost(qreal p_x, qreal p_y, QString p_imageURL, Maze* p_maze);
+		Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze);
 
 		/**
 		 * Deletes the Ghost instance
 		 */
 		~Ghost();
-
 
 		/**
 		 * Updates the Ghost move

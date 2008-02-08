@@ -15,15 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KStandardDirs>
-#include <KLocalizedString>
-#include "cell.h"
 #include "gamescene.h"
+#include "cell.h"
 #include "mazeitem.h"
 #include "characteritem.h"
 #include "kapmanitem.h"
 
+#include <KStandardDirs>
+#include <KLocalizedString>
+
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
+	// Paths to the images. Needed to pass it by reference when calling Elements contructors
+	QString itemImage;
+	
 	// Create the 'PAUSE' label
 	m_pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
 	m_pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
@@ -53,7 +57,8 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	// Add all the items
 	// Maze
-	MazeItem* mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
+	itemImage = KStandardDirs::locate("appdata", "kapmanMaze.svg");
+	MazeItem* mazeItem = new MazeItem(itemImage);
 	addItem(mazeItem);
 	mazeItem->setZValue(-1);
 	
@@ -67,17 +72,20 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 		for(int j=0; j<p_game->getMaze()->getNbColumns(); j++) {
 			if(p_game->getMaze()->getCell(i,j).getElement() != NULL){
 				QString itemType = p_game->getMaze()->getCell(i,j).getElement()->getImageUrl();
-				m_elementItemList[i][j] = new ElementItem(p_game->getMaze()->getCell(i,j).getElement(),KStandardDirs::locate("appdata", itemType));
+				
+				itemImage = KStandardDirs::locate("appdata", itemType);
+				m_elementItemList[i][j] = new ElementItem(p_game->getMaze()->getCell(i,j).getElement(), itemImage);
 				addItem(m_elementItemList[i][j]);
 			}
 		}
 	}
 	// Kapman
-	addItem(new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman_test.svg")));
+	itemImage = KStandardDirs::locate("appdata", "kapman_test.svg");
+	addItem(new KapmanItem(p_game->getKapman(), itemImage));
 	// Ghosts
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
-		addItem(new CharacterItem(p_game->getGhostList().at(i), 
-			KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL())));
+		itemImage = KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL());
+		addItem(new CharacterItem(p_game->getGhostList().at(i), itemImage));
 	}
 	// Start labels
 	addItem(m_introLabel);

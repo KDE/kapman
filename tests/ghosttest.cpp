@@ -21,8 +21,9 @@
 void GhostTest::testGhost() {
 
 	Maze * maze = new Maze();
-
-	Ghost ghost(0.0, 0.0, "redGhost_test.svg", maze);
+	QString * itemImage = new QString("redGhost_test.svg");
+	
+	Ghost ghost(0.0, 0.0, *itemImage, maze);
 	
 	QCOMPARE(ghost.getX(), 0.0);
 	QCOMPARE(ghost.getY(), 0.0);

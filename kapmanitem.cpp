@@ -15,12 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QGraphicsScene>
-#include "characteritem.h"
 #include "kapmanitem.h"
+#include "characteritem.h"
 #include "ghost.h"
 
-KapmanItem::KapmanItem(Kapman* p_model, QString p_imagePath) :	CharacterItem(p_model, p_imagePath) {
+#include <QGraphicsScene>
+
+KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) :	CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 }
 

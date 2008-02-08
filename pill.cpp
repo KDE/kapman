@@ -21,7 +21,7 @@
 
 const qreal Pill::POINTS = 10.0;
 
-Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, QString p_imageUrl) : Element(p_x, p_y, p_maze) {
+Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, QString & p_imageUrl) : Element(p_x, p_y, p_maze) {
 	Element::setImageUrl(p_imageUrl);
 }
 

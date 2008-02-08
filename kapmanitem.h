@@ -34,7 +34,7 @@ class KapmanItem : public CharacterItem {
 		 * @param p_model the kapman model
 		 * @param p_imagePath the kapman image path
 		 */
-		KapmanItem(Kapman* p_model, QString p_imagePath);
+		KapmanItem(Kapman* p_model, QString & p_imagePath);
 
 		/**
 		 * Deletes the KapmanItem instance

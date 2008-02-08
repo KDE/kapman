@@ -70,7 +70,7 @@ class Element : public QObject {
 		/**
 		 * @return the type of the Element
 		 */
-		void setImageUrl(QString p_imageUrl);
+		void setImageUrl(QString & p_imageUrl);
 
 		/**
 		 * @return the x-coordinate

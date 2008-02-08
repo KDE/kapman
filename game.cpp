@@ -16,17 +16,23 @@
  */
 
 
-#include <KStandardDirs>
 #include "game.h"
+
+#include <KStandardDirs>
 
 
 Game::Game() {
 	m_maze = new Maze();
-	m_kapman = new Kapman(0, 0, m_maze);
-	m_ghostList.append(new Ghost(0, 0, "redGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(0, 0, "greenGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(0, 0, "blueGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(0, 0, "pinkGhost_test.svg", m_maze));
+	m_kapman = new Kapman(0.0, 0.0, m_maze);
+	
+	QString * ghostImage = new QString("redGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
+	ghostImage = new QString("greenGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
+	ghostImage = new QString("blueGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
+	ghostImage = new QString("pinkGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
 
 	// Connects the kapman to the "kapmanDeath" slot
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
@@ -119,7 +125,7 @@ void Game::initCharactersPosition() {
 	// If the timer is stopped, it means that collisions are already being handled
 	if(m_timer->isActive()) {
 		
-		// At the begining, the timer is stopped but the game isn't paused (to allow keyPressedEvent detection)
+		// At the beginning, the timer is stopped but the game isn't paused (to allow keyPressedEvent detection)
 		m_timer->stop();
 		m_isPaused = false;		
 		
@@ -152,7 +158,7 @@ void Game::initCharactersPosition() {
 }
 
 void Game::keyPressEvent(QKeyEvent* p_event) {
-	// At the beggining, we start the timer when a key is pressed
+	// At the beginning, we start the timer when a key is pressed
 	if(!m_isPaused && !m_timer->isActive()) {
 		m_timer->start();
 		emit(removeIntro());
