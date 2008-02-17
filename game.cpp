@@ -38,8 +38,8 @@ Game::Game() {
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 
 
-	// Player's lifes init to 3
-	m_lifes = 3;
+	// Player's lives init to 3
+	m_lives = 3;
 	
 	// Player's Score init to 0
 	m_points = 0;
@@ -113,11 +113,11 @@ bool Game::isPaused() const {
 	return m_isPaused;
 }
 
-qreal Game::getScore(){
+qreal Game::getScore() const {
 	return m_points;
 }
-int Game::getLifes(){
-	return m_lifes;
+int Game::getLives() const {
+	return m_lives;
 }
 
 /** Private */
@@ -216,9 +216,9 @@ void Game::update() {
 }
 
 void Game::kapmanDeath() {
-	m_lifes -= 1;
+	m_lives -= 1;
 	emit(updatingInfos());
-	if(m_lifes == 0){
+	if(m_lives == 0){
 		emit(startnewgame(true));
 	}
 	else{

@@ -17,9 +17,6 @@
 
 #include "gamescene.h"
 #include "cell.h"
-#include "mazeitem.h"
-#include "characteritem.h"
-#include "kapmanitem.h"
 
 #include <KStandardDirs>
 #include <KLocalizedString>
@@ -43,31 +40,31 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_introLabel2->setDefaultTextColor( QColor("#FF0000") );
 
 	//Create the 'Score' label
-
 	m_scoreLabel = new QGraphicsTextItem( ki18n("Score : ").toString() );
 	m_scoreLabel->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
 	m_scoreLabel->setDefaultTextColor( QColor("#FFFFFF") );
 
-	QString lifes("Lifes : ");
-		lifes += QString::number((double)m_game->getLifes());
-	//Create the 'Lifes' label
-	m_lifesLabel = new QGraphicsTextItem( ki18n(lifes.toAscii().data()).toString() );
-	m_lifesLabel->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
-	m_lifesLabel->setDefaultTextColor( QColor("#FFFFFF") );
+	QString lives("Lives : ");
+	lives += QString::number((double)m_game->getLives());
+	//Create the 'Lives' label
+	m_livesLabel = new QGraphicsTextItem( ki18n(lives.toAscii().data()).toString() );
+	m_livesLabel->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
+	m_livesLabel->setDefaultTextColor( QColor("#FFFFFF") );
 	
 	// Add all the items
 	// Maze
 	itemImage = KStandardDirs::locate("appdata", "kapmanMaze.svg");
-	MazeItem* mazeItem = new MazeItem(itemImage);
-	addItem(mazeItem);
-	mazeItem->setZValue(-1);
+	m_mazeItem = new MazeItem(itemImage);
+	addItem(m_mazeItem);
+	m_mazeItem->setZValue(-1);
 	
+	// Items
+	// TODO remove references on it, or delete them in the destructor
 	m_elementItemList = new ElementItem ** [p_game->getMaze()->getNbRows()];
 	for(int i = 0; i < p_game->getMaze()->getNbRows(); i++) {
 		m_elementItemList[i] = new ElementItem * [p_game->getMaze()->getNbColumns()];
 	}
 	
-	// Items
 	for(int i=0; i<p_game->getMaze()->getNbRows(); i++) {
 		for(int j=0; j<p_game->getMaze()->getNbColumns(); j++) {
 			if(p_game->getMaze()->getCell(i,j).getElement() != NULL){
@@ -79,36 +76,43 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 			}
 		}
 	}
+	
 	// Kapman
 	itemImage = KStandardDirs::locate("appdata", "kapman_test.svg");
-	addItem(new KapmanItem(p_game->getKapman(), itemImage));
+	m_kapmanItem = new KapmanItem(p_game->getKapman(), itemImage);
+	addItem(m_kapmanItem);
+	m_kapmanItem->setZValue(1);
+	
 	// Ghosts
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
 		itemImage = KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL());
-		addItem(new CharacterItem(p_game->getGhostList().at(i), itemImage));
+		m_ghostItemList.append(new CharacterItem(p_game->getGhostList().at(i), itemImage));
+		addItem(m_ghostItemList[i]);
+		m_ghostItemList[i]->setZValue(1);
 	}
+	
 	// Start labels
 	addItem(m_introLabel);
 		m_introLabel->setPos(this->width()/2 - m_introLabel->boundingRect().width()/2, this->height()/2 - m_introLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		m_introLabel->setZValue(2.0);
+		m_introLabel->setZValue(2);
 		
 	addItem(m_introLabel2);
 		m_introLabel2->setPos(this->width()/2 - m_introLabel2->boundingRect().width()/2, this->height()/2 - m_introLabel2->boundingRect().height()/2 + m_introLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		m_introLabel2->setZValue(2.0);
+		m_introLabel2->setZValue(2);
 	
-
 	//Score
 	addItem(m_scoreLabel);
 		m_scoreLabel->setPos(Cell::SIZE, this->height() + Cell::SIZE);
 		// Ensure that the Label will overcome all items
-		m_scoreLabel->setZValue(2.0);
-	//Lifes
-	addItem(m_lifesLabel);
-		m_lifesLabel->setPos(this->width() -m_lifesLabel->boundingRect().width() , this->height() - Cell::SIZE- m_scoreLabel->boundingRect().height()/2);
+		m_scoreLabel->setZValue(2);
+		
+	//Lives
+	addItem(m_livesLabel);
+		m_livesLabel->setPos(this->width() -m_livesLabel->boundingRect().width() , this->height() - Cell::SIZE- m_scoreLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		m_lifesLabel->setZValue(3.0);
+		m_livesLabel->setZValue(3);
 
 
 	// Connect managePause signal to the scene
@@ -130,15 +134,22 @@ GameScene::~GameScene() {
 	delete m_pauseLabel;
 	delete m_introLabel;
 	delete m_introLabel2;
+	delete m_scoreLabel;
+	delete m_livesLabel;
+	delete m_mazeItem;
+	delete m_kapmanItem;
+	for (int i = 0; i < m_ghostItemList.size(); i++) {
+		delete m_ghostItemList[i];
+	}
 }
 
 
 	
 
 void GameScene::updateInfos() {
-	QString lifes("Lifes : ");
-		lifes += QString::number((double)m_game->getLifes());
-	m_lifesLabel->setPlainText(lifes);
+	QString lives("Lives : ");
+		lives += QString::number((double)m_game->getLives());
+	m_livesLabel->setPlainText(lives);
 
 	QString score("Score : ");
 		score += QString::number((double)m_game->getScore());
@@ -156,7 +167,7 @@ void GameScene::managePause(bool pauseGame) {
 		addItem(m_pauseLabel);
 		m_pauseLabel->setPos(this->width()/2 - m_pauseLabel->boundingRect().width()/2, this->height()/2 - m_pauseLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items
-		m_pauseLabel->setZValue(2.0);
+		m_pauseLabel->setZValue(2);
 	}
 	else {
 	// If the label is displayed, remove it

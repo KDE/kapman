@@ -17,8 +17,12 @@
 
 #include "game.h"
 #include "elementitem.h"
+#include "mazeitem.h"
+#include "characteritem.h"
+#include "kapmanitem.h"
 
 #include <QGraphicsScene>
+#include <QList>
 
 /**
  * This class represents the game Scene
@@ -34,15 +38,18 @@ class GameScene : public QGraphicsScene {
 		
 		/** The list of the ElementItem Pills or Energizer*/
 		ElementItem *** m_elementItemList;
-	
-		/** The PAUSE label to display when the game is paused */
-		QGraphicsTextItem * m_pauseLabel;
+
+		/** All the labels to be displayed during the game */
+		QGraphicsTextItem* m_introLabel;
+		QGraphicsTextItem* m_introLabel2;
+		QGraphicsTextItem* m_scoreLabel;
+		QGraphicsTextItem* m_livesLabel;
+		QGraphicsTextItem* m_pauseLabel;
 		
-		/** The INTRO label to display at the beginning */
-		QGraphicsTextItem * m_introLabel;
-		QGraphicsTextItem * m_introLabel2;
-		QGraphicsTextItem * m_scoreLabel;
-		QGraphicsTextItem * m_lifesLabel;
+		/** References on characters Item (needed to modify their zValue) */
+		KapmanItem* m_kapmanItem;
+		MazeItem* m_mazeItem;
+		QList<CharacterItem*> m_ghostItemList;
 		
 	public:
 
@@ -82,7 +89,7 @@ class GameScene : public QGraphicsScene {
 		void killElement(qreal, qreal); 
 	
 		/**
-		 * Upadate the score and lifes' labels
+		 * Upadate the score and lives labels
 		 */
 		void updateInfos();
 };

@@ -51,7 +51,7 @@ class Game : public QObject {
 
 	
 		/** Player's lifes */
-		int m_lifes;
+		int m_lives;
 
 		/** pause flag */
 		qreal m_points;
@@ -111,12 +111,12 @@ class Game : public QObject {
 		/**
 		 * @return the score
 		*/
-		qreal getScore();
+		qreal getScore () const;
 
 		/**
 		 * @return the lifes
 		*/
-		int getLifes();
+		int getLives() const;
 		
 	signals: 
 				/**
