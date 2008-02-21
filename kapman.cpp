@@ -19,11 +19,16 @@
 #include "kapman.h"
 
 Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
-	goLeft();
+	init();
 }
 
 Kapman::~Kapman() {
 
+}
+
+void Kapman::init() {
+	goLeft();
+	updateDirection();
 }
 
 void Kapman::goUp() {
@@ -51,6 +56,8 @@ void Kapman::updateDirection() {
 	setYSpeed(m_askedYSpeed);
 	m_askedXSpeed = 0;
 	m_askedYSpeed = 0;
+	// Signal to the kapman item that the direction changed
+	emit(directionChanged());
 }
 
 void Kapman::updateMove() {

@@ -15,18 +15,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QGraphicsScene>
 #include "kapmanitem.h"
 #include "characteritem.h"
 #include "ghost.h"
 
-#include <QGraphicsScene>
-
-KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) :	CharacterItem(p_model, p_imagePath) {
+KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
+	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 }
 
 KapmanItem::~KapmanItem() {
 
+}
+
+void KapmanItem::updateDirection() {
+	QTransform transform;
+	int angle = 0;
+	Kapman* model = (Kapman*)getModel();
+
+	// Compute the angle
+	if (model->getXSpeed() > 0) {
+		angle = 180;
+	} else if (model->getXSpeed() < 0) {
+		angle = 0;	// The default image is left oriented
+	}
+	if (model->getYSpeed() > 0) {
+		angle = -90;
+	} else if (model->getYSpeed() < 0) {
+		angle = 90;
+	}
+	// Rotate the item
+	transform.translate(boundingRect().width() / 2, boundingRect().height() / 2);
+	transform.rotate(angle);
+	transform.translate(-boundingRect().width() / 2, -boundingRect().height() / 2);
+	setTransform(transform);
 }
 
 void KapmanItem::manageCollision() {

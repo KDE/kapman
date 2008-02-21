@@ -48,7 +48,7 @@ void Element::setY(qreal p_y) {
 	emit(moved(m_x, m_y));
 }
 
-QString Element::getImageUrl(){
+QString Element::getImageUrl() const {
 	return m_imageUrl;
 }
 

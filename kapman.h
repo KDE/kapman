@@ -48,6 +48,11 @@ class Kapman : public Character {
 		~Kapman();
 
 		/**
+		 * Initializes the kapman
+		 */
+		void init();
+
+		/**
 		 * Makes the Kapman ask to go up
 		 */
 		void goUp();
@@ -115,6 +120,11 @@ class Kapman : public Character {
 		void stopMoving();
 
 	signals:
+
+		/**
+		 * Emitted when the direction changed
+		 */
+		void directionChanged();
 		
 		/**
 		 * Signals to the game that the kapman lost a life

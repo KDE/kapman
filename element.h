@@ -65,10 +65,11 @@ class Element : public QObject {
 		/**
 		 * @return the type of the Element
 		 */
-		QString getImageUrl();
+		QString getImageUrl() const;
 
 		/**
-		 * @return the type of the Element
+		 * Sets the element image
+		 * @param p_imageUrl the image to set
 		 */
 		void setImageUrl(QString & p_imageUrl);
 

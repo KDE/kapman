@@ -45,6 +45,11 @@ class KapmanItem : public CharacterItem {
 	public slots:
 
 		/**
+		 * Rotates the picture function of the kapman direction
+		 */
+		void updateDirection();
+
+		/**
 		 * Manages the colllisions between kapman and the other elements
 		 */
 		void manageCollision();

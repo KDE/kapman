@@ -15,10 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-#include "game.h"
-
 #include <KStandardDirs>
+#include "game.h"
 
 
 Game::Game() {
@@ -127,7 +125,7 @@ void Game::initCharactersPosition() {
 		
 		// At the beginning, the timer is stopped but the game isn't paused (to allow keyPressedEvent detection)
 		m_timer->stop();
-		m_isPaused = false;		
+		m_isPaused = false;	
 		
 		// Initialize ghosts position
 		// TODO Mettre un attribut "initialPosition" dans chaque character, initialisé à partir du XML
@@ -143,9 +141,9 @@ void Game::initCharactersPosition() {
 		// Initialize the kapman position
 		m_kapman->setX(Cell::SIZE * 14);
 		m_kapman->setY(Cell::SIZE * 23.5);
+		m_kapman->init();
 
 		// Initialize the Pills & Energizers positions
-
 		for(int i=0; i<m_maze->getNbRows(); i++) {
 			for(int j=0; j<m_maze->getNbColumns(); j++) {
 				if(m_maze->getCell(i,j).getElement() != NULL){
