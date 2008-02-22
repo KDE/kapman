@@ -15,10 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "ghost.h"
 #include <cstdlib>
 #include <QPointF>
+#include "ghost.h"
 #include "time.h"
+
+qreal Ghost::speed = Ghost::SPEED;
 
 Ghost::Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	m_imageURL = p_imageURL;
@@ -36,21 +38,21 @@ Ghost::~Ghost() {
 
 void Ghost::goUp() {
 	m_xSpeed = 0;
- 	m_ySpeed = -SPEED;
+ 	m_ySpeed = -Ghost::speed;
 }
  
 void Ghost::goDown() {
 	m_xSpeed = 0;
-	m_ySpeed = SPEED;
+	m_ySpeed = Ghost::speed;
 }
 
 void Ghost::goRight() {
-	m_xSpeed = SPEED;
+	m_xSpeed = Ghost::speed;
 	m_ySpeed = 0;
 }
 
 void Ghost::goLeft() {
-	m_xSpeed = -SPEED;
+	m_xSpeed = -Ghost::speed;
 	m_ySpeed = 0;
 }
 
@@ -71,26 +73,26 @@ void Ghost::updateMove() {
 		// We retrieve all the directions the ghost can choose (save the half turn)
 		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::GHOSTCAMP)) {
 			if(m_xSpeed >= 0) {
-				directionsList.append(new QPointF(Ghost::SPEED, 0.0));
+				directionsList.append(new QPointF(Ghost::speed, 0.0));
 				halfTurnRequired = false;
 			}
 		}
 		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 			if(m_ySpeed >= 0) {
-				directionsList.append(new QPointF(0.0, Ghost::SPEED));
+				directionsList.append(new QPointF(0.0, Ghost::speed));
 				halfTurnRequired = false;
 			}
 		}
 		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 			if(m_ySpeed <= 0) {
-				directionsList.append(new QPointF(0.0, -Ghost::SPEED));
+				directionsList.append(new QPointF(0.0, -Ghost::speed));
 				halfTurnRequired = false;
 			}
 		}
 		
 		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::GHOSTCAMP)) {
 			if(m_xSpeed <= 0) {
-				directionsList.append(new QPointF(-Ghost::SPEED, 0.0));
+				directionsList.append(new QPointF(-Ghost::speed, 0.0));
 				halfTurnRequired = false;
 			}
 		}
@@ -124,22 +126,22 @@ void Ghost::updateMove(int p_Row, int p_Col) {
 	if(onCenter()) {
 		if(curGhostRow == p_Row) {
 			if(p_Col > curGhostCol) {
-				m_xSpeed = SPEED;
+				m_xSpeed = Ghost::speed;
 				m_ySpeed = 0;
 			}
 			else {
-				m_xSpeed = -SPEED;
+				m_xSpeed = -Ghost::speed;
 				m_ySpeed = 0;
 			}
 		}
 		else {	
 			if(p_Row > curGhostRow) {
 				m_xSpeed = 0;
-				m_ySpeed = SPEED;
+				m_ySpeed = Ghost::speed;
 			}
 			else {
 				m_xSpeed = 0;
-				m_ySpeed = -SPEED;
+				m_ySpeed = -Ghost::speed;
 			}
 		}
 	}
@@ -153,5 +155,9 @@ QString Ghost::getImageURL() const  {
 
 void Ghost::doActionOnCollision(Kapman * p_kapman) {
 	p_kapman->loseLife();
+}
+
+void Ghost::increaseSpeed(qreal p_increase) {
+	Ghost::speed += p_increase;
 }
 

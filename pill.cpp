@@ -30,8 +30,9 @@ Pill::~Pill() {
 }
 
 void Pill::doActionOnCollision(Kapman* p_kapman) {
-	//TO DO
 	p_kapman->winPoints(POINTS, this->getX(), this->getY());
+	// Tell to the maze that an element was eaten
+	m_maze->decrementNbElem();
 }
 
 

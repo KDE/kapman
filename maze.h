@@ -38,6 +38,12 @@ class Maze : public QObject {
 		
 		/** Maze matrix */
 		Cell** m_cells;
+
+		/** Total number of elements on the maze */
+		int m_totalNbElem;
+
+		/** Number of remaining elements on the maze */
+		int m_nbElem;
 	
 	public:
 
@@ -67,6 +73,16 @@ class Maze : public QObject {
 		void setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element);
 
 		/**
+		 * Decrements the number of remaining elements
+		 */
+		void decrementNbElem();
+
+		/**
+		 * Resets the number of remaining elements
+		 */
+		void resetNbElem();
+
+		/**
 		 * @param p_row the row index
 		 * @param p_column the column index
 		 * @return the cell at the given row and column
@@ -94,6 +110,13 @@ class Maze : public QObject {
 		 * @return the number of rows of the maze
 		 */
 		int getNbRows();
+
+	signals:
+
+		/**
+		 * Emitted when all the elements on the maze have been eaten
+		 */
+		void allElementsEaten();
 };
 
 #endif

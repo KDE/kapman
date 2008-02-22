@@ -15,12 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KStandardDirs>
 #include "mazeparser.h"
 #include "element.h"
 #include "pill.h"
 #include "energizer.h"
-
-#include <KStandardDirs>
 
 MazeParser::MazeParser(Maze* p_maze) {
 	m_maze = p_maze;

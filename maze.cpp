@@ -15,13 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <KDebug>
+#include <KStandardDirs>
 #include "maze.h"
 #include "mazeparser.h"
 
-#include <KDebug>
-#include <KStandardDirs>
-
-Maze::Maze() {
+Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 	MazeParser mazeParser(this);
 
 	QFile* mazeXmlFile = new QFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
@@ -55,6 +54,21 @@ void Maze::setCellType(int p_row, int p_column, Cell::CellType p_type, Element *
 	}
 	m_cells[p_row][p_column].setType(p_type);
 	m_cells[p_row][p_column].setElement(p_element);
+	if (p_element != NULL) {
+		m_totalNbElem++;
+		m_nbElem++;
+	}
+}
+
+void Maze::decrementNbElem() {
+	m_nbElem--;
+	if (m_nbElem == 0) {
+		emit(allElementsEaten());
+	}
+}
+
+void Maze::resetNbElem() {
+	m_nbElem = m_totalNbElem;
 }
 
 Cell Maze::getCell(int p_row, int p_column) {

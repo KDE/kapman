@@ -15,14 +15,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <QGraphicsScene>
+#include <QList>
 #include "game.h"
 #include "elementitem.h"
 #include "mazeitem.h"
 #include "characteritem.h"
 #include "kapmanitem.h"
-
-#include <QGraphicsScene>
-#include <QList>
 
 /**
  * This class represents the game Scene
@@ -44,6 +43,7 @@ class GameScene : public QGraphicsScene {
 		QGraphicsTextItem* m_introLabel2;
 		QGraphicsTextItem* m_scoreLabel;
 		QGraphicsTextItem* m_livesLabel;
+		QGraphicsTextItem* m_levelLabel;
 		QGraphicsTextItem* m_pauseLabel;
 		
 		/** References on characters Item (needed to modify their zValue) */
@@ -71,6 +71,11 @@ class GameScene : public QGraphicsScene {
 		Game* getGame() const;
 		
 	public slots:
+
+		/**
+		 * Inits the items on the scene
+		 */
+		void initItems();
 	
 		/**
 		 * Display/remove the 'PAUSE' label when 'P' key is pressed
@@ -81,12 +86,12 @@ class GameScene : public QGraphicsScene {
 		/**
 		 * Remove the 'INTRO' label when a key is pressed
 		 */
-		void removeIntro(); 
+		void removeIntro();
 		
 		/**
 		 * Remove the Pill or Energizer when the Kapman eat them
 		 */
-		void killElement(qreal, qreal); 
+		void killElement(qreal, qreal);
 	
 		/**
 		 * Upadate the score and lives labels

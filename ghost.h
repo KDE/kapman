@@ -28,11 +28,16 @@ class Ghost : public Character {
 
 	Q_OBJECT
 
-	private:		
+	private:
+
 		/** URL to the ghost's image */
 		QString m_imageURL;
 
+		/** The ghosts speed to use instead of Character::SPEED */
+		static qreal speed;
+
 	public:
+
 		/**
 		 * Creates a new Ghost instance
 		 * @param p_x the initial x-coordinate
@@ -65,6 +70,12 @@ class Ghost : public Character {
 		 * Manages the collison with the kapman
 		 */
 		 void doActionOnCollision(Kapman* p_element);
+
+		/**
+		 * Increases the speed
+		 * @param p_increase the value the ghost speed will be increased by
+		 */
+		static void increaseSpeed(qreal p_increase);
 
 	private:
 		/**

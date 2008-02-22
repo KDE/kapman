@@ -19,11 +19,11 @@
 #include "game.h"
 
 
-Game::Game() {
+Game::Game() : m_lives(3), m_points(0), m_level(1) {
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
 	
-	QString * ghostImage = new QString("redGhost_test.svg");
+	QString* ghostImage = new QString("redGhost_test.svg");
 	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
 	ghostImage = new QString("greenGhost_test.svg");
 	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
@@ -34,17 +34,10 @@ Game::Game() {
 
 	// Connects the kapman to the "kapmanDeath" slot
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
-
-
-	// Player's lives init to 3
-	m_lives = 3;
-	
-	// Player's Score init to 0
-	m_points = 0;
-
 	// Connects the kapman to the "winPoints" slot
-	connect(m_kapman, SIGNAL(sWinPoints(qreal, qreal, qreal)), this, SLOT(winPoints(qreal, qreal, qreal)));	
-
+	connect(m_kapman, SIGNAL(sWinPoints(qreal, qreal, qreal)), this, SLOT(winPoints(qreal, qreal, qreal)));
+	// Manage the end of levels
+	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
 
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
@@ -116,6 +109,10 @@ qreal Game::getScore() const {
 }
 int Game::getLives() const {
 	return m_lives;
+}
+
+int Game::getLevel() const {
+	return m_level;
 }
 
 /** Private */
@@ -214,13 +211,13 @@ void Game::update() {
 }
 
 void Game::kapmanDeath() {
-	m_lives -= 1;
+	m_lives --;
 	emit(updatingInfos());
 	if(m_lives == 0){
 		emit(startnewgame(true));
 	}
 	else{
-		// Replace all characters to their initial positions
+		// Move all characters to their initial positions
 		initCharactersPosition();
 	}
 }
@@ -230,6 +227,18 @@ void Game::winPoints(qreal p_points, qreal p_x, qreal p_y) {
 	m_points += p_points;
 	emit(updatingInfos());
 	emit(sKillElement(p_x, p_y));
-	
+}
 
+void Game::nextLevel() {
+	// Increment the level
+	m_level++;
+	// Move all characters to their initial positions
+	initCharactersPosition();
+	// Increase the ghost speed
+	Ghost::increaseSpeed(0.05);
+	// To update the score, level and lives labels
+	emit(updatingInfos());
+	// To reinit the maze items
+	emit(leveled());
+	m_maze->resetNbElem();
 }

@@ -15,11 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gamescene.h"
-#include "cell.h"
-
 #include <KStandardDirs>
 #include <KLocalizedString>
+#include "gamescene.h"
+#include "cell.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Paths to the images. Needed to pass it by reference when calling Elements contructors
@@ -50,6 +49,11 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_livesLabel = new QGraphicsTextItem( ki18n(lives.toAscii().data()).toString() );
 	m_livesLabel->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
 	m_livesLabel->setDefaultTextColor( QColor("#FFFFFF") );
+
+	// Level label
+	m_levelLabel = new QGraphicsTextItem(ki18n("Level : ").toString());
+	m_levelLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
+	m_levelLabel->setDefaultTextColor(QColor("#FFFFFF"));
 	
 	// Add all the items
 	// Maze
@@ -64,18 +68,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	for(int i = 0; i < p_game->getMaze()->getNbRows(); i++) {
 		m_elementItemList[i] = new ElementItem * [p_game->getMaze()->getNbColumns()];
 	}
-	
-	for(int i=0; i<p_game->getMaze()->getNbRows(); i++) {
-		for(int j=0; j<p_game->getMaze()->getNbColumns(); j++) {
-			if(p_game->getMaze()->getCell(i,j).getElement() != NULL){
-				QString itemType = p_game->getMaze()->getCell(i,j).getElement()->getImageUrl();
-				
-				itemImage = KStandardDirs::locate("appdata", itemType);
-				m_elementItemList[i][j] = new ElementItem(p_game->getMaze()->getCell(i,j).getElement(), itemImage);
-				addItem(m_elementItemList[i][j]);
-			}
-		}
-	}
+	initItems();
 	
 	// Kapman
 	itemImage = KStandardDirs::locate("appdata", "kapman_test.svg");
@@ -93,39 +86,46 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	// Start labels
 	addItem(m_introLabel);
-		m_introLabel->setPos(this->width()/2 - m_introLabel->boundingRect().width()/2, this->height()/2 - m_introLabel->boundingRect().height()/2);
-		// Ensure that the Label will overcome all items
-		m_introLabel->setZValue(2);
+	m_introLabel->setPos(this->width()/2 - m_introLabel->boundingRect().width()/2, this->height()/2 - m_introLabel->boundingRect().height()/2);
+	// Ensure that the Label will overcome all items
+	m_introLabel->setZValue(2);
 		
 	addItem(m_introLabel2);
-		m_introLabel2->setPos(this->width()/2 - m_introLabel2->boundingRect().width()/2, this->height()/2 - m_introLabel2->boundingRect().height()/2 + m_introLabel->boundingRect().height()/2);
-		// Ensure that the Label will overcome all items
-		m_introLabel2->setZValue(2);
+	m_introLabel2->setPos(this->width()/2 - m_introLabel2->boundingRect().width()/2, this->height()/2 - m_introLabel2->boundingRect().height()/2 + m_introLabel->boundingRect().height()/2);
+	// Ensure that the Label will overcome all items
+	m_introLabel2->setZValue(2);
 	
 	//Score
 	addItem(m_scoreLabel);
-		m_scoreLabel->setPos(Cell::SIZE, this->height() + Cell::SIZE);
-		// Ensure that the Label will overcome all items
-		m_scoreLabel->setZValue(2);
+	m_scoreLabel->setPos(Cell::SIZE, this->height() + Cell::SIZE);
+	// Ensure that the Label will overcome all items
+	m_scoreLabel->setZValue(2);
 		
 	//Lives
 	addItem(m_livesLabel);
-		m_livesLabel->setPos(this->width() -m_livesLabel->boundingRect().width() , this->height() - Cell::SIZE- m_scoreLabel->boundingRect().height()/2);
-		// Ensure that the Label will overcome all items
-		m_livesLabel->setZValue(3);
+	m_livesLabel->setPos(this->width() -m_livesLabel->boundingRect().width() , this->height() - Cell::SIZE- m_livesLabel->boundingRect().height()/2);
+	// Ensure that the Label will overcome all items
+	m_livesLabel->setZValue(3);
 
+	// Level
+	addItem(m_levelLabel);
+	m_levelLabel->setPos((this->width() - m_levelLabel->boundingRect().width()) / 2 , this->height() - Cell::SIZE- m_levelLabel->boundingRect().height()/2);
+	// Ensure that the Label will overcome all items
+	m_levelLabel->setZValue(3);
+
+	// Init the score, lives and level labels
+	updateInfos();
 
 	// Connect managePause signal to the scene
 	connect(p_game, SIGNAL(managePause(bool)), this, SLOT(managePause(bool)));
-	
 	//Connect removeIntro signal to the scene
 	connect(p_game, SIGNAL(removeIntro()), this, SLOT(removeIntro()));
-	
-	// Connects killElement signal to the scene
+	// Connect killElement signal to the scene
 	connect(p_game, SIGNAL(sKillElement(qreal, qreal)), this, SLOT(killElement(qreal, qreal)));	
-
-	// Connects the kapman to the "updateInfos()" slot
-	connect(p_game, SIGNAL(updatingInfos()), this, SLOT(updateInfos()));	
+	// Connect the kapman to the "updateInfos()" slot
+	connect(p_game, SIGNAL(updatingInfos()), this, SLOT(updateInfos()));
+	// Reinit the items on level completed
+	connect(p_game, SIGNAL(leveled()), this, SLOT(initItems()));
 
 }
 
@@ -136,6 +136,7 @@ GameScene::~GameScene() {
 	delete m_introLabel2;
 	delete m_scoreLabel;
 	delete m_livesLabel;
+	delete m_levelLabel;
 	delete m_mazeItem;
 	delete m_kapmanItem;
 	for (int i = 0; i < m_ghostItemList.size(); i++) {
@@ -148,17 +149,36 @@ GameScene::~GameScene() {
 
 void GameScene::updateInfos() {
 	QString lives("Lives : ");
-		lives += QString::number((double)m_game->getLives());
+	lives += QString::number((int)m_game->getLives());
 	m_livesLabel->setPlainText(lives);
 
 	QString score("Score : ");
-		score += QString::number((double)m_game->getScore());
+	score += QString::number((double)m_game->getScore());
 	m_scoreLabel->setPlainText(score);
+
+	QString level("Level : ");
+	level += QString::number((int)m_game->getLevel());
+	m_levelLabel->setPlainText(level);
 }
 
 
 Game* GameScene::getGame() const {
 	return m_game;
+}
+
+void GameScene::initItems() {
+	QString itemImage;
+
+	for(int i=0; i<m_game->getMaze()->getNbRows(); i++) {
+		for(int j=0; j<m_game->getMaze()->getNbColumns(); j++) {
+			if(m_game->getMaze()->getCell(i,j).getElement() != NULL){
+				QString itemType = m_game->getMaze()->getCell(i,j).getElement()->getImageUrl();
+				itemImage = KStandardDirs::locate("appdata", itemType);
+				m_elementItemList[i][j] = new ElementItem(m_game->getMaze()->getCell(i,j).getElement(), itemImage);
+				addItem(m_elementItemList[i][j]);
+			}
+		}
+	}
 }
 
 void GameScene::managePause(bool pauseGame) {

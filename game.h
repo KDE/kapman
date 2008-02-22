@@ -49,12 +49,14 @@ class Game : public QObject {
 		/** pause flag */
 		bool m_isPaused;
 
-	
 		/** Player's lifes */
 		int m_lives;
 
-		/** pause flag */
+		/** Player's points */
 		qreal m_points;
+
+		/** Current level */
+		int m_level;
 		
 	public:
 
@@ -117,42 +119,18 @@ class Game : public QObject {
 		 * @return the lifes
 		*/
 		int getLives() const;
-		
-	signals: 
-				/**
-		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lifes
+
+		/**
+		 * @return the current level
 		 */
-		  void startnewgame(bool gamefinished);
+		int getLevel() const;
+
 	private:
 	
 		/**
 		 * Initialize the characters position when the game begin or when the kapman lose a life
 		 */
 		void initCharactersPosition();
-		 
-	signals:
-	
-		/**
-		 * Signals to the scene to display/remove the 'PAUSE' label
-		 * @param pauseGame indicates if the game is to be paused or not
-		 */
-		void managePause(bool pauseGame);
-		
-		/**
-		 * Signals to the scene to remove the 'INTRO' label
-		 */
-		void removeIntro();
-		
-		/**
-		 * Signals to the scene to remove the Pills or Energizer label
-		 */
-		void sKillElement(qreal p_x, qreal p_y);
-		
-		/**
-		 * Signals to the scene to update the score and lifes' labels
-		 */
-		 void updatingInfos();
-
 
 	public slots:
 
@@ -176,6 +154,44 @@ class Game : public QObject {
 		 * Manages the points won
 		 */
 		void winPoints(qreal p_points, qreal p_x, qreal q_y);
+
+		/**
+		 * Start the next level
+		 */
+		void nextLevel();
+		
+	signals:
+	
+		/**
+		 * Signals to the scene to display/remove the 'PAUSE' label
+		 * @param pauseGame indicates if the game is to be paused or not
+		 */
+		void managePause(bool pauseGame);
+		
+		/**
+		 * Signals to the scene to remove the 'INTRO' label
+		 */
+		void removeIntro();
+		
+		/**
+		 * Signals to the scene to remove the Pills or Energizer label
+		 */
+		void sKillElement(qreal p_x, qreal p_y);
+		
+		/**
+		 * Signals to the scene to update the score and lifes' labels
+		 */
+		void updatingInfos();
+
+		/**
+		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lifes
+		 */
+		void startnewgame(bool gamefinished);
+
+		/**
+		 * Emitted when the level has been finished
+		 */
+		void leveled();
 };
 
 #endif
