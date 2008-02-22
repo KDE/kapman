@@ -21,8 +21,6 @@
 GameView::GameView(Game * p_game) : QGraphicsView(new GameScene(p_game)) {
 	// Connect the key events to the game manager
 	connect(this, SIGNAL(keyPressed(QKeyEvent*)), p_game, SLOT(keyPressEvent(QKeyEvent*)));
-	// To manage focus gained / focus lost
-	setFocusPolicy(Qt::ClickFocus);
 }
 
 GameView::~GameView() {

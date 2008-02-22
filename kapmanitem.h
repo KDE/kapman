@@ -21,13 +21,18 @@
 #include "characteritem.h"
 #include "kapman.h"
 
+#include <QTimeLine>
+
 /**
  * This class manage the display of the kapman
  */
 class KapmanItem : public CharacterItem {
 
 	Q_OBJECT
-
+	private:
+		QTimeLine * m_animationTimer;
+		//QString * frameNamePrefix;
+		
 	public:
 		/**
 		 * Creates a new KapmanItem instance
@@ -53,6 +58,13 @@ class KapmanItem : public CharacterItem {
 		 * Manages the colllisions between kapman and the other elements
 		 */
 		void manageCollision();
+		
+		/**
+		 * Adds the animation management of the Kapman
+		 * @param p_x the new x coordinate
+		 * @param p_y the new y coordinate
+		 */
+		void update(qreal p_x, qreal p_y);
 };
 
 #endif

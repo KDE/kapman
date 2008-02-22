@@ -56,7 +56,8 @@ set(kapmanResources
 	kapmanui.rc
 	defaultmaze.xml
 	images/kapmanMaze.svg
-	images/kapman_test.svg
+	#images/kapman_test.svg
+	images/kapmanAnimTest.svg
 	images/redGhost_test.svg
 	images/greenGhost_test.svg
 	images/blueGhost_test.svg

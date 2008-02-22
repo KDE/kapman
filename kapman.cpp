@@ -27,7 +27,7 @@ Kapman::~Kapman() {
 }
 
 void Kapman::init() {
-	goLeft();
+	goRight();
 	updateDirection();
 }
 

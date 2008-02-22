@@ -23,10 +23,19 @@
 KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
+	
+	m_animationTimer = new QTimeLine();
+	m_animationTimer->setDuration(500);
+	m_animationTimer->setCurveShape(QTimeLine::SineCurve);
+	m_animationTimer->setLoopCount(0);
+	m_animationTimer->setUpdateInterval(15);
+	m_animationTimer->start();
+	
+	//frameNamePrefix = new QString("kapman_");
 }
 
 KapmanItem::~KapmanItem() {
-
+	delete m_animationTimer;
 }
 
 void KapmanItem::updateDirection() {
@@ -36,14 +45,14 @@ void KapmanItem::updateDirection() {
 
 	// Compute the angle
 	if (model->getXSpeed() > 0) {
-		angle = 180;
+		angle = 0;
 	} else if (model->getXSpeed() < 0) {
-		angle = 0;	// The default image is left oriented
+		angle = 180;	// The default image is right oriented
 	}
 	if (model->getYSpeed() > 0) {
-		angle = -90;
-	} else if (model->getYSpeed() < 0) {
 		angle = 90;
+	} else if (model->getYSpeed() < 0) {
+		angle = -90;
 	}
 	// Rotate the item
 	transform.translate(boundingRect().width() / 2, boundingRect().height() / 2);
@@ -65,4 +74,18 @@ void KapmanItem::manageCollision() {
 			}
 		}
 	}
+}
+
+void KapmanItem::update(qreal p_x, qreal p_y) {
+	// Compute the top-right coordinates of the item
+	qreal x = p_x - boundingRect().width() / 2;
+	qreal y = p_y - boundingRect().height() / 2;
+	
+	qreal current = m_animationTimer->currentValue();
+	int currentFrame = (int)(current * 31);
+	
+	setElementId(QString("kapman_") += QString::number(currentFrame));
+	
+	// Updates the view coordinates
+	setPos(x, y);
 }
