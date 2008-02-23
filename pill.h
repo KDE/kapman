@@ -28,7 +28,7 @@ class Pill : public Element {
 	public:
 
 		/** The pill's points */
-		static const qreal POINTS;
+		static const int POINTS;
 
 
 	public:

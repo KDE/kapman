@@ -95,7 +95,7 @@ class Kapman : public Character {
 		/**
 		 * Manages the points won
 		 */
-		void winPoints(qreal p_points, qreal p_x, qreal p_y);
+		void winPoints(int p_points, qreal p_x, qreal p_y);
 		
 		/**
 		 * Emits a signal to Kapmanitem in order to manage collisions
@@ -134,7 +134,7 @@ class Kapman : public Character {
 		/**
 		 * Signals to the game that the kapman win points
 		 */
-		void sWinPoints(qreal p_points, qreal p_x, qreal p_y);
+		void sWinPoints(int p_points, qreal p_x, qreal p_y);
 		
 		/**
 		 * Signals to Kapmanitem that the game has been updated

@@ -19,7 +19,7 @@
 #include "energizer.h"
 #include "kapman.h"
 
-const qreal Energizer::POINTS = 20.0;
+const int Energizer::POINTS = 50;
 
 Energizer::Energizer(qreal p_x, qreal p_y, Maze* p_maze, QString p_imageUrl) :  Element(p_x, p_y, p_maze) {
 	Element::setImageUrl(p_imageUrl);
@@ -33,5 +33,6 @@ void Energizer::doActionOnCollision(Kapman* p_kapman) {
 	p_kapman->winPoints(POINTS, this->getX(), this->getY());
 	// Tell to the maze that an element was eaten
 	m_maze->decrementNbElem();
+	emit(energyzerEaten());
 }
 

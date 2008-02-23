@@ -53,7 +53,7 @@ class Game : public QObject {
 		int m_lives;
 
 		/** Player's points */
-		qreal m_points;
+		int m_points;
 
 		/** Current level */
 		int m_level;
@@ -153,7 +153,7 @@ class Game : public QObject {
 		/**
 		 * Manages the points won
 		 */
-		void winPoints(qreal p_points, qreal p_x, qreal q_y);
+		void winPoints(int p_points, qreal p_x, qreal q_y);
 
 		/**
 		 * Start the next level

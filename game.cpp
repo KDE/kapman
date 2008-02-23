@@ -35,7 +35,7 @@ Game::Game() : m_lives(3), m_points(0), m_level(1) {
 	// Connects the kapman to the "kapmanDeath" slot
 	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 	// Connects the kapman to the "winPoints" slot
-	connect(m_kapman, SIGNAL(sWinPoints(qreal, qreal, qreal)), this, SLOT(winPoints(qreal, qreal, qreal)));
+	connect(m_kapman, SIGNAL(sWinPoints(int, qreal, qreal)), this, SLOT(winPoints(int, qreal, qreal)));
 	// Manage the end of levels
 	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
 
@@ -183,6 +183,12 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 		case Qt::Key_P:
 			doPause();
 			break;
+		case Qt::Key_K:
+			// Cheat code to get one more life
+			if (p_event->modifiers() == Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier) {
+				m_lives++;
+				emit(updatingInfos());
+			}
 		default:
 			break;
 	}
@@ -222,9 +228,14 @@ void Game::kapmanDeath() {
 	}
 }
 
-void Game::winPoints(qreal p_points, qreal p_x, qreal p_y) {
+void Game::winPoints(int p_points, qreal p_x, qreal p_y) {
 	// win points
 	m_points += p_points;
+	// For each 10000 points we get a life more
+	if (m_points / 10000 > (m_points - p_points) / 10000) {
+		m_lives++;
+	}
+	// Update view
 	emit(updatingInfos());
 	emit(sKillElement(p_x, p_y));
 }

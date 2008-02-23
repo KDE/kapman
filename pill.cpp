@@ -19,7 +19,7 @@
 #include "pill.h"
 #include "kapman.h"
 
-const qreal Pill::POINTS = 10.0;
+const int Pill::POINTS = 10;
 
 Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, QString & p_imageUrl) : Element(p_x, p_y, p_maze) {
 	Element::setImageUrl(p_imageUrl);

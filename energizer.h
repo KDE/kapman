@@ -18,18 +18,21 @@
 
 #ifndef __ENERGIZER_H
 #define __ENERGIZER_H
-#include "element.h"
+
 #include <QObject>
+#include "element.h"
 
 /**
  * This class represents a energizer of the Kapman maze
  */
 class Energizer : public Element {
 
+	Q_OBJECT
+
 	public:
 
 		/** The pill's points */
-		static const qreal POINTS;
+		static const int POINTS;
 
 
 	public:
@@ -54,6 +57,13 @@ class Energizer : public Element {
 		 * @param p_element the kapman that collides with this element
 		 */
 		void doActionOnCollision(Kapman* p_kapman);
+
+	signals:
+
+		/**
+		 * Emitted when the energyzer is eaten
+		 */
+		void energyzerEaten();
 };
 
 #endif
