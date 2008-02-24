@@ -8,8 +8,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="5.5000014"
-   height="5.5000014"
+   width="4.9999981"
+   height="4.9999981"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.45"
@@ -54,7 +54,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-292.64287,-322.79076)">
+     transform="translate(-292.65862,-321.77572)">
     <path
        sodipodi:type="arc"
        style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-opacity:1"
@@ -64,6 +64,6 @@
        sodipodi:rx="18.571428"
        sodipodi:ry="18.571428"
        d="M 314.28572 325.21933 A 18.571428 18.571428 0 1 1  277.14287,325.21933 A 18.571428 18.571428 0 1 1  314.28572 325.21933 z"
-       transform="matrix(0.1441948,0,0,0.1441948,252.75241,278.64582)" />
+       transform="matrix(0.1310861,0,0,0.1310861,256.39459,281.64399)" />
   </g>
 </svg>
