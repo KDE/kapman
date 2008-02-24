@@ -22,9 +22,9 @@
 
 int main(int argc, char** argv) {
 	// About Kapman
-	KAboutData about("kapman", 0, ki18n("Kapman"), "0.6.0",
+	KAboutData about("kapman", 0, ki18n("Kapman"), "0.7.0",
 		ki18n("Kapman : Go through the levels escaping ghosts"),
-		KAboutData::License_GPL, ki18n("(c) 2007-2008 The KapTeam !"));
+		KAboutData::License_GPL, ki18n("Copyright (c) 2007-2008 The KapTeam !"));
 	// Command line arguments
 	KCmdLineArgs::init(argc, argv, &about);
 	// Create the application

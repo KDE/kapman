@@ -119,7 +119,7 @@ class Game : public QObject {
 		/**
 		 * @return the score
 		*/
-		qreal getScore () const;
+		int getScore () const;
 
 		/**
 		 * @return the lifes

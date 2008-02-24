@@ -113,7 +113,7 @@ bool Game::isPaused() const {
 	return m_isPaused;
 }
 
-qreal Game::getScore() const {
+int Game::getScore() const {
 	return m_points;
 }
 int Game::getLives() const {

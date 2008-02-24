@@ -20,7 +20,7 @@
 
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
-
+#include <KScoreDialog>
 #include "game.h"
 #include "gameview.h"
 
@@ -38,6 +38,9 @@ class KapmanMainWindow : public KXmlGuiWindow {
 
 		/** A Kapman game */
 		Game* m_game;
+
+		/** The highscores dialog */
+		KScoreDialog* m_kScoreDialog;
 		
 	public:
 
@@ -65,6 +68,11 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * @param p_gameFinished true if a level was finished, false if a Game Over was reached
 		 */
 		void newGame(bool p_gameFinished);
+
+		/**
+		 * Shows the highscores dialog
+		 */
+		void showHighscores();
 
 		/**
 		 * Closes the application

@@ -22,11 +22,13 @@
 #include "kapmanmainwindow.h"
 #include "gameview.h"
 
-KapmanMainWindow::KapmanMainWindow() {
+KapmanMainWindow::KapmanMainWindow() : 
+		m_kScoreDialog(new KScoreDialog(KScoreDialog::Name | KScoreDialog::Level | KScoreDialog::Score, this)) {
 	// Initialize the game
 	initGame();
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
+	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 	setupGUI();
 
@@ -37,6 +39,7 @@ KapmanMainWindow::KapmanMainWindow() {
 KapmanMainWindow::~KapmanMainWindow() {
 	delete m_game;
 	delete m_view;
+	delete m_kScoreDialog;
 }
 
 void KapmanMainWindow::initGame() {
@@ -70,19 +73,31 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 				m_game->start();
 		}
 	}
-	else{
-		QString score ("Your Score : ");
-		score += QString::number((double)m_game->getScore());
-		KMessageBox::information(this,
-			ki18n(score.toAscii().data()).toString(),
-			ki18n("Game Over").toString());
-			// Start a new game
-			delete m_game;
-			delete m_view;
-			initGame();
+	else {
+		// Display the score
+		QString score("Your Score : ");
+		score += QString::number(m_game->getScore());
+		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());
+		// Add the score to the highscores table
+		KScoreDialog::FieldInfo scoreInfo;
+		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
+		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
+		m_kScoreDialog->addScore(scoreInfo);
+		// If the new score is a highscore then display the highscore dialog
+		if (m_kScoreDialog->addScore(scoreInfo)) {
+			m_kScoreDialog->exec();
+		}
+		// Start a new game
+		delete m_game;
+		delete m_view;
+		initGame();
 	}
 	// Give the focus to the view
 	m_view->setFocus();
+}
+
+void KapmanMainWindow::showHighscores() {
+ 	m_kScoreDialog->exec();
 }
 
 void KapmanMainWindow::close() {
