@@ -30,6 +30,11 @@ Ghost::Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze) : Charact
 
 	// Makes the ghost move as soon as the game is created
 	goLeft();
+	
+	// Initialize the ghost value, type and state
+	m_points = 200;
+	m_type = Element::GHOST;
+	m_state = Ghost::HUNTER;
 }
 
 Ghost::~Ghost() {
@@ -65,7 +70,7 @@ void Ghost::updateMove() {
 	bool halfTurnRequired = true;
 	
 	// This list is to contain the different directions a ghost can choose when on a cell center
-	QList<QPointF*> directionsList;
+	QList<QPointF> directionsList;
 	
 	// If the ghost gets on a Cell center
 	if( onCenter() ) {
@@ -73,26 +78,26 @@ void Ghost::updateMove() {
 		// We retrieve all the directions the ghost can choose (save the half turn)
 		if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::GHOSTCAMP)) {
 			if(m_xSpeed >= 0) {
-				directionsList.append(new QPointF(Ghost::speed, 0.0));
+				directionsList.append(QPointF(Ghost::speed, 0.0));
 				halfTurnRequired = false;
 			}
 		}
 		if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 			if(m_ySpeed >= 0) {
-				directionsList.append(new QPointF(0.0, Ghost::speed));
+				directionsList.append(QPointF(0.0, Ghost::speed));
 				halfTurnRequired = false;
 			}
 		}
 		if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 			if(m_ySpeed <= 0) {
-				directionsList.append(new QPointF(0.0, -Ghost::speed));
+				directionsList.append(QPointF(0.0, -Ghost::speed));
 				halfTurnRequired = false;
 			}
 		}
 		
 		if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP && m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::GHOSTCAMP)) {
 			if(m_xSpeed <= 0) {
-				directionsList.append(new QPointF(-Ghost::speed, 0.0));
+				directionsList.append(QPointF(-Ghost::speed, 0.0));
 				halfTurnRequired = false;
 			}
 		}
@@ -106,11 +111,11 @@ void Ghost::updateMove() {
 			m_ySpeed = -m_ySpeed;
 		}
 		// If the chosen direction isn't forward, we move the ghost on the center of the cell and update the directions
-		else if( (m_xSpeed != 0 && m_xSpeed != directionsList[nb]->x()) 
-				|| (m_ySpeed !=0 && m_ySpeed != directionsList[nb]->y())) {
+		else if( (m_xSpeed != 0 && m_xSpeed != directionsList[nb].x()) 
+				|| (m_ySpeed !=0 && m_ySpeed != directionsList[nb].y())) {
 			moveOnCenter();
-			m_xSpeed = directionsList[nb]->x();
-			m_ySpeed = directionsList[nb]->y();
+			m_xSpeed = directionsList[nb].x();
+			m_ySpeed = directionsList[nb].y();
 		}	
 	}
 	
@@ -118,14 +123,14 @@ void Ghost::updateMove() {
 	move();
 }
 
-void Ghost::updateMove(int p_Row, int p_Col) {
+void Ghost::updateMove(int p_row, int p_col) {
 	// Get the current cell coordinates from the ghost coordinates
 	int curGhostRow = m_maze->getRowFromY(m_y);
 	int curGhostCol = m_maze->getColFromX(m_x);
 	
 	if(onCenter()) {
-		if(curGhostRow == p_Row) {
-			if(p_Col > curGhostCol) {
+		if(curGhostRow == p_row) {
+			if(p_col > curGhostCol) {
 				m_xSpeed = Ghost::speed;
 				m_ySpeed = 0;
 			}
@@ -135,7 +140,7 @@ void Ghost::updateMove(int p_Row, int p_Col) {
 			}
 		}
 		else {	
-			if(p_Row > curGhostRow) {
+			if(p_row > curGhostRow) {
 				m_xSpeed = 0;
 				m_ySpeed = Ghost::speed;
 			}
@@ -153,8 +158,22 @@ QString Ghost::getImageURL() const  {
 	return m_imageURL;
 }
 
+Ghost::GhostState Ghost::getState() const {
+	return m_state;
+}
+
+void Ghost::setState(Ghost::GhostState p_state) {
+	m_state = p_state;
+	emit(stateChanged(p_state));
+}
+
 void Ghost::doActionOnCollision(Kapman * p_kapman) {
-	p_kapman->loseLife();
+	if(getState() == Ghost::HUNTER) {
+		emit(lifeLost());
+	}
+	else {
+		emit(ghostEaten(this));
+	}
 }
 
 void Ghost::increaseSpeed(qreal p_increase) {

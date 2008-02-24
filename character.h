@@ -107,7 +107,7 @@ class Character : public Element {
 		 void setYSpeed(qreal p_ySpeed);
 		 
 		 /**
-		 * @param p_c 
+		 * @param p_c the character to check
 		 * @return true if the caller is in the same line than the character
 		 *	   without wall between them and if it doesn't have to make a 
 		 *	   half turn

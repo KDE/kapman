@@ -1,6 +1,5 @@
 /**
- * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
- * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,25 +15,30 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "energizer.h"
-#include "kapman.h"
+#include "ghostitem.h"
 
-const int Energizer::POINTS = 50;
-
-Energizer::Energizer(qreal p_x, qreal p_y, Maze* p_maze, QString p_imageUrl) :  Element(p_x, p_y, p_maze) {
-	Element::setImageUrl(p_imageUrl);
-	m_points = 50;
-	m_type = Element::ENERGYZER;
+GhostItem::GhostItem(Ghost* p_model, QString & p_imagePath) : CharacterItem (p_model, p_imagePath) {
+	
 }
 
-Energizer::~Energizer() {
-
+GhostItem::~GhostItem() {
+	
 }
 
-void Energizer::doActionOnCollision(Kapman* p_kapman) {
-	p_kapman->winPoints(this);
-	// Tell to the maze that an element was eaten
-	m_maze->decrementNbElem();
-	//emit(energyzerEaten());
+void GhostItem::update(qreal p_x, qreal p_y) {
+	// Compute the top-right coordinates of the item
+	qreal x = p_x - boundingRect().width() / 2;
+	qreal y = p_y - boundingRect().height() / 2;
+
+	// Updates the view coordinates
+	setPos(x, y);
 }
 
+void GhostItem::updateState(Ghost::GhostState p_state) {
+	if( ((Ghost*)getModel())->getState() == Ghost::HUNTER) {
+		setElementId("ghost_hunter");
+	}
+	else {
+		setElementId("ghost_prey");
+	}
+}

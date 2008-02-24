@@ -31,7 +31,6 @@ class KapmanItem : public CharacterItem {
 	Q_OBJECT
 	private:
 		QTimeLine * m_animationTimer;
-		//QString * frameNamePrefix;
 		
 	public:
 		/**

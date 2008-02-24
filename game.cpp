@@ -23,19 +23,22 @@ Game::Game() : m_lives(3), m_points(0), m_level(1) {
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
 	
-	QString* ghostImage = new QString("redGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
-	ghostImage = new QString("greenGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
-	ghostImage = new QString("blueGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
-	ghostImage = new QString("pinkGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, *ghostImage, m_maze));
+	QString ghostImage = QString("redGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
+	ghostImage = QString("greenGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
+	ghostImage = QString("blueGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
+	ghostImage = QString("pinkGhost_test.svg");
+	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
 
-	// Connects the kapman to the "kapmanDeath" slot
-	connect(m_kapman, SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
+	// Connects all ghosts to the "kapmanDeath" slot
+	for (int i = 0; i < m_ghostList.size(); i++) {
+		connect(m_ghostList[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
+		connect(m_ghostList[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
+	}
 	// Connects the kapman to the "winPoints" slot
-	connect(m_kapman, SIGNAL(sWinPoints(int, qreal, qreal)), this, SLOT(winPoints(int, qreal, qreal)));
+	connect(m_kapman, SIGNAL(sWinPoints(Element*)), this, SLOT(winPoints(Element*)));
 	// Manage the end of levels
 	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
 
@@ -44,6 +47,12 @@ Game::Game() : m_lives(3), m_points(0), m_level(1) {
 	m_timer->setInterval(15); // 60 FPS
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
 	m_timer->start();
+	
+	// Create the energyzers timer
+	m_energyzerTimer = new QTimer(this);
+	m_energyzerTimer->setInterval(10000);
+	m_energyzerTimer->setSingleShot(true);
+	connect(m_energyzerTimer, SIGNAL(timeout()), this, SLOT(changeGhostsToHunter()));
 	
 	initCharactersPosition();
 }
@@ -124,16 +133,20 @@ void Game::initCharactersPosition() {
 		m_timer->stop();
 		m_isPaused = false;	
 		
-		// Initialize ghosts position
+		// Initialize ghosts position and state
 		// TODO Mettre un attribut "initialPosition" dans chaque character, initialisé à partir du XML
 		m_ghostList[0]->setX(Cell::SIZE * 14);
 		m_ghostList[0]->setY(Cell::SIZE * 11.5);
+		m_ghostList[0]->setState(Ghost::HUNTER);
 		m_ghostList[1]->setX(Cell::SIZE * 12);
 		m_ghostList[1]->setY(Cell::SIZE * 14.5);
+		m_ghostList[1]->setState(Ghost::HUNTER);
 		m_ghostList[2]->setX(Cell::SIZE * 14);
 		m_ghostList[2]->setY(Cell::SIZE * 14.5);
+		m_ghostList[2]->setState(Ghost::HUNTER);
 		m_ghostList[3]->setX(Cell::SIZE * 16);
 		m_ghostList[3]->setY(Cell::SIZE * 14.5);
+		m_ghostList[3]->setState(Ghost::HUNTER);
 		
 		// Initialize the kapman position
 		m_kapman->setX(Cell::SIZE * 14);
@@ -219,7 +232,7 @@ void Game::update() {
 void Game::kapmanDeath() {
 	m_lives --;
 	emit(updatingInfos());
-	if(m_lives == 0){
+	if(m_lives == 0) {
 		emit(startnewgame(true));
 	}
 	else{
@@ -228,16 +241,30 @@ void Game::kapmanDeath() {
 	}
 }
 
-void Game::winPoints(int p_points, qreal p_x, qreal p_y) {
+void Game::ghostDeath(Ghost* p_ghost) {
+	p_ghost->setState(Ghost::HUNTER);
+	p_ghost->setX(Cell::SIZE * 14);
+	p_ghost->setY(Cell::SIZE * 14.5);
+	winPoints(p_ghost);
+}
+
+void Game::winPoints(Element* p_element) {
 	// win points
-	m_points += p_points;
+	m_points += p_element->getPoints();
 	// For each 10000 points we get a life more
-	if (m_points / 10000 > (m_points - p_points) / 10000) {
+	if (m_points / 10000 > (m_points - p_element->getPoints()) / 10000) {
 		m_lives++;
+	}
+	
+	if(p_element->getType()==Element::ENERGYZER) {
+		changeGhostsToPrey();
+		emit(sKillElement(p_element->getX(), p_element->getY()));
+	}
+	else if(p_element->getType()==Element::PILL) {
+		emit(sKillElement(p_element->getX(), p_element->getY()));
 	}
 	// Update view
 	emit(updatingInfos());
-	emit(sKillElement(p_x, p_y));
 }
 
 void Game::nextLevel() {
@@ -252,4 +279,17 @@ void Game::nextLevel() {
 	// To reinit the maze items
 	emit(leveled());
 	m_maze->resetNbElem();
+}
+
+void Game::changeGhostsToPrey() {
+	m_energyzerTimer->start();
+	for (int i=0; i<m_ghostList.size(); i++) {
+		m_ghostList[i]->setState(Ghost::PREY);
+	}
+}
+
+void Game::changeGhostsToHunter() {
+	for (int i=0; i<m_ghostList.size(); i++) {
+		m_ghostList[i]->setState(Ghost::HUNTER);
+	}
 }

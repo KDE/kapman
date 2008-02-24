@@ -20,7 +20,7 @@
 #include "game.h"
 #include "elementitem.h"
 #include "mazeitem.h"
-#include "characteritem.h"
+#include "ghostitem.h"
 #include "kapmanitem.h"
 
 /**
@@ -46,17 +46,17 @@ class GameScene : public QGraphicsScene {
 		QGraphicsTextItem* m_levelLabel;
 		QGraphicsTextItem* m_pauseLabel;
 		
-		/** References on characters Item (needed to modify their zValue) */
+		/** References on characters Item and maze item (needed to modify their zValue) */
 		KapmanItem* m_kapmanItem;
 		MazeItem* m_mazeItem;
-		QList<CharacterItem*> m_ghostItemList;
+		QList<GhostItem*> m_ghostItemList;
 		
 	public:
 
 		/**
 		 * Creates a new GameScene instance
-		 *@param p_kapman the kapman model instance
-		 *@param p_ghost the the lsit of ghost models instance
+		 * @param p_kapman the kapman model instance
+		 * @param p_ghost the list of ghost models instance
 		 */
 		GameScene(Game * p_game);
 
@@ -79,9 +79,9 @@ class GameScene : public QGraphicsScene {
 	
 		/**
 		 * Display/remove the 'PAUSE' label when 'P' key is pressed
-		 * @param gameIsPaused indicates if the game is paused or not
+		 * @param p_pauseGame indicates if the game is paused or not
 		 */
-		void managePause(bool pauseGame);
+		void managePause(bool p_pauseGame);
 		
 		/**
 		 * Remove the 'INTRO' label when a key is pressed
@@ -90,8 +90,10 @@ class GameScene : public QGraphicsScene {
 		
 		/**
 		 * Remove the Pill or Energizer when the Kapman eat them
+		 * @param p_x x coordinate of the element
+		 * @param p_y y coordinate of the element
 		 */
-		void killElement(qreal, qreal);
+		void killElement(qreal p_x, qreal p_y);
 	
 		/**
 		 * Upadate the score and lives labels

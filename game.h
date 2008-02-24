@@ -37,6 +37,9 @@ class Game : public QObject {
 		/** Game timer */
 		QTimer* m_timer;
 		
+		/** Energyzers Timer */
+		QTimer* m_energyzerTimer;
+		
 		/** Game Maze */
 		Maze* m_maze;
 
@@ -49,7 +52,7 @@ class Game : public QObject {
 		/** pause flag */
 		bool m_isPaused;
 
-		/** Player's lifes */
+		/** Player's lives */
 		int m_lives;
 
 		/** Player's points */
@@ -131,6 +134,11 @@ class Game : public QObject {
 		 * Initialize the characters position when the game begin or when the kapman lose a life
 		 */
 		void initCharactersPosition();
+		
+		/**
+		 * Change all ghost's state to PREY
+		 */
+		void changeGhostsToPrey();
 
 	public slots:
 
@@ -149,24 +157,35 @@ class Game : public QObject {
 		 * Manages the loss of a life
 		 */
 		void kapmanDeath();
+		
+		/**
+		 * Manages the death of a ghost
+		 */
+		void ghostDeath(Ghost* p_ghost);
 
 		/**
 		 * Manages the points won
+		 * @param p_elements reference to the eaten element
 		 */
-		void winPoints(int p_points, qreal p_x, qreal q_y);
+		void winPoints(Element* p_element);
 
 		/**
 		 * Start the next level
 		 */
 		void nextLevel();
 		
+		/**
+		 * Makes all ghosts go back to 'hunter' state
+		 */
+		void changeGhostsToHunter();
+		
 	signals:
 	
 		/**
 		 * Signals to the scene to display/remove the 'PAUSE' label
-		 * @param pauseGame indicates if the game is to be paused or not
+		 * @param p_pauseGame indicates if the game is to be paused or not
 		 */
-		void managePause(bool pauseGame);
+		void managePause(bool p_pauseGame);
 		
 		/**
 		 * Signals to the scene to remove the 'INTRO' label
@@ -174,19 +193,22 @@ class Game : public QObject {
 		void removeIntro();
 		
 		/**
-		 * Signals to the scene to remove the Pills or Energizer label
+		 * Signals to the scene to remove a Pill or Energizer
+		 * @param p_x x coordinate of the element
+		 * @param p_y y coordinate of the element
 		 */
 		void sKillElement(qreal p_x, qreal p_y);
 		
 		/**
-		 * Signals to the scene to update the score and lifes' labels
+		 * Signals to the scene to update the score and lives' labels
 		 */
 		void updatingInfos();
 
 		/**
-		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lifes
+		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lives or when a level is finished
+		 * @param p_gameFinished true if a level was finished, false if a Game Over was reached
 		 */
-		void startnewgame(bool gamefinished);
+		void startnewgame(bool p_gameFinished);
 
 		/**
 		 * Emitted when the level has been finished

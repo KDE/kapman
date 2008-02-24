@@ -63,7 +63,7 @@ class Energizer : public Element {
 		/**
 		 * Emitted when the energyzer is eaten
 		 */
-		void energyzerEaten();
+		//void energyzerEaten();
 };
 
 #endif

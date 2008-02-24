@@ -51,7 +51,7 @@ void KapmanMainWindow::initGame() {
 }
 
 void KapmanMainWindow::newGame(bool gamefinished = false) {
-	// timer (is active if play is already beginning)
+	// timer (is active if the game has already begun)
 	bool timer = m_game->getTimer()->isActive();
 	if(timer)
 		m_game->pause();
@@ -86,7 +86,7 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 }
 
 void KapmanMainWindow::close() {
-	// timer (is active if play is already beginning)
+	// timer (is active if the game has already begun)
 	bool timer = m_game->getTimer()->isActive();
 	if(timer)
 		m_game->pause();

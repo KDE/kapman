@@ -71,6 +71,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	initItems();
 	
 	// Kapman
+	//itemImage = KStandardDirs::locate("appdata", "kapmanAnim.svg");
 	itemImage = KStandardDirs::locate("appdata", "kapmanAnimTest.svg");
 	m_kapmanItem = new KapmanItem(p_game->getKapman(), itemImage);
 	addItem(m_kapmanItem);
@@ -78,10 +79,13 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	// Ghosts
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
-		itemImage = KStandardDirs::locate("appdata", p_game->getGhostList().at(i)->getImageURL());
-		m_ghostItemList.append(new CharacterItem(p_game->getGhostList().at(i), itemImage));
+		Ghost* ghostModel = p_game->getGhostList().at(i);
+		itemImage = KStandardDirs::locate("appdata", ghostModel->getImageURL());
+		m_ghostItemList.append(new GhostItem(ghostModel, itemImage));
 		addItem(m_ghostItemList[i]);
 		m_ghostItemList[i]->setZValue(1);
+		// Connect each item and its model to manage state changes
+		connect(ghostModel, SIGNAL(stateChanged(Ghost::GhostState)),m_ghostItemList[i] , SLOT(updateState(Ghost::GhostState)));
 	}
 	
 	// Start labels
@@ -181,9 +185,9 @@ void GameScene::initItems() {
 	}
 }
 
-void GameScene::managePause(bool pauseGame) {
+void GameScene::managePause(bool p_pauseGame) {
 	// If the label is not displayed yet, display it
-	if(pauseGame) {
+	if(p_pauseGame) {
 		addItem(m_pauseLabel);
 		m_pauseLabel->setPos(this->width()/2 - m_pauseLabel->boundingRect().width()/2, this->height()/2 - m_pauseLabel->boundingRect().height()/2);
 		// Ensure that the Label will overcome all items

@@ -94,8 +94,9 @@ class Kapman : public Character {
 
 		/**
 		 * Manages the points won
+		 * @param p_element reference to the element eaten
 		 */
-		void winPoints(int p_points, qreal p_x, qreal p_y);
+		void winPoints(Element* p_element);
 		
 		/**
 		 * Emits a signal to Kapmanitem in order to manage collisions
@@ -127,14 +128,10 @@ class Kapman : public Character {
 		void directionChanged();
 		
 		/**
-		 * Signals to the game that the kapman lost a life
-		 */
-		void lifeLost();
-		
-		/**
 		 * Signals to the game that the kapman win points
+		 * @param p_element reference to the element eaten
 		 */
-		void sWinPoints(int p_points, qreal p_x, qreal p_y);
+		void sWinPoints(Element* p_element);
 		
 		/**
 		 * Signals to Kapmanitem that the game has been updated

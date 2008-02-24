@@ -15,10 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QGraphicsScene>
+
 #include "kapmanitem.h"
 #include "characteritem.h"
 #include "ghost.h"
+
+#include <QGraphicsScene>
 
 KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
@@ -30,8 +32,6 @@ KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) : CharacterItem(p
 	m_animationTimer->setLoopCount(0);
 	m_animationTimer->setUpdateInterval(15);
 	m_animationTimer->start();
-	
-	//frameNamePrefix = new QString("kapman_");
 }
 
 KapmanItem::~KapmanItem() {

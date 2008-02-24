@@ -1,5 +1,5 @@
 /**
- * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,32 +15,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CHARACTERITEM_H
-#define __CHARACTERITEM_H
+#ifndef __GHOSTITEM_H
+#define __GHOSTITEM_H
 
-#include "elementitem.h"
-#include "character.h"
+#include "characteritem.h"
+#include "ghost.h"
 
 /**
- * This class is the graphical representation of a character
+ * This class is the graphical representation of a ghost
  */
-class CharacterItem : public ElementItem {
+class GhostItem : public CharacterItem {
 
 	Q_OBJECT
 
 	public:
 
 		/**
-		 * Creates a new CharacterItem instance
-		 * @param p_model the character model
-		 * @param p_imagePath the character image path
+		 * Creates a new GhostItem instance
+		 * @param p_model the ghost model
+		 * @param p_imagePath the ghost image path
 		 */
-		CharacterItem(Character* p_model, QString & p_imagePath);
+		GhostItem(Ghost* p_model, QString & p_imagePath);
 
 		/**
 		 * Deletes the CharacterItem instance
 		 */
-		~CharacterItem();
+		~GhostItem();
 		
 	public slots:
 
@@ -49,7 +49,13 @@ class CharacterItem : public ElementItem {
 		 * @param p_x the new x-coordinate
 		 * @param p_y the new y-coordinate
 		 */
-		virtual void update(qreal p_x, qreal p_y);
+		void update(qreal p_x, qreal p_y);
+		
+		/**
+		 * Update the ghostItem image with its model's state
+		 * @param p_state the new state to use
+		 */
+		void updateState(Ghost::GhostState p_state);
 };
 
 #endif

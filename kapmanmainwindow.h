@@ -62,9 +62,9 @@ class KapmanMainWindow : public KXmlGuiWindow {
 
 		/**
 		 * Launches a new game
-		 * @param gamefinished  : at true when there isn't more lifes, print the score,  at false ask to confirm to quit the game.
+		 * @param p_gameFinished true if a level was finished, false if a Game Over was reached
 		 */
-		void newGame(bool gamefinished);
+		void newGame(bool p_gameFinished);
 
 		/**
 		 * Closes the application

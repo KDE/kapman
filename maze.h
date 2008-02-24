@@ -59,16 +59,17 @@ class Maze : public QObject {
 		
 		/**
 		 * Initializes the maze matrix
-		 * @param p_rows the number of rows
-		 * @param p_columns the number of columns
+		 * @param p_nbRows the number of rows
+		 * @param p_nbColumns the number of columns
 		 */
 		void init(int p_nbRows, int p_nbColumns);
 
 		/**
-		 * Sets the given cell type
+		 * Sets the given cell type and element
 		 * @param p_row the cell row
 		 * @param p_column the cell column
 		 * @param p_type the cell new type
+		 * @param p_element reference to the element that is on the cell
 		 */
 		void setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element);
 

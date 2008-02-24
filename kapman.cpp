@@ -20,6 +20,7 @@
 
 Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	init();
+	m_type = Element::KAPMAN;
 }
 
 Kapman::~Kapman() {
@@ -131,14 +132,9 @@ void Kapman::updateMove() {
 	}
 }
 
-void Kapman::loseLife() {
+void Kapman::winPoints(Element* p_element) {
 	// Emits a signal to the game
-	emit(lifeLost());
-}
-
-void Kapman::winPoints(int p_points, qreal p_x, qreal p_y) {
-	// Emits a signal to the game
-	emit(sWinPoints(p_points, p_x, p_y));
+	emit(sWinPoints(p_element));
 }
 
 void Kapman::emitGameUpdated() {

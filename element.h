@@ -29,8 +29,21 @@ class Kapman;
 class Element : public QObject {
 
 	Q_OBJECT
-
+	
+	public:
+	
+		/** The elements possible types */
+		enum ElementType {
+			KAPMAN = 0,
+			GHOST = 1,
+			PILL = 2,
+			ENERGYZER = 3
+		};
+		
 	protected:
+	
+		/** The element's type */
+		ElementType m_type;
 
 		/** Element coordinates */
 		qreal m_x, m_y;
@@ -40,6 +53,9 @@ class Element : public QObject {
 
 		/** The Url of the element */
 		QString m_imageUrl;
+		
+		/** Points won when the element is eaten */
+		int m_points;
 
 	public:
 
@@ -58,7 +74,7 @@ class Element : public QObject {
 
 		/**
 		 * Computes an action on a collision with the kapman
-		 * @param p_element the kapman that collides with this element
+		 * @param p_kapman the kapman that collides with this element
 		 */
 		virtual void doActionOnCollision(Kapman* p_kapman);
 
@@ -66,6 +82,16 @@ class Element : public QObject {
 		 * @return the type of the Element
 		 */
 		QString getImageUrl() const;
+		
+		/**
+		 * @return the points won when the element is eaten
+		 */
+		int getPoints() const;
+		
+		/**
+		 * @return the element type 
+		 */
+		Element::ElementType getType() const;
 
 		/**
 		 * Sets the element image

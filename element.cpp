@@ -12,12 +12,14 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "element.h"
 
 Element::Element(qreal p_x, qreal p_y, Maze* p_maze) :	m_x(p_x), m_y(p_y), m_maze(p_maze) {
+
+	m_points = 0;
 
 }
 
@@ -46,6 +48,14 @@ void Element::setX(qreal p_x) {
 void Element::setY(qreal p_y) {
 	m_y = p_y;
 	emit(moved(m_x, m_y));
+}
+
+int Element::getPoints() const {
+	return m_points;
+}
+
+Element::ElementType Element::getType() const {
+	return m_type;
 }
 
 QString Element::getImageUrl() const {

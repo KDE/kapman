@@ -59,6 +59,7 @@ class GameView : public QGraphicsView {
 
 		/**
 		 * Overrides the QWidget method
+		 * @param p_evt the focus event
 		 */
 		void focusOutEvent(QFocusEvent* p_evt);
 

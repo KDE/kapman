@@ -27,11 +27,22 @@
 class Ghost : public Character {
 
 	Q_OBJECT
+	
+	public:
+	
+		/** The ghost possible state */
+		enum GhostState {
+			HUNTER = 0,
+			PREY = 1
+		};
 
 	private:
 
 		/** URL to the ghost's image */
 		QString m_imageURL;
+		
+		/** The ghost actual state */
+		GhostState m_state;
 
 		/** The ghosts speed to use instead of Character::SPEED */
 		static qreal speed;
@@ -42,6 +53,7 @@ class Ghost : public Character {
 		 * Creates a new Ghost instance
 		 * @param p_x the initial x-coordinate
 		 * @param p_x the initial x-coordinate
+		 * @param p_imageURL path to the image of the related item
 		 * @param p_maze the maze the Ghost is on
 		 */
 		Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze);
@@ -57,9 +69,11 @@ class Ghost : public Character {
 		void updateMove();
 
 		/**
-		 * Updates the Ghost such as the it goes to the given coordinates
+		 * Updates the Ghost with a direction to follow
+		 * @param p_row x coordinate of the cell to reach
+		 * @param p_col y coordinate of the cell to reach
 		 */
-		void updateMove(int p_Row, int p_Col);
+		void updateMove(int p_row, int p_col);
 		 
 		/**
 		 * @return the URL to the ghost's image
@@ -67,9 +81,21 @@ class Ghost : public Character {
 		QString getImageURL() const;
 		
 		/**
-		 * Manages the collison with the kapman
+		 * @return the ghost state
 		 */
-		 void doActionOnCollision(Kapman* p_element);
+		Ghost::GhostState getState() const;
+		
+		/**
+		 * Set the ghost state to the given value
+		 * @param p_state the new state
+		 */
+		void setState(Ghost::GhostState p_state);
+		
+		/**
+		 * Manages the collison with the kapman
+		 * @param p_kapman reference to the kapman model
+		 */
+		 void doActionOnCollision(Kapman* p_kapman);
 
 		/**
 		 * Increases the speed
@@ -97,6 +123,25 @@ class Ghost : public Character {
 		 * Makes the Ghost go to the left
 		 */
 		void goLeft();
+		
+	signals:
+	
+		/**
+		 * Signals to the game that the kapman lost a life
+		 */
+		void lifeLost();
+		
+		/**
+		 * Signals to the game that the ghost has been eaten
+		 * @param p_ghost reference to the eaten ghost
+		 */
+		void ghostEaten(Ghost* p_ghost);
+		
+		/**
+		 * Signals to its item that its state has changed
+		 * @param p_state the new state of the ghost
+		 */
+		void stateChanged(Ghost::GhostState p_state);
 };
 
 #endif
