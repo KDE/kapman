@@ -18,10 +18,10 @@
 #ifndef _KAPMAN_ITEM_H
 #define _KAPMAN_ITEM_H
 
+#include <QTimeLine>
 #include "characteritem.h"
 #include "kapman.h"
 
-#include <QTimeLine>
 
 /**
  * This class manage the display of the kapman
@@ -29,10 +29,13 @@
 class KapmanItem : public CharacterItem {
 
 	Q_OBJECT
+
 	private:
+
 		QTimeLine * m_animationTimer;
 		
 	public:
+
 		/**
 		 * Creates a new KapmanItem instance
 		 * @param p_model the kapman model

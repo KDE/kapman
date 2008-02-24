@@ -52,6 +52,11 @@ class ElementItem : public QGraphicsSvgItem {
 		 */
 		Element* getModel() const;
 
+		/**
+		 * Reimplement QGraphicsItem::shape() to return an ellipse to improve collisions
+		 */
+		QPainterPath shape() const;
+
 	public slots:
 
 		/**

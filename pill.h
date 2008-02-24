@@ -18,6 +18,7 @@
 
 #ifndef __PILL_H
 #define __PILL_H
+
 #include "element.h"
 
 /**

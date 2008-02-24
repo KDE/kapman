@@ -34,6 +34,12 @@ Element* ElementItem::getModel() const {
 	return m_model;
 }
 
+QPainterPath ElementItem::shape() const {
+	QPainterPath path;
+	path.addEllipse(boundingRect());
+	return path;
+}
+
 void ElementItem::update(qreal p_x, qreal p_y) {
 	// Compute the top-right coordinates of the item
 	qreal x = p_x - boundingRect().width() / 2;
