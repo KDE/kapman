@@ -272,8 +272,8 @@ void Game::nextLevel() {
 	m_level++;
 	// Move all characters to their initial positions
 	initCharactersPosition();
-	// Increase the ghost speed
-	Ghost::increaseSpeed(0.05);
+	// Increase the ghosts speed
+	Ghost::increaseGhostsSpeed(0.05);
 	// To update the score, level and lives labels
 	emit(updatingInfos());
 	// To reinit the maze items

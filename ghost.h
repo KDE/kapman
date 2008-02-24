@@ -47,6 +47,9 @@ class Ghost : public Character {
 		/** The ghosts speed to use instead of Character::SPEED */
 		static qreal speed;
 
+		/** The ghost speed : different from Ghost::speed since m_speed can change function of the ghost state */
+		qreal m_speed;
+
 	public:
 
 		/**
@@ -98,10 +101,10 @@ class Ghost : public Character {
 		 void doActionOnCollision(Kapman* p_kapman);
 
 		/**
-		 * Increases the speed
-		 * @param p_increase the value the ghost speed will be increased by
+		 * Increases the ghosts speed
+		 * @param p_increase the value the ghosts speed will be increased by
 		 */
-		static void increaseSpeed(qreal p_increase);
+		static void increaseGhostsSpeed(qreal p_increase);
 
 	private:
 		/**
