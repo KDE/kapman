@@ -60,6 +60,9 @@ class Game : public QObject {
 
 		/** Current level */
 		int m_level;
+
+		/** Number of eaten ghosts after eating an energizer */
+		int m_nbEatenGhosts;
 		
 	public:
 

@@ -19,7 +19,7 @@
 #include "game.h"
 
 
-Game::Game() : m_lives(3), m_points(0), m_level(1) {
+Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
 	
@@ -242,6 +242,7 @@ void Game::kapmanDeath() {
 }
 
 void Game::ghostDeath(Ghost* p_ghost) {
+	m_nbEatenGhosts++;
 	p_ghost->setState(Ghost::HUNTER);
 	p_ghost->setX(Cell::SIZE * 14);
 	p_ghost->setY(Cell::SIZE * 14.5);
@@ -249,20 +250,28 @@ void Game::ghostDeath(Ghost* p_ghost) {
 }
 
 void Game::winPoints(Element* p_element) {
-	// win points
-	m_points += p_element->getPoints();
+	// If the eaten element is a ghost, win 200 * number of eaten ghosts since the energizer was eaten
+	if (p_element->getType() == Element::GHOST) {
+		m_points += p_element->getPoints() * m_nbEatenGhosts;
+	}
+	else {
+		m_points += p_element->getPoints();
+	}	
 	// For each 10000 points we get a life more
 	if (m_points / 10000 > (m_points - p_element->getPoints()) / 10000) {
 		m_lives++;
 	}
-	
-	if(p_element->getType()==Element::ENERGYZER) {
+	// If the eaten element is an energyzer we change the ghosts state
+	if(p_element->getType() == Element::ENERGYZER) {
 		changeGhostsToPrey();
+		// Reset the number of eaten ghosts
+		m_nbEatenGhosts = 0;
 		emit(sKillElement(p_element->getX(), p_element->getY()));
 	}
-	else if(p_element->getType()==Element::PILL) {
+	else if(p_element->getType() == Element::PILL) {
 		emit(sKillElement(p_element->getX(), p_element->getY()));
 	}
+
 	// Update view
 	emit(updatingInfos());
 }
