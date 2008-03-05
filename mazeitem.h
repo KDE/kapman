@@ -33,7 +33,7 @@ class MazeItem : public QGraphicsSvgItem {
 		 * Creates a new MazeItem
 		 * @param p_imagePath the path to the maze image
 		 */
-		MazeItem(QString & p_imagePath);
+		MazeItem(const QString & p_imagePath);
 
 		/**
 		 * Deletes the MazeItem

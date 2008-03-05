@@ -35,7 +35,7 @@ class CharacterItem : public ElementItem {
 		 * @param p_model the character model
 		 * @param p_imagePath the character image path
 		 */
-		CharacterItem(Character* p_model, QString & p_imagePath);
+		CharacterItem(Character* p_model, const QString & p_imagePath);
 
 		/**
 		 * Deletes the CharacterItem instance

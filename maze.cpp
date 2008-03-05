@@ -15,16 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "maze.h"
 #include <KDebug>
 #include <KStandardDirs>
-#include "maze.h"
 #include "mazeparser.h"
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 	MazeParser mazeParser(this);
 
-	QFile* mazeXmlFile = new QFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
-	QXmlInputSource source(mazeXmlFile);
+	QFile mazeXmlFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
+	QXmlInputSource source(&mazeXmlFile);
 
 	QXmlSimpleReader reader;
 	reader.setContentHandler(&mazeParser);

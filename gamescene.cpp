@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "gamescene.h"
 #include <KStandardDirs>
 #include <KLocalizedString>
-#include "gamescene.h"
 #include "cell.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
@@ -51,7 +51,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_livesLabel->setDefaultTextColor( QColor("#FFFFFF") );
 
 	// Level label
-	m_levelLabel = new QGraphicsTextItem(ki18n("Level : ").toString());
+	m_levelLabel = new QGraphicsTextItem(ki18nc("The current level", "Level : ").toString());
 	m_levelLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
 	m_levelLabel->setDefaultTextColor(QColor("#FFFFFF"));
 	
@@ -63,7 +63,6 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_mazeItem->setZValue(-1);
 	
 	// Items
-	// TODO remove references on it, or delete them in the destructor
 	m_elementItemList = new ElementItem ** [p_game->getMaze()->getNbRows()];
 	for(int i = 0; i < p_game->getMaze()->getNbRows(); i++) {
 		m_elementItemList[i] = new ElementItem * [p_game->getMaze()->getNbColumns()];
@@ -146,6 +145,13 @@ GameScene::~GameScene() {
 	for (int i = 0; i < m_ghostItemList.size(); i++) {
 		delete m_ghostItemList[i];
 	}
+	for (int i = 0; i < m_game->getMaze()->getNbRows();i++) {
+		for (int j = 0; j < m_game->getMaze()->getNbColumns(); j++) {
+			delete m_elementItemList[i][j];
+		}
+		delete[] m_elementItemList[i];
+	}
+	delete[] m_elementItemList;
 }
 
 

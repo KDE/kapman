@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __GAMESCENE_H
+#define __GAMESCENE_H
+
 #include <QGraphicsScene>
 #include <QList>
 #include "game.h"
@@ -100,3 +103,6 @@ class GameScene : public QGraphicsScene {
 		 */
 		void updateInfos();
 };
+
+#endif
+

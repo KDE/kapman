@@ -59,7 +59,7 @@ class Ghost : public Character {
 		 * @param p_imageURL path to the image of the related item
 		 * @param p_maze the maze the Ghost is on
 		 */
-		Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze);
+		Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze);
 
 		/**
 		 * Deletes the Ghost instance

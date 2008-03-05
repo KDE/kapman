@@ -40,7 +40,7 @@ class Energizer : public Element {
 		/**
 		 * Creates a new Energizer instance
 		 */
-		Energizer(qreal p_x, qreal p_y, Maze* p_maze, QString p_imageUrl);
+		Energizer(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl);
 
 		/**
 		 * Deletes the Energizer instance

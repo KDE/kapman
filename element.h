@@ -97,7 +97,7 @@ class Element : public QObject {
 		 * Sets the element image
 		 * @param p_imageUrl the image to set
 		 */
-		void setImageUrl(QString & p_imageUrl);
+		void setImageUrl(const QString & p_imageUrl);
 
 		/**
 		 * @return the x-coordinate

@@ -21,7 +21,7 @@
 
 const int Energizer::POINTS = 50;
 
-Energizer::Energizer(qreal p_x, qreal p_y, Maze* p_maze, QString p_imageUrl) :  Element(p_x, p_y, p_maze) {
+Energizer::Energizer(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl) :  Element(p_x, p_y, p_maze) {
 	Element::setImageUrl(p_imageUrl);
 	m_points = 50;
 	m_type = Element::ENERGYZER;

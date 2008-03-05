@@ -35,7 +35,7 @@ class GhostItem : public CharacterItem {
 		 * @param p_model the ghost model
 		 * @param p_imagePath the ghost image path
 		 */
-		GhostItem(Ghost* p_model, QString & p_imagePath);
+		GhostItem(Ghost* p_model, const QString & p_imagePath);
 
 		/**
 		 * Deletes the CharacterItem instance

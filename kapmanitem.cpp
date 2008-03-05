@@ -22,7 +22,7 @@
 
 #include <QGraphicsScene>
 
-KapmanItem::KapmanItem(Kapman* p_model, QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
+KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 	

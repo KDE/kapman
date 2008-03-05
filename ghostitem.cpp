@@ -17,7 +17,7 @@
 
 #include "ghostitem.h"
 
-GhostItem::GhostItem(Ghost* p_model, QString & p_imagePath) : CharacterItem (p_model, p_imagePath) {
+GhostItem::GhostItem(Ghost* p_model, const QString & p_imagePath) : CharacterItem (p_model, p_imagePath) {
 	
 }
 

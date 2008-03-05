@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KStandardDirs>
 #include "game.h"
+#include <KStandardDirs>
 
 
 Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
@@ -59,6 +59,7 @@ Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
 Game::~Game() {
 	delete m_timer;
+	delete m_energyzerTimer;
 	delete m_maze;
 	delete m_kapman;
 	for (int i = 0; i < m_ghostList.size(); i++) {
@@ -68,11 +69,14 @@ Game::~Game() {
 
 void Game::start() {
 	m_timer->start();
+	// TODO Start the timer but not from beginning !!!
+	m_energyzerTimer->start();
 	m_isPaused = false;
 }
 
 void Game::pause() {
 	m_timer->stop();
+	m_energyzerTimer->stop();
 	m_isPaused = true;
 }
 

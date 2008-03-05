@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "kapmanmainwindow.h"
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KMessageBox>
@@ -106,7 +107,7 @@ void KapmanMainWindow::close() {
 		m_game->pause();
 	if(KMessageBox::warningYesNo(this,
 		ki18n("Are you sure you want to quit Kapman ?").toString(),
-		ki18n("Quit").toString()) == KMessageBox::Yes) {
+		ki18nc("To quit Kapman", "Quit").toString()) == KMessageBox::Yes) {
 		// Call the close() function of the parent class
 		KXmlGuiWindow::close();
 	}

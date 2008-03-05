@@ -17,7 +17,7 @@
 
 #include "characteritem.h"
 
-CharacterItem::CharacterItem(Character* p_model, QString & p_imagePath) : ElementItem (p_model, p_imagePath) {
+CharacterItem::CharacterItem(Character* p_model, const QString & p_imagePath) : ElementItem (p_model, p_imagePath) {
 	
 }
 

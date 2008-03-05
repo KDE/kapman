@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KStandardDirs>
 #include "mazeparser.h"
+#include <KStandardDirs>
 #include "element.h"
 #include "pill.h"
 #include "energizer.h"

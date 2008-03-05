@@ -15,14 +15,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "ghost.h"
 #include <cstdlib>
 #include <QPointF>
-#include "ghost.h"
 #include "time.h"
 
 qreal Ghost::speed = Ghost::SPEED;
 
-Ghost::Ghost(qreal p_x, qreal p_y, QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
+Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	// Initialize the ghosts attributes
 	m_imageURL = p_imageURL;
 	m_points = 200;
