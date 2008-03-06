@@ -19,6 +19,7 @@
 #include <KStandardDirs>
 #include <KLocalizedString>
 #include "cell.h"
+#include "bonus.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Paths to the images. Needed to pass it by reference when calling Elements contructors
@@ -124,7 +125,13 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	//Connect removeIntro signal to the scene
 	connect(p_game, SIGNAL(removeIntro()), this, SLOT(removeIntro()));
 	// Connect killElement signal to the scene
-	connect(p_game, SIGNAL(sKillElement(qreal, qreal)), this, SLOT(killElement(qreal, qreal)));	
+	connect(p_game, SIGNAL(sKillElement(qreal, qreal)), this, SLOT(killElement(qreal, qreal)));
+	// Connect displayBonus signal to the scene
+	connect(p_game, SIGNAL(sDisplayBonus()), this, SLOT(displayBonus()));	
+	// Connect killBonus signal to the scene
+	connect(p_game, SIGNAL(sKillBonus()), this, SLOT(killBonus()));
+	// Connect disableDisplayBonus signal to the scene
+	connect(p_game, SIGNAL(sDisableDisplayBonus()), this, SLOT(killBonus()));
 	// Connect the kapman to the "updateInfos()" slot
 	connect(p_game, SIGNAL(updatingInfos()), this, SLOT(updateInfos()));
 	// Reinit the items on level completed
@@ -153,9 +160,6 @@ GameScene::~GameScene() {
 	}
 	delete[] m_elementItemList;
 }
-
-
-	
 
 void GameScene::updateInfos() {
 	QString lives("Lives : ");
@@ -221,4 +225,14 @@ void GameScene::killElement(qreal p_x, qreal p_y) {
 	y = (int)((p_y - (Cell::SIZE * 0.5))/Cell::SIZE);
 	removeItem(m_elementItemList[y][x]);
 	m_elementItemList[y][x] = NULL;
+}
+
+void GameScene::displayBonus() {
+	QString itemImage = KStandardDirs::locate("appdata", m_game->getBonus()->getImageUrl());
+	m_bonus = new ElementItem(m_game->getBonus(),itemImage);
+	addItem(m_bonus);
+}
+
+void GameScene::killBonus() {
+	removeItem(m_bonus);
 }

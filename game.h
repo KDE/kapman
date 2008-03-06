@@ -21,9 +21,12 @@
 #include <QTimer>
 #include <QKeyEvent>
 
+#include <iostream.h>
+
 #include "maze.h"
 #include "kapman.h"
 #include "ghost.h"
+#include "bonus.h"
 
 /**
  * This class represents the game manager
@@ -40,6 +43,9 @@ class Game : public QObject {
 		/** Energyzers Timer */
 		QTimer* m_energyzerTimer;
 		
+		/** Bonus Timer */
+		QTimer* m_bonusTimer;
+		
 		/** Game Maze */
 		Maze* m_maze;
 
@@ -54,7 +60,7 @@ class Game : public QObject {
 
 		/** Player's lives */
 		int m_lives;
-
+		
 		/** Player's points */
 		int m_points;
 
@@ -63,6 +69,9 @@ class Game : public QObject {
 
 		/** Number of eaten ghosts after eating an energizer */
 		int m_nbEatenGhosts;
+		
+		/** Bonus */
+		Bonus *m_bonus;
 		
 	public:
 
@@ -130,6 +139,11 @@ class Game : public QObject {
 		 * @return the current level
 		 */
 		int getLevel() const;
+		
+		/**
+		 * @return the bonus
+		 */
+		Bonus* getBonus(); 
 
 	private:
 	
@@ -142,6 +156,11 @@ class Game : public QObject {
 		 * Change all ghost's state to PREY
 		 */
 		void changeGhostsToPrey();
+		
+		/**
+		 * Update bonus
+		 */
+		void updateBonus();
 
 	public slots:
 
@@ -182,6 +201,11 @@ class Game : public QObject {
 		 */
 		void changeGhostsToHunter();
 		
+		/**
+		 * Disable the display of the bonus
+		 */
+		void disableDisplayBonus();
+		
 	signals:
 	
 		/**
@@ -201,6 +225,21 @@ class Game : public QObject {
 		 * @param p_y y coordinate of the element
 		 */
 		void sKillElement(qreal p_x, qreal p_y);
+		
+		/**
+		 * Signals to the scene to display a Bonus
+		 */
+		void sDisplayBonus();
+		
+		/**
+		 * Signals to the scene to remove a Bonus
+		 */
+		void sKillBonus();
+		
+		/**
+		 * Signals to the scene to disable a Bonus
+		 */
+		void sDisableDisplayBonus();
 		
 		/**
 		 * Signals to the scene to update the score and lives' labels

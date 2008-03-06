@@ -47,6 +47,7 @@ set(kapmanSources
 	mazeitem.cpp
 	mazeparser.cpp
 	pill.cpp
+	bonus.cpp
 	ghostitem.cpp
 )
 
@@ -62,6 +63,13 @@ set(kapmanResources
 	images/pinkGhost_test.svg
 	images/energizer_test.svg
 	images/pill_test.svg
+	images/carrot_test.svg
+	images/burger_test.svg
+	images/donut_test.svg
+	images/araignee_test.svg
+	images/tomate_test.svg
+	images/poulet_test.svg
+	images/pizza_test.svg
 )
 
 # build exec
@@ -82,6 +90,7 @@ kde4_add_unit_test(kapmanTest
 	cell.cpp
 	element.cpp
 	pill.cpp
+	bonus.cpp
 	energizer.cpp
 	./tests/kapmantest.cpp
 )
@@ -95,6 +104,7 @@ kde4_add_unit_test(ghostTest
 	kapman.cpp
 	element.cpp
 	pill.cpp
+	bonus.cpp
 	energizer.cpp
 	./tests/ghosttest.cpp
 )
@@ -107,6 +117,7 @@ kde4_add_unit_test(characterTest
 	kapman.cpp
 	element.cpp
 	pill.cpp
+	bonus.cpp
 	energizer.cpp
 	./tests/charactertest.cpp
 )
@@ -121,6 +132,7 @@ kde4_add_unit_test(gameTest
 	mazeparser.cpp
 	element.cpp
 	pill.cpp
+	bonus.cpp
 	energizer.cpp
 	./tests/gametest.cpp
 )

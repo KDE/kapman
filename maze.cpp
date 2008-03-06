@@ -94,3 +94,12 @@ int Maze::getNbColumns() {
 int Maze::getNbRows() {
 	return m_nbRows;
 }
+
+int Maze::getNbElem() {
+	return m_nbElem;
+}
+
+int Maze::getTotalNbElem() {
+	return m_totalNbElem;
+}
+

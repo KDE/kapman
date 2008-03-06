@@ -40,6 +40,9 @@ class GameScene : public QGraphicsScene {
 		
 		/** The list of the ElementItem Pills or Energizer*/
 		ElementItem *** m_elementItemList;
+		
+		/** The bonus */
+		ElementItem * m_bonus;
 
 		/** All the labels to be displayed during the game */
 		QGraphicsTextItem* m_introLabel;
@@ -97,6 +100,16 @@ class GameScene : public QGraphicsScene {
 		 * @param p_y y coordinate of the element
 		 */
 		void killElement(qreal p_x, qreal p_y);
+		
+		/**
+		 * Display the Bonus when the Kapman eat more than 1/3 of pills
+		 */
+		void displayBonus();
+		
+		/**
+		 * Remove the Bonus when the Kapman eat them
+		 */
+		void killBonus();
 	
 		/**
 		 * Upadate the score and lives labels

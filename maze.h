@@ -111,6 +111,14 @@ class Maze : public QObject {
 		 * @return the number of rows of the maze
 		 */
 		int getNbRows();
+		
+		/**
+		 * @return the number of remaining elements on the maze */
+		int getNbElem();
+		
+		/**
+		 * @return Total number of elements on the maze */
+		int getTotalNbElem();
 
 	signals:
 

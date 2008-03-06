@@ -23,6 +23,11 @@ Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
 	
+	// Create the bonus
+	QString bonusImage = QString("poulet_test.svg");
+	int points = 100;
+	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18),m_maze,bonusImage,points);
+	
 	QString ghostImage = QString("redGhost_test.svg");
 	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
 	ghostImage = QString("greenGhost_test.svg");
@@ -53,6 +58,12 @@ Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 	m_energyzerTimer->setInterval(10000);
 	m_energyzerTimer->setSingleShot(true);
 	connect(m_energyzerTimer, SIGNAL(timeout()), this, SLOT(changeGhostsToHunter()));
+	
+	// Create the bonus timer
+	m_bonusTimer = new QTimer(this);
+	m_bonusTimer->setInterval(10000);
+	m_bonusTimer->setSingleShot(true);
+	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(disableDisplayBonus()));
 	
 	initCharactersPosition();
 }
@@ -126,6 +137,10 @@ int Game::getLives() const {
 
 int Game::getLevel() const {
 	return m_level;
+}
+
+Bonus* Game::getBonus() {
+	return m_bonus;
 }
 
 /** Private */
@@ -211,6 +226,38 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 	}
 }
 
+void Game::updateBonus() {
+	// change bonus's image and points
+	QString bonusImage;
+	int points;
+	switch(m_level) {
+		case 1:
+			bonusImage = QString("poulet_test.svg");
+			break;
+		case 2:
+			bonusImage = QString("araignee_test.svg");
+			break;
+		case 3:
+			bonusImage = QString("pizza_test.svg");
+			break;
+		case 4:
+			bonusImage = QString("donut_test.svg");
+			break;
+		case 5:
+			bonusImage = QString("tomate_test.svg");
+			break;
+		case 6:
+			bonusImage = QString("burger_test.svg");
+			break;
+		default:
+			bonusImage = QString("carrot_test.svg");
+			break;	
+	}
+	points = m_level * 100;
+
+	m_bonus->update(bonusImage,points);
+}
+
 /** SLOTS */
 void Game::update() {
 	int curKapmanRow, curKapmanCol;
@@ -275,7 +322,15 @@ void Game::winPoints(Element* p_element) {
 	else if(p_element->getType() == Element::PILL) {
 		emit(sKillElement(p_element->getX(), p_element->getY()));
 	}
-
+	else if(p_element->getType() == Element::BONUS) {
+		emit(sKillBonus());
+	}
+	
+	if(m_maze->getNbElem() == m_maze->getTotalNbElem()/3 || m_maze->getNbElem() == (m_maze->getTotalNbElem()*2/3)) {
+		emit(sDisplayBonus());
+		m_bonusTimer->start();
+	}	
+	
 	// Update view
 	emit(updatingInfos());
 }
@@ -292,6 +347,8 @@ void Game::nextLevel() {
 	// To reinit the maze items
 	emit(leveled());
 	m_maze->resetNbElem();
+	// Update Bonus
+	updateBonus();
 }
 
 void Game::changeGhostsToPrey() {
@@ -306,3 +363,9 @@ void Game::changeGhostsToHunter() {
 		m_ghostList[i]->setState(Ghost::HUNTER);
 	}
 }
+
+void Game::disableDisplayBonus() {
+	emit(sDisableDisplayBonus());
+}
+
+
