@@ -20,9 +20,6 @@
 
 #include <QTimer>
 #include <QKeyEvent>
-
-#include <iostream.h>
-
 #include "maze.h"
 #include "kapman.h"
 #include "ghost.h"
