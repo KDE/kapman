@@ -66,9 +66,9 @@ set(kapmanResources
 	images/carrot_test.svg
 	images/burger_test.svg
 	images/donut_test.svg
-	images/araignee_test.svg
-	images/tomate_test.svg
-	images/poulet_test.svg
+	images/spider_test.svg
+	images/tomato_test.svg
+	images/chiken_test.svg
 	images/pizza_test.svg
 )
 
