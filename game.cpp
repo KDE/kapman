@@ -19,23 +19,21 @@
 #include <KStandardDirs>
 
 
-Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
+Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
+
+// 	m_startSwitchingTimerIsUsed = false;
+// 	m_switchTimerIsUsed = false;
+
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
 	
 	// Create the bonus
-	QString bonusImage = QString("poulet_test.svg");
-	int points = 100;
-	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18),m_maze,bonusImage,points);
+	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, "poulet_test.svg", 100);
 	
-	QString ghostImage = QString("redGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
-	ghostImage = QString("greenGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
-	ghostImage = QString("blueGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
-	ghostImage = QString("pinkGhost_test.svg");
-	m_ghostList.append(new Ghost(0.0, 0.0, ghostImage, m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "redGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "greenGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "blueGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "pinkGhost_test.svg", m_maze));
 
 	// Connects all ghosts to the "kapmanDeath" slot
 	for (int i = 0; i < m_ghostList.size(); i++) {
@@ -53,11 +51,16 @@ Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
 	m_timer->start();
 	
-	// Create the energyzers timer
-	m_energyzerTimer = new QTimer(this);
-	m_energyzerTimer->setInterval(10000);
-	m_energyzerTimer->setSingleShot(true);
-	connect(m_energyzerTimer, SIGNAL(timeout()), this, SLOT(changeGhostsToHunter()));
+	// Create the timer which start switching
+	m_startSwitchingTimer = new QTimer(this);
+	m_startSwitchingTimer->setInterval(7500);
+	m_startSwitchingTimer->setSingleShot(true);
+	connect(m_startSwitchingTimer, SIGNAL(timeout()), this, SLOT(startGhostsSwitching()));
+	
+	// Create the timer telling ghosts to switch
+	m_switchTimer = new QTimer(this);
+	m_switchTimer->setInterval(500);
+	connect(m_switchTimer, SIGNAL(timeout()), this, SLOT(switchGhosts()));
 	
 	// Create the bonus timer
 	m_bonusTimer = new QTimer(this);
@@ -70,7 +73,9 @@ Game::Game() : m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
 Game::~Game() {
 	delete m_timer;
-	delete m_energyzerTimer;
+	delete m_startSwitchingTimer;
+	delete m_switchTimer;
+	delete m_bonusTimer;
 	delete m_maze;
 	delete m_kapman;
 	for (int i = 0; i < m_ghostList.size(); i++) {
@@ -79,27 +84,39 @@ Game::~Game() {
 }
 
 void Game::start() {
+	// Restart all active timers
 	m_timer->start();
-	// TODO Start the timer but not from beginning !!!
-	m_energyzerTimer->start();
+	
+// 	if(m_startSwitchingTimerIsUsed) {
+// 		m_startSwitchingTimer->start();
+// 	}
+// 	if(m_switchTimerIsUsed) {
+// 		m_switchTimer->start();
+// 	}
+	
+	// Tells the Game that it is no longer paused
 	m_isPaused = false;
 }
 
 void Game::pause() {
+	// Stop all timers
 	m_timer->stop();
-	m_energyzerTimer->stop();
+// 	m_startSwitchingTimer->stop();
+// 	m_switchTimer->stop();
+	
+	// Tells the Game that it is paused
 	m_isPaused = true;
 }
 
 void Game::doPause() {
-	// If the game isn't paused yet, we stop the timer
+	// If the game isn't paused yet, we stop all timers
 	if(!m_isPaused) {
 		pause();
 
 		// Signal to the scene to add a 'PAUSE' label
 		emit(managePause(true));
 	}
-	// If the game is already paused, we restart the timer
+	// If the game is already paused, we restart all timers
 	else {
 		start();
 		
@@ -283,6 +300,9 @@ void Game::update() {
 void Game::kapmanDeath() {
 	m_lives --;
 	emit(updatingInfos());
+	
+	
+	// If their is no lives left, we start a new game
 	if(m_lives == 0) {
 		emit(startnewgame(true));
 	}
@@ -326,6 +346,7 @@ void Game::winPoints(Element* p_element) {
 		emit(sKillBonus());
 	}
 	
+	// If 1/3 or 2/3 of the pills are eaten, display a bonus
 	if(m_maze->getNbElem() == m_maze->getTotalNbElem()/3 || m_maze->getNbElem() == (m_maze->getTotalNbElem()*2/3)) {
 		emit(sDisplayBonus());
 		m_bonusTimer->start();
@@ -352,7 +373,12 @@ void Game::nextLevel() {
 }
 
 void Game::changeGhostsToPrey() {
-	m_energyzerTimer->start();
+	m_startSwitchingTimer->start();
+// 	m_startSwitchingTimerIsUsed = true;
+
+	// Stop the switchTimer (in case it was running
+	m_switchTimer->stop();
+
 	for (int i=0; i<m_ghostList.size(); i++) {
 		m_ghostList[i]->setState(Ghost::PREY);
 	}
@@ -364,8 +390,33 @@ void Game::changeGhostsToHunter() {
 	}
 }
 
+void Game::startGhostsSwitching() {
+// 	m_startSwitchingTimerIsUsed = false;
+	m_switchTimer->start();
+// 	m_switchTimerIsUsed = true;
+}
+
+void Game::switchGhosts() {
+	// The ghosts have to switch 4 times
+	if(m_switchTimerCount < 4) {
+		for (int i=0; i<m_ghostList.size(); i++) {
+			if(m_ghostList[i]->getState() == Ghost::PREY) {
+				m_ghostList[i]->setState(Ghost::WHITE_PREY);
+			}
+			else if(m_ghostList[i]->getState() == Ghost::WHITE_PREY) {
+				m_ghostList[i]->setState(Ghost::PREY);
+			}
+		}
+		m_switchTimerCount++;
+	}
+	else {
+		m_switchTimer->stop();
+		m_switchTimerCount = 0;
+		changeGhostsToHunter();
+// 		m_switchTimerIsUsed = false;
+	}
+}
+
 void Game::disableDisplayBonus() {
 	emit(sDisableDisplayBonus());
 }
-
-

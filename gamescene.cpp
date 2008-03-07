@@ -22,8 +22,6 @@
 #include "bonus.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
-	// Paths to the images. Needed to pass it by reference when calling Elements contructors
-	QString itemImage;
 	
 	// Create the 'PAUSE' label
 	m_pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
@@ -58,8 +56,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	// Add all the items
 	// Maze
-	itemImage = KStandardDirs::locate("appdata", "kapmanMaze.svg");
-	m_mazeItem = new MazeItem(itemImage);
+	m_mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
 	addItem(m_mazeItem);
 	m_mazeItem->setZValue(-1);
 	
@@ -71,17 +68,14 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	initItems();
 	
 	// Kapman
-	//itemImage = KStandardDirs::locate("appdata", "kapmanAnim.svg");
-	itemImage = KStandardDirs::locate("appdata", "kapmanAnimTest.svg");
-	m_kapmanItem = new KapmanItem(p_game->getKapman(), itemImage);
+	m_kapmanItem = new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapmanAnimTest.svg"));
 	addItem(m_kapmanItem);
 	m_kapmanItem->setZValue(1);
 	
 	// Ghosts
 	for(int i=0; i<p_game->getGhostList().size(); i++) {
 		Ghost* ghostModel = p_game->getGhostList().at(i);
-		itemImage = KStandardDirs::locate("appdata", ghostModel->getImageURL());
-		m_ghostItemList.append(new GhostItem(ghostModel, itemImage));
+		m_ghostItemList.append(new GhostItem(ghostModel, KStandardDirs::locate("appdata", ghostModel->getImageURL())));
 		addItem(m_ghostItemList[i]);
 		m_ghostItemList[i]->setZValue(1);
 		// Connect each item and its model to manage state changes
@@ -187,8 +181,7 @@ void GameScene::initItems() {
 		for(int j=0; j<m_game->getMaze()->getNbColumns(); j++) {
 			if(m_game->getMaze()->getCell(i,j).getElement() != NULL){
 				QString itemType = m_game->getMaze()->getCell(i,j).getElement()->getImageUrl();
-				itemImage = KStandardDirs::locate("appdata", itemType);
-				m_elementItemList[i][j] = new ElementItem(m_game->getMaze()->getCell(i,j).getElement(), itemImage);
+				m_elementItemList[i][j] = new ElementItem(m_game->getMaze()->getCell(i,j).getElement(), KStandardDirs::locate("appdata", itemType));
 				addItem(m_elementItemList[i][j]);
 			}
 		}
@@ -228,8 +221,7 @@ void GameScene::killElement(qreal p_x, qreal p_y) {
 }
 
 void GameScene::displayBonus() {
-	QString itemImage = KStandardDirs::locate("appdata", m_game->getBonus()->getImageUrl());
-	m_bonus = new ElementItem(m_game->getBonus(),itemImage);
+	m_bonus = new ElementItem(m_game->getBonus(), KStandardDirs::locate("appdata", m_game->getBonus()->getImageUrl()));
 	addItem(m_bonus);
 }
 

@@ -33,7 +33,8 @@ class Ghost : public Character {
 		/** The ghost possible state */
 		enum GhostState {
 			HUNTER = 0,
-			PREY = 1
+			PREY = 1,
+			WHITE_PREY = 2
 		};
 
 	private:

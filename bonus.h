@@ -31,7 +31,7 @@ class Bonus : public Element {
 		/**
 		 * Creates a new bonus instance
 		 */
-		Bonus(qreal p_x, qreal p_y, Maze* p_maze, QString & p_imageUrl, int p_points);
+		Bonus(qreal p_x, qreal p_y, Maze* p_maze, const QString & p_imageUrl, int p_points);
 
 		/**
 		 * Deletes the Bonus instance
