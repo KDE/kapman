@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or

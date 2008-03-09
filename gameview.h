@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or

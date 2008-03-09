@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * 

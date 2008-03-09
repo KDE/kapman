@@ -53,6 +53,7 @@ set(kapmanSources
 
 # resources
 set(kapmanResources
+	images/icon.svg
 	kapmanui.rc
 	defaultmaze.xml
 	images/kapmanMaze.svg
