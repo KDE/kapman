@@ -34,7 +34,6 @@ int main(int argc, char** argv) {
 	KCmdLineArgs::init(argc, argv, &about);
 	// Create the application
 	KApplication app;
-	app.setWindowIcon(QIcon(KStandardDirs::locate("appdata", "icon.svg")));
 	// Create the main window
 	KapmanMainWindow* window = new KapmanMainWindow();
 	// Show the main window

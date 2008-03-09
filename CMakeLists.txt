@@ -51,9 +51,11 @@ set(kapmanSources
 	ghostitem.cpp
 )
 
+kde4_install_icons( ${ICON_INSTALL_DIR}   )
+
+
 # resources
 set(kapmanResources
-	images/icon.svg
 	kapmanui.rc
 	defaultmaze.xml
 	images/kapmanMaze.svg
