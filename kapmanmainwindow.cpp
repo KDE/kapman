@@ -17,7 +17,7 @@
 
 #include "kapmanmainwindow.h"
 #include <KActionCollection>
-#include <KStandardGameAction>
+#include <KDE/KStandardGameAction>
 #include <KMessageBox>
 #include <KLocalizedString>
 #include "kapmanmainwindow.h"

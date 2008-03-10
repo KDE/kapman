@@ -20,7 +20,7 @@
 
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
-#include <KScoreDialog>
+#include <KDE/KScoreDialog>
 #include "game.h"
 #include "gameview.h"
 

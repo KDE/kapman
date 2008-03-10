@@ -81,7 +81,7 @@ kde4_add_executable(kapman ${kapmanSources})
 # libraries needed
 target_link_libraries(kapman
 	${KDE4_KDEUI_LIBS}
-	kdegames
+	${KDEGAMES_LIBRARY}
 )
 
 # Kapman test unit
