@@ -17,7 +17,6 @@
 
 #include "game.h"
 #include <KStandardDirs>
-#include <KDebug>
 
 Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
@@ -28,7 +27,7 @@ Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbE
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
 	
 	// Create the bonus
-	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, "poulet_test.svg", 100);
+	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, "chicken_test.svg", 100);
 	
 	m_ghostList.append(new Ghost(0.0, 0.0, "ghostred.svg", m_maze));
 	m_ghostList.append(new Ghost(0.0, 0.0, "ghostgreen.svg", m_maze));
@@ -68,6 +67,7 @@ Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbE
 	m_bonusTimer->setSingleShot(true);
 	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(disableDisplayBonus()));
 	
+	// Init the characters
 	initCharactersPosition();
 
 //	m_media = Phonon::createPlayer(Phonon::GameCategory, KStandardDirs::locate("sound", "kapman/gamebegin.wav"));
@@ -253,10 +253,10 @@ void Game::updateBonus() {
 	int points;
 	switch(m_level) {
 		case 1:
-			bonusImage = QString("poulet_test.svg");
+			bonusImage = QString("chicken_test.svg");
 			break;
 		case 2:
-			bonusImage = QString("araignee_test.svg");
+			bonusImage = QString("spider_test.svg");
 			break;
 		case 3:
 			bonusImage = QString("pizza_test.svg");
@@ -265,7 +265,7 @@ void Game::updateBonus() {
 			bonusImage = QString("donut_test.svg");
 			break;
 		case 5:
-			bonusImage = QString("tomate_test.svg");
+			bonusImage = QString("tomato_test.svg");
 			break;
 		case 6:
 			bonusImage = QString("burger_test.svg");

@@ -36,13 +36,13 @@ set(kapmanData
 	defaultmaze.xml
 	images/burger_test.svg
 	images/carrot_test.svg
-	images/chiken_test.svg
+	images/chicken_test.svg
 	images/donut_test.svg
 	images/energizer_test.svg
-	images/ghostred.svg
-	images/ghostgreen.svg
 	images/ghostblue.svg
+	images/ghostgreen.svg
 	images/ghostpink.svg
+	images/ghostred.svg
 	images/kapmanAnimTest.svg
 	images/kapmanMaze.svg
 	images/pill_test.svg
