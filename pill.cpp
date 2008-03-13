@@ -18,6 +18,7 @@
 
 #include "pill.h"
 #include "kapman.h"
+#include <KStandardDirs>
 
 const int Pill::POINTS = 10;
 

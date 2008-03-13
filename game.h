@@ -20,6 +20,7 @@
 
 #include <QTimer>
 #include <QKeyEvent>
+//#include <Phonon/MediaObject>
 #include "maze.h"
 #include "kapman.h"
 #include "ghost.h"
@@ -79,6 +80,9 @@ class Game : public QObject {
 		/** Bonus */
 		Bonus *m_bonus;
 		
+		/** The media to play sounds */
+//		Phonon::MediaObject* m_media;
+
 	public:
 
 		/**

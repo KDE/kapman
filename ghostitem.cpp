@@ -39,7 +39,7 @@ void GhostItem::updateState(Ghost::GhostState p_state) {
 		setElementId("ghost_hunter");
 	}
 	else if(((Ghost*)getModel())->getState() == Ghost::WHITE_PREY) {
-		setElementId("ghost_white_prey");
+		setElementId("ghost_prey_white");
 	}
 	else {
 		setElementId("ghost_prey");

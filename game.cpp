@@ -17,7 +17,7 @@
 
 #include "game.h"
 #include <KStandardDirs>
-
+#include <KDebug>
 
 Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
@@ -30,10 +30,10 @@ Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbE
 	// Create the bonus
 	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, "poulet_test.svg", 100);
 	
-	m_ghostList.append(new Ghost(0.0, 0.0, "redGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(0.0, 0.0, "greenGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(0.0, 0.0, "blueGhost_test.svg", m_maze));
-	m_ghostList.append(new Ghost(0.0, 0.0, "pinkGhost_test.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "ghostred.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "ghostgreen.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "ghostblue.svg", m_maze));
+	m_ghostList.append(new Ghost(0.0, 0.0, "ghostpink.svg", m_maze));
 
 	// Connects all ghosts to the "kapmanDeath" slot
 	for (int i = 0; i < m_ghostList.size(); i++) {
@@ -69,6 +69,9 @@ Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbE
 	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(disableDisplayBonus()));
 	
 	initCharactersPosition();
+
+//	m_media = Phonon::createPlayer(Phonon::GameCategory, KStandardDirs::locate("sound", "kapman/gamebegin.wav"));
+//	m_media->play();
 }
 
 Game::~Game() {
@@ -81,6 +84,7 @@ Game::~Game() {
 	for (int i = 0; i < m_ghostList.size(); i++) {
 		delete m_ghostList[i];
 	}
+//	delete m_media;
 }
 
 void Game::start() {
