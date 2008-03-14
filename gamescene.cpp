@@ -226,5 +226,6 @@ void GameScene::displayBonus() {
 }
 
 void GameScene::killBonus() {
-	removeItem(m_bonus);
+	if(items().contains(m_bonus))
+		removeItem(m_bonus);
 }

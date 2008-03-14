@@ -304,6 +304,7 @@ void Game::update() {
 void Game::kapmanDeath() {
 	m_lives --;
 	emit(updatingInfos());
+	emit(sDisableDisplayBonus());
 	
 	
 	// If their is no lives left, we start a new game
