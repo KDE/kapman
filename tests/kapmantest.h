@@ -27,20 +27,11 @@ class KapmanTest : public QObject {
 
 	private slots:
 		
-		/** Kapman constructor, initialize all coordinates (position and speed) to 0 */
+		/**
+		 * Kapman constructor, initialize all coordinates (position and speed) to 0
+		 * save the xSpeed to 2.0
+		 */
 		void testKapman();
-		
-		/** This function changes the kapman's asked speed coordinates to make it try to move upward */
-		void testGoUp();
-
-		/** This function changes the kapman's asked speed coordinates to make it try to move downward */
-		void testGoDown();
-
-		/** This function changes the kapman's asked speed coordinates to make it try to move to the right */
-		void testGoRight();
-
-		/** This function changes the kapman's asked speed coordinates to make it try to move to the left */
-		void testGoLeft();
 		
 		/** This function updates the kapman's real speed with it's asked speed */
 // 		void testUpdateDirection();

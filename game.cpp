@@ -18,10 +18,7 @@
 #include "game.h"
 #include <KStandardDirs>
 
-Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
-
-// 	m_startSwitchingTimerIsUsed = false;
-// 	m_switchTimerIsUsed = false;
+Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_isCheater(false) {
 
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
@@ -149,6 +146,10 @@ bool Game::isPaused() const {
 	return m_isPaused;
 }
 
+bool Game::isCheater() const {
+	return m_isCheater;
+}
+
 int Game::getScore() const {
 	return m_points;
 }
@@ -240,6 +241,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			// Cheat code to get one more life
 			if (p_event->modifiers() == Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier) {
 				m_lives++;
+				m_isCheater = true;
 				emit(updatingInfos());
 			}
 		default:

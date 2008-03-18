@@ -30,16 +30,17 @@ class CharacterTest : public QObject {
 		/** Ghost constructor, initialize all coordinates (position and speed) to 0 */
 		void testCharacter();
 		
-		/** This function changes the Ghost's speed coordinates to make it move upward */
+		/** This function moves the character function of its speed on X and Y */
 		void testMove();
 
 		/**
+		 * TODO
 		 * This function return TRUE if the character will go past
 		 * the center of a cell with it's  next movement, FALSE otherwise
 		 */
 // 		void testOnCenter();
 		
-		/** This function put the character right on the center of the cell it's on */
+		/** TODO This function put the character right on the center of the cell it's on */
 // 		void testMoveOnCenter();
 		
 		/** 
@@ -48,10 +49,13 @@ class CharacterTest : public QObject {
 		 * with its current movement
 		 */
 // 		void testGetNextCell();
-
-		/** TODO Test changeMazeSide when finished */
 		
-		void isInLineSight();
+		/**
+		 * TODO
+		 * This method returns true if the caller is in the same line than the character
+		 * without wall between them and if it doesn't have to make a half turn
+		 */
+		void testIsInLineSight();
 
 };
 

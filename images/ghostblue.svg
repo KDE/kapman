@@ -12,12 +12,11 @@
    height="35"
    id="svg3258"
    sodipodi:version="0.32"
-   inkscape:version="0.45"
-   sodipodi:docbase="/home/kde-devel/kapman/src/images"
-   sodipodi:docname="ghostgreensvg.svg"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/kde-devel/kapman/images"
+   sodipodi:docname="ghostblue.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   version="1.0"
-   sodipodi:modified="true">
+   version="1.0">
   <defs
      id="defs3260" />
   <sodipodi:namedview
@@ -29,12 +28,12 @@
      inkscape:pageshadow="2"
      inkscape:zoom="4.0692808"
      inkscape:cx="89.999998"
-     inkscape:cy="-34.545458"
-     inkscape:current-layer="ghost_hunter"
+     inkscape:cy="24.433023"
+     inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1280"
+     inkscape:window-width="1278"
      inkscape:window-height="776"
      inkscape:window-x="0"
      inkscape:window-y="0" />

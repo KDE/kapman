@@ -25,9 +25,10 @@ void CharacterTest::testCharacter() {
 	Maze * maze = new Maze();
 	Kapman * kap = new Kapman(0.0, 0.0, maze);
 	
+	// The Kapman has an initial xSpeed of 2.0
 	QCOMPARE(kap->getX(), 0.0);
 	QCOMPARE(kap->getY(), 0.0);
-	QCOMPARE(kap->getXSpeed(), 0.0);
+	QCOMPARE(kap->getXSpeed(), 2.0);
 	QCOMPARE(kap->getYSpeed(), 0.0);
 }
 
@@ -193,7 +194,7 @@ void CharacterTest::testMove() {
 // 	//QCOMPARE(gho->getNextCell(), game->getMaze()->getCell(6, 2));
 // }
 
-void CharacterTest::isInLineSight() {
+void CharacterTest::testIsInLineSight() {
 	//initialisation
 // 	Maze * maze = new Maze();
 // 	Kapman * characterBase = new Kapman(Cell::SIZE * 13, Cell::SIZE * 17, maze);

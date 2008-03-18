@@ -44,9 +44,6 @@ class Game : public QObject {
 		/** This timer makes all ghosts switch display */
 		QTimer* m_switchTimer;
 		
-		/** Those bools indicates if timers are being used or not (needed to pause/unpause the game) */
-// 		bool m_startSwitchingTimerIsUsed, m_switchTimerIsUsed;
-		
 		/** Counts every switching of the ghosts (to stop after the fourth) */
 		int m_switchTimerCount;
 		
@@ -64,6 +61,9 @@ class Game : public QObject {
 
 		/** pause flag */
 		bool m_isPaused;
+		
+		/** indicates if the players cheated during the game */
+		bool m_isCheater;
 
 		/** Player's lives */
 		int m_lives;
@@ -128,7 +128,12 @@ class Game : public QObject {
 		/**
 		 * @return m_isPaused attribute
 		 */
-		bool isPaused() const; 
+		bool isPaused() const;
+		
+		/**
+		 * @return m_isCheater attribute
+		 */
+		bool isCheater() const;
 
 		/**
 		 * Manage the game pause when 'P' key is pressed

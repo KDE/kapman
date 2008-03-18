@@ -24,6 +24,7 @@
 void GameTest::testGame() {
 	Game * game = new Game();
 	
+	// At the beggining the timer is stopped but the game isn't paused (to allow keyPress detection
 	QCOMPARE(game->getTimer()->isActive(), FALSE);
 	QCOMPARE(game->isPaused(), FALSE);
 	QCOMPARE(game->getTimer()->interval(), 15);

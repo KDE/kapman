@@ -75,18 +75,28 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 		}
 	}
 	else {
-		// Display the score
+		// Build the score info
 		QString score("Your Score : ");
 		score += QString::number(m_game->getScore());
-		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());
-		// Add the score to the highscores table
-		KScoreDialog::FieldInfo scoreInfo;
-		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
-		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
-		// If the new score is a highscore then display the highscore dialog
-		if (m_kScoreDialog->addScore(scoreInfo)) {
-			m_kScoreDialog->exec();
+		
+		// If the payer did not cheat, manage Highscores
+		if(!m_game->isCheater()) {
+			// Add the score to the highscores table
+			KScoreDialog::FieldInfo scoreInfo;
+			scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
+			scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
+			// If the new score is a highscore then display the highscore dialog
+			if (m_kScoreDialog->addScore(scoreInfo)) {
+				m_kScoreDialog->exec();
+			}
 		}
+		else {		// else, warn the player not to cheat again :)
+			score += "\nBut you cheated, no Highscore for you ;)";
+		}
+		
+		// Display the score informations
+		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());	
+		
 		// Start a new game
 		delete m_game;
 		delete m_view;

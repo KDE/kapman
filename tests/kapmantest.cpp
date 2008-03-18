@@ -26,59 +26,14 @@ void KapmanTest::testKapman() {
 
 	Maze * maze = new Maze();
 
-	Kapman kap (0.0, 0.0, maze);
+	Kapman kap (100.0, 100.0, maze);
 	
-	QCOMPARE(kap.getX(), 0.0);
-	QCOMPARE(kap.getY(), 0.0);
-	QCOMPARE(kap.getAskedXSpeed(), -Kapman::SPEED);		// The kapman goes left at the begining
-}
-
-void KapmanTest::testGoUp() {
-
-	Maze * maze = new Maze();
-
-	Kapman kap (0.0, 0.0, maze);
-
-	kap.goUp();
-
-	QCOMPARE(kap.getAskedXSpeed(), 0.0);	
-	QCOMPARE(kap.getAskedYSpeed(), -Kapman::SPEED);
-}
-
-void KapmanTest::testGoDown() {
-
-	Maze * maze = new Maze();
-	
-	Kapman kap (0.0, 0.0, maze);
-
-	kap.goDown();
-
-	QCOMPARE(kap.getAskedXSpeed(), 0.0);	
-	QCOMPARE(kap.getAskedYSpeed(), Kapman::SPEED);
-}
-
-void KapmanTest::testGoRight() {
-
-	Maze * maze = new Maze();
-
-	Kapman kap (0.0, 0.0, maze);
-
-	kap.goRight();
-
-	QCOMPARE(kap.getAskedXSpeed(), Kapman::SPEED);	
+	QCOMPARE(kap.getX(), 100.0);
+	QCOMPARE(kap.getY(), 100.0);
+	QCOMPARE(kap.getAskedXSpeed(), 0.0);
 	QCOMPARE(kap.getAskedYSpeed(), 0.0);
-}
-
-void KapmanTest::testGoLeft() {
-
-	Maze * maze = new Maze();
-
-	Kapman kap (0.0, 0.0, maze);
-	
-	kap.goLeft();
-
-	QCOMPARE(kap.getAskedXSpeed(), -Kapman::SPEED);	
-	QCOMPARE(kap.getAskedYSpeed(), 0.0);
+	QCOMPARE(kap.getXSpeed(), Kapman::SPEED);		// The kapman goes right at the begining
+	QCOMPARE(kap.getYSpeed(), 0.0);
 }
 
 // void KapmanTest::testUpdateDirection() {
