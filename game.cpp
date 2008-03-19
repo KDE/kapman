@@ -18,7 +18,7 @@
 #include "game.h"
 #include <KStandardDirs>
 
-Game::Game() : m_switchTimerCount(0), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_isCheater(false) {
+Game::Game() : m_switchTimerCount(0), m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);

@@ -20,7 +20,6 @@
 #include <KDE/KStandardGameAction>
 #include <KMessageBox>
 #include <KLocalizedString>
-#include "kapmanmainwindow.h"
 #include "gameview.h"
 
 KapmanMainWindow::KapmanMainWindow() : 
