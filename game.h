@@ -257,6 +257,11 @@ class Game : public QObject {
 		void sDisplayBonus();
 		
 		/**
+		 * Signals to the scene to display the Label associated to a life losted or a new level!
+		 */
+		void sDisplayLabel(bool newlevel);
+
+		/**
 		 * Signals to the scene to remove a Bonus
 		 */
 		void sKillBonus();

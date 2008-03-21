@@ -50,6 +50,7 @@ class GameScene : public QGraphicsScene {
 		QGraphicsTextItem* m_scoreLabel;
 		QGraphicsTextItem* m_livesLabel;
 		QGraphicsTextItem* m_levelLabel;
+		QGraphicsTextItem* m_newlevelLabel;
 		QGraphicsTextItem* m_pauseLabel;
 		
 		/** References on characters Item and maze item (needed to modify their zValue) */
@@ -115,6 +116,14 @@ class GameScene : public QGraphicsScene {
 		 * Upadate the score and lives labels
 		 */
 		void updateInfos();
+		
+		/**
+		 * Display the  intro label when a life is losted and levelLabel when new level is 
+		 * @param newlevel  false : life is losted ; true : new level
+		 */
+		void displayLabel(bool newlevel);
+
+
 };
 
 #endif

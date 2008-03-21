@@ -53,6 +53,11 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_levelLabel = new QGraphicsTextItem(ki18nc("The current level", "Level : ").toString());
 	m_levelLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
 	m_levelLabel->setDefaultTextColor(QColor("#FFFFFF"));
+
+	//New level Label
+	m_newlevelLabel = new QGraphicsTextItem(ki18n( "Level  ").toString());
+	m_newlevelLabel->setFont(QFont("Helvetica", 30, QFont::Bold, false));
+	m_newlevelLabel->setDefaultTextColor(QColor("#FFFFFF"));
 	
 	// Add all the items
 	// Maze
@@ -130,6 +135,8 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	connect(p_game, SIGNAL(updatingInfos()), this, SLOT(updateInfos()));
 	// Reinit the items on level completed
 	connect(p_game, SIGNAL(leveled()), this, SLOT(initItems()));
+	// Display Label associated to a new level or a life losted
+	connect(p_game,SIGNAL(sDisplayLabel(bool)), SLOT(displayLabel(bool)));
 
 }
 
@@ -208,7 +215,12 @@ void GameScene::removeIntro() {
 	//If the Intro Label is displayed, remove it
 	if(items().contains(m_introLabel)) {
 		removeItem(m_introLabel);
+	}
+	if(items().contains(m_introLabel2)) {
 		removeItem(m_introLabel2);
+	}
+	if(items().contains(m_newlevelLabel)) {
+		removeItem(m_newlevelLabel);
 	}
 }
 
@@ -229,3 +241,34 @@ void GameScene::killBonus() {
 	if(items().contains(m_bonus))
 		removeItem(m_bonus);
 }
+
+
+void GameScene :: displayLabel(bool newlevel = false){
+
+	if(newlevel){
+
+		QString level("Level  ");
+		level += QString::number((int)m_game->getLevel());
+		m_newlevelLabel->setPlainText(level);
+			
+		addItem(m_newlevelLabel);
+		m_newlevelLabel->setPos(this->width()/2 - m_newlevelLabel->boundingRect().width()/2, this->height()/2 - m_newlevelLabel->boundingRect().height()/2);
+		// Ensure that the Label will overcome all items
+		m_newlevelLabel->setZValue(2);
+			
+		addItem(m_introLabel);
+		m_introLabel->setPos(this->width()/2 - m_introLabel->boundingRect().width()/2, this->height()/2 - m_introLabel->boundingRect().height()/2 + m_newlevelLabel->boundingRect().height()/2);
+		// Ensure that the Label will overcome all items
+		m_introLabel->setZValue(2);
+
+	}
+	else{
+		addItem(m_introLabel);
+		m_introLabel->setPos(this->width()/2 - m_introLabel->boundingRect().width()/2, this->height()/2 - m_introLabel->boundingRect().height()/2);
+		// Ensure that the Label will overcome all items
+		m_introLabel->setZValue(2);
+	}
+
+}
+
+

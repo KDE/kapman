@@ -314,6 +314,7 @@ void Game::kapmanDeath() {
 		emit(startnewgame(true));
 	}
 	else{
+		emit(sDisplayLabel(false));
 		// Move all characters to their initial positions
 		initCharactersPosition();
 	}
@@ -377,6 +378,7 @@ void Game::nextLevel() {
 	m_maze->resetNbElem();
 	// Update Bonus
 	updateBonus();
+	emit(sDisplayLabel(true));
 }
 
 void Game::changeGhostsToPrey() {
