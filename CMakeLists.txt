@@ -52,7 +52,6 @@ set(kapmanData
 	kapmanui.rc
 )
 set(kapmanSound
-	sounds/gamebegin.wav
 )
 
 kde4_install_icons(${ICON_INSTALL_DIR})
