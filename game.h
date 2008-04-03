@@ -85,6 +85,13 @@ class Game : public QObject {
 
 	public:
 
+		enum Information { NoInfo = 0,
+				   ScoreInfo = 1,
+				   LivesInfo = 2,
+				   LevelInfo = 4,
+				   AllInfo = ScoreInfo | LivesInfo | LevelInfo };
+		Q_DECLARE_FLAGS(InformationTypes, Information);
+
 		/**
 		 * Creates a new Game instance
 		 */
@@ -274,7 +281,7 @@ class Game : public QObject {
 		/**
 		 * Signals to the scene to update the score and lives' labels
 		 */
-		void updatingInfos();
+		void updatingInfos(Game::InformationTypes types);
 
 		/**
 		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lives or when a level is finished

@@ -22,7 +22,8 @@
 #include "bonus.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
-	
+	setItemIndexMethod(NoIndex);
+
 	// Create the 'PAUSE' label
 	m_pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
 	m_pauseLabel->setFont( QFont("Helvetica", 35, QFont::Bold, false) );
@@ -117,7 +118,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_levelLabel->setZValue(3);
 
 	// Init the score, lives and level labels
-	updateInfos();
+	updateInfos(Game::AllInfo);
 
 	// Connect managePause signal to the scene
 	connect(p_game, SIGNAL(managePause(bool)), this, SLOT(managePause(bool)));
@@ -132,7 +133,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	// Connect disableDisplayBonus signal to the scene
 	connect(p_game, SIGNAL(sDisableDisplayBonus()), this, SLOT(killBonus()));
 	// Connect the kapman to the "updateInfos()" slot
-	connect(p_game, SIGNAL(updatingInfos()), this, SLOT(updateInfos()));
+	connect(p_game, SIGNAL(updatingInfos(Game::InformationTypes)), this, SLOT(updateInfos(Game::InformationTypes)));
 	// Reinit the items on level completed
 	connect(p_game, SIGNAL(leveled()), this, SLOT(initItems()));
 	// Display Label associated to a new level or a life losted
@@ -162,18 +163,24 @@ GameScene::~GameScene() {
 	delete[] m_elementItemList;
 }
 
-void GameScene::updateInfos() {
-	QString lives("Lives : ");
-	lives += QString::number((int)m_game->getLives());
-	m_livesLabel->setPlainText(lives);
+void GameScene::updateInfos(Game::InformationTypes p_info) {
+	if (p_info & Game::LivesInfo) {
+	    QString lives("Lives : ");
+	    lives += QString::number((int)m_game->getLives());
+	    m_livesLabel->setPlainText(lives);
+	}
 
-	QString score("Score : ");
-	score += QString::number((double)m_game->getScore());
-	m_scoreLabel->setPlainText(score);
+	if (p_info & Game::ScoreInfo) {
+	    QString score("Score : ");
+	    score += QString::number((double)m_game->getScore());
+	    m_scoreLabel->setPlainText(score);
+	}
 
-	QString level("Level : ");
-	level += QString::number((int)m_game->getLevel());
-	m_levelLabel->setPlainText(level);
+	if (p_info & Game::LevelInfo) {
+	    QString level("Level : ");
+	    level += QString::number((int)m_game->getLevel());
+	    m_levelLabel->setPlainText(level);
+	}
 }
 
 
@@ -243,7 +250,7 @@ void GameScene::killBonus() {
 }
 
 
-void GameScene :: displayLabel(bool newlevel = false){
+void GameScene::displayLabel(bool newlevel = false){
 
 	if(newlevel){
 

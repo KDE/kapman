@@ -115,7 +115,7 @@ class GameScene : public QGraphicsScene {
 		/**
 		 * Upadate the score and lives labels
 		 */
-		void updateInfos();
+		void updateInfos(Game::InformationTypes);
 		
 		/**
 		 * Display the  intro label when a life is losted and levelLabel when new level is 

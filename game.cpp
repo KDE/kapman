@@ -242,7 +242,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			if (p_event->modifiers() == Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier) {
 				m_lives++;
 				m_isCheater = true;
-				emit(updatingInfos());
+				emit(updatingInfos(LivesInfo));
 			}
 		default:
 			break;
@@ -305,7 +305,7 @@ void Game::update() {
 
 void Game::kapmanDeath() {
 	m_lives --;
-	emit(updatingInfos());
+	emit(updatingInfos(LivesInfo));
 	emit(sDisableDisplayBonus());
 	
 	
@@ -361,7 +361,7 @@ void Game::winPoints(Element* p_element) {
 	}	
 	
 	// Update view
-	emit(updatingInfos());
+	emit(updatingInfos(ScoreInfo));
 }
 
 void Game::nextLevel() {
@@ -372,7 +372,7 @@ void Game::nextLevel() {
 	// Increase the ghosts speed
 	Ghost::increaseGhostsSpeed(0.05);
 	// To update the score, level and lives labels
-	emit(updatingInfos());
+	emit(updatingInfos(AllInfo));
 	// To reinit the maze items
 	emit(leveled());
 	m_maze->resetNbElem();
