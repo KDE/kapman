@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -53,9 +54,8 @@ class GhostItem : public CharacterItem {
 		
 		/**
 		 * Update the ghostItem image with its model's state
-		 * @param p_state the new state to use
 		 */
-		void updateState(Ghost::GhostState p_state);
+		void updateState();
 };
 
 #endif

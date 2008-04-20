@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -34,7 +35,7 @@ void GhostItem::update(qreal p_x, qreal p_y) {
 	setPos(x, y);
 }
 
-void GhostItem::updateState(Ghost::GhostState p_state) {
+void GhostItem::updateState() {
 	if( ((Ghost*)getModel())->getState() == Ghost::HUNTER) {
 		setElementId("ghost_hunter");
 	}

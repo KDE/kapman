@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,10 +18,13 @@
 
 #include "character.h"
 
-const qreal Character::SPEED = 2.0;
+const qreal Character::LOW_SPEED = 2.5;
+const qreal Character::MEDIUM_SPEED = 3.0;
+const qreal Character::HIGH_SPEED = 3.5;
+
+qreal Character::s_speed = Character::MEDIUM_SPEED;
 
 Character::Character(qreal p_x, qreal p_y, Maze* p_maze) : Element(p_x, p_y, p_maze), m_xSpeed(0), m_ySpeed(0) {
-
 }
 
 Character::~Character() {
@@ -117,6 +121,14 @@ bool Character::isInLineSight(Character * p_c) {
 	
 }
 
+qreal Character::getCharactersSpeed() {
+	return s_speed;
+}
+
+void Character::setCharactersSpeed(const qreal p_speed) {
+		Character::s_speed = p_speed;
+}	
+
 /** Private */
 Cell Character::getNextCell() {
 	Cell nextCell;
@@ -176,3 +188,4 @@ void Character::moveOnCenter() {
 	setX((m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE);
 	setY((m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE);
 }
+

@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -44,11 +45,19 @@ class Ghost : public Character {
 		
 		/** The ghost actual state */
 		GhostState m_state;
+		
+		/** The ghosts speed (different from Character::s_speed since it is increased on level up) */
+		static qreal s_speed;
 
-		/** The ghosts speed to use instead of Character::SPEED */
-		static qreal speed;
+		/** The value the ghosts speed is incremented by when level up */
+		static qreal s_speedIncrease;
 
-		/** The ghost speed : different from Ghost::speed since m_speed can change function of the ghost state */
+		/** The possible speed increase (may change function of the difficulty level) */
+		const static qreal LOW_SPEED_INC;
+		const static qreal MEDIUM_SPEED_INC;
+		const static qreal HIGH_SPEED_INC;
+
+		/** The ghost speed (different from Ghost::s_speed since m_speed can change function of the ghost state) */
 		qreal m_speed;
 
 	public:
@@ -87,7 +96,7 @@ class Ghost : public Character {
 		/**
 		 * @return the ghost state
 		 */
-		Ghost::GhostState getState() const;
+		GhostState getState() const;
 		
 		/**
 		 * Set the ghost state to the given value
@@ -95,19 +104,24 @@ class Ghost : public Character {
 		 */
 		void setState(Ghost::GhostState p_state);
 		
-		/**
-		 * Manages the collison with the kapman
-		 * @param p_kapman reference to the kapman model
-		 */
+		 /**
+		  * Manages the collison with the kapman
+		  * @param p_kapman reference to the kapman model
+		  */
 		 void doActionOnCollision(Kapman* p_kapman);
 
-		/**
-		 * Increases the ghosts speed
-		 * @param p_increase the value the ghosts speed will be increased by
-		 */
-		static void increaseGhostsSpeed(qreal p_increase);
+		 /**
+		  * Initializes the ghosts speed from the characters speed
+		  */
+		 static void initGhostsSpeed();
+
+		 /**
+		  * Increases the ghosts speed
+		  */
+		 static void increaseGhostsSpeed();
 
 	private:
+
 		/**
 		 * Makes the Ghost go up
 		 */
@@ -143,9 +157,8 @@ class Ghost : public Character {
 		
 		/**
 		 * Signals to its item that its state has changed
-		 * @param p_state the new state of the ghost
 		 */
-		void stateChanged(Ghost::GhostState p_state);
+		void stateChanged();
 };
 
 #endif

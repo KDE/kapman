@@ -34,21 +34,21 @@ void Kapman::init() {
 
 void Kapman::goUp() {
 	m_askedXSpeed = 0;
-	m_askedYSpeed = -SPEED;
+	m_askedYSpeed = -s_speed;
 }
 
 void Kapman::goDown() {
 	m_askedXSpeed = 0;
-	m_askedYSpeed = SPEED;
+	m_askedYSpeed = s_speed;
 }
 
 void Kapman::goRight() {
-	m_askedXSpeed = SPEED;
+	m_askedXSpeed = s_speed;
 	m_askedYSpeed = 0;
 }
 
 void Kapman::goLeft() {
-	m_askedXSpeed = -SPEED;
+	m_askedXSpeed = -s_speed;
 	m_askedYSpeed = 0;
 }
 

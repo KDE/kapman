@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,7 +21,11 @@
 #include <QPointF>
 #include "time.h"
 
-qreal Ghost::speed = Ghost::SPEED;
+const qreal Ghost::LOW_SPEED_INC = 0.05;
+const qreal Ghost::MEDIUM_SPEED_INC = 0.1;
+const qreal Ghost::HIGH_SPEED_INC = 0.15;
+qreal Ghost::s_speed = Character::s_speed;
+qreal Ghost::s_speedIncrease = Ghost::MEDIUM_SPEED_INC;
 
 Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	// Initialize the ghosts attributes
@@ -28,7 +33,7 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : C
 	m_points = 200;
 	m_type = Element::GHOST;
 	m_state = Ghost::HUNTER;
-	m_speed = Ghost::speed;
+	m_speed = Ghost::s_speed;
 	// Initialize the random-number generator
 	srand(time(NULL));
 	// Makes the ghost move as soon as the game is created
@@ -165,13 +170,13 @@ void Ghost::setState(Ghost::GhostState p_state) {
 	// Modify the speed
 	if (m_state == Ghost::PREY) {
 		// Reduce the speed
-		m_speed = Ghost::speed / 2;
+		m_speed = Ghost::s_speed / 2;
 	}
 	else if (m_state == Ghost::HUNTER) {
 		// Reset the speed
-		m_speed = Ghost::speed;
+		m_speed = Ghost::s_speed;
 	}
-	emit(stateChanged(p_state));
+	emit(stateChanged());
 }
 
 void Ghost::doActionOnCollision(Kapman * p_kapman) {
@@ -183,7 +188,22 @@ void Ghost::doActionOnCollision(Kapman * p_kapman) {
 	}
 }
 
-void Ghost::increaseGhostsSpeed(qreal p_increase) {
-	Ghost::speed += p_increase;
+void Ghost::initGhostsSpeed() {
+	// Ghosts speed is characters speed
+	Ghost::s_speed = Character::getCharactersSpeed();
+	// Ghosts speed increase when level up
+	if(Ghost::s_speed == LOW_SPEED) {
+		s_speedIncrease = LOW_SPEED_INC;
+	}
+	if(Ghost::s_speed == MEDIUM_SPEED) {
+		s_speedIncrease = MEDIUM_SPEED_INC;
+	}
+	if(Ghost::s_speed == HIGH_SPEED) {
+		s_speedIncrease = HIGH_SPEED_INC;
+	}
 }
+
+void Ghost::increaseGhostsSpeed() {
+	Ghost::s_speed += Ghost::s_speedIncrease;
+}	
 

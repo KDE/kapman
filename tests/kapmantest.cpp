@@ -32,7 +32,7 @@ void KapmanTest::testKapman() {
 	QCOMPARE(kap.getY(), 100.0);
 	QCOMPARE(kap.getAskedXSpeed(), 0.0);
 	QCOMPARE(kap.getAskedYSpeed(), 0.0);
-	QCOMPARE(kap.getXSpeed(), Kapman::SPEED);		// The kapman goes right at the begining
+	QCOMPARE(kap.getXSpeed(), Character::getCharactersSpeed());		// The kapman goes right at the begining
 	QCOMPARE(kap.getYSpeed(), 0.0);
 }
 

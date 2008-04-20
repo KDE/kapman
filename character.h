@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -29,10 +30,15 @@ class Character : public Element {
 
 	public:
 
-		/** The Ghost moving speed */
- 		static const qreal SPEED;
+		/** The characters possible speed */
+		static const qreal LOW_SPEED;
+		static const qreal MEDIUM_SPEED;
+		static const qreal HIGH_SPEED;
 
 	protected:
+
+		/** The characters speed */
+ 		static qreal s_speed;
 
 		/** Character speed */
 		qreal m_xSpeed, m_ySpeed;
@@ -113,6 +119,17 @@ class Character : public Element {
 		 *	   half turn
 		 */
 		bool isInLineSight(Character * p_c);
+
+		/**
+		 * @return the characters speed
+		 */
+		static qreal getCharactersSpeed();
+
+		/**
+		 * Sets the characters speed
+		 * @param p_speed the speed to set
+		 */
+		static void setCharactersSpeed(const qreal p_speed);
 
 	protected:
 

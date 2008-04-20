@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoit Bessse <besse@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,11 +19,13 @@
 #ifndef __KAPMANMAINWINDOW_H
 #define __KAPMANMAINWINDOW_H
 
+#include "game.h"
+#include "gameview.h"
+
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
 #include <KDE/KScoreDialog>
-#include "game.h"
-#include "gameview.h"
+#include <KGameDifficulty>
 
 /**
  * This class represents a main window for Kapman
@@ -73,6 +76,11 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * Shows the highscores dialog
 		 */
 		void showHighscores();
+
+		/**
+		 * This slot manage the difficulty level changing
+		 */
+		void difficultyChanged();
 
 		/**
 		 * Closes the application

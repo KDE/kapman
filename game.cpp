@@ -1,5 +1,7 @@
 /*
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
+ * Copyright 2007-2008 Pierre-Benoit Besse <besse@gmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,12 +18,32 @@
  */
 
 #include "game.h"
+
 #include <KStandardDirs>
 
-Game::Game() : m_switchTimerCount(0), m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
+Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
+
+	// Init the ghosts speed considering the difficulty level
+	switch(p_level) {
+		case KGameDifficulty::Easy:
+			Character::setCharactersSpeed(Character::LOW_SPEED);
+			break;
+		case KGameDifficulty::Medium:
+			Character::setCharactersSpeed(Character::MEDIUM_SPEED);
+			break;
+		case KGameDifficulty::Hard:
+			Character::setCharactersSpeed(Character::HIGH_SPEED);
+			break;
+		default:
+			break;
+	}
+	// Initialize the ghosts speed and speed increase considering the characters speed
+	Ghost::initGhostsSpeed();
+	// Tells to the KGameDifficulty singleton that the game is not running
+	KGameDifficulty::setRunning(false);
 	
 	// Create the bonus
 	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, "chicken_test.svg", 100);
@@ -175,7 +197,6 @@ void Game::initCharactersPosition() {
 		m_isPaused = false;	
 		
 		// Initialize ghosts position and state
-		// TODO Mettre un attribut "initialPosition" dans chaque character, initialisé à partir du XML
 		m_ghostList[0]->setX(Cell::SIZE * 14);
 		m_ghostList[0]->setY(Cell::SIZE * 11.5);
 		m_ghostList[0]->setState(Ghost::HUNTER);
@@ -211,6 +232,8 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 	if(!m_isPaused && !m_timer->isActive()) {
 		m_timer->start();
 		emit(removeIntro());
+		// Tells to the KGameDifficulty singleton that the game now runs
+		KGameDifficulty::setRunning(true);
 	}
 	// Behaviour when the game has begun
 	switch (p_event->key()) {
@@ -239,7 +262,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			break;
 		case Qt::Key_K:
 			// Cheat code to get one more life
-			if (p_event->modifiers() == Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier) {
+			if (p_event->modifiers() == (Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier)) {
 				m_lives++;
 				m_isCheater = true;
 				emit(updatingInfos(LivesInfo));
@@ -339,6 +362,7 @@ void Game::winPoints(Element* p_element) {
 	// For each 10000 points we get a life more
 	if (m_points / 10000 > (m_points - p_element->getPoints()) / 10000) {
 		m_lives++;
+		emit(updatingInfos(LivesInfo));
 	}
 	// If the eaten element is an energyzer we change the ghosts state
 	if(p_element->getType() == Element::ENERGYZER) {
@@ -367,10 +391,10 @@ void Game::winPoints(Element* p_element) {
 void Game::nextLevel() {
 	// Increment the level
 	m_level++;
+	// Increase the ghosts speed
+	Ghost::increaseGhostsSpeed();
 	// Move all characters to their initial positions
 	initCharactersPosition();
-	// Increase the ghosts speed
-	Ghost::increaseGhostsSpeed(0.05);
 	// To update the score, level and lives labels
 	emit(updatingInfos(AllInfo));
 	// To reinit the maze items

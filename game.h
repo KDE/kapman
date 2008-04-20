@@ -18,13 +18,15 @@
 #ifndef __GAME_H
 #define __GAME_H
 
-#include <QTimer>
-#include <QKeyEvent>
-//#include <Phonon/MediaObject>
 #include "maze.h"
 #include "kapman.h"
 #include "ghost.h"
 #include "bonus.h"
+
+#include <QTimer>
+#include <QKeyEvent>
+//#include <Phonon/MediaObject>
+#include <KGameDifficulty>
 
 /**
  * This class represents the game manager
@@ -69,7 +71,7 @@ class Game : public QObject {
 		int m_lives;
 		
 		/** Player's points */
-		int m_points;
+		long m_points;
 
 		/** Current level */
 		int m_level;
@@ -94,8 +96,9 @@ class Game : public QObject {
 
 		/**
 		 * Creates a new Game instance
+		 * @param p_level the game level
 		 */
-		Game();
+		Game(KGameDifficulty::standardLevel p_level = KGameDifficulty::Medium);
 
 		/**
 		 * Deletes the Game instance
@@ -111,7 +114,12 @@ class Game : public QObject {
 		 * Pauses the game
 		 */
 		void pause();
-		
+
+		/**
+		 * Manage the game pause when 'P' key is pressed
+		 */
+		void doPause();
+
 		/**
 		 * @return the kapman model
 		 */
@@ -143,18 +151,13 @@ class Game : public QObject {
 		bool isCheater() const;
 
 		/**
-		 * Manage the game pause when 'P' key is pressed
-		 */
-		void doPause();
-
-		/**
 		 * @return the score
-		*/
+		 */
 		int getScore () const;
 
 		/**
 		 * @return the lifes
-		*/
+		 */
 		int getLives() const;
 
 		/**

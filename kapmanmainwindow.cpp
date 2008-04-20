@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoit Bessse <besse@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,20 +17,36 @@
  */
 
 #include "kapmanmainwindow.h"
+#include "gameview.h"
+
 #include <KActionCollection>
 #include <KDE/KStandardGameAction>
 #include <KMessageBox>
 #include <KLocalizedString>
-#include "gameview.h"
 
-KapmanMainWindow::KapmanMainWindow() : 
-		m_kScoreDialog(new KScoreDialog(KScoreDialog::Name | KScoreDialog::Level | KScoreDialog::Score, this)) {
+KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
 	initGame();
+
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
+	
+	// Initialize the KGameDifficulty singleton
+	KGameDifficulty::init(this, this, SLOT(difficultyChanged()));
+ 	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
+ 	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
+ 	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
+ 	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
+ 	// The default level
+ 	// TODO : Read this information in a config file
+ 	KGameDifficulty::setLevel(KGameDifficulty::Medium);
+
+	// KScoreDialog
+	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+	m_kScoreDialog->addField(KScoreDialog::Custom1, ki18n("Difficulty").toString(), "difficulty");
+	
 	setupGUI();
 
 	// Give the focus to the view
@@ -44,7 +61,7 @@ KapmanMainWindow::~KapmanMainWindow() {
 
 void KapmanMainWindow::initGame() {
 	// Create the game
-	m_game = new Game();
+	m_game = new Game(KGameDifficulty::level());
 	// connect the signal startnewgame to the newgame slot
 	connect(m_game, SIGNAL(startnewgame(bool)), this, SLOT(newGame(bool)));
 	// Create the view displaying the game scene
@@ -78,23 +95,23 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 		QString score("Your Score : ");
 		score += QString::number(m_game->getScore());
 		
-		// If the payer did not cheat, manage Highscores
-		if(!m_game->isCheater()) {
-			// Add the score to the highscores table
-			KScoreDialog::FieldInfo scoreInfo;
-			scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
-			scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
-			// If the new score is a highscore then display the highscore dialog
-			if (m_kScoreDialog->addScore(scoreInfo)) {
-				m_kScoreDialog->exec();
-			}
-		}
-		else {		// else, warn the player not to cheat again :)
-			score += "\nBut you cheated, no Highscore for you ;)";
-		}
-		
 		// Display the score informations
 		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());	
+		
+		// Add the score to the highscores table
+		KScoreDialog::FieldInfo scoreInfo;
+		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
+		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
+		scoreInfo[KScoreDialog::Custom1] = KGameDifficulty::levelString();
+		// If the new score is a highscore then display the highscore dialog
+		if (m_kScoreDialog->addScore(scoreInfo)) {
+			// If the payer did not cheat, manage Highscores
+			if(!m_game->isCheater()) {
+				m_kScoreDialog->exec();
+			} else {		// else, warn the player not to cheat again :)
+				KMessageBox::information(this, ki18n("You cheated, no Highscore for you ;)").toString(), ki18n("Cheater !").toString());	
+			}
+		}
 		
 		// Start a new game
 		delete m_game;
@@ -107,6 +124,15 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 
 void KapmanMainWindow::showHighscores() {
  	m_kScoreDialog->exec();
+}
+
+void KapmanMainWindow::difficultyChanged() {
+	// Stop the current game and start a new game
+	delete m_game;
+	delete m_view;
+	initGame();
+	// Give the focus to the view
+	m_view->setFocus();
 }
 
 void KapmanMainWindow::close() {

@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -85,7 +86,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 		addItem(m_ghostItemList[i]);
 		m_ghostItemList[i]->setZValue(1);
 		// Connect each item and its model to manage state changes
-		connect(ghostModel, SIGNAL(stateChanged(Ghost::GhostState)),m_ghostItemList[i] , SLOT(updateState(Ghost::GhostState)));
+		connect(ghostModel, SIGNAL(stateChanged()), m_ghostItemList[i], SLOT(updateState()));
 	}
 	
 	// Start labels
@@ -107,7 +108,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 		
 	//Lives
 	addItem(m_livesLabel);
-	m_livesLabel->setPos(this->width() -m_livesLabel->boundingRect().width() , this->height() - Cell::SIZE- m_livesLabel->boundingRect().height()/2);
+	m_livesLabel->setPos(this->width() -m_livesLabel->boundingRect().width() - 20 , this->height() - Cell::SIZE- m_livesLabel->boundingRect().height()/2);
 	// Ensure that the Label will overcome all items
 	m_livesLabel->setZValue(3);
 
