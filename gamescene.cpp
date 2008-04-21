@@ -63,7 +63,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	
 	// Add all the items
 	// Maze
-	m_mazeItem = new MazeItem(KStandardDirs::locate("appdata", "kapmanMaze.svg"));
+	m_mazeItem = new MazeItem(KStandardDirs::locate("appdata", "maze.svg"));
 	addItem(m_mazeItem);
 	m_mazeItem->setZValue(-1);
 	

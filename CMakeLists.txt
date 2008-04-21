@@ -44,7 +44,7 @@ set(kapmanData
 	images/ghostpink.svg
 	images/ghostred.svg
 	images/kapmanAnimTest.svg
-	images/kapmanMaze.svg
+	images/maze.svg
 	images/pill_test.svg
 	images/pizza_test.svg
 	images/spider_test.svg
