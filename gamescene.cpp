@@ -17,6 +17,7 @@
  */
 
 #include "gamescene.h"
+#include <QPixmapCache>
 #include <KStandardDirs>
 #include <KLocalizedString>
 #include "cell.h"
@@ -24,6 +25,7 @@
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	setItemIndexMethod(NoIndex);
+	QPixmapCache::setCacheLimit(32768);
 
 	// Create the 'PAUSE' label
 	m_pauseLabel = new QGraphicsTextItem( ki18n("PAUSED").toString() );
