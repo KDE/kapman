@@ -45,7 +45,6 @@ KapmanMainWindow::KapmanMainWindow() {
 
 	// KScoreDialog
 	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
-	m_kScoreDialog->addField(KScoreDialog::Custom1, ki18n("Difficulty").toString(), "difficulty");
 	
 	setupGUI();
 }
