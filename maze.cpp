@@ -1,5 +1,6 @@
 /*
  * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,9 +17,14 @@
  */
 
 #include "maze.h"
+#include "mazeparser.h"
+
 #include <KDebug>
 #include <KStandardDirs>
-#include "mazeparser.h"
+
+#include <math.h>
+
+const QPoint Maze::GHOST_RESURRECT_CELL = QPoint(13, 14);
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 	MazeParser mazeParser(this);
@@ -50,7 +56,7 @@ void Maze::init(int p_nbRows, int p_nbColumns) {
 
 void Maze::setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element) {
 	if (p_row < 0 || p_row >= m_nbRows || p_column < 0 || p_column >= m_nbColumns) {
-		kDebug() << "Bad maze coordinates";
+		kError() << "Bad maze coordinates";
 	}
 	m_cells[p_row][p_column].setType(p_type);
 	m_cells[p_row][p_column].setElement(p_element);
@@ -71,12 +77,122 @@ void Maze::resetNbElem() {
 	m_nbElem = m_totalNbElem;
 }
 
+QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) {
+	QList<QPoint> path;
+	QList<QPoint> openList;
+	QList<QPoint> closedList;
+	QPoint currentCell;
+	QPoint tmpCell;
+	int lowestCost;
+	int icurrent = 0;
+	int oldSize = 0;
+
+	// Initialize the starting cell
+	m_cells[p_row][p_column].setCost(abs(Maze::GHOST_RESURRECT_CELL.y() - p_row) + abs(Maze::GHOST_RESURRECT_CELL.x() - p_column));
+	// Add the starting cell to the openList
+	openList.append(QPoint(p_column, p_row));
+	// While the closed list does not contain the target cell
+	while (!closedList.contains(QPoint(Maze::GHOST_RESURRECT_CELL.x(), Maze::GHOST_RESURRECT_CELL.y())) && openList.size() != oldSize) {
+		// Look for the lowest cost cell on the open list
+		lowestCost = 1000;
+		for (int i = 0; i < openList.size(); i++) {
+			if (m_cells[openList[i].y()][openList[i].x()].getCost() < lowestCost) {
+				lowestCost = m_cells[openList[i].y()][openList[i].x()].getCost();
+				currentCell = openList[i];
+				icurrent = i;
+			}
+		}
+		// Switch this cell to the closed list
+		closedList.append(currentCell);
+		openList.removeAt(icurrent);
+		oldSize = openList.size();
+		// For each of the 4 cells adjacent to the current node
+		// Left
+		tmpCell.setX(currentCell.x() - 1);
+		tmpCell.setY(currentCell.y());
+		if (m_cells[tmpCell.y()][tmpCell.x()].getType() != Cell::WALL) {
+			// If the cell is not in the closed list or the open list
+			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
+				// Initialize the cell
+				m_cells[tmpCell.y()][tmpCell.x()].setCost(
+						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
+				// Add it to the open list
+				openList.append(tmpCell);
+			}
+		}
+		// Right
+		tmpCell.setX(currentCell.x() + 1);
+		tmpCell.setY(currentCell.y());
+		if (m_cells[tmpCell.y()][tmpCell.x()].getType() != Cell::WALL) {
+			// If the cell is not in the closed list or the open list
+			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
+				// Initialize the cell
+				m_cells[tmpCell.y()][tmpCell.x()].setCost(
+						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
+				// Add it to the open list
+				openList.append(tmpCell);
+			}
+		}
+		// Top
+		tmpCell.setX(currentCell.x());
+		tmpCell.setY(currentCell.y() - 1);
+		if (m_cells[tmpCell.y()][tmpCell.x()].getType() != Cell::WALL) {
+			// If the cell is not in the closed list or the open list
+			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
+				// Initialize the cell
+				m_cells[tmpCell.y()][tmpCell.x()].setCost(
+						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
+				// Add it to the open list
+				openList.append(tmpCell);
+			}
+		}
+		// Bottom
+		tmpCell.setX(currentCell.x());
+		tmpCell.setY(currentCell.y() + 1);
+		if (m_cells[tmpCell.y()][tmpCell.x()].getType() != Cell::WALL) {
+			// If the cell is not in the closed list or the open list
+			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
+				// Initialize the cell
+				m_cells[tmpCell.y()][tmpCell.x()].setCost(
+						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
+				// Add it to the open list
+				openList.append(tmpCell);
+			}
+		}
+	}
+	if (oldSize == openList.size()) {
+		kError() << "Path not found";
+	}
+	// Save the path : from the target cell, go from each cell to its parent cell until reaching the starting cell
+	for (Cell* cell = &m_cells[Maze::GHOST_RESURRECT_CELL.y()][Maze::GHOST_RESURRECT_CELL.x()];
+			cell->getParent() != &m_cells[p_row][p_column]; cell = cell->getParent()) {
+		path.prepend(getCoords(cell));
+	}
+
+	return path;
+}
+
 Cell Maze::getCell(int p_row, int p_column) {
 	if (p_row < 0 || p_row >= m_nbRows ||
 		p_column < 0 || p_column >= m_nbColumns) {
-		kDebug() << "Bad maze coordinates";
+		kError() << "Bad maze coordinates";
 	}
 	return m_cells[p_row][p_column];
+}
+
+QPoint Maze::getCoords(Cell* p_cell) const {
+	for (int i = 0; i < m_nbRows; i++) {
+		for (int j = 0; j < m_nbColumns; j++) {
+			if (&m_cells[i][j] == p_cell) {
+				return QPoint(j, i);
+			}
+		}
+	}
+	return QPoint();
 }
 
 int Maze::getRowFromY(qreal p_y) {

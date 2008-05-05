@@ -18,9 +18,9 @@
 
 #include "character.h"
 
-const qreal Character::LOW_SPEED = 2.5;
-const qreal Character::MEDIUM_SPEED = 3.0;
-const qreal Character::HIGH_SPEED = 3.5;
+const qreal Character::LOW_SPEED = 3.75;
+const qreal Character::MEDIUM_SPEED = 4.5;
+const qreal Character::HIGH_SPEED = 5.25;
 
 qreal Character::s_speed = Character::MEDIUM_SPEED;
 

@@ -19,11 +19,9 @@
 #include "ghostitem.h"
 
 GhostItem::GhostItem(Ghost* p_model, const QString & p_imagePath) : CharacterItem (p_model, p_imagePath) {
-	
 }
 
 GhostItem::~GhostItem() {
-	
 }
 
 void GhostItem::update(qreal p_x, qreal p_y) {
@@ -36,13 +34,19 @@ void GhostItem::update(qreal p_x, qreal p_y) {
 }
 
 void GhostItem::updateState() {
-	if( ((Ghost*)getModel())->getState() == Ghost::HUNTER) {
-		setElementId("ghost_hunter");
-	}
-	else if(((Ghost*)getModel())->getState() == Ghost::WHITE_PREY) {
-		setElementId("ghost_prey_white");
-	}
-	else {
-		setElementId("ghost_prey");
+	switch (((Ghost*)getModel())->getState()) { 
+		case Ghost::HUNTER:
+			setElementId("ghost_hunter");
+			break;
+		case Ghost::PREY:
+			setElementId("ghost_prey");
+			break;
+		case Ghost::WHITE_PREY:
+			setElementId("ghost_prey_white");
+			break;
+		case Ghost::EATEN:
+			setElementId("ghost_eaten");
+			break;
 	}
 }
+

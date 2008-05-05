@@ -19,6 +19,7 @@
 #define __CELL_H
 
 #include <QtGlobal>
+
 class Element;
 
 /**
@@ -45,6 +46,12 @@ class Cell {
 
 		/** The cell's element */
 		Element * m_element;
+
+		/** Cost used in A* pathfinding algorithm : lower is the cost, closer to the target cell is this cell */
+		int m_cost;
+
+		/** Parent node used in A* pathfinding algorithm : the cell which enables to go to this cell */
+		Cell* m_parent;
 
 	public:
 
@@ -79,6 +86,26 @@ class Cell {
 		 * @param p_item the new item to set
 		 */
 		void setElement(Element* p_element);
+
+		/**
+		 * @return the cell cost for A* pathfinding algorithm
+		 */
+		int getCost() const;
+
+		/**
+		 * @param p_cost the new cost of the cell for A* pathfinding algorithm
+		 */
+		void setCost(const int p_cost);
+
+		/**
+		 * @return the cell parent for A* pathfinding algorithm
+		 */
+		Cell* getParent() const;
+
+		/**
+		 * @param p_parent the new parent of the cell for A* pathfinding algorithm
+		 */
+		void setParent(Cell* p_parent);
 };
 
 #endif

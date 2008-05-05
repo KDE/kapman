@@ -35,7 +35,8 @@ class Ghost : public Character {
 		enum GhostState {
 			HUNTER = 0,
 			PREY = 1,
-			WHITE_PREY = 2
+			WHITE_PREY = 2,
+			EATEN = 3
 		};
 
 	private:
@@ -59,6 +60,9 @@ class Ghost : public Character {
 
 		/** The ghost speed (different from Ghost::s_speed since m_speed can change function of the ghost state) */
 		qreal m_speed;
+
+		/** A list of cells to go to the camp from the current cell */
+		QList<QPoint> m_pathToCamp;
 
 	public:
 

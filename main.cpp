@@ -30,7 +30,6 @@ int main(int argc, char** argv) {
 	about.addAuthor(ki18n("Alexandre Galinier"), ki18n("Developer"), "alex.galinier@gmail.com", 0);
 	about.addAuthor(ki18n("Thomas Gallinari"), ki18n("Developer"), "tg8187@yahoo.fr", 0);
 	about.addAuthor(ki18n("Nathalie Liesse"), ki18n("Developer"), "nathalie.liesse@gmail.com", 0);
-	about.addAuthor(ki18n("Sovanramy Var"), ki18n("Artist"), "mastasushi@gmail.com", 0);
 	// Command line arguments
 	KCmdLineArgs::init(argc, argv, &about);
 	// Create the application

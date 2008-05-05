@@ -19,6 +19,7 @@
 #include "gamescene.h"
 
 GameView::GameView(Game * p_game) : QGraphicsView(new GameScene(p_game)) {
+	setFocusPolicy(Qt::StrongFocus);
 	// Connect the key events to the game manager
 	connect(this, SIGNAL(keyPressed(QKeyEvent*)), p_game, SLOT(keyPressEvent(QKeyEvent*)));
 }

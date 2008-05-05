@@ -21,6 +21,8 @@
 
 #include <KStandardDirs>
 
+const int Game::FPS = 40;
+
 Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
 	m_maze = new Maze();
@@ -65,7 +67,7 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_is
 
 	// Start the timer to move the characters regulary
 	m_timer = new QTimer(this);
-	m_timer->setInterval(15); // 60 FPS
+	m_timer->setInterval(int(1000 / Game::FPS));
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
 	m_timer->start();
 	
@@ -267,6 +269,10 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 				m_isCheater = true;
 				emit(updatingInfos(LivesInfo));
 			}
+		case Qt::Key_G:
+			// Debug ghost pathfinding
+			m_ghostList[0]->setState(Ghost::EATEN);
+			break;
 		default:
 			break;
 	}
@@ -312,8 +318,8 @@ void Game::update() {
 	curKapmanRow = m_maze->getRowFromY(m_kapman->getY());
 	curKapmanCol = m_maze->getColFromX(m_kapman->getX());
 	
-	for(int i=0; i<m_ghostList.size(); i++) {
-		if(m_ghostList[i]->isInLineSight(m_kapman)) {
+	for(int i = 0; i < m_ghostList.size(); i++) {
+		if(m_ghostList[i]->getState() == Ghost::HUNTER && m_ghostList[i]->isInLineSight(m_kapman)) {
 			m_ghostList[i]->updateMove(curKapmanRow, curKapmanCol);
 		}
 		else {
@@ -345,9 +351,10 @@ void Game::kapmanDeath() {
 
 void Game::ghostDeath(Ghost* p_ghost) {
 	m_nbEatenGhosts++;
-	p_ghost->setState(Ghost::HUNTER);
-	p_ghost->setX(Cell::SIZE * 14);
-	p_ghost->setY(Cell::SIZE * 14.5);
+//	p_ghost->setState(Ghost::HUNTER);
+	p_ghost->setState(Ghost::EATEN);
+//	p_ghost->setX(Cell::SIZE * 14);
+//	p_ghost->setY(Cell::SIZE * 14.5);
 	winPoints(p_ghost);
 }
 
@@ -418,8 +425,10 @@ void Game::changeGhostsToPrey() {
 }
 
 void Game::changeGhostsToHunter() {
-	for (int i=0; i<m_ghostList.size(); i++) {
-		m_ghostList[i]->setState(Ghost::HUNTER);
+	for (int i = 0; i < m_ghostList.size(); i++) {
+		if (m_ghostList[i]->getState() != Ghost::EATEN) {
+			m_ghostList[i]->setState(Ghost::HUNTER);
+		}
 	}
 }
 

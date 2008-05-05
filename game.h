@@ -37,6 +37,9 @@ class Game : public QObject {
 
 	private :
 
+		/** Number of FPS */
+		static const int FPS;
+
 		/** Game timer */
 		QTimer* m_timer;
 		

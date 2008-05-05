@@ -48,9 +48,6 @@ KapmanMainWindow::KapmanMainWindow() {
 	m_kScoreDialog->addField(KScoreDialog::Custom1, ki18n("Difficulty").toString(), "difficulty");
 	
 	setupGUI();
-
-	// Give the focus to the view
-	m_view->setFocus();
 }
 
 KapmanMainWindow::~KapmanMainWindow() {
@@ -118,8 +115,6 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 		delete m_view;
 		initGame();
 	}
-	// Give the focus to the view
-	m_view->setFocus();
 }
 
 void KapmanMainWindow::showHighscores() {
@@ -131,8 +126,6 @@ void KapmanMainWindow::difficultyChanged() {
 	delete m_game;
 	delete m_view;
 	initGame();
-	// Give the focus to the view
-	m_view->setFocus();
 }
 
 void KapmanMainWindow::close() {
