@@ -96,10 +96,10 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());	
 		
 		// Add the score to the highscores table
+		m_kScoreDialog->setConfigGroup(I18N_NOOP(KGameDifficulty::levelString()));
 		KScoreDialog::FieldInfo scoreInfo;
 		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
 		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
-		scoreInfo[KScoreDialog::Custom1] = KGameDifficulty::levelString();
 		// If the new score is a highscore then display the highscore dialog
 		if (m_kScoreDialog->addScore(scoreInfo)) {
 			// If the payer did not cheat, manage Highscores
