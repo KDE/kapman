@@ -18,10 +18,11 @@
 #ifndef _KAPMAN_ITEM_H
 #define _KAPMAN_ITEM_H
 
-#include <QTimeLine>
 #include "characteritem.h"
 #include "kapman.h"
 
+#include <QTimeLine>
+#include <QTimer>
 
 /**
  * This class manage the display of the kapman
@@ -32,8 +33,18 @@ class KapmanItem : public CharacterItem {
 
 	private:
 
+		/** Number of frames to animate the kapman */
+		static const int NB_FRAMES;
+
+		/** Timer used to animate the kapman */
 		QTimeLine * m_animationTimer;
-		
+
+		/** Timer used to make the kapman blink */
+		QTimer* m_blinkTimer;
+
+		/** Number of ticks of the blink timer */
+		int m_nbBlinks;
+
 	public:
 
 		/**
@@ -67,6 +78,16 @@ class KapmanItem : public CharacterItem {
 		 * @param p_y the new y coordinate
 		 */
 		void update(qreal p_x, qreal p_y);
+
+		/**
+		 * Starts the blink timer
+		 */
+		void startBlinking();
+
+		/**
+		 * Makes the kapman blink when it is eaten
+		 */
+		void blink();
 };
 
 #endif

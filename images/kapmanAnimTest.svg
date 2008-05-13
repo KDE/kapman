@@ -472,5 +472,18 @@
        sodipodi:start="0.57595865"
        sodipodi:end="5.7246799"
        inkscape:label="#path3217" />
+    <path
+       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:0;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+       id="kapman_blink"
+       sodipodi:cx="18.624687"
+       sodipodi:cy="21.564716"
+       sodipodi:rx="14.20527"
+       sodipodi:ry="15.783633"
+       d="M 30.538229,30.161099 A 14.20527,15.783633 0 1 1 30.671439,13.200664 L 18.624687,21.564716 z"
+       transform="matrix(1.3104771,0,0,1.0898267,-138.67204,273.88359)"
+       sodipodi:start="0.57595865"
+       sodipodi:end="5.7246799"
+       inkscape:label="#path3217" />
   </g>
 </svg>

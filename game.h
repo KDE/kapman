@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or
@@ -51,7 +52,7 @@ class Game : public QObject {
 		
 		/** Counts every switching of the ghosts (to stop after the fourth) */
 		int m_switchTimerCount;
-		
+
 		/** Bonus Timer */
 		QTimer* m_bonusTimer;
 		
@@ -212,6 +213,11 @@ class Game : public QObject {
 		 * Manages the loss of a life
 		 */
 		void kapmanDeath();
+
+		/**
+		 * Resumes the game after the kapman death
+		 */
+		void resumeAfterKapmanDeath();
 		
 		/**
 		 * Manages the death of a ghost

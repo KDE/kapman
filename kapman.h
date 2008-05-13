@@ -88,15 +88,15 @@ class Kapman : public Character {
 		qreal getAskedYSpeed() const;
 
 		/**
-		 * Manages the loss of a life
-		 */
-		void loseLife();
-
-		/**
 		 * Manages the points won
 		 * @param p_element reference to the element eaten
 		 */
 		void winPoints(Element* p_element);
+
+		/**
+		 * Manages the loss of a life
+		 */
+		void loseLife();
 		
 		/**
 		 * Emits a signal to Kapmanitem in order to manage collisions
@@ -132,6 +132,11 @@ class Kapman : public Character {
 		 * @param p_element reference to the element eaten
 		 */
 		void sWinPoints(Element* p_element);
+
+		/**
+		 * Emitted when the kapman loses a life
+		 */
+		void lifeLost();
 		
 		/**
 		 * Signals to Kapmanitem that the game has been updated

@@ -1,7 +1,7 @@
 /*
- * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
- * Copyright 2007-2008 Pierre-Benoit Besse <besse@gmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoit Besse <besse@gmail.com>
+ * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -87,7 +87,7 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_is
 	m_bonusTimer->setInterval(10000);
 	m_bonusTimer->setSingleShot(true);
 	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(disableDisplayBonus()));
-	
+
 	// Init the characters
 	initCharactersPosition();
 
@@ -333,16 +333,22 @@ void Game::update() {
 }
 
 void Game::kapmanDeath() {
-	m_lives --;
+	m_lives--;
 	emit(updatingInfos(LivesInfo));
 	emit(sDisableDisplayBonus());
-	
-	
+	// Make the Kapman blink
+	m_kapman->loseLife();
+	// Make a 2 seconds pause while the kapman is blinking
+	pause();
+	QTimer::singleShot(2500, this, SLOT(resumeAfterKapmanDeath()));
+}
+
+void Game::resumeAfterKapmanDeath() {
+	start();
 	// If their is no lives left, we start a new game
-	if(m_lives == 0) {
+	if (m_lives == 0) {
 		emit(startnewgame(true));
-	}
-	else{
+	} else {
 		emit(sDisplayLabel(false));
 		// Move all characters to their initial positions
 		initCharactersPosition();

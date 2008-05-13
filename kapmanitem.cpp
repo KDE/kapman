@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Nathalie Liesse <nathalie.liesse@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
@@ -22,8 +23,11 @@
 
 #include <QGraphicsScene>
 
+const int KapmanItem::NB_FRAMES = 32;
+
 KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
+	connect(p_model, SIGNAL(lifeLost()), this, SLOT(startBlinking()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 	
 	m_animationTimer = new QTimeLine();
@@ -32,10 +36,15 @@ KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : Character
 	m_animationTimer->setLoopCount(0);
 	m_animationTimer->setUpdateInterval(15);
 	m_animationTimer->start();
+
+	m_blinkTimer = new QTimer(this);
+	m_blinkTimer->setInterval(500);
+	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
 }
 
 KapmanItem::~KapmanItem() {
 	delete m_animationTimer;
+	delete m_blinkTimer;
 }
 
 void KapmanItem::updateDirection() {
@@ -82,10 +91,30 @@ void KapmanItem::update(qreal p_x, qreal p_y) {
 	qreal y = p_y - boundingRect().height() / 2;
 	
 	qreal current = m_animationTimer->currentValue();
-	int currentFrame = (int)(current * 31);
+	int currentFrame = (int)(current * (NB_FRAMES - 1));
 	
 	setElementId(QString("kapman_") += QString::number(currentFrame));
 	
 	// Updates the view coordinates
 	setPos(x, y);
 }
+
+void KapmanItem::startBlinking() {
+	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+	m_nbBlinks = 0;
+	m_blinkTimer->start();
+}
+
+void KapmanItem::blink() {
+	m_nbBlinks++;
+	if (m_nbBlinks % 2 == 0) {
+		setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+	} else {
+		setElementId("kapman_blink");
+	}
+	// Make the kapman blink 2 times (4 ticks)
+	if (m_nbBlinks == 4) {
+		m_blinkTimer->stop();
+	}
+}
+
