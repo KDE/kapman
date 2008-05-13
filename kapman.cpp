@@ -137,8 +137,8 @@ void Kapman::winPoints(Element* p_element) {
 	emit(sWinPoints(p_element));
 }
 
-void Kapman::loseLife() {
-	emit(lifeLost());
+void Kapman::die() {
+	emit(eaten());
 }
 
 void Kapman::emitGameUpdated() {

@@ -91,6 +91,11 @@ class Character : public Element {
 		void move();
 
 		/**
+		 * Manages the character death (essentially blinking)
+		 */
+		void die();
+
+		/**
 		 * @return the x speed value
 		 */
 		qreal getXSpeed() const;
@@ -148,6 +153,14 @@ class Character : public Element {
 		 * Moves the character on its current cell center
 		 */
 		void moveOnCenter();
+
+	signals:
+
+		/**
+		 * Emitted when the character is eaten
+		 */
+		void eaten();
+
 };
 
 #endif

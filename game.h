@@ -44,15 +44,6 @@ class Game : public QObject {
 		/** Game timer */
 		QTimer* m_timer;
 		
-		/** This timer only starts the m_switchTimer (when ghosts vulnerable time is nearly over) */
-		QTimer* m_startSwitchingTimer;
-		
-		/** This timer makes all ghosts switch display */
-		QTimer* m_switchTimer;
-		
-		/** Counts every switching of the ghosts (to stop after the fourth) */
-		int m_switchTimerCount;
-
 		/** Bonus Timer */
 		QTimer* m_bonusTimer;
 		
@@ -182,16 +173,6 @@ class Game : public QObject {
 		void initCharactersPosition();
 		
 		/**
-		 * Change all ghost's state to 'prey'
-		 */
-		void changeGhostsToPrey();
-		
-		/**
-		 * Makes all ghosts go back to 'hunter' state
-		 */
-		void changeGhostsToHunter();
-		
-		/**
 		 * Update bonus
 		 */
 		void updateBonus();
@@ -234,16 +215,6 @@ class Game : public QObject {
 		 * Start the next level
 		 */
 		void nextLevel();
-		
-		/**
-		 * Start the switching of ghosts (when their vulnerable time is nearly over)
-		 */
-		void startGhostsSwitching();
-		
-		/**
-		 * Switch the ghosts state
-		 */
-		void switchGhosts();
 		
 		/**
 		 * Disable the display of the bonus

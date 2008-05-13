@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -41,10 +41,14 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : C
 	srand(time(NULL));
 	// Makes the ghost move as soon as the game is created
 	goLeft();
+	// Prey timer
+	m_preyTimer = new QTimer(this);
+	m_preyTimer->setInterval(10000);
+	connect(m_preyTimer, SIGNAL(timeout()), this, SLOT(endPreyState()));
 }
 
 Ghost::~Ghost() {
-
+	delete m_preyTimer;
 }
 
 void Ghost::goUp() {
@@ -200,11 +204,15 @@ void Ghost::setState(Ghost::GhostState p_state) {
 	// Modify the speed
 	switch (m_state) {
 		case Ghost::PREY:
-		case Ghost::WHITE_PREY:
 			m_speed = Ghost::s_speed / 2;
+			m_preyTimer->start();
 			break;
 		case HUNTER:
 		case EATEN:
+			// Stop the prey timer if active
+			if (m_preyTimer->isActive()) {
+				m_preyTimer->stop();
+			}
 			m_speed = Ghost::s_speed;
 			break;
 	}
@@ -217,7 +225,6 @@ void Ghost::doActionOnCollision(Kapman * p_kapman) {
 			emit(lifeLost());
 			break;
 		case Ghost::PREY:
-		case Ghost::WHITE_PREY:
 			emit(ghostEaten(this));
 			break;
 		case Ghost::EATEN:
@@ -244,4 +251,8 @@ void Ghost::initGhostsSpeed() {
 void Ghost::increaseGhostsSpeed() {
 	Ghost::s_speed += Ghost::s_speedIncrease;
 }	
+
+void Ghost::endPreyState() {
+	setState(Ghost::HUNTER);
+}
 

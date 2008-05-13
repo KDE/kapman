@@ -19,9 +19,14 @@
 #include "ghostitem.h"
 
 GhostItem::GhostItem(Ghost* p_model, const QString & p_imagePath) : CharacterItem (p_model, p_imagePath) {
+	connect(p_model, SIGNAL(stateChanged()), this, SLOT(updateState()));
+	m_startBlinkingTimer = new QTimer(this);
+	m_startBlinkingTimer->setInterval(7500);
+	connect(m_startBlinkingTimer, SIGNAL(timeout()), this, SLOT(startBlinking()));
 }
 
 GhostItem::~GhostItem() {
+	delete m_startBlinkingTimer;
 }
 
 void GhostItem::update(qreal p_x, qreal p_y) {
@@ -34,19 +39,33 @@ void GhostItem::update(qreal p_x, qreal p_y) {
 }
 
 void GhostItem::updateState() {
+	// Stop timers
+	if (m_startBlinkingTimer->isActive()) {
+		m_startBlinkingTimer->stop();
+	}
+	if (m_blinkTimer->isActive()) {
+		m_blinkTimer->stop();
+	}
 	switch (((Ghost*)getModel())->getState()) { 
-		case Ghost::HUNTER:
-			setElementId("ghost_hunter");
-			break;
 		case Ghost::PREY:
 			setElementId("ghost_prey");
+			m_startBlinkingTimer->start();
 			break;
-		case Ghost::WHITE_PREY:
-			setElementId("ghost_prey_white");
+		case Ghost::HUNTER:
+			setElementId("ghost_hunter");
 			break;
 		case Ghost::EATEN:
 			setElementId("ghost_eaten");
 			break;
+	}
+}
+
+void GhostItem::blink() {
+	CharacterItem::blink();
+	if (m_nbBlinks % 2 == 0) {
+		setElementId("ghost_prey");
+	} else {
+		setElementId("ghost_prey_white");
 	}
 }
 

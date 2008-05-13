@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,11 +17,12 @@
  */
 
 #include "gamescene.h"
+#include "cell.h"
+#include "bonus.h"
+
 #include <QPixmapCache>
 #include <KStandardDirs>
 #include <KLocalizedString>
-#include "cell.h"
-#include "bonus.h"
 
 GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	setItemIndexMethod(NoIndex);
@@ -87,8 +88,6 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 		m_ghostItemList.append(new GhostItem(ghostModel, KStandardDirs::locate("appdata", ghostModel->getImageURL())));
 		addItem(m_ghostItemList[i]);
 		m_ghostItemList[i]->setZValue(1);
-		// Connect each item and its model to manage state changes
-		connect(ghostModel, SIGNAL(stateChanged()), m_ghostItemList[i], SLOT(updateState()));
 	}
 	
 	// Start labels

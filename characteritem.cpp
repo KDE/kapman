@@ -18,11 +18,14 @@
 #include "characteritem.h"
 
 CharacterItem::CharacterItem(Character* p_model, const QString & p_imagePath) : ElementItem (p_model, p_imagePath) {
-	
+	connect(p_model, SIGNAL(eaten()), this, SLOT(startBlinking()));
+	m_blinkTimer = new QTimer(this);
+	m_blinkTimer->setInterval(500);
+	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
 }
 
 CharacterItem::~CharacterItem() {
-	
+	delete m_blinkTimer;
 }
 
 void CharacterItem::update(qreal p_x, qreal p_y) {
@@ -33,3 +36,13 @@ void CharacterItem::update(qreal p_x, qreal p_y) {
 	// Updates the view coordinates
 	setPos(x, y);
 }
+
+void CharacterItem::startBlinking() {
+	m_nbBlinks = 0;
+	m_blinkTimer->start();
+}
+
+void CharacterItem::blink() {
+	m_nbBlinks++;
+}
+

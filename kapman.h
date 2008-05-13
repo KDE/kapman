@@ -94,9 +94,9 @@ class Kapman : public Character {
 		void winPoints(Element* p_element);
 
 		/**
-		 * Manages the loss of a life
+		 * Implements the Character function
 		 */
-		void loseLife();
+		void die();
 		
 		/**
 		 * Emits a signal to Kapmanitem in order to manage collisions
@@ -133,11 +133,6 @@ class Kapman : public Character {
 		 */
 		void sWinPoints(Element* p_element);
 
-		/**
-		 * Emitted when the kapman loses a life
-		 */
-		void lifeLost();
-		
 		/**
 		 * Signals to Kapmanitem that the game has been updated
 		 */

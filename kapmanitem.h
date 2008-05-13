@@ -39,12 +39,6 @@ class KapmanItem : public CharacterItem {
 		/** Timer used to animate the kapman */
 		QTimeLine * m_animationTimer;
 
-		/** Timer used to make the kapman blink */
-		QTimer* m_blinkTimer;
-
-		/** Number of ticks of the blink timer */
-		int m_nbBlinks;
-
 	public:
 
 		/**
@@ -80,12 +74,12 @@ class KapmanItem : public CharacterItem {
 		void update(qreal p_x, qreal p_y);
 
 		/**
-		 * Starts the blink timer
+		 * Implements the CharacterItem method
 		 */
 		void startBlinking();
 
 		/**
-		 * Makes the kapman blink when it is eaten
+		 * Implements the CharacterItem method
 		 */
 		void blink();
 };

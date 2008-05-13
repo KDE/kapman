@@ -50,6 +50,10 @@ void Character::move() {
 	emit(moved(m_x, m_y));
 }
 
+void Character::die() {
+	emit(eaten());
+}
+
 /** Accessors */
 
 qreal Character::getXSpeed() const {

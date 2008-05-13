@@ -21,12 +21,22 @@
 #include "elementitem.h"
 #include "character.h"
 
+#include <QTimer>
+
 /**
  * This class is the graphical representation of a character
  */
 class CharacterItem : public ElementItem {
 
 	Q_OBJECT
+
+	protected:
+
+		/** Timer used to make the character blink */
+		QTimer* m_blinkTimer;
+
+		/** Number of ticks of the blink timer */
+		int m_nbBlinks;
 
 	public:
 
@@ -50,6 +60,16 @@ class CharacterItem : public ElementItem {
 		 * @param p_y the new y-coordinate
 		 */
 		virtual void update(qreal p_x, qreal p_y);
+	
+		/**
+		 * Starts the character blinking
+		 */
+		virtual void startBlinking();
+
+		/**
+		 * Makes the character blink
+		 */
+		virtual void blink();
 };
 
 #endif

@@ -29,6 +29,11 @@ class GhostItem : public CharacterItem {
 
 	Q_OBJECT
 
+	private:
+
+		/** Timer to start blinking */
+		QTimer* m_startBlinkingTimer;
+
 	public:
 
 		/**
@@ -56,6 +61,11 @@ class GhostItem : public CharacterItem {
 		 * Update the ghostItem image with its model's state
 		 */
 		void updateState();
+
+		/**
+		 * Implements the CharacterItem method
+		 */
+		void blink();
 };
 
 #endif

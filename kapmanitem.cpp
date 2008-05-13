@@ -27,7 +27,6 @@ const int KapmanItem::NB_FRAMES = 32;
 
 KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
-	connect(p_model, SIGNAL(lifeLost()), this, SLOT(startBlinking()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 	
 	m_animationTimer = new QTimeLine();
@@ -36,15 +35,10 @@ KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : Character
 	m_animationTimer->setLoopCount(0);
 	m_animationTimer->setUpdateInterval(15);
 	m_animationTimer->start();
-
-	m_blinkTimer = new QTimer(this);
-	m_blinkTimer->setInterval(500);
-	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
 }
 
 KapmanItem::~KapmanItem() {
 	delete m_animationTimer;
-	delete m_blinkTimer;
 }
 
 void KapmanItem::updateDirection() {
@@ -101,12 +95,11 @@ void KapmanItem::update(qreal p_x, qreal p_y) {
 
 void KapmanItem::startBlinking() {
 	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
-	m_nbBlinks = 0;
-	m_blinkTimer->start();
+	CharacterItem::startBlinking();
 }
 
 void KapmanItem::blink() {
-	m_nbBlinks++;
+	CharacterItem::blink();
 	if (m_nbBlinks % 2 == 0) {
 		setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
 	} else {

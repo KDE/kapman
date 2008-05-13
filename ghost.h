@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -22,6 +22,8 @@
 #include "character.h"
 #include "kapman.h"
 
+#include <QTimer>
+
 /**
  * This class represents the ghost
  */
@@ -35,8 +37,7 @@ class Ghost : public Character {
 		enum GhostState {
 			HUNTER = 0,
 			PREY = 1,
-			WHITE_PREY = 2,
-			EATEN = 3
+			EATEN = 2
 		};
 
 	private:
@@ -63,6 +64,9 @@ class Ghost : public Character {
 
 		/** A list of cells to go to the camp from the current cell */
 		QList<QPoint> m_pathToCamp;
+
+		/** Timer to manage the prey state */
+		QTimer* m_preyTimer;
 
 	public:
 
@@ -145,6 +149,13 @@ class Ghost : public Character {
 		 * Makes the Ghost go to the left
 		 */
 		void goLeft();
+
+	private slots:
+
+		/**
+		 * Ends the ghost prey state
+		 */
+		void endPreyState();
 		
 	signals:
 	

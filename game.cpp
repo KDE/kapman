@@ -23,7 +23,7 @@
 
 const int Game::FPS = 40;
 
-Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
+Game::Game(KGameDifficulty::standardLevel p_level) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
 
 	m_maze = new Maze();
 	m_kapman = new Kapman(0.0, 0.0, m_maze);
@@ -71,17 +71,6 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_is
 	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
 	m_timer->start();
 	
-	// Create the timer which start switching
-	m_startSwitchingTimer = new QTimer(this);
-	m_startSwitchingTimer->setInterval(7500);
-	m_startSwitchingTimer->setSingleShot(true);
-	connect(m_startSwitchingTimer, SIGNAL(timeout()), this, SLOT(startGhostsSwitching()));
-	
-	// Create the timer telling ghosts to switch
-	m_switchTimer = new QTimer(this);
-	m_switchTimer->setInterval(500);
-	connect(m_switchTimer, SIGNAL(timeout()), this, SLOT(switchGhosts()));
-	
 	// Create the bonus timer
 	m_bonusTimer = new QTimer(this);
 	m_bonusTimer->setInterval(10000);
@@ -97,8 +86,6 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_switchTimerCount(0), m_is
 
 Game::~Game() {
 	delete m_timer;
-	delete m_startSwitchingTimer;
-	delete m_switchTimer;
 	delete m_bonusTimer;
 	delete m_maze;
 	delete m_kapman;
@@ -112,13 +99,6 @@ void Game::start() {
 	// Restart all active timers
 	m_timer->start();
 	
-// 	if(m_startSwitchingTimerIsUsed) {
-// 		m_startSwitchingTimer->start();
-// 	}
-// 	if(m_switchTimerIsUsed) {
-// 		m_switchTimer->start();
-// 	}
-	
 	// Tells the Game that it is no longer paused
 	m_isPaused = false;
 }
@@ -126,9 +106,6 @@ void Game::start() {
 void Game::pause() {
 	// Stop all timers
 	m_timer->stop();
-// 	m_startSwitchingTimer->stop();
-// 	m_switchTimer->stop();
-	
 	// Tells the Game that it is paused
 	m_isPaused = true;
 }
@@ -137,14 +114,12 @@ void Game::doPause() {
 	// If the game isn't paused yet, we stop all timers
 	if(!m_isPaused) {
 		pause();
-
 		// Signal to the scene to add a 'PAUSE' label
 		emit(managePause(true));
 	}
 	// If the game is already paused, we restart all timers
 	else {
 		start();
-		
 		// Signal to the scene to remove the 'PAUSE' label
 		emit(managePause(false));
 	}
@@ -336,8 +311,7 @@ void Game::kapmanDeath() {
 	m_lives--;
 	emit(updatingInfos(LivesInfo));
 	emit(sDisableDisplayBonus());
-	// Make the Kapman blink
-	m_kapman->loseLife();
+	m_kapman->die();
 	// Make a 2 seconds pause while the kapman is blinking
 	pause();
 	QTimer::singleShot(2500, this, SLOT(resumeAfterKapmanDeath()));
@@ -357,10 +331,7 @@ void Game::resumeAfterKapmanDeath() {
 
 void Game::ghostDeath(Ghost* p_ghost) {
 	m_nbEatenGhosts++;
-//	p_ghost->setState(Ghost::HUNTER);
 	p_ghost->setState(Ghost::EATEN);
-//	p_ghost->setX(Cell::SIZE * 14);
-//	p_ghost->setY(Cell::SIZE * 14.5);
 	winPoints(p_ghost);
 }
 
@@ -379,7 +350,9 @@ void Game::winPoints(Element* p_element) {
 	}
 	// If the eaten element is an energyzer we change the ghosts state
 	if(p_element->getType() == Element::ENERGYZER) {
-		changeGhostsToPrey();
+		for (int i = 0; i < m_ghostList.size(); i++) {
+			m_ghostList[i]->setState(Ghost::PREY);
+		}
 		// Reset the number of eaten ghosts
 		m_nbEatenGhosts = 0;
 		emit(sKillElement(p_element->getX(), p_element->getY()));
@@ -416,53 +389,6 @@ void Game::nextLevel() {
 	// Update Bonus
 	updateBonus();
 	emit(sDisplayLabel(true));
-}
-
-void Game::changeGhostsToPrey() {
-	m_startSwitchingTimer->start();
-// 	m_startSwitchingTimerIsUsed = true;
-
-	// Stop the switchTimer (in case it was running
-	m_switchTimer->stop();
-
-	for (int i=0; i<m_ghostList.size(); i++) {
-		m_ghostList[i]->setState(Ghost::PREY);
-	}
-}
-
-void Game::changeGhostsToHunter() {
-	for (int i = 0; i < m_ghostList.size(); i++) {
-		if (m_ghostList[i]->getState() != Ghost::EATEN) {
-			m_ghostList[i]->setState(Ghost::HUNTER);
-		}
-	}
-}
-
-void Game::startGhostsSwitching() {
-// 	m_startSwitchingTimerIsUsed = false;
-	m_switchTimer->start();
-// 	m_switchTimerIsUsed = true;
-}
-
-void Game::switchGhosts() {
-	// The ghosts have to switch 4 times
-	if(m_switchTimerCount < 4) {
-		for (int i=0; i<m_ghostList.size(); i++) {
-			if(m_ghostList[i]->getState() == Ghost::PREY) {
-				m_ghostList[i]->setState(Ghost::WHITE_PREY);
-			}
-			else if(m_ghostList[i]->getState() == Ghost::WHITE_PREY) {
-				m_ghostList[i]->setState(Ghost::PREY);
-			}
-		}
-		m_switchTimerCount++;
-	}
-	else {
-		m_switchTimer->stop();
-		m_switchTimerCount = 0;
-		changeGhostsToHunter();
-// 		m_switchTimerIsUsed = false;
-	}
 }
 
 void Game::disableDisplayBonus() {
