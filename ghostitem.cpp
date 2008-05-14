@@ -22,6 +22,7 @@ GhostItem::GhostItem(Ghost* p_model, const QString & p_imagePath) : CharacterIte
 	connect(p_model, SIGNAL(stateChanged()), this, SLOT(updateState()));
 	m_startBlinkingTimer = new QTimer(this);
 	m_startBlinkingTimer->setInterval(7500);
+	m_startBlinkingTimer->setSingleShot(true);
 	connect(m_startBlinkingTimer, SIGNAL(timeout()), this, SLOT(startBlinking()));
 }
 

@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * Copyright 2007-2008 Johann Hingue <yoan1703@hotmail.fr>
@@ -19,6 +20,7 @@
 
 #ifndef __BONUS_H
 #define __BONUS_H
+
 #include "element.h"
 
 /**
@@ -31,7 +33,7 @@ class Bonus : public Element {
 		/**
 		 * Creates a new bonus instance
 		 */
-		Bonus(qreal p_x, qreal p_y, Maze* p_maze, const QString & p_imageUrl, int p_points);
+		Bonus(qreal p_x, qreal p_y, Maze* p_maze, int p_points);
 
 		/**
 		 * Deletes the Bonus instance
@@ -45,9 +47,10 @@ class Bonus : public Element {
 		void doActionOnCollision(Kapman* p_kapman);
 		
 		/**
-		 * Update the bonus
+		 * Sets the given value to the bonus
+		 * @param p_points the value of the bonus
 		 */
-		void update(QString & p_imageUrl, int p_points);
+		void setPoints(const int p_points);
 };
 
 #endif

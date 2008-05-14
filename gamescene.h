@@ -42,7 +42,7 @@ class GameScene : public QGraphicsScene {
 		ElementItem *** m_elementItemList;
 		
 		/** The bonus */
-		ElementItem * m_bonus;
+		ElementItem * m_bonusItem;
 
 		/** All the labels to be displayed during the game */
 		QGraphicsTextItem* m_introLabel;
@@ -110,7 +110,7 @@ class GameScene : public QGraphicsScene {
 		/**
 		 * Remove the Bonus when the Kapman eat them
 		 */
-		void killBonus();
+		void hideBonus();
 	
 		/**
 		 * Upadate the score and lives labels

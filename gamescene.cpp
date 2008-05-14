@@ -89,6 +89,9 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 		addItem(m_ghostItemList[i]);
 		m_ghostItemList[i]->setZValue(1);
 	}
+
+	// Bonus
+	m_bonusItem = new ElementItem(m_game->getBonus(), KStandardDirs::locate("appdata", "bonus.svg"));
 	
 	// Start labels
 	addItem(m_introLabel);
@@ -130,10 +133,8 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	connect(p_game, SIGNAL(sKillElement(qreal, qreal)), this, SLOT(killElement(qreal, qreal)));
 	// Connect displayBonus signal to the scene
 	connect(p_game, SIGNAL(sDisplayBonus()), this, SLOT(displayBonus()));	
-	// Connect killBonus signal to the scene
-	connect(p_game, SIGNAL(sKillBonus()), this, SLOT(killBonus()));
-	// Connect disableDisplayBonus signal to the scene
-	connect(p_game, SIGNAL(sDisableDisplayBonus()), this, SLOT(killBonus()));
+	// Connect hideBonus signal to the scene
+	connect(p_game, SIGNAL(sHideBonus()), this, SLOT(hideBonus()));
 	// Connect the kapman to the "updateInfos()" slot
 	connect(p_game, SIGNAL(updatingInfos(Game::InformationTypes)), this, SLOT(updateInfos(Game::InformationTypes)));
 	// Reinit the items on level completed
@@ -163,6 +164,7 @@ GameScene::~GameScene() {
 		delete[] m_elementItemList[i];
 	}
 	delete[] m_elementItemList;
+	delete m_bonusItem;
 }
 
 void GameScene::updateInfos(Game::InformationTypes p_info) {
@@ -242,15 +244,37 @@ void GameScene::killElement(qreal p_x, qreal p_y) {
 }
 
 void GameScene::displayBonus() {
-	m_bonus = new ElementItem(m_game->getBonus(), KStandardDirs::locate("appdata", m_game->getBonus()->getImageUrl()));
-	addItem(m_bonus);
+	switch(m_game->getLevel()) {
+		case 1:
+			m_bonusItem->setElementId("chicken");
+			break;
+		case 2:
+			m_bonusItem->setElementId("spider");
+			break;
+		case 3:
+			m_bonusItem->setElementId("pizza");
+			break;
+		case 4:
+			m_bonusItem->setElementId("donut");
+			break;
+		case 5:
+			m_bonusItem->setElementId("tomato");
+			break;
+		case 6:
+			m_bonusItem->setElementId("burger");
+			break;
+		default:
+			m_bonusItem->setElementId("carrot");
+			break;	
+	}
+	addItem(m_bonusItem);
 }
 
-void GameScene::killBonus() {
-	if(items().contains(m_bonus))
-		removeItem(m_bonus);
+void GameScene::hideBonus() {
+	if (items().contains(m_bonusItem)) {
+		removeItem(m_bonusItem);
+	}
 }
-
 
 void GameScene::displayLabel(bool newlevel = false){
 

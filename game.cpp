@@ -48,7 +48,7 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_isCheater(false), m_lives
 	KGameDifficulty::setRunning(false);
 	
 	// Create the bonus
-	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, "chicken_test.svg", 100);
+	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, 100);
 	
 	m_ghostList.append(new Ghost(0.0, 0.0, "ghostred.svg", m_maze));
 	m_ghostList.append(new Ghost(0.0, 0.0, "ghostgreen.svg", m_maze));
@@ -75,7 +75,7 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_isCheater(false), m_lives
 	m_bonusTimer = new QTimer(this);
 	m_bonusTimer->setInterval(10000);
 	m_bonusTimer->setSingleShot(true);
-	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(disableDisplayBonus()));
+	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(hideBonus()));
 
 	// Init the characters
 	initCharactersPosition();
@@ -92,6 +92,7 @@ Game::~Game() {
 	for (int i = 0; i < m_ghostList.size(); i++) {
 		delete m_ghostList[i];
 	}
+	delete m_bonus;
 //	delete m_media;
 }
 
@@ -253,38 +254,6 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 	}
 }
 
-void Game::updateBonus() {
-	// change bonus's image and points
-	QString bonusImage;
-	int points;
-	switch(m_level) {
-		case 1:
-			bonusImage = QString("chicken_test.svg");
-			break;
-		case 2:
-			bonusImage = QString("spider_test.svg");
-			break;
-		case 3:
-			bonusImage = QString("pizza_test.svg");
-			break;
-		case 4:
-			bonusImage = QString("donut_test.svg");
-			break;
-		case 5:
-			bonusImage = QString("tomato_test.svg");
-			break;
-		case 6:
-			bonusImage = QString("burger_test.svg");
-			break;
-		default:
-			bonusImage = QString("carrot_test.svg");
-			break;	
-	}
-	points = m_level * 100;
-
-	m_bonus->update(bonusImage,points);
-}
-
 /** SLOTS */
 void Game::update() {
 	int curKapmanRow, curKapmanCol;
@@ -310,7 +279,6 @@ void Game::update() {
 void Game::kapmanDeath() {
 	m_lives--;
 	emit(updatingInfos(LivesInfo));
-	emit(sDisableDisplayBonus());
 	m_kapman->die();
 	// Make a 2 seconds pause while the kapman is blinking
 	pause();
@@ -318,7 +286,10 @@ void Game::kapmanDeath() {
 }
 
 void Game::resumeAfterKapmanDeath() {
+	// Start the timer
 	start();
+	// Remove a possible bonus
+	emit(sHideBonus());
 	// If their is no lives left, we start a new game
 	if (m_lives == 0) {
 		emit(startnewgame(true));
@@ -361,7 +332,7 @@ void Game::winPoints(Element* p_element) {
 		emit(sKillElement(p_element->getX(), p_element->getY()));
 	}
 	else if(p_element->getType() == Element::BONUS) {
-		emit(sKillBonus());
+		emit(sHideBonus());
 	}
 	
 	// If 1/3 or 2/3 of the pills are eaten, display a bonus
@@ -387,10 +358,10 @@ void Game::nextLevel() {
 	emit(leveled());
 	m_maze->resetNbElem();
 	// Update Bonus
-	updateBonus();
+	m_bonus->setPoints(m_level * 100);
 	emit(sDisplayLabel(true));
 }
 
-void Game::disableDisplayBonus() {
-	emit(sDisableDisplayBonus());
+void Game::hideBonus() {
+	emit(sHideBonus());
 }

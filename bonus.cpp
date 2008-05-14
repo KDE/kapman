@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * Copyright 2007-2008 Johann Hingue <yoan1703@hotmail.fr>
@@ -20,9 +21,8 @@
 #include "bonus.h"
 #include "kapman.h"
 
-Bonus::Bonus(qreal p_x, qreal p_y, Maze* p_maze, const QString & p_imageUrl, int p_points) : Element(p_x, p_y, p_maze) {
+Bonus::Bonus(qreal p_x, qreal p_y, Maze* p_maze, int p_points) : Element(p_x, p_y, p_maze) {
 	m_points = p_points;
-	Element::setImageUrl(p_imageUrl);
 	m_type = Element::BONUS;
 }
 
@@ -34,9 +34,7 @@ void Bonus::doActionOnCollision(Kapman* p_kapman) {
 	p_kapman->winPoints(this);
 }
 
-void Bonus::update(QString & p_imageUrl, int p_points) {
-	Element::setImageUrl(p_imageUrl);
+void Bonus::setPoints(const int p_points) {
 	m_points = p_points;
 }
-
 

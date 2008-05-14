@@ -34,10 +34,7 @@ set(kapmanSources
 )
 set(kapmanData
 	defaultmaze.xml
-	images/burger_test.svg
-	images/carrot_test.svg
-	images/chicken_test.svg
-	images/donut_test.svg
+	images/bonus.svg
 	images/energizer_test.svg
 	images/ghostblue.svg
 	images/ghostgreen.svg
@@ -46,9 +43,6 @@ set(kapmanData
 	images/kapmanAnimTest.svg
 	images/maze.svg
 	images/pill_test.svg
-	images/pizza_test.svg
-	images/spider_test.svg
-	images/tomato_test.svg
 	kapmanui.rc
 )
 set(kapmanSound

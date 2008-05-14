@@ -44,6 +44,7 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : C
 	// Prey timer
 	m_preyTimer = new QTimer(this);
 	m_preyTimer->setInterval(10000);
+	m_preyTimer->setSingleShot(true);
 	connect(m_preyTimer, SIGNAL(timeout()), this, SLOT(endPreyState()));
 }
 
@@ -200,8 +201,12 @@ Ghost::GhostState Ghost::getState() const {
 }
 
 void Ghost::setState(Ghost::GhostState p_state) {
+	// Stop the prey timer if active
+	if (m_preyTimer->isActive()) {
+		m_preyTimer->stop();
+	}
+	// Change the state
 	m_state = p_state;
-	// Modify the speed
 	switch (m_state) {
 		case Ghost::PREY:
 			m_speed = Ghost::s_speed / 2;
@@ -209,10 +214,6 @@ void Ghost::setState(Ghost::GhostState p_state) {
 			break;
 		case HUNTER:
 		case EATEN:
-			// Stop the prey timer if active
-			if (m_preyTimer->isActive()) {
-				m_preyTimer->stop();
-			}
 			m_speed = Ghost::s_speed;
 			break;
 	}

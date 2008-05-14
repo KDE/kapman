@@ -172,11 +172,6 @@ class Game : public QObject {
 		 */
 		void initCharactersPosition();
 		
-		/**
-		 * Update bonus
-		 */
-		void updateBonus();
-
 	public slots:
 
 		/**
@@ -219,7 +214,7 @@ class Game : public QObject {
 		/**
 		 * Disable the display of the bonus
 		 */
-		void disableDisplayBonus();
+		void hideBonus();
 		
 	signals:
 	
@@ -254,12 +249,7 @@ class Game : public QObject {
 		/**
 		 * Signals to the scene to remove a Bonus
 		 */
-		void sKillBonus();
-		
-		/**
-		 * Signals to the scene to disable a Bonus
-		 */
-		void sDisableDisplayBonus();
+		void sHideBonus();
 		
 		/**
 		 * Signals to the scene to update the score and lives' labels
