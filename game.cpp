@@ -99,9 +99,10 @@ Game::~Game() {
 void Game::start() {
 	// Restart all active timers
 	m_timer->start();
-	
 	// Tells the Game that it is no longer paused
 	m_isPaused = false;
+	// Resume animations
+	emit(managePause(false, false));
 }
 
 void Game::pause() {
@@ -109,20 +110,22 @@ void Game::pause() {
 	m_timer->stop();
 	// Tells the Game that it is paused
 	m_isPaused = true;
+	// Stop animations
+	emit(managePause(true, false));
 }
 
 void Game::doPause() {
 	// If the game isn't paused yet, we stop all timers
 	if(!m_isPaused) {
 		pause();
-		// Signal to the scene to add a 'PAUSE' label
-		emit(managePause(true));
+		// Signal to the scene to add a 'PAUSE' label and stop animations
+		emit(managePause(true, true));
 	}
 	// If the game is already paused, we restart all timers
 	else {
 		start();
-		// Signal to the scene to remove the 'PAUSE' label
-		emit(managePause(false));
+		// Signal to the scene to remove the 'PAUSE' label and restart animations
+		emit(managePause(false, true));
 	}
 }
 
@@ -245,10 +248,6 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 				m_isCheater = true;
 				emit(updatingInfos(LivesInfo));
 			}
-		case Qt::Key_G:
-			// Debug ghost pathfinding
-			m_ghostList[0]->setState(Ghost::EATEN);
-			break;
 		default:
 			break;
 	}

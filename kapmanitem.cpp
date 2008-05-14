@@ -28,13 +28,17 @@ const int KapmanItem::NB_FRAMES = 32;
 KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
+	connect(p_model, SIGNAL(stopped()), this, SLOT(stopAnim()));
 	
 	m_animationTimer = new QTimeLine();
 	m_animationTimer->setDuration(500);
 	m_animationTimer->setCurveShape(QTimeLine::SineCurve);
+	m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
 	m_animationTimer->setLoopCount(0);
 	m_animationTimer->setUpdateInterval(15);
-	m_animationTimer->start();
+	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
+
+	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
 }
 
 KapmanItem::~KapmanItem() {
@@ -80,20 +84,40 @@ void KapmanItem::manageCollision() {
 }
 
 void KapmanItem::update(qreal p_x, qreal p_y) {
-	// Compute the top-right coordinates of the item
-	qreal x = p_x - boundingRect().width() / 2;
-	qreal y = p_y - boundingRect().height() / 2;
+	ElementItem::update(p_x, p_y);
 	
-	qreal current = m_animationTimer->currentValue();
-	int currentFrame = (int)(current * (NB_FRAMES - 1));
-	
-	setElementId(QString("kapman_") += QString::number(currentFrame));
-	
-	// Updates the view coordinates
-	setPos(x, y);
+	// If the kapman is moving
+	if (((Kapman*)getModel())->getXSpeed() != 0 || ((Kapman*)getModel())->getYSpeed() != 0) {
+		startAnim();
+	}
+}
+
+void KapmanItem::startAnim() {
+	// Start the animation timer if it is not active
+	if (m_animationTimer->state() != QTimeLine::Running) {
+		m_animationTimer->start();
+	}
+}
+
+void KapmanItem::pauseAnim() {
+	m_animationTimer->setPaused(true);
+}
+
+void KapmanItem::resumeAnim() {
+	m_animationTimer->setPaused(false);
+}
+
+void KapmanItem::stopAnim() {
+	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+	m_animationTimer->stop();
+}
+
+void KapmanItem::setFrame(const int p_frame) {
+	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1 - p_frame));
 }
 
 void KapmanItem::startBlinking() {
+	stopAnim();
 	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
 	CharacterItem::startBlinking();
 }

@@ -30,6 +30,8 @@ Kapman::~Kapman() {
 void Kapman::init() {
 	goRight();
 	updateDirection();
+	// Stop animation
+	emit(stopped());
 }
 
 void Kapman::goUp() {
@@ -183,4 +185,5 @@ void Kapman::stopMoving() {
 	setYSpeed(0);
 	m_askedXSpeed = 0;
 	m_askedYSpeed = 0;
+	emit(stopped());
 }

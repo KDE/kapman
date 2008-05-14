@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Alexandre Galinier <alex.galinier@hotmail.com>
  * 
  * This program is free software; you can redistribute it and/or
@@ -85,10 +86,11 @@ class GameScene : public QGraphicsScene {
 		void initItems();
 	
 		/**
-		 * Display/remove the 'PAUSE' label when 'P' key is pressed
+		 * Display/remove the 'PAUSE' label, manage animations when 'P' key is pressed
 		 * @param p_pauseGame indicates if the game is paused or not
+		 * @param p_label if true a "pause" label is displayed/hidden
 		 */
-		void managePause(bool p_pauseGame);
+		void managePause(const bool p_pauseGame, const bool p_label);
 		
 		/**
 		 * Remove the 'INTRO' label when a key is pressed

@@ -74,6 +74,32 @@ class KapmanItem : public CharacterItem {
 		void update(qreal p_x, qreal p_y);
 
 		/**
+		 * Starts the kapman animation
+		 */
+		void startAnim();
+
+		/**
+		 * Pauses the kapman animation
+		 */
+		void pauseAnim();
+
+		/**
+		 * Resumes the kapman animation
+		 */
+		void resumeAnim();
+
+		/**
+		 * Stops the kapman animation
+		 */
+		void stopAnim();
+
+		/**
+		 * Sets the given frame to the kapman item
+		 * @param p_frame the frame to set
+		 */
+		void setFrame(const int p_frame);
+
+		/**
 		 * Implements the CharacterItem method
 		 */
 		void startBlinking();

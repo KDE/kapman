@@ -137,6 +137,11 @@ class Kapman : public Character {
 		 * Signals to Kapmanitem that the game has been updated
 		 */
 		 void gameUpdated();
+
+		 /**
+		  * Emitted when the kapman stops moving
+		  */
+		 void stopped();
 };
 
 #endif

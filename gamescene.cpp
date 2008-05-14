@@ -126,7 +126,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	updateInfos(Game::AllInfo);
 
 	// Connect managePause signal to the scene
-	connect(p_game, SIGNAL(managePause(bool)), this, SLOT(managePause(bool)));
+	connect(p_game, SIGNAL(managePause(bool, bool)), this, SLOT(managePause(bool, bool)));
 	//Connect removeIntro signal to the scene
 	connect(p_game, SIGNAL(removeIntro()), this, SLOT(removeIntro()));
 	// Connect killElement signal to the scene
@@ -206,19 +206,26 @@ void GameScene::initItems() {
 	}
 }
 
-void GameScene::managePause(bool p_pauseGame) {
-	// If the label is not displayed yet, display it
-	if(p_pauseGame) {
-		addItem(m_pauseLabel);
-		m_pauseLabel->setPos(this->width()/2 - m_pauseLabel->boundingRect().width()/2, this->height()/2 - m_pauseLabel->boundingRect().height()/2);
-		// Ensure that the Label will overcome all items
-		m_pauseLabel->setZValue(2);
-	}
-	else {
-	// If the label is displayed, remove it
-		if(items().contains(m_pauseLabel)) {
-			removeItem(m_pauseLabel);
+void GameScene::managePause(const bool p_pauseGame, const bool p_label) {
+	if (p_pauseGame) {
+		if (p_label) {
+			// If the label is not displayed yet, display it
+			addItem(m_pauseLabel);
+			m_pauseLabel->setPos(this->width()/2 - m_pauseLabel->boundingRect().width()/2, this->height()/2 - m_pauseLabel->boundingRect().height()/2);
+			// Ensure that the Label will overcome all items
+			m_pauseLabel->setZValue(2);
 		}
+		// Stop kapman animation
+		m_kapmanItem->pauseAnim();
+	} else {
+		if (p_label) {
+			// If the label is displayed, remove it
+			if (items().contains(m_pauseLabel)) {
+				removeItem(m_pauseLabel);
+			}
+		}
+		// Resume kapman animation
+		m_kapmanItem->resumeAnim();
 	}
 }
 

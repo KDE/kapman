@@ -219,10 +219,11 @@ class Game : public QObject {
 	signals:
 	
 		/**
-		 * Signals to the scene to display/remove the 'PAUSE' label
+		 * Signals to the scene to manage pause (display/remove the 'PAUSE' label, start/stop animations)
 		 * @param p_pauseGame indicates if the game is to be paused or not
+		 * @param p_label if true a "pause" label is displayed/hidden
 		 */
-		void managePause(bool p_pauseGame);
+		void managePause(const bool p_pauseGame, const bool p_label);
 		
 		/**
 		 * Signals to the scene to remove the 'INTRO' label
