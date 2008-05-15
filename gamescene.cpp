@@ -78,7 +78,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	initItems();
 	
 	// Kapman
-	m_kapmanItem = new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapmanAnimTest.svg"));
+	m_kapmanItem = new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman.svg"));
 	addItem(m_kapmanItem);
 	m_kapmanItem->setZValue(1);
 	

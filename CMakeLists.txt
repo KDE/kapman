@@ -40,7 +40,7 @@ set(kapmanData
 	images/ghostgreen.svg
 	images/ghostpink.svg
 	images/ghostred.svg
-	images/kapmanAnimTest.svg
+	images/kapman.svg
 	images/maze.svg
 	images/pill_test.svg
 	kapmanui.rc

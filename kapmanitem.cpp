@@ -38,7 +38,7 @@ KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : Character
 	m_animationTimer->setUpdateInterval(15);
 	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
 
-	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+	setElementId("kapman_0");
 }
 
 KapmanItem::~KapmanItem() {
@@ -108,24 +108,24 @@ void KapmanItem::resumeAnim() {
 }
 
 void KapmanItem::stopAnim() {
-	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+	setElementId("kapman_0");
 	m_animationTimer->stop();
 }
 
 void KapmanItem::setFrame(const int p_frame) {
-	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1 - p_frame));
+	setElementId(QString("kapman_") += QString::number(p_frame));
 }
 
 void KapmanItem::startBlinking() {
 	stopAnim();
-	setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+	setElementId("kapman_0");
 	CharacterItem::startBlinking();
 }
 
 void KapmanItem::blink() {
 	CharacterItem::blink();
 	if (m_nbBlinks % 2 == 0) {
-		setElementId(QString("kapman_") += QString::number(NB_FRAMES - 1));
+		setElementId("kapman_0");
 	} else {
 		setElementId("kapman_blink");
 	}
