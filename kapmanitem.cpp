@@ -24,6 +24,9 @@
 #include <QGraphicsScene>
 
 const int KapmanItem::NB_FRAMES = 32;
+const int KapmanItem::ANIM_LOW_SPEED = 500;
+const int KapmanItem::ANIM_MEDIUM_SPEED = 400;
+const int KapmanItem::ANIM_HIGH_SPEED = 300;
 
 KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
@@ -31,11 +34,17 @@ KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : Character
 	connect(p_model, SIGNAL(stopped()), this, SLOT(stopAnim()));
 	
 	m_animationTimer = new QTimeLine();
-	m_animationTimer->setDuration(500);
 	m_animationTimer->setCurveShape(QTimeLine::SineCurve);
-	m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
 	m_animationTimer->setLoopCount(0);
-	m_animationTimer->setUpdateInterval(15);
+	m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
+	// Animation speed
+	if (Character::getCharactersSpeed() == Character::LOW_SPEED) {
+		m_animationTimer->setDuration(KapmanItem::ANIM_LOW_SPEED);
+	} else if (Character::getCharactersSpeed() == Character::MEDIUM_SPEED) {
+		m_animationTimer->setDuration(KapmanItem::ANIM_MEDIUM_SPEED);
+	} else if (Character::getCharactersSpeed() == Character::HIGH_SPEED) {
+		m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
+	}
 	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
 
 	setElementId("kapman_0");

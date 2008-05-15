@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -160,7 +160,6 @@ class Character : public Element {
 		 * Emitted when the character is eaten
 		 */
 		void eaten();
-
 };
 
 #endif

@@ -36,6 +36,11 @@ class KapmanItem : public CharacterItem {
 		/** Number of frames to animate the kapman */
 		static const int NB_FRAMES;
 
+		/** Animation update interval */
+		static const int ANIM_LOW_SPEED;
+		static const int ANIM_MEDIUM_SPEED;
+		static const int ANIM_HIGH_SPEED;
+
 		/** Timer used to animate the kapman */
 		QTimeLine * m_animationTimer;
 
@@ -52,7 +57,6 @@ class KapmanItem : public CharacterItem {
 		 * Deletes the KapmanItem instance
 		 */
 		~KapmanItem();
-
 
 	public slots:
 
