@@ -209,10 +209,15 @@ void Game::initCharactersPosition() {
 }
 
 void Game::keyPressEvent(QKeyEvent* p_event) {
-	// At the beginning, we start the timer when a key is pressed
-	if(!m_isPaused && !m_timer->isActive()) {
-		m_timer->start();
-		emit(removeIntro());
+	// At the beginning or when paused, we start the timer when an arrow key is pressed
+	if((p_event->key() == Qt::Key_Up || p_event->key() == Qt::Key_Down || p_event->key() ==  Qt::Key_Left || p_event->key() == Qt::Key_Right) && !m_timer->isActive()) {
+		// If paused
+		if (m_isPaused) {
+			doPause();
+		} else {
+			m_timer->start();
+			emit(removeIntro());
+		}
 		// Tells to the KGameDifficulty singleton that the game now runs
 		KGameDifficulty::setRunning(true);
 	}

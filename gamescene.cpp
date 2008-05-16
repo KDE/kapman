@@ -38,7 +38,7 @@ GameScene::GameScene(Game * p_game) : m_game(p_game) {
 	m_introLabel->setFont( QFont("Helvetica", 25, QFont::Bold, false) );
 	m_introLabel->setDefaultTextColor( QColor("#FFFF00") );
 	
-	m_introLabel2 = new QGraphicsTextItem( ki18n("Press any key to start").toString() );
+	m_introLabel2 = new QGraphicsTextItem( ki18n("Press any arrow key to start").toString() );
 	m_introLabel2->setFont( QFont("Helvetica", 15, QFont::Bold, false) );
 	m_introLabel2->setDefaultTextColor( QColor("#FF0000") );
 
