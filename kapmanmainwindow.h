@@ -28,7 +28,7 @@
 #include <KGameDifficulty>
 
 /**
- * This class represents a main window for Kapman
+ * @brief This class enables to create the main window for Kapman.
  */
 class KapmanMainWindow : public KXmlGuiWindow {
 
@@ -36,10 +36,10 @@ class KapmanMainWindow : public KXmlGuiWindow {
 
 	private :
 		
-		/** The game view */
+		/** The GameView instance that manages the game drawing and the collisions */
 		GameView* m_view;
 
-		/** A Kapman game */
+		/** The Game instance that manages the main loop and events */
 		Game* m_game;
 
 		/** The highscores dialog */
@@ -48,44 +48,39 @@ class KapmanMainWindow : public KXmlGuiWindow {
 	public:
 
 		/**
-		 * Creates a new KapmanMainWindow instance
+		 * Creates a new KapmanMainWindow instance.
 		 */
 		KapmanMainWindow();
 
 		/**
-		 * Deletes the KapmanMainWindow instance
+		 * Deletes the KapmanMainWindow instance.
 		 */
 		~KapmanMainWindow();
 
-	private:
+	private slots:
 
 		/**
-		 * Initializes a game
+		 * Initializes the KapmanMainWindow for a new game.
+		 * Creates a new Game instance and a new GameView instance that displays the game.
 		 */
 		void initGame();
 
-	public slots:
-
 		/**
-		 * Launches a new game
-		 * @param p_gameFinished true if a level was finished, false if a Game Over was reached
+		 * Starts a new game.
+		 * @param p_gameOver true if the game was over, false if a game is running
 		 */
-		void newGame(bool p_gameFinished);
+		void newGame(const bool p_gameOver);
 
 		/**
-		 * Shows the highscores dialog
+		 * Shows the highscores dialog.
 		 */
 		void showHighscores();
 
 		/**
-		 * This slot manage the difficulty level changing
-		 */
-		void difficultyChanged();
-
-		/**
-		 * Closes the application
+		 * Closes the KapmanMainWindow.
 		 */
 		void close();
 };
 
 #endif
+

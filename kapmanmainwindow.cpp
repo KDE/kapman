@@ -26,26 +26,25 @@
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
+	m_game = NULL;
+	m_view = NULL;
 	initGame();
-
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
-	
 	// Initialize the KGameDifficulty singleton
-	KGameDifficulty::init(this, this, SLOT(difficultyChanged()));
+	KGameDifficulty::init(this, this, SLOT(initGame()));
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
  	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
  	// The default level
- 	// TODO : Read this information in a config file
+ 	// TODO : Read this information from a config file
  	KGameDifficulty::setLevel(KGameDifficulty::Medium);
-
 	// KScoreDialog
 	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
-	
+	// Setup the window
 	setupGUI();
 }
 
@@ -56,44 +55,55 @@ KapmanMainWindow::~KapmanMainWindow() {
 }
 
 void KapmanMainWindow::initGame() {
-	// Create the game
+	// If a Game instance already exists
+	if (m_game) {
+		// Delete the Game instance
+		delete m_game;
+	}
+	// Create a new Game instance
 	m_game = new Game(KGameDifficulty::level());
-	// connect the signal startnewgame to the newgame slot
 	connect(m_game, SIGNAL(startnewgame(bool)), this, SLOT(newGame(bool)));
-	// Create the view displaying the game scene
+	// If a GameView instance already exists
+	if (m_view) {
+		// Delete the GameView instance
+		delete m_view;
+	}
+	// Create a new GameView instance
 	m_view = new GameView(m_game);
 	m_view->setBackgroundBrush(Qt::black);
 	setCentralWidget(m_view);
 }
 
-void KapmanMainWindow::newGame(bool gamefinished = false) {
-	// timer (is active if the game has already begun)
-	bool timer = m_game->getTimer()->isActive();
-	if(timer)
+void KapmanMainWindow::newGame(const bool gameOver = false) {
+	bool gameRunning;		// True if the game is running (game timer is active), false otherwise
+   
+	gameRunning = m_game->getTimer()->isActive();
+	// If the game is running
+	if (gameRunning) {
+		// Pause the game
 		m_game->pause();
-
-	if( gamefinished == false ){	
-		if(KMessageBox::warningYesNo(this,
-			ki18n("Are you sure you want to quit the current game ?").toString(),
-			ki18n("New game").toString()) == KMessageBox::Yes) {
+	}
+	// If the game was not over
+	if (!gameOver){	
+		// Confirm before starting a new game
+		if (KMessageBox::warningYesNo(this,	ki18n("Are you sure you want to quit the current game ?").toString(), ki18n("New game").toString()) == KMessageBox::Yes) {
 			// Start a new game
-			delete m_game;
-			delete m_view;
 			initGame();
 		}
 		else {
-			if(timer)
+			// If the game was running
+			if (gameRunning) {
+				// Resume the game
 				m_game->start();
+			}
 		}
 	}
 	else {
 		// Build the score info
 		QString score("Your Score : ");
 		score += QString::number(m_game->getScore());
-		
 		// Display the score informations
 		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());	
-		
 		// Add the score to the highscores table
 		m_kScoreDialog->setConfigGroup(I18N_NOOP(KGameDifficulty::levelString()));
 		KScoreDialog::FieldInfo scoreInfo;
@@ -102,7 +112,7 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 		// If the new score is a highscore then display the highscore dialog
 		if (m_kScoreDialog->addScore(scoreInfo)) {
 			// If the payer did not cheat, manage Highscores
-			if(!m_game->isCheater()) {
+			if (!m_game->isCheater()) {
 				m_kScoreDialog->exec();
 			} else {		// else, warn the player not to cheat again :)
 				KMessageBox::information(this, ki18n("You cheated, no Highscore for you ;)").toString(), ki18n("Cheater !").toString());	
@@ -110,8 +120,6 @@ void KapmanMainWindow::newGame(bool gamefinished = false) {
 		}
 		
 		// Start a new game
-		delete m_game;
-		delete m_view;
 		initGame();
 	}
 }
@@ -120,27 +128,25 @@ void KapmanMainWindow::showHighscores() {
  	m_kScoreDialog->exec();
 }
 
-void KapmanMainWindow::difficultyChanged() {
-	// Stop the current game and start a new game
-	delete m_game;
-	delete m_view;
-	initGame();
-}
-
 void KapmanMainWindow::close() {
-	// timer (is active if the game has already begun)
-	bool timer = m_game->getTimer()->isActive();
-	if(timer)
+	bool gameRunning;		// True if the game is running (game timer is active), false otherwise
+   
+	gameRunning = m_game->getTimer()->isActive();
+	// If the game is running
+	if (gameRunning) {
+		// Pause the game
 		m_game->pause();
-	if(KMessageBox::warningYesNo(this,
-		ki18n("Are you sure you want to quit Kapman ?").toString(),
-		ki18nc("To quit Kapman", "Quit").toString()) == KMessageBox::Yes) {
-		// Call the close() function of the parent class
+	}
+	// Confirm before closing
+	if(KMessageBox::warningYesNo(this, ki18n("Are you sure you want to quit Kapman ?").toString(), ki18nc("To quit Kapman", "Quit").toString()) == KMessageBox::Yes) {
 		KXmlGuiWindow::close();
 	}
 	else {
-		if(timer)
+		// If the game was running
+		if (gameRunning) {
+			// Resume the game
 			m_game->start();
+		}
 	}
-	
 }
+
