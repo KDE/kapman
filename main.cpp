@@ -23,12 +23,12 @@
 
 int main(int argc, char** argv) {
 	// About Kapman
-	KAboutData about("kapman", 0, ki18n("Kapman"), "0.8.0",
+	KAboutData about("kapman", 0, ki18n("Kapman"), "0.9.0",
 		ki18n("Kapman : Go through the levels escaping ghosts !"),
 		KAboutData::License_GPL, ki18n("Copyright (c) 2007-2008 The KapTeam !"));
 	about.addAuthor(ki18n("Pierre-Benoit Besse"), ki18n("Developer"), "besse@gmail.com", 0);
 	about.addAuthor(ki18n("Alexandre Galinier"), ki18n("Developer"), "alex.galinier@gmail.com", 0);
-	about.addAuthor(ki18n("Thomas Gallinari"), ki18n("Developer"), "tg8187@yahoo.fr", 0);
+	about.addAuthor(ki18n("Thomas Gallinari"), ki18n("Developer (and tried to be an artist ;-))"), "tg8187@yahoo.fr", 0);
 	about.addAuthor(ki18n("Nathalie Liesse"), ki18n("Developer"), "nathalie.liesse@gmail.com", 0);
 	// Command line arguments
 	KCmdLineArgs::init(argc, argv, &about);

@@ -79,9 +79,6 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_isCheater(false), m_lives
 
 	// Init the characters
 	initCharactersPosition();
-
-//	m_media = Phonon::createPlayer(Phonon::GameCategory, KStandardDirs::locate("sound", "kapman/gamebegin.wav"));
-//	m_media->play();
 }
 
 Game::~Game() {
@@ -93,7 +90,6 @@ Game::~Game() {
 		delete m_ghostList[i];
 	}
 	delete m_bonus;
-//	delete m_media;
 }
 
 void Game::start() {

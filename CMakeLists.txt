@@ -45,8 +45,6 @@ set(kapmanData
 	images/pill_test.svg
 	kapmanui.rc
 )
-set(kapmanSound
-)
 
 kde4_install_icons(${ICON_INSTALL_DIR})
 
@@ -112,4 +110,3 @@ target_link_libraries(kapmanTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_
 
 install(TARGETS kapman DESTINATION ${BIN_INSTALL_DIR})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
-install(FILES ${kapmanSound} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
