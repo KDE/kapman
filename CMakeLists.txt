@@ -108,5 +108,5 @@ target_link_libraries(gameTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PH
 target_link_libraries(ghostTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
 target_link_libraries(kapmanTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
 
-install(TARGETS kapman DESTINATION ${BIN_INSTALL_DIR})
+install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
