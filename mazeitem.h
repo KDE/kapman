@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
@@ -21,7 +22,7 @@
 #include <QGraphicsSvgItem>
 
 /**
- * This class represents the view of the maze
+ * @brief This class is the graphical view of the Maze.
  */
 class MazeItem : public QGraphicsSvgItem {
  
@@ -30,15 +31,16 @@ class MazeItem : public QGraphicsSvgItem {
 	public:
 
 		/**
-		 * Creates a new MazeItem
-		 * @param p_imagePath the path to the maze image
+		 * Creates a new MazeItem instance.
+		 * @param p_imagePath the path to the Maze image
 		 */
 		MazeItem(const QString & p_imagePath);
 
 		/**
-		 * Deletes the MazeItem
+		 * Deletes the MazeItem instance.
 		 */
 		~MazeItem();
 };
 
 #endif
+

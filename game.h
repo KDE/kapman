@@ -26,11 +26,10 @@
 
 #include <QTimer>
 #include <QKeyEvent>
-//#include <Phonon/MediaObject>
 #include <KGameDifficulty>
 
 /**
- * This class represents the game manager
+ * @brief This class manages the game main loop : it regularly checks the key press events, computes the character moves and updates their coordinates.
  */
 class Game : public QObject {
 
@@ -41,107 +40,122 @@ class Game : public QObject {
 		/** Number of FPS */
 		static const int FPS;
 
-		/** Game timer */
+		/** The game different states : RUNNING, PAUSED_LOCKED, PAUSED_UNLOCKED */
+		enum State {
+			RUNNING,			// Game running
+			PAUSED_LOCKED,		// Game paused and user is not allowed to unpause
+			PAUSED_UNLOCKED		// Game paused and user is allowed to unpause
+		};
+		/** A flag for the State enum */
+		Q_DECLARE_FLAGS(GameStates, State);
+
+		/** The game state */
+		State m_state;
+
+		/** The Game main timer */
 		QTimer* m_timer;
 		
-		/** Bonus Timer */
+		/** The Bonus timer to make it disappear if it is not eaten after a given time */
 		QTimer* m_bonusTimer;
 		
-		/** Game Maze */
+		/** The Maze */
 		Maze* m_maze;
 
-		/** Main character */
+		/** The main Character */
 		Kapman* m_kapman;
 		
-		/** Ghosts */
-		QList<Ghost*> m_ghostList;
-
-		/** pause flag */
-		bool m_isPaused;
+		/** The Ghosts */
+		QList<Ghost*> m_ghosts;
 		
-		/** indicates if the players cheated during the game */
+		/** The Bonus instance */
+		Bonus *m_bonus;
+
+		/** A flag to know wether the player cheated during the game or not */
 		bool m_isCheater;
 
-		/** Player's lives */
+		/** The remaining number of lives */
 		int m_lives;
 		
-		/** Player's points */
+		/** The won points */
 		long m_points;
 
-		/** Current level */
+		/** The current game level */
 		int m_level;
 
-		/** Number of eaten ghosts after eating an energizer */
+		/** The number of eaten ghosts since the beginning of the current level */
 		int m_nbEatenGhosts;
 		
-		/** Bonus */
-		Bonus *m_bonus;
-		
-		/** The media to play sounds */
-//		Phonon::MediaObject* m_media;
-
 	public:
 
+		/** The different types of information about the game */
 		enum Information { NoInfo = 0,
-				   ScoreInfo = 1,
-				   LivesInfo = 2,
-				   LevelInfo = 4,
+				   ScoreInfo = 1,	// Score
+				   LivesInfo = 2,	// Number of remaining lives
+				   LevelInfo = 4,	// Current level
 				   AllInfo = ScoreInfo | LivesInfo | LevelInfo };
+		/** A flag for the Information enum */
 		Q_DECLARE_FLAGS(InformationTypes, Information);
 
 		/**
-		 * Creates a new Game instance
-		 * @param p_level the game level
+		 * Creates a new Game instance.
+		 * @param p_difficulty the KGameDifficulty level of the Game
 		 */
-		Game(KGameDifficulty::standardLevel p_level = KGameDifficulty::Medium);
+		Game(KGameDifficulty::standardLevel p_difficulty = KGameDifficulty::Medium);
 
 		/**
-		 * Deletes the Game instance
+		 * Deletes the Game instance.
 		 */
 		~Game();
 
 		/**
-		 * Starts the game
+		 * Starts the Game.
 		 */
 		void start();
 
 		/**
-		 * Pauses the game
+		 * Pauses the Game.
+		 * @param p_locked if true the player will be unable to unset the pause.
 		 */
-		void pause();
+		void pause(bool p_locked = false);
 
 		/**
-		 * Manage the game pause when 'P' key is pressed
+		 * Pauses / unpauses the game.
+		 * @param p_locked if true the player will be unable to unset the pause.
 		 */
-		void doPause();
+		void switchPause(bool p_locked = false);
 
 		/**
-		 * @return the kapman model
+		 * @return the Maze instance
+		 */
+		Maze* getMaze() const;
+		 
+		/**
+		 * @return the Kapman model
 		 */
 		Kapman* getKapman() const;
 		
 		/**
-		 * @return the list of ghosts models
+		 * @return the Ghost models
 		 */
-		QList<Ghost*> getGhostList () const;
+		QList<Ghost*> getGhosts () const;
+
+		/**
+		 * @return the Bonus instance
+		 */
+		Bonus* getBonus(); 
 		
 		/**
-		 * @return the timer
+		 * @return the main timer
 		 */
-		QTimer * getTimer() const;
-		 
-		 /**
-		  * @return the maze
-		  */
-		 Maze * getMaze() const;
+		QTimer* getTimer() const;
 		 
 		/**
-		 * @return m_isPaused attribute
+		 * @return true if the Game is paused, false otherwise
 		 */
 		bool isPaused() const;
 		
 		/**
-		 * @return m_isCheater attribute
+		 * @return true if the player has cheated during the game, false otherwise
 		 */
 		bool isCheater() const;
 
@@ -151,7 +165,7 @@ class Game : public QObject {
 		int getScore () const;
 
 		/**
-		 * @return the lifes
+		 * @return the number of remaining lives
 		 */
 		int getLives() const;
 
@@ -160,113 +174,108 @@ class Game : public QObject {
 		 */
 		int getLevel() const;
 		
-		/**
-		 * @return the bonus
-		 */
-		Bonus* getBonus(); 
-
 	private:
 	
 		/**
-		 * Initialize the characters position when the game begin or when the kapman lose a life
+		 * Initializes the character coordinates.
 		 */
 		void initCharactersPosition();
-		
+
 	public slots:
 
 		/**
-		 * Called on key press event
+		 * Manages the key press events.
 		 * @param p_event the key press event
 		 */
 		void keyPressEvent(QKeyEvent* p_event);
+		
+		/**
+		 * Resumes the Game after the Kapman death.
+		 */
+		void resumeAfterKapmanDeath();
+		
+	private slots:
 
 		/**
-		 * Called on each timer signal to update the game data
+		 * Updates the Game data.
 		 */
 		void update();
 		
 		/**
-		 * Manages the loss of a life
+		 * Manages the loss of a life.
 		 */
 		void kapmanDeath();
 
 		/**
-		 * Resumes the game after the kapman death
-		 */
-		void resumeAfterKapmanDeath();
-		
-		/**
-		 * Manages the death of a ghost
+		 * Manages the death of a Ghost.
 		 */
 		void ghostDeath(Ghost* p_ghost);
 
 		/**
-		 * Manages the points won
-		 * @param p_elements reference to the eaten element
+		 * Increases the score considering the eaten Element.
+		 * @param p_element the eaten Element
 		 */
 		void winPoints(Element* p_element);
 
 		/**
-		 * Start the next level
+		 * Starts the next level.
 		 */
 		void nextLevel();
 		
 		/**
-		 * Disable the display of the bonus
+		 * Hides the Bonus.
 		 */
 		void hideBonus();
 		
 	signals:
 	
 		/**
-		 * Signals to the scene to manage pause (display/remove the 'PAUSE' label, start/stop animations)
-		 * @param p_pauseGame indicates if the game is to be paused or not
-		 * @param p_label if true a "pause" label is displayed/hidden
+		 * Emitted when the Game is started.
 		 */
-		void managePause(const bool p_pauseGame, const bool p_label);
+		void gameStarted();
 		
 		/**
-		 * Signals to the scene to remove the 'INTRO' label
+		 * Emitted when the Game is over.
+		 * @param p_unused this parameter must always be true !
 		 */
-		void removeIntro();
-		
-		/**
-		 * Signals to the scene to remove a Pill or Energizer
-		 * @param p_x x coordinate of the element
-		 * @param p_y y coordinate of the element
-		 */
-		void sKillElement(qreal p_x, qreal p_y);
-		
-		/**
-		 * Signals to the scene to display a Bonus
-		 */
-		void sDisplayBonus();
-		
-		/**
-		 * Signals to the scene to display the Label associated to a life losted or a new level!
-		 */
-		void sDisplayLabel(bool newlevel);
+		void gameOver(const bool p_unused);
 
 		/**
-		 * Signals to the scene to remove a Bonus
+		 * Emitted when a level begins, if level up or if a life has been lost.
+		 * @param p_newLevel true if a new level is beginning, false otherwise
 		 */
-		void sHideBonus();
+		void levelStarted(const bool p_newLevel);
 		
 		/**
-		 * Signals to the scene to update the score and lives' labels
+		 * Emitted when the pause state has changed.
+		 * @param p_pause true if the Game is paused, false otherwise
+		 * @param p_fromUser true if the Game has been paused due to an action the player has done, false otherwise
 		 */
-		void updatingInfos(Game::InformationTypes types);
+		void pauseChanged(const bool p_pause, const bool p_fromUser);
+		
+		/**
+		 * Emitted when an Element has been eaten.
+		 * @param p_x the Element x-coordinate
+		 * @param p_y the Element y-coordinate
+		 */
+		void elementEaten(const qreal p_x, const qreal p_y);
+		
+		/**
+		 * Emitted when the Bonus has to be displayed.
+		 */
+		void bonusOn();
 
 		/**
-		 * Signal to the kapmanmainwindow to start a newgame when there isn't more lives or when a level is finished
-		 * @param p_gameFinished true if a level was finished, false if a Game Over was reached
+		 * Emitted when the Bonus has to disappear.
 		 */
-		void startnewgame(bool p_gameFinished);
-
+		void bonusOff();
+		
 		/**
-		 * Emitted when the level has been finished
+		 * Emitted when the Game data (score, level, lives) have changed.
+		 * @param p_infoType the type of data that have changed
 		 */
-		void leveled();
+		void dataChanged(Game::InformationTypes p_infoType);
 };
 
 #endif
+

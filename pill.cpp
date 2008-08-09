@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * 
@@ -22,14 +23,13 @@
 
 const int Pill::POINTS = 10;
 
-Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString & p_imageUrl) : Element(p_x, p_y, p_maze) {
+Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl) : Element(p_x, p_y, p_maze) {
 	Element::setImageUrl(p_imageUrl);
 	m_points = 10;
 	m_type = Element::PILL;
 }
 
 Pill::~Pill() {
-
 }
 
 void Pill::doActionOnCollision(Kapman* p_kapman) {
@@ -37,5 +37,4 @@ void Pill::doActionOnCollision(Kapman* p_kapman) {
 	// Tell to the maze that an element was eaten
 	m_maze->decrementNbElem();
 }
-
 

@@ -46,7 +46,6 @@ KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : Character
 		m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
 	}
 	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
-
 	setElementId("kapman_0");
 }
 
@@ -78,12 +77,12 @@ void KapmanItem::updateDirection() {
 }
 
 void KapmanItem::manageCollision() {
-	QList<QGraphicsItem *> collidingList = collidingItems();
+	QList<QGraphicsItem*> collidingList = collidingItems();
 
 	// The signal is emitted only if the list contains more than 1 items (to exclude the case
 	// when the kapman only collides with the maze)
-	if(collidingList.size() > 1) {
-		for(int i = 0 ; i < collidingList.size() ; i++) {
+	if (collidingList.size() > 1) {
+		for (int i = 0; i < collidingList.size(); i++) {
 			// The maze has a negative zValue which allows to exclude it from the treatment of collisions
 			if (collidingList[i]->zValue() >= 0) {
 				((ElementItem*)collidingList[i])->getModel()->doActionOnCollision((Kapman*)getModel());

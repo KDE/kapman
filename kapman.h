@@ -21,7 +21,7 @@
 #include "character.h"
 
 /**
- * This class represents the main character of the game
+ * @brief This class represents the main character of the game.
  */
 class Kapman : public Character {
 
@@ -35,20 +35,20 @@ class Kapman : public Character {
 	public:
 
 		/**
-		 * Creates a new Kapman instance
-		 * @param p_x the initial x coordinate
-		 * @param p_y the initial y coordinate
-		 * @param p_maze the maze the Kapman is on
+		 * Creates a new Kapman instance.
+		 * @param p_x the initial x-coordinate
+		 * @param p_y the initial y-coordinate
+		 * @param p_maze the Maze the Kapman is on
 		 */
-		Kapman(qreal p_x, qreal p_y, Maze* m_maze);
+		Kapman(qreal p_x, qreal p_y, Maze* p_maze);
 
 		/**
-		 * Deletes the Kapman instance
+		 * Deletes the Kapman instance.
 		 */
 		~Kapman();
 
 		/**
-		 * Initializes the kapman
+		 * Initializes the Kapman.
 		 */
 		void init();
 

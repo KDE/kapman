@@ -69,7 +69,7 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * Starts a new game.
 		 * @param p_gameOver true if the game was over, false if a game is running
 		 */
-		void newGame(const bool p_gameOver);
+		void newGame(const bool p_gameOver = false);
 
 		/**
 		 * Shows the highscores dialog.

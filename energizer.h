@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * 
@@ -20,10 +21,11 @@
 #define __ENERGIZER_H
 
 #include <QObject>
+
 #include "element.h"
 
 /**
- * This class represents a energizer of the Kapman maze
+ * @brief This class represents an energizer enabling to eat Ghosts.
  */
 class Energizer : public Element {
 
@@ -31,39 +33,37 @@ class Energizer : public Element {
 
 	public:
 
-		/** The pill's points */
+		/** The value of an Energyzer */
 		static const int POINTS;
-
 
 	public:
 
 		/**
-		 * Creates a new Energizer instance
+		 * Creates a new Energizer instance.
+		 * @param p_x the x-coordinate
+		 * @param p_y the y-coordinate
+		 * @param p_maze the Maze the Energyzer is on
+		 * @param p_imageUrl the path to the Energyzer image
 		 */
 		Energizer(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl);
 
 		/**
-		 * Deletes the Energizer instance
+		 * Deletes the Energizer instance.
 		 */
 		~Energizer();
 
 		/**
-		 * @return the type of the Element
+		 * Gets the type of the Energyzer.
+		 * @return the type of the Energyzer
 		 */
 		QString getType();
 
 		/**
-		 * Computes an action on a collision with the kapman
-		 * @param p_element the kapman that collides with this element
+		 * Computes an action on a collision with the Kapman.
+		 * @param p_kapman the instance of Kapman which collides with the Energyzer
 		 */
 		void doActionOnCollision(Kapman* p_kapman);
-
-	signals:
-
-		/**
-		 * Emitted when the energyzer is eaten
-		 */
-		//void energyzerEaten();
 };
 
 #endif
+

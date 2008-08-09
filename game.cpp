@@ -23,13 +23,11 @@
 
 const int Game::FPS = 40;
 
-Game::Game(KGameDifficulty::standardLevel p_level) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
-
-	m_maze = new Maze();
-	m_kapman = new Kapman(0.0, 0.0, m_maze);
-
-	// Init the ghosts speed considering the difficulty level
-	switch(p_level) {
+Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
+	// Tells the KGameDifficulty singleton that the game is not running
+	KGameDifficulty::setRunning(false);
+	// Initialize the characters speed considering the difficulty level
+	switch (p_difficulty) {
 		case KGameDifficulty::Easy:
 			Character::setCharactersSpeed(Character::LOW_SPEED);
 			break;
@@ -42,42 +40,36 @@ Game::Game(KGameDifficulty::standardLevel p_level) : m_isCheater(false), m_lives
 		default:
 			break;
 	}
-	// Initialize the ghosts speed and speed increase considering the characters speed
-	Ghost::initGhostsSpeed();
-	// Tells to the KGameDifficulty singleton that the game is not running
-	KGameDifficulty::setRunning(false);
-	
-	// Create the bonus
-	m_bonus = new Bonus(qreal(Cell::SIZE *14),qreal(Cell::SIZE *18), m_maze, 100);
-	
-	m_ghostList.append(new Ghost(0.0, 0.0, "ghostred.svg", m_maze));
-	m_ghostList.append(new Ghost(0.0, 0.0, "ghostgreen.svg", m_maze));
-	m_ghostList.append(new Ghost(0.0, 0.0, "ghostblue.svg", m_maze));
-	m_ghostList.append(new Ghost(0.0, 0.0, "ghostpink.svg", m_maze));
-
-	// Connects all ghosts to the "kapmanDeath" slot
-	for (int i = 0; i < m_ghostList.size(); i++) {
-		connect(m_ghostList[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
-		connect(m_ghostList[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
-	}
-	// Connects the kapman to the "winPoints" slot
-	connect(m_kapman, SIGNAL(sWinPoints(Element*)), this, SLOT(winPoints(Element*)));
-	// Manage the end of levels
+	// Create the Maze instance
+	m_maze = new Maze();
 	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
-
-	// Start the timer to move the characters regulary
-	m_timer = new QTimer(this);
-	m_timer->setInterval(int(1000 / Game::FPS));
-	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
-	m_timer->start();
-	
-	// Create the bonus timer
+	// Create the Kapman instance
+	m_kapman = new Kapman(0.0, 0.0, m_maze);
+	connect(m_kapman, SIGNAL(sWinPoints(Element*)), this, SLOT(winPoints(Element*)));
+	// Create the Ghost instances
+	m_ghosts.append(new Ghost(0.0, 0.0, "ghostred.svg", m_maze));
+	m_ghosts.append(new Ghost(0.0, 0.0, "ghostgreen.svg", m_maze));
+	m_ghosts.append(new Ghost(0.0, 0.0, "ghostblue.svg", m_maze));
+	m_ghosts.append(new Ghost(0.0, 0.0, "ghostpink.svg", m_maze));
+	for (int i = 0; i < m_ghosts.size(); i++) {
+		connect(m_ghosts[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
+		connect(m_ghosts[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
+	}
+	// Initialize the ghosts speed and the ghost speed increase considering the characters speed
+	Ghost::initGhostsSpeed();
+	// Create the Bonus instance
+	m_bonus = new Bonus(qreal(Cell::SIZE * 14),qreal(Cell::SIZE * 18), m_maze, 100);
 	m_bonusTimer = new QTimer(this);
 	m_bonusTimer->setInterval(10000);
 	m_bonusTimer->setSingleShot(true);
 	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(hideBonus()));
-
-	// Init the characters
+	// Start the Game timer
+	m_timer = new QTimer(this);
+	m_timer->setInterval(int(1000 / Game::FPS));
+	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
+	m_timer->start();
+	m_state = RUNNING;
+	// Init the characters coordinates on the Maze
 	initCharactersPosition();
 }
 
@@ -86,63 +78,63 @@ Game::~Game() {
 	delete m_bonusTimer;
 	delete m_maze;
 	delete m_kapman;
-	for (int i = 0; i < m_ghostList.size(); i++) {
-		delete m_ghostList[i];
+	for (int i = 0; i < m_ghosts.size(); i++) {
+		delete m_ghosts[i];
 	}
 	delete m_bonus;
 }
 
 void Game::start() {
-	// Restart all active timers
+	// Restart the Game timer
 	m_timer->start();
-	// Tells the Game that it is no longer paused
-	m_isPaused = false;
-	// Resume animations
-	emit(managePause(false, false));
+	m_state = RUNNING;
+	emit(pauseChanged(false, false));
 }
 
-void Game::pause() {
-	// Stop all timers
+void Game::pause(bool p_locked) {
+	// Stop the Game timer
 	m_timer->stop();
-	// Tells the Game that it is paused
-	m_isPaused = true;
-	// Stop animations
-	emit(managePause(true, false));
+	if (p_locked) {
+		m_state = PAUSED_LOCKED;
+	} else {
+		m_state = PAUSED_UNLOCKED;
+	}
+	emit(pauseChanged(true, false));
 }
 
-void Game::doPause() {
-	// If the game isn't paused yet, we stop all timers
-	if(!m_isPaused) {
-		pause();
-		// Signal to the scene to add a 'PAUSE' label and stop animations
-		emit(managePause(true, true));
+void Game::switchPause(bool p_locked) {
+	// If the Game is not already paused
+	if (m_state == RUNNING) {
+		// Pause the Game
+		pause(p_locked);
+		emit(pauseChanged(true, true));
 	}
-	// If the game is already paused, we restart all timers
+	// If the Game is already paused
 	else {
+		// Resume the Game
 		start();
-		// Signal to the scene to remove the 'PAUSE' label and restart animations
-		emit(managePause(false, true));
+		emit(pauseChanged(false, true));
 	}
 }
 
-Kapman * Game::getKapman() const {
+Kapman* Game::getKapman() const {
 	return m_kapman;
 }
 		
-QList<Ghost*> Game::getGhostList () const {
-	return m_ghostList;
+QList<Ghost*> Game::getGhosts () const {
+	return m_ghosts;
 }
 
-QTimer * Game::getTimer() const {
+QTimer* Game::getTimer() const {
 	return m_timer;
 }
 
-Maze * Game::getMaze() const {
+Maze* Game::getMaze() const {
 	return m_maze;
 }
 
 bool Game::isPaused() const {
-	return m_isPaused;
+	return (m_state != RUNNING);
 }
 
 bool Game::isCheater() const {
@@ -164,38 +156,33 @@ Bonus* Game::getBonus() {
 	return m_bonus;
 }
 
-/** Private */
 void Game::initCharactersPosition() {
 	// If the timer is stopped, it means that collisions are already being handled
-	if(m_timer->isActive()) {
-		
-		// At the beginning, the timer is stopped but the game isn't paused (to allow keyPressedEvent detection)
+	if (m_timer->isActive()) {	
+		// At the beginning, the timer is stopped but the Game isn't paused (to allow keyPressedEvent detection)
 		m_timer->stop();
-		m_isPaused = false;	
-		
-		// Initialize ghosts position and state
-		m_ghostList[0]->setX(Cell::SIZE * 14);
-		m_ghostList[0]->setY(Cell::SIZE * 11.5);
-		m_ghostList[0]->setState(Ghost::HUNTER);
-		m_ghostList[1]->setX(Cell::SIZE * 12);
-		m_ghostList[1]->setY(Cell::SIZE * 14.5);
-		m_ghostList[1]->setState(Ghost::HUNTER);
-		m_ghostList[2]->setX(Cell::SIZE * 14);
-		m_ghostList[2]->setY(Cell::SIZE * 14.5);
-		m_ghostList[2]->setState(Ghost::HUNTER);
-		m_ghostList[3]->setX(Cell::SIZE * 16);
-		m_ghostList[3]->setY(Cell::SIZE * 14.5);
-		m_ghostList[3]->setState(Ghost::HUNTER);
-		
-		// Initialize the kapman position
+		m_state = RUNNING;
+		// Initialize Ghost coordinates and state
+		m_ghosts[0]->setX(Cell::SIZE * 14);
+		m_ghosts[0]->setY(Cell::SIZE * 11.5);
+		m_ghosts[0]->setState(Ghost::HUNTER);
+		m_ghosts[1]->setX(Cell::SIZE * 12);
+		m_ghosts[1]->setY(Cell::SIZE * 14.5);
+		m_ghosts[1]->setState(Ghost::HUNTER);
+		m_ghosts[2]->setX(Cell::SIZE * 14);
+		m_ghosts[2]->setY(Cell::SIZE * 14.5);
+		m_ghosts[2]->setState(Ghost::HUNTER);
+		m_ghosts[3]->setX(Cell::SIZE * 16);
+		m_ghosts[3]->setY(Cell::SIZE * 14.5);
+		m_ghosts[3]->setState(Ghost::HUNTER);
+		// Initialize the Kapman coordinates
 		m_kapman->setX(Cell::SIZE * 14);
 		m_kapman->setY(Cell::SIZE * 23.5);
 		m_kapman->init();
-
-		// Initialize the Pills & Energizers positions
-		for(int i=0; i<m_maze->getNbRows(); i++) {
-			for(int j=0; j<m_maze->getNbColumns(); j++) {
-				if(m_maze->getCell(i,j).getElement() != NULL){
+		// Initialize the Pills & Energizers coordinates
+		for (int i = 0; i < m_maze->getNbRows(); i++) {
+			for (int j = 0; j < m_maze->getNbColumns(); j++) {
+				if (m_maze->getCell(i,j).getElement() != NULL){
 					m_maze->getCell(i,j).getElement()->setX(Cell::SIZE * (j + 0.5));
 					m_maze->getCell(i,j).getElement()->setY(Cell::SIZE * (i + 0.5));
 				}
@@ -206,82 +193,80 @@ void Game::initCharactersPosition() {
 
 void Game::keyPressEvent(QKeyEvent* p_event) {
 	// At the beginning or when paused, we start the timer when an arrow key is pressed
-	if((p_event->key() == Qt::Key_Up || p_event->key() == Qt::Key_Down || p_event->key() ==  Qt::Key_Left || p_event->key() == Qt::Key_Right) && !m_timer->isActive()) {
+	if ((p_event->key() == Qt::Key_Up || p_event->key() == Qt::Key_Down || p_event->key() ==  Qt::Key_Left || p_event->key() == Qt::Key_Right) && !m_timer->isActive()) {
 		// If paused
-		if (m_isPaused) {
-			doPause();
-		} else {
+		if (m_state == PAUSED_UNLOCKED) {
+			switchPause();
+		} else if (m_state == RUNNING) {	// At the game beginning
+			// Start the game
 			m_timer->start();
-			emit(removeIntro());
+			emit(gameStarted());
 		}
-		// Tells to the KGameDifficulty singleton that the game now runs
+		// Tells the KGameDifficulty singleton that the game now runs
 		KGameDifficulty::setRunning(true);
 	}
 	// Behaviour when the game has begun
 	switch (p_event->key()) {
 		case Qt::Key_Up:
-			if(!m_isPaused) {
+			if (m_state == RUNNING) {
 				m_kapman->goUp();
 			}
 			break;
 		case Qt::Key_Down:
-			if(!m_isPaused) {
+			if (m_state == RUNNING) {
 				m_kapman->goDown();
 			}
 			break;
 		case Qt::Key_Right:
-			if(!m_isPaused) {
+			if (m_state == RUNNING) {
 				m_kapman->goRight();
 			}
 			break;
 		case Qt::Key_Left:
-			if(!m_isPaused) {
+			if (m_state == RUNNING) {
 				m_kapman->goLeft();
 			}
 			break;
 		case Qt::Key_P:
-			doPause();
+			switchPause();
 			break;
 		case Qt::Key_K:
 			// Cheat code to get one more life
 			if (p_event->modifiers() == (Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier)) {
 				m_lives++;
 				m_isCheater = true;
-				emit(updatingInfos(LivesInfo));
+				emit(dataChanged(LivesInfo));
 			}
 		default:
 			break;
 	}
 }
 
-/** SLOTS */
 void Game::update() {
 	int curKapmanRow, curKapmanCol;
 	
-	//check if the kapman is in the line of sight of a ghost
+	// Check if the kapman is in the line of sight of a ghost
 	curKapmanRow = m_maze->getRowFromY(m_kapman->getY());
 	curKapmanCol = m_maze->getColFromX(m_kapman->getX());
 	
-	for(int i = 0; i < m_ghostList.size(); i++) {
-		if(m_ghostList[i]->getState() == Ghost::HUNTER && m_ghostList[i]->isInLineSight(m_kapman)) {
-			m_ghostList[i]->updateMove(curKapmanRow, curKapmanCol);
+	for (int i = 0; i < m_ghosts.size(); i++) {
+		if (m_ghosts[i]->getState() == Ghost::HUNTER && m_ghosts[i]->isInLineSight(m_kapman)) {
+			m_ghosts[i]->updateMove(curKapmanRow, curKapmanCol);
 		}
 		else {
-			m_ghostList[i]->updateMove();
+			m_ghosts[i]->updateMove();
 		}
 	}	
 	m_kapman->updateMove();
-	
-	// tells to kapman to call the function that will emit a signal to Kapmanitem (in order to manage collisions)
 	m_kapman->emitGameUpdated();
 }
 
 void Game::kapmanDeath() {
 	m_lives--;
-	emit(updatingInfos(LivesInfo));
 	m_kapman->die();
+	emit(dataChanged(LivesInfo));
 	// Make a 2 seconds pause while the kapman is blinking
-	pause();
+	pause(true);
 	QTimer::singleShot(2500, this, SLOT(resumeAfterKapmanDeath()));
 }
 
@@ -289,12 +274,12 @@ void Game::resumeAfterKapmanDeath() {
 	// Start the timer
 	start();
 	// Remove a possible bonus
-	emit(sHideBonus());
+	emit(bonusOff());
 	// If their is no lives left, we start a new game
-	if (m_lives == 0) {
-		emit(startnewgame(true));
+	if (m_lives <= 0) {
+		emit(gameOver(true));
 	} else {
-		emit(sDisplayLabel(false));
+		emit(levelStarted(false));
 		// Move all characters to their initial positions
 		initCharactersPosition();
 	}
@@ -317,51 +302,50 @@ void Game::winPoints(Element* p_element) {
 	// For each 10000 points we get a life more
 	if (m_points / 10000 > (m_points - p_element->getPoints()) / 10000) {
 		m_lives++;
-		emit(updatingInfos(LivesInfo));
+		emit(dataChanged(LivesInfo));
 	}
 	// If the eaten element is an energyzer we change the ghosts state
-	if(p_element->getType() == Element::ENERGYZER) {
-		for (int i = 0; i < m_ghostList.size(); i++) {
-			m_ghostList[i]->setState(Ghost::PREY);
+	if (p_element->getType() == Element::ENERGYZER) {
+		for (int i = 0; i < m_ghosts.size(); i++) {
+			m_ghosts[i]->setState(Ghost::PREY);
 		}
 		// Reset the number of eaten ghosts
 		m_nbEatenGhosts = 0;
-		emit(sKillElement(p_element->getX(), p_element->getY()));
+		emit(elementEaten(p_element->getX(), p_element->getY()));
 	}
-	else if(p_element->getType() == Element::PILL) {
-		emit(sKillElement(p_element->getX(), p_element->getY()));
+	else if (p_element->getType() == Element::PILL) {
+		emit(elementEaten(p_element->getX(), p_element->getY()));
 	}
-	else if(p_element->getType() == Element::BONUS) {
-		emit(sHideBonus());
+	else if (p_element->getType() == Element::BONUS) {
+		emit(bonusOff());
 	}
-	
-	// If 1/3 or 2/3 of the pills are eaten, display a bonus
-	if(m_maze->getNbElem() == m_maze->getTotalNbElem()/3 || m_maze->getNbElem() == (m_maze->getTotalNbElem()*2/3)) {
-		emit(sDisplayBonus());
+	// If 1/3 or 2/3 of the pills are eaten
+	if (m_maze->getNbElem() == m_maze->getTotalNbElem() / 3 || m_maze->getNbElem() == (m_maze->getTotalNbElem() * 2 / 3)) {
+		// Display the Bonus
+		emit(bonusOn());
 		m_bonusTimer->start();
 	}	
-	
-	// Update view
-	emit(updatingInfos(ScoreInfo));
+	emit(dataChanged(ScoreInfo));
 }
 
 void Game::nextLevel() {
 	// Increment the level
 	m_level++;
+	// Initialize the maze items
+	m_maze->resetNbElem();
+	// Update Bonus
+	m_bonus->setPoints(m_level * 100);
 	// Increase the ghosts speed
 	Ghost::increaseGhostsSpeed();
 	// Move all characters to their initial positions
 	initCharactersPosition();
-	// To update the score, level and lives labels
-	emit(updatingInfos(AllInfo));
-	// To reinit the maze items
-	emit(leveled());
-	m_maze->resetNbElem();
-	// Update Bonus
-	m_bonus->setPoints(m_level * 100);
-	emit(sDisplayLabel(true));
+	// Update the score, level and lives labels
+	emit(dataChanged(AllInfo));
+	// Update the view
+	emit(levelStarted(true));
 }
 
 void Game::hideBonus() {
-	emit(sHideBonus());
+	emit(bonusOff());
 }
+

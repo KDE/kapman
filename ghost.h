@@ -25,7 +25,7 @@
 #include <QTimer>
 
 /**
- * This class represents the ghost
+ * @brief This class represents a Ghost for kapman.
  */
 class Ghost : public Character {
 
@@ -33,8 +33,8 @@ class Ghost : public Character {
 	
 	public:
 	
-		/** The ghost possible state */
-		enum GhostState {
+		/** The ghost possible states */
+		enum State {
 			HUNTER = 0,
 			PREY = 1,
 			EATEN = 2
@@ -42,16 +42,16 @@ class Ghost : public Character {
 
 	private:
 
-		/** URL to the ghost's image */
+		/** The path to the Ghost image */
 		QString m_imageURL;
 		
-		/** The ghost actual state */
-		GhostState m_state;
+		/** The ghost current state */
+		State m_state;
 		
-		/** The ghosts speed (different from Character::s_speed since it is increased on level up) */
+		/** The ghost speed (different from Character::s_speed since it is increased on level up) */
 		static qreal s_speed;
 
-		/** The value the ghosts speed is incremented by when level up */
+		/** The value the ghost speed is incremented by when level up */
 		static qreal s_speedIncrease;
 
 		/** The possible speed increase (may change function of the difficulty level) */
@@ -62,7 +62,7 @@ class Ghost : public Character {
 		/** The ghost speed (different from Ghost::s_speed since m_speed can change function of the ghost state) */
 		qreal m_speed;
 
-		/** A list of cells to go to the camp from the current cell */
+		/** A list of Cells to go to the camp from the current cell */
 		QList<QPoint> m_pathToCamp;
 
 		/** Timer to manage the prey state */
@@ -71,109 +71,112 @@ class Ghost : public Character {
 	public:
 
 		/**
-		 * Creates a new Ghost instance
+		 * Creates a new Ghost instance.
 		 * @param p_x the initial x-coordinate
-		 * @param p_x the initial x-coordinate
+		 * @param p_y the initial y-coordinate
 		 * @param p_imageURL path to the image of the related item
-		 * @param p_maze the maze the Ghost is on
+		 * @param p_maze the Maze the Ghost is on
 		 */
 		Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze);
 
 		/**
-		 * Deletes the Ghost instance
+		 * Deletes the Ghost instance.
 		 */
 		~Ghost();
 
 		/**
-		 * Updates the Ghost move
+		 * Updates the Ghost move.
 		 */
 		void updateMove();
 
 		/**
-		 * Updates the Ghost with a direction to follow
+		 * Updates the Ghost with a direction to follow.
 		 * @param p_row x coordinate of the cell to reach
 		 * @param p_col y coordinate of the cell to reach
 		 */
 		void updateMove(int p_row, int p_col);
 		 
 		/**
-		 * @return the URL to the ghost's image
+		 * Gets the path to the Ghost image.
+		 * @return the path to the Ghost image
 		 */
 		QString getImageURL() const;
 		
 		/**
-		 * @return the ghost state
+		 * Gets the current state of the Ghost.
+		 * @return the Ghost state
 		 */
-		GhostState getState() const;
+		State getState() const;
 		
 		/**
-		 * Set the ghost state to the given value
-		 * @param p_state the new state
+		 * Sets the Ghost state to the given value.
+		 * @param p_state the new Ghost state
 		 */
-		void setState(Ghost::GhostState p_state);
+		void setState(Ghost::State p_state);
 		
 		 /**
-		  * Manages the collison with the kapman
-		  * @param p_kapman reference to the kapman model
+		  * Manages the collison with the Kapman.
+		  * @param p_kapman the instance of Kapman which collides with the Ghost
 		  */
 		 void doActionOnCollision(Kapman* p_kapman);
 
 		 /**
-		  * Initializes the ghosts speed from the characters speed
+		  * Initializes the Ghost speed from the Character speed.
 		  */
 		 static void initGhostsSpeed();
 
 		 /**
-		  * Increases the ghosts speed
+		  * Increases the Ghost speed.
 		  */
 		 static void increaseGhostsSpeed();
 
 	private:
 
 		/**
-		 * Makes the Ghost go up
+		 * Makes the Ghost go up.
 		 */
 		void goUp();
 
 		/**
-		 * Makes the Ghost go down
+		 * Makes the Ghost go down.
 		 */
 		void goDown();
 
 		/**
-		 * Makes the Ghost go to the right
+		 * Makes the Ghost go to the right.
 		 */
 		void goRight();
 
 		/**
-		 * Makes the Ghost go to the left
+		 * Makes the Ghost go to the left.
 		 */
 		void goLeft();
 
 	private slots:
 
 		/**
-		 * Ends the ghost prey state
+		 * Ends the Ghost prey state.
 		 */
 		void endPreyState();
 		
 	signals:
 	
 		/**
-		 * Signals to the game that the kapman lost a life
+		 * Emitted when the Kapman has lost a life.
 		 */
 		void lifeLost();
 		
 		/**
-		 * Signals to the game that the ghost has been eaten
-		 * @param p_ghost reference to the eaten ghost
+		 * Emitted when the Ghost has been eaten.
+		 * @param p_ghost the eaten Ghost (this)
 		 */
 		void ghostEaten(Ghost* p_ghost);
 		
 		/**
-		 * Signals to its item that its state has changed
+		 * Emitted when the Ghost has changed his state.
 		 */
 		void stateChanged();
 };
 
 #endif
+

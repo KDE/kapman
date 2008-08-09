@@ -20,7 +20,7 @@
 
 GameView::GameView(Game * p_game) : QGraphicsView(new GameScene(p_game)) {
 	setFocusPolicy(Qt::StrongFocus);
-	// Connect the key events to the game manager
+	// Forward the key press events to the Game instance
 	connect(this, SIGNAL(keyPressed(QKeyEvent*)), p_game, SLOT(keyPressEvent(QKeyEvent*)));
 }
 
@@ -32,13 +32,14 @@ void GameView::resizeEvent(QResizeEvent* p_event) {
 	fitInView(sceneRect(), Qt::KeepAspectRatio);
 }
 
-void GameView::focusOutEvent(QFocusEvent* p_evt) {
+void GameView::focusOutEvent(QFocusEvent* p_event) {
 	// Pause the game if it is not already paused
 	if (((GameScene*)scene())->getGame()->getTimer()->isActive()) {
-		((GameScene*)scene())->getGame()->doPause();
+		((GameScene*)scene())->getGame()->switchPause();
 	}
 }
 
 void GameView::keyPressEvent(QKeyEvent* p_event) {
 	emit(keyPressed(p_event));
 }
+

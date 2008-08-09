@@ -22,7 +22,7 @@
 #include "element.h"
 
 /**
- * This class describes the main characteristics of the Kapman and the ghosts
+ * @brief This class describes the common characteristics and behaviour of the game characters (Kapman and the Ghost).
  */
 class Character : public Element {
 
@@ -30,108 +30,116 @@ class Character : public Element {
 
 	public:
 
-		/** The characters possible speed */
+		/** Speed on easy level */
 		static const qreal LOW_SPEED;
+
+		/** Speed on medium level */
 		static const qreal MEDIUM_SPEED;
+
+		/** Speed on hard level */
 		static const qreal HIGH_SPEED;
 
 	protected:
 
-		/** The characters speed */
+		/** The Character speed */
  		static qreal s_speed;
 
-		/** Character speed */
-		qreal m_xSpeed, m_ySpeed;
+		/** The Character x-speed */
+		qreal m_xSpeed;
+
+		/** The Character y-speed */
+		qreal m_ySpeed;
 
 	public:
 
 		/**
-		 * Creates a new Character instance
-		 * @param p_x the initial x coordinate
-		 * @param p_y the initial y coordinate
-		 * @param p_maze the maze the character is on
+		 * Creates a new Character instance.
+		 * @param p_x the initial x-coordinate
+		 * @param p_y the initial y-coordinate
+		 * @param p_maze the Maze the Character is on
 		 */
 		Character(qreal p_x, qreal p_y, Maze* p_maze);
 
 		/**
-		 * Deletes the Character instance
+		 * Deletes the Character instance.
 		 */
 		~Character();
 
 		/**
-		 * Makes the Character go up
+		 * Makes the Character go up.
 		 */
 		virtual void goUp() = 0;
 
 		/**
-		 * Makes the Character go down
+		 * Makes the Character go down.
 		 */
 		virtual void goDown() = 0;
 
 		/**
-		 * Makes the Character go to the right
+		 * Makes the Character go to the right.
 		 */
 		virtual void goRight() = 0;
 
 		/**
-		 * Makes the Character go to the left
+		 * Makes the Character go to the left.
 		 */
 		virtual void goLeft() = 0;
 
 		/**
-		 * Updates the character move
+		 * Updates the Character move.
 		 */
 		virtual void updateMove() = 0;
 
 		/**
-		 * Moves the Character function of its coordinates and speed
-		 * If the character reaches a border, it circles around the maze
-		 * and continue its way from the other side
+		 * Moves the Character function of its current coordinates and speed.
+		 * If the character reaches a border, it circles around the maze and continue its way from the other side.
 		 */
 		void move();
 
 		/**
-		 * Manages the character death (essentially blinking)
+		 * Manages the character death (essentially blinking).
 		 */
 		void die();
 
 		/**
-		 * @return the x speed value
+		 * Gets the Character x-speed value.
+		 * @return the x-speed value
 		 */
 		qreal getXSpeed() const;
 
 		/**
-		 * @return the y speed value
+		 * Gets the Character y-speed value.
+		 * @return the y-speed value
 		 */
 		qreal getYSpeed() const;
 		
 		/**
-		 * Set the X speed attribute
-		 * @param p_xSpeed the x speed attribute
+		 * Set the Character x-speed value.
+		 * @param p_xSpeed the x-speed to set
 		 */
 		 void setXSpeed(qreal p_xSpeed);
 		 
-		 /**
-		 * Set the Y speed attribute
-		 * @param p_ySpeed the y speed attribute
+		/**
+		 * Set the Character y-speed value.
+		 * @param p_ySpeed the y-speed to set
 		 */
 		 void setYSpeed(qreal p_ySpeed);
 		 
-		 /**
-		 * @param p_c the character to check
-		 * @return true if the caller is in the same line than the character
-		 *	   without wall between them and if it doesn't have to make a 
-		 *	   half turn
+		/**
+		 * Checks the Character is in the line of sight of the given other Character.
+		 * @param p_character the other Character
+		 * @return true if the Character is in the same line than the given one
 		 */
-		bool isInLineSight(Character * p_c);
+		bool isInLineSight(Character* p_character);
 
 		/**
-		 * @return the characters speed
+		 * Gets the Character speed.
+		 * @return the character speed
 		 */
 		static qreal getCharactersSpeed();
 
 		/**
-		 * Sets the characters speed
+		 * Sets the Character speed.
 		 * @param p_speed the speed to set
 		 */
 		static void setCharactersSpeed(const qreal p_speed);
@@ -139,27 +147,29 @@ class Character : public Element {
 	protected:
 
 		/**
-		 * @return the next cell the character will move on with its current direction
+		 * Gets the next Cell the Character is going to reach.
+		 * @return the next Cell the Character is going to reach
 		 */
 		Cell getNextCell();
 
 		/**
-		 * If the character goes past the next center it mets during its next movement
-		 * @return true if the character is on a center, false otherwise
+		 * Checks wether the Character goes past the next Cell center it mets during its next movement.
+		 * @return true if the Character is on a center, false otherwise
 		 */
 		bool onCenter();
 
 		/**
-		 * Moves the character on its current cell center
+		 * Moves the character on the center of its current Cell.
 		 */
 		void moveOnCenter();
 
 	signals:
 
 		/**
-		 * Emitted when the character is eaten
+		 * Emitted when the character is eaten.
 		 */
 		void eaten();
 };
 
 #endif
+

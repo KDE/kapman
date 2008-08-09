@@ -21,7 +21,6 @@
 const qreal Cell::SIZE = 20.0;
 
 Cell::Cell() : m_type(Cell::WALL), m_element(NULL), m_cost(0), m_parent(NULL) {
-
 }
 
 Cell::~Cell() {
@@ -29,19 +28,19 @@ Cell::~Cell() {
 	delete m_element;
 }
 
-Cell::CellType Cell::getType() {
+Cell::Type Cell::getType() {
 	return m_type;
 }
 
-void Cell::setType(Cell::CellType p_type) {
+void Cell::setType(Cell::Type p_type) {
 	m_type = p_type;
 }
 
-Element * Cell::getElement() {
+Element* Cell::getElement() {
 	return m_element;
 }
 
-void Cell::setElement(Element * p_element) {
+void Cell::setElement(Element* p_element) {
 	m_element = p_element;
 }
 

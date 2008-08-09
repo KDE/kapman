@@ -19,16 +19,17 @@
 #ifndef __GAMESCENE_H
 #define __GAMESCENE_H
 
-#include <QGraphicsScene>
-#include <QList>
 #include "game.h"
 #include "elementitem.h"
 #include "mazeitem.h"
 #include "ghostitem.h"
 #include "kapmanitem.h"
 
+#include <QGraphicsScene>
+#include <QList>
+
 /**
- * This class represents the game Scene
+ * @brief This class contains all the Game elements to be drawn on the screen by the GameView instance.
  */
 class GameScene : public QGraphicsScene {
 
@@ -36,96 +37,93 @@ class GameScene : public QGraphicsScene {
 		
 	private:
 
-		/** The game */
+		/** The Game instance */
 		Game* m_game;
-		
-		/** The list of the ElementItem Pills or Energizer*/
-		ElementItem *** m_elementItemList;
-		
-		/** The bonus */
-		ElementItem * m_bonusItem;
 
-		/** All the labels to be displayed during the game */
+		/** The MazeItem to be drawn */
+		MazeItem* m_mazeItem;
+
+		/** The KapmanItem to be drawn */
+		KapmanItem* m_kapmanItem;
+
+		/** The GhostItem of each Ghost to be drawn */
+		QList<GhostItem*> m_ghostItems;
+		
+		/** The ElementItem to be drawn (each Pill and Energizers) */
+		ElementItem*** m_elementItems;
+		
+		/** The Bonus ElementItem */
+		ElementItem* m_bonusItem;
+
+		/** The labels to be displayed during the game */
 		QGraphicsTextItem* m_introLabel;
 		QGraphicsTextItem* m_introLabel2;
+		QGraphicsTextItem* m_newLevelLabel;
 		QGraphicsTextItem* m_scoreLabel;
 		QGraphicsTextItem* m_livesLabel;
 		QGraphicsTextItem* m_levelLabel;
-		QGraphicsTextItem* m_newlevelLabel;
 		QGraphicsTextItem* m_pauseLabel;
-		
-		/** References on characters Item and maze item (needed to modify their zValue) */
-		KapmanItem* m_kapmanItem;
-		MazeItem* m_mazeItem;
-		QList<GhostItem*> m_ghostItemList;
 		
 	public:
 
 		/**
-		 * Creates a new GameScene instance
-		 * @param p_kapman the kapman model instance
-		 * @param p_ghost the list of ghost models instance
+		 * Creates a new GameScene instance.
+		 * @param p_game the Game instance whose elements must be contained in the GameScene in order to be drawn
 		 */
-		GameScene(Game * p_game);
+		GameScene(Game* p_game);
 
 		/**
-		 * Deletes the Game instance
+		 * Deletes the Game instance.
 		 */
 		~GameScene();
 
 		/**
-		 * @return the game
+		 * @return the Game instance
 		 */
 		Game* getGame() const;
 		
-	public slots:
+	private slots:
 
 		/**
-		 * Inits the items on the scene
+		 * Updates the elements to be drawn on Game introduction.
+		 * @param p_newLevel true a new level has begun, false otherwise
 		 */
-		void initItems();
+		void intro(const bool p_newLevel);
 	
 		/**
-		 * Display/remove the 'PAUSE' label, manage animations when 'P' key is pressed
-		 * @param p_pauseGame indicates if the game is paused or not
-		 * @param p_label if true a "pause" label is displayed/hidden
+		 * Updates the elements to be drawn when the Game starts.
 		 */
-		void managePause(const bool p_pauseGame, const bool p_label);
+		void start();
 		
 		/**
-		 * Remove the 'INTRO' label when a key is pressed
+		 * Updates the elements to be drawn considering the Game state (paused or running).
+		 * @param p_pause if true the Game has been paused, if false the Game has been resumed
+		 * @param p_fromUser if true the Game has been paused due to an action from the user
 		 */
-		void removeIntro();
+		void setPaused(const bool p_pause, const bool p_fromUser);
 		
 		/**
-		 * Remove the Pill or Energizer when the Kapman eat them
-		 * @param p_x x coordinate of the element
-		 * @param p_y y coordinate of the element
+		 * Removes the Element at the given coordinates from the GameScene.
+		 * @param p_x x-coordinate of the Element
+		 * @param p_y y-coordinate of the Element
 		 */
-		void killElement(qreal p_x, qreal p_y);
+		void hideElement(const qreal p_x, const qreal p_y);
 		
 		/**
-		 * Display the Bonus when the Kapman eat more than 1/3 of pills
+		 * Displays the Bonus.
 		 */
 		void displayBonus();
 		
 		/**
-		 * Remove the Bonus when the Kapman eat them
+		 * Remove the Bonus from the GameScene.
 		 */
 		void hideBonus();
 	
 		/**
-		 * Upadate the score and lives labels
+		 * Upadates the Game information labels.
+		 * @param p_info the type of the information to be updated
 		 */
-		void updateInfos(Game::InformationTypes);
-		
-		/**
-		 * Display the  intro label when a life is losted and levelLabel when new level is 
-		 * @param newlevel  false : life is losted ; true : new level
-		 */
-		void displayLabel(bool newlevel);
-
-
+		void updateInfo(const Game::InformationTypes p_info);
 };
 
 #endif

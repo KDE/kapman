@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -34,7 +34,6 @@ void GhostItem::update(qreal p_x, qreal p_y) {
 	// Compute the top-right coordinates of the item
 	qreal x = p_x - boundingRect().width() / 2;
 	qreal y = p_y - boundingRect().height() / 2;
-
 	// Updates the view coordinates
 	setPos(x, y);
 }

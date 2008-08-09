@@ -23,17 +23,17 @@
 class Element;
 
 /**
- * This class represents a cell of the Kapman maze
+ * @brief This class represents a Cell of the Maze.
  */
 class Cell {
 
 	public:
 
-		/** The cell side size */
+		/** The Cell side size */
 		static const qreal SIZE;
 
-		/** The cell possible types */
-		enum CellType {
+		/** The Cell possible types */
+		enum Type {
 			WALL = 0,
 			CORRIDOR = 1,
 			GHOSTCAMP = 2
@@ -41,71 +41,78 @@ class Cell {
 
 	private:
 
-		/** The cell's type */
-		CellType m_type;
+		/** The Cell type */
+		Type m_type;
 
-		/** The cell's element */
-		Element * m_element;
+		/** A reference on the Element that is on the Cell */
+		Element* m_element;
 
-		/** Cost used in A* pathfinding algorithm : lower is the cost, closer to the target cell is this cell */
+		/** Cost used in A* pathfinding algorithm : lower is the cost, closer to the target Cell is this Cell */
 		int m_cost;
 
-		/** Parent node used in A* pathfinding algorithm : the cell which enables to go to this cell */
+		/** Parent node used in A* pathfinding algorithm : the Cell which enables to go to this Cell */
 		Cell* m_parent;
 
 	public:
 
 		/**
-		 * Creates a new Cell instance
+		 * Creates a new Cell instance.
 		 */
 		Cell();
 
 		/**
-		 * Deletes the Cell instance
+		 * Deletes the Cell instance.
 		 */
 		~Cell();
 
 		/**
-		 * @return the cell type
+		 * Gets the Cell type.
+		 * @return the Cell type
 		 */
-		CellType getType();
+		Type getType();
 
 		/**
-		 * Sets the cell type
+		 * Sets the Cell type.
 		 * @param p_type the new type to set
 		 */
-		void setType(CellType p_type);
+		void setType(Type p_type);
 
 		/**
-		 * @return the cell Element
+		 * Gets the Element that is on the Cell.
+		 * @return the Element that is on the Cell
 		 */
-		Element * getElement();
+		Element* getElement();
 
 		/**
-		 * Sets the cell's item
-		 * @param p_item the new item to set
+		 * Sets the Element that is on the Cell.
+		 * @param p_element the Element to set on the Cell
 		 */
 		void setElement(Element* p_element);
 
 		/**
-		 * @return the cell cost for A* pathfinding algorithm
+		 * Gets the Cell cost for A* pathfinding algorithm.
+		 * @return the Cell cost for A* pathfinding algorithm
 		 */
 		int getCost() const;
 
 		/**
-		 * @param p_cost the new cost of the cell for A* pathfinding algorithm
+		 * Sets a cost for the Cell, for A* pathfinding algorithm.
+		 * @param p_cost the cost of the Cell for A* pathfinding algorithm
 		 */
 		void setCost(const int p_cost);
 
 		/**
-		 * @return the cell parent for A* pathfinding algorithm
+		 * Gets the parent Cell of this Cell for A* pathfinding algorithm.
+		 * @return the Cell parent for A* pathfinding algorithm
 		 */
 		Cell* getParent() const;
 
 		/**
-		 * @param p_parent the new parent of the cell for A* pathfinding algorithm
+		 * Sets the parent Cell of this Cell for A* pathfinding algorithm.
+		 * @param p_parent the parent of the Cell for A* pathfinding algorithm
 		 */
 		void setParent(Cell* p_parent);
 };
 
 #endif
+

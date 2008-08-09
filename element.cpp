@@ -22,14 +22,12 @@ Element::Element(qreal p_x, qreal p_y, Maze* p_maze) :	m_x(p_x), m_y(p_y), m_maz
 }
 
 Element::~Element() {
-
 }
 
 void Element::doActionOnCollision(Kapman* p_kapman) {
 	// Do nothing by default : will be redefined within the subclasses
 }
 
-/** Accessors */
 qreal Element::getX() const {
 	return m_x;
 }
@@ -52,7 +50,7 @@ int Element::getPoints() const {
 	return m_points;
 }
 
-Element::ElementType Element::getType() const {
+Element::Type Element::getType() const {
 	return m_type;
 }
 
@@ -63,3 +61,4 @@ QString Element::getImageUrl() const {
 void  Element::setImageUrl(const QString & p_imageUrl){
 	m_imageUrl = p_imageUrl;
 }
+

@@ -85,8 +85,7 @@ void Kapman::updateMove() {
 			updateDirection();
 			// Move the kapman
 			move();
-		}
-		else {
+		} else {
 			// If the kapman gets on a cell center
 			if (onCenter()) {
 				// If there is an asked direction (but not a half-turn)
@@ -97,36 +96,31 @@ void Kapman::updateMove() {
 						moveOnCenter();
 						// Update the direction
 						updateDirection();
-					}
-					else {
+					} else {
 						// Check the next cell with the kapman current direction
 						if (getNextCell().getType() != Cell::CORRIDOR) {
 							// Move the kapman on the cell center
 							moveOnCenter();
 							// Stop moving
 							stopMoving();
-						}
-						else {
+						} else {
 							// Move the kapman
 							move();
 						}
 					}
-				}
-				else {
+				} else {
 					// Check the next cell with the kapman current direction
 					if (getNextCell().getType() != Cell::CORRIDOR) {
 						// Move the kapman on the cell center
 						moveOnCenter();
 						// Stop moving
 						stopMoving();
-					}
-					else {
+					} else {
 						// Move the kapman
 						move();
 					}
 				}
-			}
-			else {
+			} else {
 				// Move the kapman
 				move();
 			}
@@ -147,7 +141,6 @@ void Kapman::emitGameUpdated() {
 	emit(gameUpdated());
 }
 
-/** Accessors */
 qreal Kapman::getAskedXSpeed() const {
 	return m_askedXSpeed;
 }
@@ -156,7 +149,6 @@ qreal Kapman::getAskedYSpeed() const {
 	return m_askedYSpeed;
 }
 
-/** Private */
 Cell Kapman::getAskedNextCell() {
 	// Get the current cell coordinates from the character coordinates
 	int curCellRow = m_maze->getRowFromY(m_y);
@@ -166,14 +158,11 @@ Cell Kapman::getAskedNextCell() {
 	// Get the next cell function of the character asked direction
 	if (m_askedXSpeed > 0) {
 		nextCell = m_maze->getCell(curCellRow, curCellCol + 1);
-	}
-	else if (m_askedXSpeed < 0) {
+	} else if (m_askedXSpeed < 0) {
 		nextCell = m_maze->getCell(curCellRow, curCellCol - 1);
-	}
-	else if (m_askedYSpeed > 0) {
+	} else if (m_askedYSpeed > 0) {
 		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
-	}
-	else if (m_askedYSpeed < 0) {
+	} else if (m_askedYSpeed < 0) {
 		nextCell = m_maze->getCell(curCellRow - 1, curCellCol);
 	}
 
@@ -187,3 +176,4 @@ void Kapman::stopMoving() {
 	m_askedYSpeed = 0;
 	emit(stopped());
 }
+

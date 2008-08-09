@@ -31,30 +31,25 @@ Character::~Character() {
 }
 
 void Character::move() {
-	if(m_maze->getColFromX(m_x + m_xSpeed) == 0) {
-		m_x = (m_maze->getNbColumns()-1.5) * Cell::SIZE;
-	}
-	else if(m_maze->getColFromX(m_x + m_xSpeed) == m_maze->getNbColumns()-1) {
+	// Take care of the Maze borders
+	if (m_maze->getColFromX(m_x + m_xSpeed) == 0) {									// First column
+		m_x = (m_maze->getNbColumns() - 1.5) * Cell::SIZE;
+	} else if (m_maze->getColFromX(m_x + m_xSpeed) == m_maze->getNbColumns() - 1) {	// Last column
 		m_x = 1.5 * Cell::SIZE;
-	}
-	else if(m_maze->getRowFromY(m_y + m_ySpeed) == 0) {
-		m_y = (m_maze->getNbRows()-1.5) * Cell::SIZE;
-	}
-	else if(m_maze->getRowFromY(m_y + m_ySpeed) == m_maze->getNbRows()-1) {
+	} else if (m_maze->getRowFromY(m_y + m_ySpeed) == 0) {							// First row
+		m_y = (m_maze->getNbRows() - 1.5) * Cell::SIZE;
+	} else if (m_maze->getRowFromY(m_y + m_ySpeed) == m_maze->getNbRows() - 1) {	// Last row
 		m_y = 1.5 * Cell::SIZE;
 	}
-	
+	// Move the Character
 	m_x += m_xSpeed;
 	m_y += m_ySpeed;
-	
 	emit(moved(m_x, m_y));
 }
 
 void Character::die() {
 	emit(eaten());
 }
-
-/** Accessors */
 
 qreal Character::getXSpeed() const {
 	return m_xSpeed;
@@ -72,57 +67,66 @@ void Character::setYSpeed(qreal p_ySpeed) {
 	m_ySpeed = p_ySpeed;
 }
 
-bool Character::isInLineSight(Character * p_c) {
-	int curCallerRow, curCallerCol, curCharacterRow, curCharacterCol;
+bool Character::isInLineSight(Character* p_character) {
+	int curCallerRow;		// The current row of the Character
+	int curCallerCol;		// The current column of the Character
+	int curCharacterRow;	// The current row of the other Character
+	int curCharacterCol;	// The current column of the other Character
 	
-	//init
 	curCallerRow = m_maze->getRowFromY(m_y);
 	curCallerCol = m_maze->getColFromX(m_x);
-	curCharacterRow = m_maze->getRowFromY(p_c->getY());
-	curCharacterCol = m_maze->getColFromX(p_c->getX());
+	curCharacterRow = m_maze->getRowFromY(p_character->getY());
+	curCharacterCol = m_maze->getColFromX(p_character->getX());
 	
-	//Same row
-	if(curCallerRow == curCharacterRow ) {
-		if(curCallerCol > curCharacterCol && m_xSpeed < 0) {
-			//foreach column, test if it's a wall or not between the two cells
-			for(int i=curCharacterCol; i<curCallerCol; i++) {
-				if(m_maze->getCell(curCallerRow, i).getType() != Cell::CORRIDOR) {
+	// If the two Characters are on the same row
+	if (curCallerRow == curCharacterRow ) {
+		// If The Character is on the right of the other one and goes to the left
+		if (curCallerCol > curCharacterCol && m_xSpeed < 0) {
+			// Check wether there is a wall between them
+			for (int i = curCharacterCol; i < curCallerCol; i++) {
+				if (m_maze->getCell(curCallerRow, i).getType() != Cell::CORRIDOR) {
 					return false;
 				}
 			}
+			// If not, the other Character is in the line sight
+			return true;
+		// If the Character is on the left of the other one and goes to the right
+		} else if (curCallerCol < curCharacterCol && m_xSpeed > 0) {
+			// Check wether there is a wall between them
+			for (int i = curCallerCol; i < curCharacterCol; i++) {
+				if (m_maze->getCell(curCallerRow, i).getType() != Cell::CORRIDOR) {
+					return false;
+				}
+			}
+			// If not, the other Character is in the line sight
 			return true;
 		}
-		else if(curCallerCol < curCharacterCol && m_xSpeed > 0) {
-			for(int i=curCallerCol; i<curCharacterCol; i++) {
-				if(m_maze->getCell(curCallerRow, i).getType() != Cell::CORRIDOR) {
+	// If the two Characters are on the same column
+	} else if (curCallerCol == curCharacterCol) {
+		// If The Character is on the bottom of the other one and goes up
+		if (curCallerRow > curCharacterRow && m_ySpeed < 0) {
+			// Check wether there is a wall between them
+			for (int i = curCharacterRow; i < curCallerRow; i++) {
+				if (m_maze->getCell(i, curCallerCol).getType() != Cell::CORRIDOR) {
 					return false;
 				}
 			}
+			// If not, the other Character is in the line sight
+			return true;
+		// If the Character is on the top of the other one and goes down
+		} else if (curCallerRow < curCharacterRow && m_ySpeed > 0) {
+			// Check wether there is a wall between them
+			for (int i = curCallerRow; i < curCharacterRow; i++) {
+				if (m_maze->getCell(i, curCallerCol).getType() != Cell::CORRIDOR) {
+					return false;
+				}
+			}
+			// If not, the other Character is in the line sight
 			return true;
 		}
 	}
-	//Same column
-	else if (curCallerCol == curCharacterCol) {
-		if(curCallerRow > curCharacterRow && m_ySpeed < 0) {
-			//foreach row, test if it's a wall or not between the two cells
-			for(int i=curCharacterRow; i<curCallerRow; i++) {
-				if(m_maze->getCell(i, curCallerCol).getType() != Cell::CORRIDOR) {
-					return false;
-				}
-			}
-			return true;
-		}
-		else if(curCallerRow < curCharacterRow && m_ySpeed > 0) {
-			for(int i=curCallerRow; i<curCharacterRow; i++) {
-				if(m_maze->getCell(i, curCallerCol).getType() != Cell::CORRIDOR) {
-					return false;
-				}
-			}
-			return true;
-		}
-	}
+	// If the two Characters are not on the same row or column, they are not in the line of sight
 	return false;
-	
 }
 
 qreal Character::getCharactersSpeed() {
@@ -133,7 +137,6 @@ void Character::setCharactersSpeed(const qreal p_speed) {
 	Character::s_speed = p_speed;
 }	
 
-/** Private */
 Cell Character::getNextCell() {
 	Cell nextCell;
 	// Get the current cell coordinates from the character coordinates
@@ -143,14 +146,11 @@ Cell Character::getNextCell() {
 	// Get the next cell function of the character direction
 	if (m_xSpeed > 0) {
 		nextCell = m_maze->getCell(curCellRow, curCellCol + 1);
-	}
-	else if (m_xSpeed < 0) {
+	} else if (m_xSpeed < 0) {
 		nextCell = m_maze->getCell(curCellRow, curCellCol - 1);
-	}
-	else if (m_ySpeed > 0) {
+	} else if (m_ySpeed > 0) {
 		nextCell = m_maze->getCell(curCellRow + 1, curCellCol);
-	}
-	else if (m_ySpeed < 0) {
+	} else if (m_ySpeed < 0) {
 		nextCell = m_maze->getCell(curCellRow - 1, curCellCol);
 	}
 

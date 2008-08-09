@@ -24,7 +24,7 @@
 #include <QTimer>
 
 /**
- * This class is the graphical representation of a character
+ * @brief This class is the graphical representation of a Character.
  */
 class CharacterItem : public ElementItem {
 
@@ -41,35 +41,36 @@ class CharacterItem : public ElementItem {
 	public:
 
 		/**
-		 * Creates a new CharacterItem instance
-		 * @param p_model the character model
-		 * @param p_imagePath the character image path
+		 * Creates a new CharacterItem instance.
+		 * @param p_model the Character model
+		 * @param p_imagePath the path to the Character image
 		 */
 		CharacterItem(Character* p_model, const QString & p_imagePath);
 
 		/**
-		 * Deletes the CharacterItem instance
+		 * Deletes the CharacterItem instance.
 		 */
 		~CharacterItem();
 		
 	public slots:
 
 		/**
-		 * Updates the view coordinates
+		 * Updates the CharacterItem coordinates.
 		 * @param p_x the new x-coordinate
 		 * @param p_y the new y-coordinate
 		 */
 		virtual void update(qreal p_x, qreal p_y);
 	
 		/**
-		 * Starts the character blinking
+		 * Starts the character blinking.
 		 */
 		virtual void startBlinking();
 
 		/**
-		 * Makes the character blink
+		 * Makes the character blink.
 		 */
 		virtual void blink();
 };
 
 #endif
+

@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * 
@@ -22,34 +23,33 @@
 #include "element.h"
 
 /**
- * This class represents a pill of the Kapman maze
+ * @brief This class represents a Pill enabling to earn points.
  */
 class Pill : public Element {
 
 	public:
 
-		/** The pill's points */
+		/** The Pill value */
 		static const int POINTS;
-
 
 	public:
 
 		/**
-		 * Creates a new Pill instance
+		 * Creates a new Pill instance.
 		 */
-		Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString & p_imageUrl);
+		Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl);
 
 		/**
-		 * Deletes the Pills instance
+		 * Deletes the Pill instance.
 		 */
 		~Pill();
 
 		/**
-		 * Computes an action on a collision with the kapman
-		 * @param p_element the kapman that collides with this element
+		 * Computes an action on a collision with the Kapman.
+		 * @param p_kapman the instance of Kapman which collides with the Pill
 		 */
 		void doActionOnCollision(Kapman* p_kapman);
-
 };
 
 #endif
+

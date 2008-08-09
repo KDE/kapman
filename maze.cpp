@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,14 +27,15 @@
 const QPoint Maze::GHOST_RESURRECT_CELL = QPoint(13, 14);
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
+	// Create the parser that will parse the XML file in order to initialize the Maze instance
 	MazeParser mazeParser(this);
-
+	// Set the XML file as input source for the parser
 	QFile mazeXmlFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
 	QXmlInputSource source(&mazeXmlFile);
-
+	// Create the XML file reader
 	QXmlSimpleReader reader;
 	reader.setContentHandler(&mazeParser);
-
+	// Parse the XML file
 	reader.parse(source);
 }
 	
@@ -45,27 +46,32 @@ Maze::~Maze() {
 	delete[] m_cells;
 }
 
-void Maze::init(int p_nbRows, int p_nbColumns) {
+void Maze::init(const int p_nbRows, const int p_nbColumns) {
 	m_nbRows = p_nbRows;
 	m_nbColumns = p_nbColumns;
 	m_cells = new Cell*[m_nbRows];
-	for(int i = 0; i < m_nbRows; i++) {
+	for (int i = 0; i < m_nbRows; i++) {
 		m_cells[i] = new Cell[m_nbColumns];
 	}
 }
 
-void Maze::setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element) {
+void Maze::setCellType(const int p_row, const int p_column, const Cell::Type p_type) {
 	if (p_row < 0 || p_row >= m_nbRows || p_column < 0 || p_column >= m_nbColumns) {
 		kError() << "Bad maze coordinates";
 	}
 	m_cells[p_row][p_column].setType(p_type);
+}
+
+void Maze::setCellElement(const int p_row, const int p_column, Element * p_element) {
+	if (p_row < 0 || p_row >= m_nbRows || p_column < 0 || p_column >= m_nbColumns) {
+		kError() << "Bad maze coordinates";
+	}
 	m_cells[p_row][p_column].setElement(p_element);
 	if (p_element != NULL) {
 		m_totalNbElem++;
 		m_nbElem++;
 	}
 }
-
 void Maze::decrementNbElem() {
 	m_nbElem--;
 	if (m_nbElem == 0) {
@@ -77,7 +83,7 @@ void Maze::resetNbElem() {
 	m_nbElem = m_totalNbElem;
 }
 
-QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) {
+QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) const {
 	QList<QPoint> path;
 	QList<QPoint> openList;
 	QList<QPoint> closedList;
@@ -176,7 +182,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) {
 	return path;
 }
 
-Cell Maze::getCell(int p_row, int p_column) {
+Cell Maze::getCell(const int p_row, const int p_column) const {
 	if (p_row < 0 || p_row >= m_nbRows ||
 		p_column < 0 || p_column >= m_nbColumns) {
 		kError() << "Bad maze coordinates";
@@ -195,27 +201,27 @@ QPoint Maze::getCoords(Cell* p_cell) const {
 	return QPoint();
 }
 
-int Maze::getRowFromY(qreal p_y) {
+int Maze::getRowFromY(const qreal p_y) const {
 	return (int)(p_y / Cell::SIZE);
 }
 
-int Maze::getColFromX(qreal p_x) {
+int Maze::getColFromX(const qreal p_x) const {
 	return (int)(p_x / Cell::SIZE);
 }
 
-int Maze::getNbColumns() {
+int Maze::getNbColumns() const {
 	return m_nbColumns;
 }
 
-int Maze::getNbRows() {
+int Maze::getNbRows() const {
 	return m_nbRows;
 }
 
-int Maze::getNbElem() {
+int Maze::getNbElem() const {
 	return m_nbElem;
 }
 
-int Maze::getTotalNbElem() {
+int Maze::getTotalNbElem() const {
 	return m_totalNbElem;
 }
 

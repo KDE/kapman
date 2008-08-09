@@ -16,10 +16,11 @@
  */
 
 #include "mazeparser.h"
-#include <KStandardDirs>
 #include "element.h"
 #include "pill.h"
 #include "energizer.h"
+
+#include <KStandardDirs>
 
 MazeParser::MazeParser(Maze* p_maze) {
 	m_maze = p_maze;
@@ -29,62 +30,58 @@ MazeParser::~MazeParser() {
 }
 
 bool MazeParser::startElement(const QString&, const QString&, const QString& p_qName, const QXmlAttributes& p_atts) {
-	
-	if(p_qName == "Maze") {
-		int nbRows = 0;
-		int nbColumns = 0;
-		
-		for(int i = 0 ; i < p_atts.count() ; i++) {
-			if(p_atts.qName(i) == "nbRows") {
+	int nbRows = 0;
+	int nbColumns = 0;
+	int rowIndex = 0;
+	int columnIndex = 0;
+	int cellType = 0;
+	int itemType = 0;
+
+	if (p_qName == "Maze") {
+		// Initialize the number of rows and columns
+		for (int i = 0; i < p_atts.count(); i++) {
+			if (p_atts.qName(i) == "nbRows") {
 				nbRows = p_atts.value(i).toInt();
 			}
-			
-			if(p_atts.qName(i) == "nbColumns") {
+			if (p_atts.qName(i) == "nbColumns") {
 				nbColumns = p_atts.value(i).toInt();
 			}
 		}
-		
+		// Create the Maze matrix
 		m_maze->init(nbRows, nbColumns);
 	}
-	
-	if(p_qName == "Cell") {
-		int rowIndex = 0;
-		int columnIndex = 0;
-		int cellType = 0;
-		int itemType = 0;
-		
-		for(int i = 0 ; i < p_atts.count() ; i++) {
-			if(p_atts.qName(i) == "rowIndex") {
+	if (p_qName == "Cell") {
+		for (int i = 0; i < p_atts.count(); i++) {
+			if (p_atts.qName(i) == "rowIndex") {
 				rowIndex = p_atts.value(i).toInt();
 			}
-			
-			if(p_atts.qName(i) == "columnIndex") {
+			if (p_atts.qName(i) == "columnIndex") {
 				columnIndex = p_atts.value(i).toInt();
 			}
-			
-			if(p_atts.qName(i) == "allowedMove") {
+			if (p_atts.qName(i) == "allowedMove") {
 				cellType = p_atts.value(i).toInt();
 			}
-
-			if(p_atts.qName(i) == "item") {
+			if (p_atts.qName(i) == "item") {
 				itemType = p_atts.value(i).toInt();
 			}
 		}
-
-		switch(itemType)
-		{
+		// Initialize the Cell's type and the Element that is on the Cell
+		m_maze->setCellType(rowIndex, columnIndex, (Cell::Type)cellType);
+		switch (itemType) {
 			case 0:
-				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, NULL);
+				m_maze->setCellElement(rowIndex, columnIndex, NULL);
 				break;
 			case 1:
-				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, new Pill(rowIndex, columnIndex, m_maze, KStandardDirs::locate("appdata", "pill_test.svg")));
+				m_maze->setCellElement(rowIndex, columnIndex,
+						new Pill(rowIndex, columnIndex, m_maze, KStandardDirs::locate("appdata", "pill.svg")));
 				break;
 			case 2:
-				m_maze->setCellType(rowIndex, columnIndex, (Cell::CellType)cellType, new Energizer(rowIndex, columnIndex, m_maze, KStandardDirs::locate("appdata", "energizer_test.svg")));
+				m_maze->setCellElement(rowIndex, columnIndex,
+						new Energizer(rowIndex, columnIndex, m_maze, KStandardDirs::locate("appdata", "energizer.svg")));
 				break;
 		}
-
 	}
 	
 	return true;
 }
+

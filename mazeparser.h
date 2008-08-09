@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Nathalie Liesse <nathalie.liesse@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
@@ -18,37 +19,38 @@
 #ifndef __MAZEPARSER_H
 #define __MAZEPARSER_H
 
-#include <QXmlDefaultHandler>
 #include "maze.h"
 
+#include <QXmlDefaultHandler>
+
 /**
- * This class initializes the maze from an xml file
+ * @brief This class handles XML reader events in order to initialize the Maze properties.
  */
 class MazeParser : public QXmlDefaultHandler {
 	
 	private:
 
-		/** The maze to initialize */
+		/** The Maze to initialize */
 		Maze* m_maze;
 	
 	public:
+
 		/**
-		 * Creates a new MazeParser
-		 * @param p_maze the maze to initialize
+		 * Creates a new MazeParser.
+		 * @param p_maze the Maze to initialize
 		 */
 		 MazeParser(Maze* p_maze);
 		
 		/**
-		 * Deletes the MazeParser instance
+		 * Deletes the MazeParser instance.
 		 */
 		~MazeParser();
 		
 		/**
-		 * Called each time a start element tag is met
-		 * Implements QXmlDefaultHandler::startElement
+		 * Implements QXmlDefaultHandler::startElement()
 		 */
-		bool startElement(const QString&, const QString&,
-						  const QString& p_qName, const QXmlAttributes& p_atts);
+		bool startElement(const QString&, const QString&, const QString& p_qName, const QXmlAttributes& p_atts);
 };
 
 #endif
+

@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Gaël Courcelle <gael.courcelle@gmail.com>
  * Copyright 2007-2008 Alexia Allanic <alexia_allanic@yahoo.fr>
  * 
@@ -28,13 +29,11 @@ Energizer::Energizer(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageU
 }
 
 Energizer::~Energizer() {
-
 }
 
 void Energizer::doActionOnCollision(Kapman* p_kapman) {
 	p_kapman->winPoints(this);
 	// Tell to the maze that an element was eaten
 	m_maze->decrementNbElem();
-	//emit(energyzerEaten());
 }
 

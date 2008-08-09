@@ -25,7 +25,7 @@
 #include <QTimer>
 
 /**
- * This class manage the display of the kapman
+ * @brief This class manage the display of the Kapman.
  */
 class KapmanItem : public CharacterItem {
 
@@ -33,7 +33,7 @@ class KapmanItem : public CharacterItem {
 
 	private:
 
-		/** Number of frames to animate the kapman */
+		/** Number of frames to animate the KapmanItem */
 		static const int NB_FRAMES;
 
 		/** Animation update interval */
@@ -41,77 +41,78 @@ class KapmanItem : public CharacterItem {
 		static const int ANIM_MEDIUM_SPEED;
 		static const int ANIM_HIGH_SPEED;
 
-		/** Timer used to animate the kapman */
+		/** Timer used to animate the KapmanItem */
 		QTimeLine * m_animationTimer;
 
 	public:
 
 		/**
-		 * Creates a new KapmanItem instance
-		 * @param p_model the kapman model
-		 * @param p_imagePath the kapman image path
+		 * Creates a new KapmanItem instance.
+		 * @param p_model the Kapman model
+		 * @param p_imagePath the Kapman image path
 		 */
 		KapmanItem(Kapman* p_model, const QString & p_imagePath);
 
 		/**
-		 * Deletes the KapmanItem instance
+		 * Deletes the KapmanItem instance.
 		 */
 		~KapmanItem();
 
 	public slots:
 
 		/**
-		 * Rotates the picture function of the kapman direction
+		 * Rotates the image function of the Kapman direction.
 		 */
 		void updateDirection();
 
 		/**
-		 * Manages the colllisions between kapman and the other elements
+		 * Manages the collisions with any Element.
 		 */
 		void manageCollision();
 		
 		/**
-		 * Adds the animation management of the Kapman
-		 * @param p_x the new x coordinate
-		 * @param p_y the new y coordinate
+		 * Updates the KapmanItem coordinates.
+		 * @param p_x the new x-coordinate
+		 * @param p_y the new y-coordinate
 		 */
 		void update(qreal p_x, qreal p_y);
 
 		/**
-		 * Starts the kapman animation
+		 * Starts the KapmanItem animation.
 		 */
 		void startAnim();
 
 		/**
-		 * Pauses the kapman animation
+		 * Pauses the KapmanItem animation.
 		 */
 		void pauseAnim();
 
 		/**
-		 * Resumes the kapman animation
+		 * Resumes the KapmanItem animation.
 		 */
 		void resumeAnim();
 
 		/**
-		 * Stops the kapman animation
+		 * Stops the KapmanItem animation.
 		 */
 		void stopAnim();
 
 		/**
-		 * Sets the given frame to the kapman item
+		 * Sets the given frame to the KapmanItem.
 		 * @param p_frame the frame to set
 		 */
 		void setFrame(const int p_frame);
 
 		/**
-		 * Implements the CharacterItem method
+		 * Implements the CharacterItem method.
 		 */
 		void startBlinking();
 
 		/**
-		 * Implements the CharacterItem method
+		 * Implements the CharacterItem method.
 		 */
 		void blink();
 };
 
 #endif
+

@@ -1,4 +1,5 @@
 /*
+ * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
@@ -18,6 +19,7 @@
 #include "mazeitem.h"
 
 MazeItem::MazeItem(const QString & p_imagePath) : QGraphicsSvgItem(p_imagePath) {
+	// Configure the cache in order to increase the performance
 	setCacheMode(DeviceCoordinateCache);
 	setMaximumCacheSize(QSize(2000, 2000));
 }
@@ -25,3 +27,4 @@ MazeItem::MazeItem(const QString & p_imagePath) : QGraphicsSvgItem(p_imagePath) 
 MazeItem::~MazeItem() {
 
 }
+

@@ -18,14 +18,15 @@
 #ifndef __GAMEVIEW_H
 #define __GAMEVIEW_H
 
+#include "game.h"
+
 #include <QGraphicsView>
 #include <QKeyEvent>
 #include <QSize>
 
-#include "game.h"
-
 /**
- * This class represents the view that visualizes the scene
+ * @brief This class manages the drawing of each element of the Game instance.
+ * It creates a GameScene instance associated to the given Game instance in order to manage the elements to be drawn at each moment of the game.
  */
 class GameView : public QGraphicsView {
 
@@ -34,17 +35,18 @@ class GameView : public QGraphicsView {
 	public:
 
 		/**
-		 * Creates a new GameView instance
+		 * Creates a new GameView instance.
+		 * @param p_game the Game instance whose elements have to be drawn
 		 */
-		GameView(Game * p_game);
+		GameView(Game* p_game);
 
 		/**
-		 * Deletes the GameView instance
+		 * Deletes the GameView instance.
 		 */
 		~GameView();
 
 		/**
-		 * Called on view resizing
+		 * Resizes the items when the view is resized.
 		 * @param p_event the resize event
 		 */
 		void resizeEvent(QResizeEvent* p_event);
@@ -52,24 +54,25 @@ class GameView : public QGraphicsView {
 	protected:
 
 		/**
-		 * Called on key press
+		 * Manages the player actions by hanlding the key press events.
 		 * @param p_event the key press event
 		 */
-		void keyPressEvent(QKeyEvent * p_event);
+		void keyPressEvent(QKeyEvent* p_event);
 
 		/**
-		 * Overrides the QWidget method
-		 * @param p_evt the focus event
+		 * Pauses the game on focus lost.
+		 * @param p_event the focus event
 		 */
-		void focusOutEvent(QFocusEvent* p_evt);
+		void focusOutEvent(QFocusEvent* p_event);
 
 	signals:
 
 		/**
-		 * Emitted on key press
+		 * Emitted on key press event for the Game instance
 		 * @param p_event the key press event
 		 */
-		void keyPressed(QKeyEvent * p_event);
+		void keyPressed(QKeyEvent* p_event);
 };
 
 #endif
+

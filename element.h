@@ -19,12 +19,13 @@
 #define __ELEMENT_H
 
 #include <QObject>
+
 #include "maze.h"
 
 class Kapman;
 
 /**
- * This class describes the main characteristics of a game element (character or item)
+ * @brief This class describes the common characteristics and behaviour of any game Element (character or item).
  */
 class Element : public QObject {
 
@@ -32,8 +33,8 @@ class Element : public QObject {
 	
 	public:
 	
-		/** The elements possible types */
-		enum ElementType {
+		/** The Element possible types */
+		enum Type {
 			KAPMAN = 0,
 			GHOST = 1,
 			PILL = 2,
@@ -43,89 +44,97 @@ class Element : public QObject {
 		
 	protected:
 	
-		/** The element's type */
-		ElementType m_type;
+		/** The Element type */
+		Type m_type;
 
-		/** Element coordinates */
-		qreal m_x, m_y;
+		/** The Element x-coordinate */
+		qreal m_x;
 
-		/** The maze the element is on */
+		/** The Element y-coordinate */
+		qreal m_y;
+
+		/** The Maze the Element is on */
 		Maze* m_maze;
 
-		/** The Url of the element */
+		/** The Url of the Element */
 		QString m_imageUrl;
 		
-		/** Points won when the element is eaten */
+		/** Points won when the Element is eaten */
 		int m_points;
 
 	public:
 
 		/**
-		 * Creates a new Element instance
-		 * @param p_x the initial x coordinate
-		 * @param p_y the initial y coordinate
-		 * @param p_maze the maze the element is on
+		 * Creates a new Element instance.
+		 * @param p_x the initial x-coordinate
+		 * @param p_y the initial y-coordinate
+		 * @param p_maze the Maze the Element is on
 		 */
 		Element(qreal p_x, qreal p_y, Maze* p_maze);
 
 		/**
-		 * Deletes the Element instance
+		 * Deletes the Element instance.
 		 */
 		~Element();
 
 		/**
-		 * Computes an action on a collision with the kapman
-		 * @param p_kapman the kapman that collides with this element
+		 * Computes an action on a collision with the Kapman.
+		 * @param p_kapman the instance of Kapman which collides with the Element
 		 */
 		virtual void doActionOnCollision(Kapman* p_kapman);
 
 		/**
-		 * @return the type of the Element
+		 * Gets the path to the Element image.
+		 * @return the path to the Element image
 		 */
 		QString getImageUrl() const;
 		
 		/**
-		 * @return the points won when the element is eaten
+		 * Gets the value of the Element.
+		 * @return the points won when the Element is eaten
 		 */
 		int getPoints() const;
 		
 		/**
-		 * @return the element type 
+		 * Gets the type of the Element.
+		 * @return the Element type
 		 */
-		Element::ElementType getType() const;
+		Element::Type getType() const;
 
 		/**
-		 * Sets the element image
+		 * Sets the Element image.
 		 * @param p_imageUrl the image to set
 		 */
 		void setImageUrl(const QString & p_imageUrl);
 
 		/**
+		 * Gets the Element x-coordinate.
 		 * @return the x-coordinate
 		 */
 		qreal getX() const;
 
 		/**
+		 * Gets the Element y-coordinate.
 		 * @return the y-coordinate
 		 */
 		qreal getY() const;
 
 		/**
-		 * Sets the x coordinate to the given value
-		 * @param p_x the new x coordinate to set
+		 * Sets the Element x-coordinate to the given value
+		 * @param p_x the x-coordinate to set
 		 */
 		void setX(qreal p_x);
 
 		/**
-		 * Sets the y coordinate to the given value
-		 * @param p_y the new y coordinate to set
+		 * Sets the Element y-coordinate to the given value
+		 * @param p_y the y-coordinate to set
 		 */
 		void setY(qreal p_y);
 
 	signals:
 
 		/**
-		 * On Character move
+		 * Emitted on Element move.
 		 * @param p_x the new x-coordinate
 		 * @param p_y the new y-coordinate
 		 */
@@ -133,3 +142,4 @@ class Element : public QObject {
 };
 
 #endif
+

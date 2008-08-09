@@ -19,10 +19,11 @@
 #define __ELEMENTITEM_H
 
 #include <QGraphicsSvgItem>
+
 #include "element.h"
 
 /**
- * This class is the graphical representation of a game element
+ * @brief This class is the graphical representation of a game Element.
  */
 class ElementItem : public QGraphicsSvgItem {
 
@@ -30,37 +31,38 @@ class ElementItem : public QGraphicsSvgItem {
 	
 	protected:
 	
-		/** Pointer on the model */
-		Element * m_model;
+		/** The instance of Element the ElementItem will represent */
+		Element* m_model;
 
 	public:
 
 		/**
-		 * Creates a new ElementItem instance
-		 * @param p_model the element model
-		 * @param p_imagePath the element image path
+		 * Creates a new ElementItem instance.
+		 * @param p_model the Element model
+		 * @param p_imagePath the Element image path
 		 */
 		ElementItem(Element* p_model, const QString & p_imagePath);
 
 		/**
-		 * Deletes the ElementItem instance
+		 * Deletes the ElementItem instance.
 		 */
 		~ElementItem();
 		
 		/**
+		 * Gets the Element model.
 		 * @return the model
 		 */
 		Element* getModel() const;
 
 		/**
-		 * Reimplement QGraphicsItem::shape() to return an ellipse to improve collisions
+		 * Reimplement QGraphicsItem::shape() to return an ellipse to improve collisions.
 		 */
 		QPainterPath shape() const;
 
 	public slots:
 
 		/**
-		 * Updates the view coordinates
+		 * Updates the ElementItem coordinates.
 		 * @param p_x the new x-coordinate
 		 * @param p_y the new y-coordinate
 		 */
@@ -68,3 +70,4 @@ class ElementItem : public QGraphicsSvgItem {
 };
 
 #endif
+

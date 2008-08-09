@@ -1,6 +1,6 @@
 /*
- * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
+ * Copyright 2007-2008 Pierre-Benoît Besse <besse.pb@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -19,13 +19,14 @@
 #ifndef __MAZE_H
 #define __MAZE_H
 
+#include "cell.h"
+
 #include <QObject>
 #include <QList>
 #include <QPoint>
-#include "cell.h"
 
 /**
- * This class represents the maze of kapman
+ * @brief This class represents the Maze of the game.
  */
 class Maze : public QObject {
 
@@ -33,122 +34,140 @@ class Maze : public QObject {
 
 	public:
 
-		/** The cell where ghosts go back when they have been eaten */
+		/** The Cell coordinates where the Ghosts go back when they have been eaten */
 		const static QPoint GHOST_RESURRECT_CELL;
 	
 	private:
 
-		/** Number of rows of m_mazeArray */
+		/** The number of rows of the Maze */
 		int m_nbRows;
 		
-		/** Number of columns of m_mazeArray */
+		/** The number of columns of the Maze */
 		int m_nbColumns;
 		
-		/** Maze matrix */
+		/** The Maze Cells */
 		Cell** m_cells;
 
-		/** Total number of elements on the maze */
+		/** The initial number of Elements in the Maze (when the game has not started) */
 		int m_totalNbElem;
 
-		/** Number of remaining elements on the maze */
+		/** The number of remaining Elements in the Maze (when the game is running) */
 		int m_nbElem;
 
 	public:
 
 		/**
-		 * Creates a new Maze instance
+		 * Creates a new Maze instance.
 		 */
 		Maze();
 
 		/**
-		 * Deletes the Maze instance
+		 * Deletes the Maze instance.
 		 */
 		~Maze();
 		
 		/**
-		 * Initializes the maze matrix
+		 * Creates the Maze matrix.
 		 * @param p_nbRows the number of rows
 		 * @param p_nbColumns the number of columns
 		 */
-		void init(int p_nbRows, int p_nbColumns);
+		void init(const int p_nbRows, const int p_nbColumns);
 
 		/**
-		 * Sets the given cell type and element
-		 * @param p_row the cell row
-		 * @param p_column the cell column
-		 * @param p_type the cell new type
-		 * @param p_element reference to the element that is on the cell
+		 * Sets the CellType of the Cell whose coordinates are given in parameters.
+		 * @param p_row the Cell row
+		 * @param p_column the Cell column
+		 * @param p_type the Cell type
 		 */
-		void setCellType(int p_row, int p_column, Cell::CellType p_type, Element * p_element);
+		void setCellType(const int p_row, const int p_column, const Cell::Type p_type);
 
 		/**
-		 * Decrements the number of remaining elements
+		 * Sets the Element that is on the Cell whose coordinates are given in parameters.
+		 * @param p_row the Cell row
+		 * @param p_column the Cell column
+		 * @param p_element the Element that is on the Cell
+		 */
+		void setCellElement(const int p_row, const int p_column, Element* p_element);
+
+		/**
+		 * Decrements the number of remaining Elements.
 		 */
 		void decrementNbElem();
 
 		/**
-		 * Resets the number of remaining elements
+		 * Resets the number of remaining Elements to the initial number.
 		 */
 		void resetNbElem();
 
 		/**
-		 * @param p_row the starting cell row index
-		 * @param p_colum the starting cell column index
-		 * @return a list of cell coordinates to go to the ghost camp from the given coordinates, using A* algorithm
+		 * Gets the path, as a list of Cell coordinates, to go to the Ghost camp from the Cell whose coordinates are given in parameters.
+		 * This algorithm has been made from the A* algorithm.
+		 * @param p_row the row index of the starting Cell
+		 * @param p_column the column index of the starting Cell
+		 * @return a list of Cell coordinates to go to the Ghost camp
 		 */
-		QList<QPoint> getPathToGhostCamp(const int p_row, const int p_column);
+		QList<QPoint> getPathToGhostCamp(const int p_row, const int p_column) const;
 
 		/**
+		 * Gets the Cell at the given coordinates.
 		 * @param p_row the row index
 		 * @param p_column the column index
-		 * @return the cell at the given row and column
+		 * @return the Cell at the given row and column
 		 */
-		Cell getCell(int p_row, int p_column);
+		Cell getCell(const int p_row, const int p_column) const;
 
 		/**
-		 * @param p_cell the searched cell
-		 * @return the coordinates (row, column) of the given cell pointer
+		 * Gets the coordinates of the given Cell as a QPoint.
+		 * @param p_cell the searched Cell
+		 * @return the row and column of the given Cell
 		 */
 		QPoint getCoords(Cell* p_cell) const;
 
 		/**
-		 * @param p_y the y coordinate to convert into row index
-		 * @return the row index corresponding to the given y coordinate
+		 * Gets the row index corresponding to the given y-coordinate.
+		 * @param p_y the y-coordinate to convert into row index
+		 * @return the row index corresponding to the given y-coordinate
 		 */
-		int getRowFromY(qreal p_y);
+		int getRowFromY(const qreal p_y) const;
 
 		/**
-		 * @param p_x the x coordinate to convert into column index
-		 * @return the column index corresponding to the given x coordinate
+		 * Gets the column index corresponding to the given x-coordinate.
+		 * @param p_x the x-coordinate to convert into column index
+		 * @return the column index corresponding to the given x-coordinate
 		 */
-		int getColFromX(qreal p_x);
+		int getColFromX(const qreal p_x) const;
 		
 		/**
-		 * @return the number of colums of the maze
+		 * Gets the number of columns of the Maze.
+		 * @return the number of columns
 		 */
-		int getNbColumns();
+		int getNbColumns() const;
 		 
 		/**
-		 * @return the number of rows of the maze
+		 * Gets the number of rows of the Maze.
+		 * @return the number of rows
 		 */
-		int getNbRows();
+		int getNbRows() const;
 		
 		/**
-		 * @return the number of remaining elements on the maze
+		 * Gets the number of remaining Elements still on the Maze.
+		 * @return the number of remaining Elements
 		 */
-		int getNbElem();
+		int getNbElem() const;
 		
 		/**
-		 * @return Total number of elements on the maze
+		 * Gets the number of Elements initially on the Maze.
+		 * @return the initial number of Elements
 		 */
-		int getTotalNbElem();
+		int getTotalNbElem() const;
 
 	signals:
 
 		/**
-		 * Emitted when all the elements on the maze have been eaten
+		 * Emitted when all the elements on the Maze have been eaten.
 		 */
 		void allElementsEaten();
 };
 
 #endif
+

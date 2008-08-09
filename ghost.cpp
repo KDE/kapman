@@ -31,7 +31,7 @@ qreal Ghost::s_speed = Character::s_speed;
 qreal Ghost::s_speedIncrease = Ghost::MEDIUM_SPEED_INC;
 
 Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
-	// Initialize the ghosts attributes
+	// Initialize the ghost attributes
 	m_imageURL = p_imageURL;
 	m_points = 200;
 	m_type = Element::GHOST;
@@ -76,53 +76,51 @@ void Ghost::updateMove() {
 	// Get the current cell coordinates from the character coordinates
 	int curCellRow = m_maze->getRowFromY(m_y);
 	int curCellCol = m_maze->getColFromX(m_x);
-	// Indicates if the character hasn't any choice of direction save backward
+	// Flag wether the ghost has no choice but go back
 	bool halfTurnRequired = true;
-	// This list is to contain the different directions a ghost can choose when on a cell center
+	// Contains the different directions a ghost can choose when on a cell center
 	QList<QPointF> directionsList;
 	int nb = 0;
 	
 	// If the ghost is not "eaten"
 	if (m_state != Ghost::EATEN) {	
-
 		// If the ghost gets on a Cell center
 		if (onCenter()) {
 			// We retrieve all the directions the ghost can choose (save the half turn)
-			if(m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::CORRIDOR || 
+			if (m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::CORRIDOR || 
 					(m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-					 m_maze->getCell(curCellRow, curCellCol +1).getType() == Cell::GHOSTCAMP)) {
-				if(m_xSpeed >= 0) {
+					 m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::GHOSTCAMP)) {
+				if (m_xSpeed >= 0) {
 					directionsList.append(QPointF(m_speed, 0.0));
 					halfTurnRequired = false;
 				}
 			}
-			if(m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::CORRIDOR ||
+			if (m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::CORRIDOR ||
 					(m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-					 m_maze->getCell(curCellRow +1, curCellCol).getType() == Cell::GHOSTCAMP)) {
-				if(m_ySpeed >= 0) {
+					 m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
+				if (m_ySpeed >= 0) {
 					directionsList.append(QPointF(0.0, m_speed));
 					halfTurnRequired = false;
 				}
 			}
-			if(m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::CORRIDOR ||
+			if (m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::CORRIDOR ||
 					(m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-					 m_maze->getCell(curCellRow -1, curCellCol).getType() == Cell::GHOSTCAMP)) {
-				if(m_ySpeed <= 0) {
+					 m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
+				if (m_ySpeed <= 0) {
 					directionsList.append(QPointF(0.0, -m_speed));
 					halfTurnRequired = false;
 				}
 			}
-			if(m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::CORRIDOR ||
+			if (m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::CORRIDOR ||
 					(m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-					 m_maze->getCell(curCellRow, curCellCol -1).getType() == Cell::GHOSTCAMP)) {
-				if(m_xSpeed <= 0) {
+					 m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::GHOSTCAMP)) {
+				if (m_xSpeed <= 0) {
 					directionsList.append(QPointF(-m_speed, 0.0));
 					halfTurnRequired = false;
 				}
 			}
 			// Random number generation to choose one of the directions
 			nb = int(double(rand()) / (double(RAND_MAX) + 1) * directionsList.size());
-
 			// If there is no directions in the list, the character goes backward
 			if (directionsList.size() == 0) {
 				m_xSpeed = -m_xSpeed;	
@@ -137,7 +135,6 @@ void Ghost::updateMove() {
 		}
 		// We move the ghost
 		move();
-
 	} else {	// If the ghost has been eaten
 		if (onCenter()) {
 			// If the ghost has not reached the camp yet
@@ -166,23 +163,20 @@ void Ghost::updateMove(int p_row, int p_col) {
 	int curGhostRow = m_maze->getRowFromY(m_y);
 	int curGhostCol = m_maze->getColFromX(m_x);
 	
-	if(onCenter()) {
-		if(curGhostRow == p_row) {
-			if(p_col > curGhostCol) {
+	if (onCenter()) {
+		if (curGhostRow == p_row) {
+			if (p_col > curGhostCol) {
 				m_xSpeed = m_speed;
 				m_ySpeed = 0;
-			}
-			else {
+			} else {
 				m_xSpeed = -m_speed;
 				m_ySpeed = 0;
 			}
-		}
-		else {	
-			if(p_row > curGhostRow) {
+		} else {	
+			if (p_row > curGhostRow) {
 				m_xSpeed = 0;
 				m_ySpeed = m_speed;
-			}
-			else {
+			} else {
 				m_xSpeed = 0;
 				m_ySpeed = -m_speed;
 			}
@@ -196,11 +190,11 @@ QString Ghost::getImageURL() const  {
 	return m_imageURL;
 }
 
-Ghost::GhostState Ghost::getState() const {
+Ghost::State Ghost::getState() const {
 	return m_state;
 }
 
-void Ghost::setState(Ghost::GhostState p_state) {
+void Ghost::setState(Ghost::State p_state) {
 	// Stop the prey timer if active
 	if (m_preyTimer->isActive()) {
 		m_preyTimer->stop();

@@ -35,14 +35,14 @@ set(kapmanSources
 set(kapmanData
 	defaultmaze.xml
 	images/bonus.svg
-	images/energizer_test.svg
+	images/energizer.svg
 	images/ghostblue.svg
 	images/ghostgreen.svg
 	images/ghostpink.svg
 	images/ghostred.svg
 	images/kapman.svg
 	images/maze.svg
-	images/pill_test.svg
+	images/pill.svg
 	kapmanui.rc
 )
 
@@ -110,3 +110,4 @@ target_link_libraries(kapmanTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
+

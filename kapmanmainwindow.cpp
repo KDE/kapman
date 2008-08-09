@@ -62,7 +62,7 @@ void KapmanMainWindow::initGame() {
 	}
 	// Create a new Game instance
 	m_game = new Game(KGameDifficulty::level());
-	connect(m_game, SIGNAL(startnewgame(bool)), this, SLOT(newGame(bool)));
+	connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));		// TODO Remove the useless bool parameter from gameOver()
 	// If a GameView instance already exists
 	if (m_view) {
 		// Delete the GameView instance
@@ -74,7 +74,7 @@ void KapmanMainWindow::initGame() {
 	setCentralWidget(m_view);
 }
 
-void KapmanMainWindow::newGame(const bool gameOver = false) {
+void KapmanMainWindow::newGame(const bool gameOver) {
 	bool gameRunning;		// True if the game is running (game timer is active), false otherwise
    
 	gameRunning = m_game->getTimer()->isActive();
