@@ -275,6 +275,13 @@ class Game : public QObject {
 		 * @param p_infoType the type of data that have changed
 		 */
 		void dataChanged(Game::InformationTypes p_infoType);
+
+		/**
+		 * Emitted when a ghost or a bonus is eaten. It tells to the scene to
+		 * display the number of won points
+		 * @param p_wonPoints the value to display
+		 */
+		void pointsToDisplay(long p_wonPoints, qreal p_xPos, qreal p_yPos);
 };
 
 #endif

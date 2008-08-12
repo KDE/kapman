@@ -28,6 +28,10 @@
 class ElementItem : public QGraphicsSvgItem {
 
 	Q_OBJECT
+
+	private:
+		/** The Label containing the points won when eaten, to display on the scene */
+		QGraphicsTextItem* m_pointsToDisplay;
 	
 	protected:
 	

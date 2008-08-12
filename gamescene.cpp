@@ -33,13 +33,16 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	connect(p_game, SIGNAL(bonusOff()), this, SLOT(hideBonus()));
 	connect(p_game, SIGNAL(dataChanged(Game::InformationTypes)), this, SLOT(updateInfo(Game::InformationTypes)));
 
+	// Connection between Game and GameScene for the display of won points when a bonus or a ghost is eaten
+	connect(p_game, SIGNAL(pointsToDisplay(long, qreal, qreal)), this, SLOT(displayPoints(long, qreal, qreal)));
+
 	// Set the pixmap cache limit to improve performance
 	setItemIndexMethod(NoIndex);
 	QPixmapCache::setCacheLimit(32768);
 
 	// Create the MazeItem
 	m_mazeItem = new MazeItem(KStandardDirs::locate("appdata", "maze.svg"));
-	m_mazeItem->setZValue(-1);
+	m_mazeItem->setZValue(-2);
 	// Create the KapmanItem
 	m_kapmanItem = new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman.svg"));
 	m_kapmanItem->setZValue(1);
@@ -280,3 +283,27 @@ void GameScene::updateInfo(const Game::InformationTypes p_info) {
 	}
 }
 
+void GameScene::displayPoints(long p_wonPoints, qreal p_xPos, qreal p_yPos) {
+	// Launch a singleShot timer
+	QTimer::singleShot(1000, this, SLOT(hidePoints()));
+
+	// Add a label in the list of won points Labels
+	m_wonPointsLabels.prepend(new QGraphicsTextItem(QString::number(p_wonPoints)));
+	addItem(m_wonPointsLabels.first());
+
+	// Temporary reference to the first item in the list
+	QGraphicsTextItem* tempRef = m_wonPointsLabels.first();
+
+	// Positioning and customization of the point label
+	tempRef->setDefaultTextColor(QColor("#FFFF00"));
+	tempRef->setFont(QFont("Helvetica", 15, QFont::Normal, false));
+	tempRef->setPos(p_xPos-(tempRef->boundingRect().width() / 2), p_yPos-(tempRef->boundingRect().height() / 2));
+	tempRef->setZValue(-1);
+}
+
+void GameScene::hidePoints() {
+	// Remove the oldest item of the list from the scene
+	removeItem(m_wonPointsLabels.last());
+	// Remove the oldest item from the list
+	delete m_wonPointsLabels.takeLast();
+}

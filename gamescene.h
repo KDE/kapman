@@ -55,6 +55,9 @@ class GameScene : public QGraphicsScene {
 		/** The Bonus ElementItem */
 		ElementItem* m_bonusItem;
 
+		/** A list with labels to display when a ghost or a bonus is eaten */
+		QList<QGraphicsTextItem*> m_wonPointsLabels;
+
 		/** The labels to be displayed during the game */
 		QGraphicsTextItem* m_introLabel;
 		QGraphicsTextItem* m_introLabel2;
@@ -104,6 +107,7 @@ class GameScene : public QGraphicsScene {
 		
 		/**
 		 * Removes the Element at the given coordinates from the GameScene.
+		 * @param p_wonPoints value of the won Points, used when a ghost or a Bonus is eaten
 		 * @param p_x x-coordinate of the Element
 		 * @param p_y y-coordinate of the Element
 		 */
@@ -124,6 +128,19 @@ class GameScene : public QGraphicsScene {
 		 * @param p_info the type of the information to be updated
 		 */
 		void updateInfo(const Game::InformationTypes p_info);
+
+		/**
+		 * Display won Points on the scene when a Bonus or a Ghosts is eaten
+		 * @param p_wonPoints the value to display
+		 * @param p_xPos the position of the eaten element on X axis
+		 * @param p_yPos the position of the eaten element on Y axis
+		 */
+		void displayPoints(long p_wonPoints, qreal p_xPos, qreal p_yPos);
+
+		/**
+		 * Hide the first label in the list of won points labels
+		 */
+		void hidePoints();
 };
 
 #endif

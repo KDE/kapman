@@ -292,14 +292,31 @@ void Game::ghostDeath(Ghost* p_ghost) {
 }
 
 void Game::winPoints(Element* p_element) {
+
+	// The value of won Points
+	long wonPoints;
+
 	// If the eaten element is a ghost, win 200 * number of eaten ghosts since the energizer was eaten
 	if (p_element->getType() == Element::GHOST) {
-		m_points += p_element->getPoints() * m_nbEatenGhosts;
-		// TODO 
+		// Get the position of the ghost
+		// A TESTER (le ghost a peut-être déjà bougé)
+		qreal xPos = p_element->getX();
+		qreal yPos = p_element->getY();
+
+		// Add points to the score
+		wonPoints = p_element->getPoints() * m_nbEatenGhosts;
+
+		// Sends to the scene the number of points to display and its position 
+		emit(pointsToDisplay(wonPoints, xPos, yPos));
 	}
+	// Else you just win the value of the element
 	else {
-		m_points += p_element->getPoints();
-	}	
+		wonPoints = p_element->getPoints();
+	}
+
+	// Update of the points value
+	m_points += wonPoints;
+	
 	// For each 10000 points we get a life more
 	if (m_points / 10000 > (m_points - p_element->getPoints()) / 10000) {
 		m_lives++;
@@ -320,6 +337,14 @@ void Game::winPoints(Element* p_element) {
 		emit(elementEaten(p_element->getX(), p_element->getY()));
 	}
 	else if (p_element->getType() == Element::BONUS) {
+		// Get the position of the Bonus
+		// A TESTER (le ghost a peut-être déjà bougé)
+		qreal xPos = p_element->getX();
+		qreal yPos = p_element->getY();
+
+		// Sends to the scene the number of points to display and its position
+		emit(pointsToDisplay(wonPoints, xPos, yPos));
+	
 		emit(bonusOff());
 	}
 	// If 1/3 or 2/3 of the pills are eaten
