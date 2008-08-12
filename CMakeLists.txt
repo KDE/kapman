@@ -50,63 +50,7 @@ kde4_install_icons(${ICON_INSTALL_DIR})
 
 kde4_add_executable(kapman ${kapmanSources})
 
-kde4_add_unit_test(characterTest
-	bonus.cpp
-	cell.cpp
-	character.cpp
-	element.cpp
-	energizer.cpp
-	kapman.cpp
-	maze.cpp
-	mazeparser.cpp
-	pill.cpp
-	./tests/charactertest.cpp
-)
-kde4_add_unit_test(gameTest
-	bonus.cpp
-	cell.cpp
-	character.cpp
-	element.cpp
-	energizer.cpp
-	game.cpp
-	ghost.cpp
-	kapman.cpp
-	maze.cpp
-	mazeparser.cpp
-	pill.cpp
-	./tests/gametest.cpp
-)
-kde4_add_unit_test(ghostTest
-	bonus.cpp
-	cell.cpp
-	character.cpp
-	element.cpp
-	energizer.cpp
-	ghost.cpp
-	kapman.cpp
-	maze.cpp
-	mazeparser.cpp
-	pill.cpp
-	./tests/ghosttest.cpp
-)
-kde4_add_unit_test(kapmanTest
-	energizer.cpp
-	bonus.cpp
-	cell.cpp
-	character.cpp
-	element.cpp
-	kapman.cpp
-	maze.cpp
-	mazeparser.cpp
-	pill.cpp
-	./tests/kapmantest.cpp
-)
-
 target_link_libraries(kapman ${KDE4_KDEUI_LIBS}	${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
-target_link_libraries(characterTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
-target_link_libraries(gameTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
-target_link_libraries(ghostTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
-target_link_libraries(kapmanTest ${QT_QTTEST_LIBRARY} ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
