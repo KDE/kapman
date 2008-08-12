@@ -70,7 +70,7 @@ class Game : public QObject {
 		/** The Bonus instance */
 		Bonus *m_bonus;
 
-		/** A flag to know wether the player cheated during the game or not */
+		/** A flag to know if the player has cheated during the game */
 		bool m_isCheater;
 
 		/** The remaining number of lives */

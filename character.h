@@ -153,8 +153,8 @@ class Character : public Element {
 		Cell getNextCell();
 
 		/**
-		 * Checks wether the Character goes past the next Cell center it mets during its next movement.
-		 * @return true if the Character is on a center, false otherwise
+		 * Checks the Character gets on a Cell center during its next movement.
+		 * @return true if the Character is on a Cell center, false otherwise
 		 */
 		bool onCenter();
 

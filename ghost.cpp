@@ -76,7 +76,7 @@ void Ghost::updateMove() {
 	// Get the current cell coordinates from the character coordinates
 	int curCellRow = m_maze->getRowFromY(m_y);
 	int curCellCol = m_maze->getColFromX(m_x);
-	// Flag wether the ghost has no choice but go back
+	// Flag to know when the ghost has no choice but go back
 	bool halfTurnRequired = true;
 	// Contains the different directions a ghost can choose when on a cell center
 	QList<QPointF> directionsList;
