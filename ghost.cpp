@@ -148,7 +148,14 @@ void Ghost::updateMove() {
 				if (curCellRow != Maze::GHOST_RESURRECT_CELL.y() || curCellCol != Maze::GHOST_RESURRECT_CELL.x()) {
 					// Compute the path to go back to the camp
 					m_pathToCamp = m_maze->getPathToGhostCamp(curCellRow, curCellCol);
-					updateMove(m_pathToCamp.first().y(), m_pathToCamp.first().x());
+					if (!m_pathToCamp.isEmpty()) {
+						updateMove(m_pathToCamp.first().y(), m_pathToCamp.first().x());
+					} else {
+						// Set the ghost at home
+						m_x = Maze::GHOST_RESURRECT_CELL.x() * Cell::SIZE + Cell::SIZE / 2;
+						m_y = Maze::GHOST_RESURRECT_CELL.y() * Cell::SIZE + Cell::SIZE / 2;
+						setState(Ghost::HUNTER);
+					}
 				} else {	// The ghost has reached the ghost camp
 					setState(Ghost::HUNTER);
 				}

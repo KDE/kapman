@@ -171,7 +171,8 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 		}
 	}
 	if (oldSize == openList.size()) {
-		kError() << "Path not found";
+		kError() << "Path to ghost home not found";
+		return QList<QPoint>();
 	}
 	// Save the path : from the target cell, go from each cell to its parent cell until reaching the starting cell
 	for (Cell* cell = &m_cells[Maze::GHOST_RESURRECT_CELL.y()][Maze::GHOST_RESURRECT_CELL.x()];
