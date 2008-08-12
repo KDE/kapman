@@ -74,7 +74,7 @@ bool MazeParser::endElement(const QString &, const QString &, const QString & p_
 					break;
 				case 'o':m_maze->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					m_maze->setCellElement(m_counterRows, i,
-							new Energizer(m_counterRows, i, m_maze, KStandardDirs::locate("appdata", "pill.svg")));
+							new Energizer(m_counterRows, i, m_maze, KStandardDirs::locate("appdata", "energizer.svg")));
 					break;
 				case 'x':m_maze->setCellType(m_counterRows,i,Cell::GHOSTCAMP);
 					break;
