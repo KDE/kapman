@@ -295,6 +295,7 @@ void Game::winPoints(Element* p_element) {
 	// If the eaten element is a ghost, win 200 * number of eaten ghosts since the energizer was eaten
 	if (p_element->getType() == Element::GHOST) {
 		m_points += p_element->getPoints() * m_nbEatenGhosts;
+		// TODO 
 	}
 	else {
 		m_points += p_element->getPoints();
@@ -307,7 +308,9 @@ void Game::winPoints(Element* p_element) {
 	// If the eaten element is an energyzer we change the ghosts state
 	if (p_element->getType() == Element::ENERGYZER) {
 		for (int i = 0; i < m_ghosts.size(); i++) {
-			m_ghosts[i]->setState(Ghost::PREY);
+			if(m_ghosts[i]->getState() != Ghost::EATEN) {
+				m_ghosts[i]->setState(Ghost::PREY);
+			}
 		}
 		// Reset the number of eaten ghosts
 		m_nbEatenGhosts = 0;
