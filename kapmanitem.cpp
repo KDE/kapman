@@ -108,16 +108,19 @@ void KapmanItem::startAnim() {
 }
 
 void KapmanItem::pauseAnim() {
-	m_animationTimer->setPaused(true);
+        if (m_animationTimer->state() == QTimeLine::Running)
+	    m_animationTimer->setPaused(true);
 }
 
 void KapmanItem::resumeAnim() {
-	m_animationTimer->setPaused(false);
+        if (m_animationTimer->state() == QTimeLine::Running)
+	    m_animationTimer->setPaused(false);
 }
 
 void KapmanItem::stopAnim() {
 	setElementId("kapman_0");
-	m_animationTimer->stop();
+        if (m_animationTimer->state() == QTimeLine::Running)
+	    m_animationTimer->stop();
 }
 
 void KapmanItem::setFrame(const int p_frame) {
