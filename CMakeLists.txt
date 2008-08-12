@@ -4,8 +4,6 @@ find_package(KDE4 REQUIRED)
 find_package(LibKDEGames REQUIRED)
 
 include(KDE4Defaults)
-include(MacroOptionalDependPackage)
-MACRO_OPTIONAL_DEPEND_PACKAGE(LibKDEGames "kdegames")
 
 include_directories (${KDE4_INCLUDES})
 add_definitions(${KDE4_DEFINITIONS})
