@@ -65,11 +65,11 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_bonusItem = new ElementItem(m_game->getBonus(), KStandardDirs::locate("appdata", "bonus.svg"));
 
 	// Create the introduction labels
-	m_introLabel = new QGraphicsTextItem(ki18n("GET READY !!!").toString());
+	m_introLabel = new QGraphicsTextItem(i18n("GET READY !!!"));
 	m_introLabel->setFont(QFont("Helvetica", 25, QFont::Bold, false));
 	m_introLabel->setDefaultTextColor(QColor("#FFFF00"));
 	m_introLabel->setZValue(2);
-	m_introLabel2 = new QGraphicsTextItem(ki18n("Press any arrow key to start").toString());
+	m_introLabel2 = new QGraphicsTextItem(i18n("Press any arrow key to start"));
 	m_introLabel2->setFont(QFont("Helvetica", 15, QFont::Bold, false));
 	m_introLabel2->setDefaultTextColor(QColor("#FFFF00"));
 	m_introLabel2->setZValue(2);
@@ -91,7 +91,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_levelLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
 	m_levelLabel->setDefaultTextColor(QColor("#FFFFFF"));
 	// Create the pause label
-	m_pauseLabel = new QGraphicsTextItem(ki18n("PAUSED").toString());
+	m_pauseLabel = new QGraphicsTextItem(i18n("PAUSED"));
 	m_pauseLabel->setFont(QFont("Helvetica", 35, QFont::Bold, false));
 	m_pauseLabel->setDefaultTextColor(QColor("#FFFF00"));
 
@@ -162,7 +162,7 @@ void GameScene::intro(const bool p_newLevel) {
 			}
 		}
 		// Display the new level label
-		m_newLevelLabel->setPlainText(ki18n("Level ").toString() += QString::number((int)m_game->getLevel()));
+		m_newLevelLabel->setPlainText(i18n("Level %1",m_game->getLevel()));
 		addItem(m_newLevelLabel);
 		m_newLevelLabel->setPos((width() - m_newLevelLabel->boundingRect().width()) / 2, (height() - m_newLevelLabel->boundingRect().height()) / 2);
 		// Display the introduction label
@@ -268,15 +268,15 @@ void GameScene::hideBonus() {
 
 void GameScene::updateInfo(const Game::InformationTypes p_info) {
 	if (p_info & Game::LivesInfo) {
-	    m_livesLabel->setPlainText(ki18n("Lives : ").toString() += QString::number((int)m_game->getLives()));
+	    m_livesLabel->setPlainText(i18n("Lives : %1",m_game->getLives()));
 	}
 	if (p_info & Game::ScoreInfo) {
-	    m_scoreLabel->setPlainText(ki18n("Score : ").toString() += QString::number((int)m_game->getScore()));
+	    m_scoreLabel->setPlainText(i18n("Score : %1",m_game->getScore()));
 	}
 	if (p_info & Game::LevelInfo) {
 	    QString level("Level : ");
 	    level += QString::number((int)m_game->getLevel());
-	    m_levelLabel->setPlainText(ki18n("Level : ").toString() += QString::number((int)m_game->getLevel()));
+	    m_levelLabel->setPlainText(i18n("Level : %1",m_game->getLevel()));
 	}
 }
 
