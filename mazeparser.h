@@ -32,7 +32,8 @@ class MazeParser : public QXmlDefaultHandler {
 
 		/** The Maze to initialize */
 		Maze* m_maze;
-	
+		QString m_buffer;
+		int m_counterRows;
 	public:
 
 		/**
@@ -47,9 +48,20 @@ class MazeParser : public QXmlDefaultHandler {
 		~MazeParser();
 		
 		/**
+		* Implement QXmlDefaultHandler::characters
+		*/
+		bool characters(const QString & ch );
+
+		/**
 		 * Implements QXmlDefaultHandler::startElement()
 		 */
 		bool startElement(const QString&, const QString&, const QString& p_qName, const QXmlAttributes& p_atts);
+		
+		/**
+		* Implements QXmlDefaultHandler::endElement()
+		*/
+		bool endElement(const QString &, const QString &, const QString & p_qName );
+
 };
 
 #endif

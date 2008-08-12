@@ -19,69 +19,71 @@
 #include "element.h"
 #include "pill.h"
 #include "energizer.h"
-
+#include <KDebug>
 #include <KStandardDirs>
 
 MazeParser::MazeParser(Maze* p_maze) {
 	m_maze = p_maze;
+	m_counterRows = 0;
 }
 
 MazeParser::~MazeParser() {
 }
 
+bool MazeParser::characters(const QString & ch ){
+	m_buffer = ch;
+	return true;
+}
+
 bool MazeParser::startElement(const QString&, const QString&, const QString& p_qName, const QXmlAttributes& p_atts) {
 	int nbRows = 0;
 	int nbColumns = 0;
-	int rowIndex = 0;
-	int columnIndex = 0;
-	int cellType = 0;
-	int itemType = 0;
-
 	if (p_qName == "Maze") {
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); i++) {
-			if (p_atts.qName(i) == "nbRows") {
+			if (p_atts.qName(i) == "rowCount") {
 				nbRows = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "nbColumns") {
+			if (p_atts.qName(i) == "colCount") {
 				nbColumns = p_atts.value(i).toInt();
 			}
 		}
 		// Create the Maze matrix
 		m_maze->init(nbRows, nbColumns);
 	}
-	if (p_qName == "Cell") {
-		for (int i = 0; i < p_atts.count(); i++) {
-			if (p_atts.qName(i) == "rowIndex") {
-				rowIndex = p_atts.value(i).toInt();
-			}
-			if (p_atts.qName(i) == "columnIndex") {
-				columnIndex = p_atts.value(i).toInt();
-			}
-			if (p_atts.qName(i) == "allowedMove") {
-				cellType = p_atts.value(i).toInt();
-			}
-			if (p_atts.qName(i) == "item") {
-				itemType = p_atts.value(i).toInt();
-			}
-		}
-		// Initialize the Cell's type and the Element that is on the Cell
-		m_maze->setCellType(rowIndex, columnIndex, (Cell::Type)cellType);
-		switch (itemType) {
-			case 0:
-				m_maze->setCellElement(rowIndex, columnIndex, NULL);
-				break;
-			case 1:
-				m_maze->setCellElement(rowIndex, columnIndex,
-						new Pill(rowIndex, columnIndex, m_maze, KStandardDirs::locate("appdata", "pill.svg")));
-				break;
-			case 2:
-				m_maze->setCellElement(rowIndex, columnIndex,
-						new Energizer(rowIndex, columnIndex, m_maze, KStandardDirs::locate("appdata", "energizer.svg")));
-				break;
-		}
-	}
 	
 	return true;
 }
+
+bool MazeParser::endElement(const QString &, const QString &, const QString & p_qName ){
+	if(p_qName == "Row")
+	{
+		for (int i=0; i<m_buffer.length();i++)
+		{
+			switch(m_buffer.at(i).toAscii()){
+				case '|':
+				case '=': m_maze->setCellType(m_counterRows,i,Cell::WALL);
+					break;
+				case ' ': m_maze->setCellType(m_counterRows,i,Cell::CORRIDOR);
+					break;
+				case '.': m_maze->setCellType(m_counterRows,i,Cell::CORRIDOR);
+					m_maze->setCellElement(m_counterRows, i,
+							new Pill(m_counterRows, i, m_maze, KStandardDirs::locate("appdata", "pill.svg")));
+					break; 
+				case '@': m_maze->setCellType(m_counterRows,i,Cell::CORRIDOR);
+					break;
+				case 'o':m_maze->setCellType(m_counterRows,i,Cell::CORRIDOR);
+					m_maze->setCellElement(m_counterRows, i,
+							new Energizer(m_counterRows, i, m_maze, KStandardDirs::locate("appdata", "pill.svg")));
+					break;
+				case 'x':m_maze->setCellType(m_counterRows,i,Cell::GHOSTCAMP);
+					break;
+			}
+		}
+		m_counterRows ++;
+	}
+	return true;
+}
+
+
 
