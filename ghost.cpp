@@ -86,7 +86,7 @@ void Ghost::updateMove() {
 	if (m_state != Ghost::EATEN) {	
 		// If the ghost gets on a Cell center
 		if (onCenter()) {
-			// We retrieve all the directions the ghost can choose (save the half turn)
+			// We retrieve all the directions the ghost can choose (save the turnning back)
 			if (m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::CORRIDOR || 
 					(m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
 					 m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::GHOSTCAMP)) {
@@ -145,15 +145,15 @@ void Ghost::updateMove() {
 				m_pathToCamp.removeFirst();
 			} else {
 				// If the ghost is not at home (that means it has just been eaten)
-				if (curCellRow != Maze::GHOST_RESURRECT_CELL.y() || curCellCol != Maze::GHOST_RESURRECT_CELL.x()) {
+				if (curCellRow != m_maze->getResurrectionCell().y() || curCellCol != m_maze->getResurrectionCell().x()) {
 					// Compute the path to go back to the camp
 					m_pathToCamp = m_maze->getPathToGhostCamp(curCellRow, curCellCol);
 					if (!m_pathToCamp.isEmpty()) {
 						updateMove(m_pathToCamp.first().y(), m_pathToCamp.first().x());
 					} else {
 						// Set the ghost at home
-						m_x = Maze::GHOST_RESURRECT_CELL.x() * Cell::SIZE + Cell::SIZE / 2;
-						m_y = Maze::GHOST_RESURRECT_CELL.y() * Cell::SIZE + Cell::SIZE / 2;
+						m_x = m_maze->getResurrectionCell().x() * Cell::SIZE + Cell::SIZE / 2;
+						m_y = m_maze->getResurrectionCell().y() * Cell::SIZE + Cell::SIZE / 2;
 						setState(Ghost::HUNTER);
 					}
 				} else {	// The ghost has reached the ghost camp

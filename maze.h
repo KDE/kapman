@@ -32,12 +32,11 @@ class Maze : public QObject {
 
 	Q_OBJECT
 
-	public:
+	private:
 
 		/** The Cell coordinates where the Ghosts go back when they have been eaten */
-		const static QPoint GHOST_RESURRECT_CELL;
-	
-	private:
+		QPoint m_resurrectionCell;
+				//GHOST_RESURRECT_CELL;
 
 		/** The number of rows of the Maze */
 		int m_nbRows;
@@ -88,6 +87,12 @@ class Maze : public QObject {
 		 * @param p_element the Element that is on the Cell
 		 */
 		void setCellElement(const int p_row, const int p_column, Element* p_element);
+
+		/**
+		 * Sets the cell on witch the ghosts resurrect from prey state
+		 * @param p_resurrectionCell the cell on witch the ghosts resurrect
+		 */
+		void setResurrectionCell(QPoint p_resurrectionCell);
 
 		/**
 		 * Decrements the number of remaining Elements.
@@ -160,6 +165,12 @@ class Maze : public QObject {
 		 * @return the initial number of Elements
 		 */
 		int getTotalNbElem() const;
+
+		/**
+		 * Gets the cell on witch the ghosts resurects
+		 * @return the cell on witch the ghosts resurects
+		 */
+		QPoint getResurrectionCell() const;
 
 	signals:
 

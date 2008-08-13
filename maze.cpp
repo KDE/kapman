@@ -23,7 +23,7 @@
 
 #include <math.h>
 
-const QPoint Maze::GHOST_RESURRECT_CELL = QPoint(13, 14);
+//const QPoint Maze::GHOST_RESURRECT_CELL = QPoint(13, 14);
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 	
@@ -62,6 +62,13 @@ void Maze::setCellElement(const int p_row, const int p_column, Element * p_eleme
 		m_nbElem++;
 	}
 }
+
+void Maze::setResurrectionCell(QPoint p_resurrectionCell) {
+	// TODO : COORDINATES INVERTED, NEED TO CORRECT IT in the findPAth algorithm
+	m_resurrectionCell.setX(p_resurrectionCell.y());
+	m_resurrectionCell.setY(p_resurrectionCell.x());
+}
+
 void Maze::decrementNbElem() {
 	m_nbElem--;
 	if (m_nbElem == 0) {
@@ -84,11 +91,11 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 	int oldSize = 0;
 
 	// Initialize the starting cell
-	m_cells[p_row][p_column].setCost(abs(Maze::GHOST_RESURRECT_CELL.y() - p_row) + abs(Maze::GHOST_RESURRECT_CELL.x() - p_column));
+	m_cells[p_row][p_column].setCost(abs(m_resurrectionCell.y() - p_row) + abs(m_resurrectionCell.x() - p_column));
 	// Add the starting cell to the openList
 	openList.append(QPoint(p_column, p_row));
 	// While the closed list does not contain the target cell
-	while (!closedList.contains(QPoint(Maze::GHOST_RESURRECT_CELL.x(), Maze::GHOST_RESURRECT_CELL.y())) && openList.size() != oldSize) {
+	while (!closedList.contains(QPoint(m_resurrectionCell.x(), m_resurrectionCell.y())) && openList.size() != oldSize) {
 		// Look for the lowest cost cell on the open list
 		lowestCost = 1000;
 		for (int i = 0; i < openList.size(); i++) {
@@ -111,7 +118,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
 				// Initialize the cell
 				m_cells[tmpCell.y()][tmpCell.x()].setCost(
-						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+						abs(m_resurrectionCell.y() - tmpCell.y()) + abs(m_resurrectionCell.x() - (tmpCell.x())));
 				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
 				// Add it to the open list
 				openList.append(tmpCell);
@@ -125,7 +132,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
 				// Initialize the cell
 				m_cells[tmpCell.y()][tmpCell.x()].setCost(
-						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+						abs(m_resurrectionCell.y() - tmpCell.y()) + abs(m_resurrectionCell.x() - (tmpCell.x())));
 				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
 				// Add it to the open list
 				openList.append(tmpCell);
@@ -139,7 +146,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
 				// Initialize the cell
 				m_cells[tmpCell.y()][tmpCell.x()].setCost(
-						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+						abs(m_resurrectionCell.y() - tmpCell.y()) + abs(m_resurrectionCell.x() - (tmpCell.x())));
 				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
 				// Add it to the open list
 				openList.append(tmpCell);
@@ -153,7 +160,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 			if (!closedList.contains(tmpCell) && !openList.contains(tmpCell)) {
 				// Initialize the cell
 				m_cells[tmpCell.y()][tmpCell.x()].setCost(
-						abs(Maze::GHOST_RESURRECT_CELL.y() - tmpCell.y()) + abs(Maze::GHOST_RESURRECT_CELL.x() - (tmpCell.x())));
+						abs(m_resurrectionCell.y() - tmpCell.y()) + abs(m_resurrectionCell.x() - (tmpCell.x())));
 				m_cells[tmpCell.y()][tmpCell.x()].setParent(&m_cells[currentCell.y()][currentCell.x()]);
 				// Add it to the open list
 				openList.append(tmpCell);
@@ -165,7 +172,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 		return QList<QPoint>();
 	}
 	// Save the path : from the target cell, go from each cell to its parent cell until reaching the starting cell
-	for (Cell* cell = &m_cells[Maze::GHOST_RESURRECT_CELL.y()][Maze::GHOST_RESURRECT_CELL.x()];
+	for (Cell* cell = &m_cells[m_resurrectionCell.y()][m_resurrectionCell.x()];
 			cell->getParent() != &m_cells[p_row][p_column]; cell = cell->getParent()) {
 		path.prepend(getCoords(cell));
 	}
@@ -216,3 +223,6 @@ int Maze::getTotalNbElem() const {
 	return m_totalNbElem;
 }
 
+QPoint Maze::getResurrectionCell() const {
+	return m_resurrectionCell;
+}

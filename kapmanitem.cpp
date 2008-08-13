@@ -83,7 +83,7 @@ void KapmanItem::manageCollision() {
 	// when the kapman only collides with the maze)
 	if (collidingList.size() > 1) {
 		for (int i = 0; i < collidingList.size(); i++) {
-			// The maze has a negative zValue which allows to exclude it from the treatment of collisions
+			// The maze and the points labels have a negative zValue which allows to exclude them from the treatment of collisions
 			if (collidingList[i]->zValue() >= 0) {
 				((ElementItem*)collidingList[i])->getModel()->doActionOnCollision((Kapman*)getModel());
 			}

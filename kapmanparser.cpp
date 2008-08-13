@@ -153,6 +153,9 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString & 
 					break;
 				case 'x':m_game->getMaze()->setCellType(m_counterRows,i,Cell::GHOSTCAMP);
 					break;
+				case 'X':m_game->getMaze()->setCellType(m_counterRows,i,Cell::GHOSTCAMP);
+					m_game->getMaze()->setResurrectionCell(QPoint(m_counterRows, i));
+					break;
 			}
 		}
 		m_counterRows ++;
