@@ -18,6 +18,7 @@
  */
 
 #include "game.h"
+#include "kapmanparser.h"
 
 #include <KStandardDirs>
 
@@ -43,22 +44,27 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 	// Create the Maze instance
 	m_maze = new Maze();
 	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
-	// Create the Kapman instance
-	m_kapman = new Kapman(0.0, 0.0, m_maze);
+
+	// Create the parser that will parse the XML file in order to initialize the Maze instance
+	KapmanParser kapmanParser(this);
+	// Set the XML file as input source for the parser
+	QFile mazeXmlFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
+	QXmlInputSource source(&mazeXmlFile);
+	// Create the XML file reader
+	QXmlSimpleReader reader;
+	reader.setContentHandler(&kapmanParser);
+	// Parse the XML file
+	reader.parse(source);
+
 	connect(m_kapman, SIGNAL(sWinPoints(Element*)), this, SLOT(winPoints(Element*)));
-	// Create the Ghost instances
-	m_ghosts.append(new Ghost(0.0, 0.0, "ghostred.svg", m_maze));
-	m_ghosts.append(new Ghost(0.0, 0.0, "ghostgreen.svg", m_maze));
-	m_ghosts.append(new Ghost(0.0, 0.0, "ghostblue.svg", m_maze));
-	m_ghosts.append(new Ghost(0.0, 0.0, "ghostpink.svg", m_maze));
+
 	for (int i = 0; i < m_ghosts.size(); i++) {
 		connect(m_ghosts[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 		connect(m_ghosts[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
 	}
 	// Initialize the ghosts speed and the ghost speed increase considering the characters speed
 	Ghost::initGhostsSpeed();
-	// Create the Bonus instance
-	m_bonus = new Bonus(qreal(Cell::SIZE * 14),qreal(Cell::SIZE * 18), m_maze, 100);
+
 	m_bonusTimer = new QTimer(this);
 	m_bonusTimer->setInterval(10000);
 	m_bonusTimer->setSingleShot(true);
@@ -156,6 +162,23 @@ Bonus* Game::getBonus() {
 	return m_bonus;
 }
 
+void Game::createBonus(QPointF p_position){
+	m_bonus = new Bonus(qreal(Cell::SIZE * p_position.x()),qreal(Cell::SIZE * p_position.y()), m_maze, 100);
+}
+
+void Game::createKapman(QPointF p_position){
+	m_kapman = new Kapman(qreal(Cell::SIZE * p_position.x()),qreal(Cell::SIZE * p_position.y()), m_maze);
+}	
+
+void Game::createGhost(QPointF p_position, const QString & p_imageURL){
+	m_ghosts.append(new Ghost(qreal(Cell::SIZE * p_position.x()),qreal(Cell::SIZE * p_position.y()), p_imageURL, m_maze));
+}
+
+
+void Game::initMaze(const int p_nbRows, const int p_nbColumns){
+	m_maze->init(p_nbRows, p_nbColumns);
+}
+
 void Game::initCharactersPosition() {
 	// If the timer is stopped, it means that collisions are already being handled
 	if (m_timer->isActive()) {	
@@ -163,21 +186,15 @@ void Game::initCharactersPosition() {
 		m_timer->stop();
 		m_state = RUNNING;
 		// Initialize Ghost coordinates and state
-		m_ghosts[0]->setX(Cell::SIZE * 14);
-		m_ghosts[0]->setY(Cell::SIZE * 11.5);
+		m_ghosts[0]->initCoordinate();
+		m_ghosts[1]->initCoordinate();
+		m_ghosts[2]->initCoordinate();
+		m_ghosts[3]->initCoordinate();
+		m_kapman->initCoordinate();
 		m_ghosts[0]->setState(Ghost::HUNTER);
-		m_ghosts[1]->setX(Cell::SIZE * 12);
-		m_ghosts[1]->setY(Cell::SIZE * 14.5);
 		m_ghosts[1]->setState(Ghost::HUNTER);
-		m_ghosts[2]->setX(Cell::SIZE * 14);
-		m_ghosts[2]->setY(Cell::SIZE * 14.5);
 		m_ghosts[2]->setState(Ghost::HUNTER);
-		m_ghosts[3]->setX(Cell::SIZE * 16);
-		m_ghosts[3]->setY(Cell::SIZE * 14.5);
 		m_ghosts[3]->setState(Ghost::HUNTER);
-		// Initialize the Kapman coordinates
-		m_kapman->setX(Cell::SIZE * 14);
-		m_kapman->setY(Cell::SIZE * 23.5);
 		m_kapman->init();
 		// Initialize the Pills & Energizers coordinates
 		for (int i = 0; i < m_maze->getNbRows(); i++) {

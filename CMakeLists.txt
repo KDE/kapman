@@ -27,7 +27,7 @@ set(kapmanSources
 	main.cpp
 	maze.cpp
 	mazeitem.cpp
-	mazeparser.cpp
+	kapmanparser.cpp
 	pill.cpp
 )
 set(kapmanData

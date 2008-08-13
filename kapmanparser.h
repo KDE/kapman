@@ -16,36 +16,41 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __MAZEPARSER_H
-#define __MAZEPARSER_H
+#ifndef __KAPMANPARSER_H
+#define __KAPMANPARSER_H
 
-#include "maze.h"
+#include "game.h"
 
 #include <QXmlDefaultHandler>
+#include <QPointF>
 
 /**
  * @brief This class handles XML reader events in order to initialize the Maze properties.
  */
-class MazeParser : public QXmlDefaultHandler {
+class KapmanParser : public QXmlDefaultHandler {
 	
 	private:
 
-		/** The Maze to initialize */
-		Maze* m_maze;
+		/** The Game to initialize */
+		Game * m_game;
+		
+		/** The parser's buffer */
 		QString m_buffer;
+		
+		/** The rows counter */
 		int m_counterRows;
 	public:
 
 		/**
-		 * Creates a new MazeParser.
-		 * @param p_maze the Maze to initialize
+		 * Creates a new GameParser.
+		 * @param p_game the Game to initialize
 		 */
-		 MazeParser(Maze* p_maze);
+		 KapmanParser(Game* p_game);
 		
 		/**
-		 * Deletes the MazeParser instance.
+		 * Deletes the GameParser instance.
 		 */
-		~MazeParser();
+		~KapmanParser();
 		
 		/**
 		* Implement QXmlDefaultHandler::characters

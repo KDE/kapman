@@ -31,4 +31,10 @@
 	<Row>|.|========|.||.|========|.|</Row>
 	<Row>|..........................|</Row>
 	<Row>|==========================|</Row>
+	<Bonus rowIndex="17" colIndex="14" x-align="accross" y-align="center" />
+	<Kapman rowIndex="23" colIndex="14" x-align="accross" y-align="center" />
+	<Ghost rowIndex="11" colIndex="14" x-align="accross" y-align="center" image="ghostred.svg"/>
+	<Ghost rowIndex="14" colIndex="12" x-align="accross" y-align="center" image="ghostgreen.svg"/>
+	<Ghost rowIndex="14" colIndex="14" x-align="accross" y-align="center" image="ghostblue.svg"/>
+	<Ghost rowIndex="14" colIndex="16" x-align="accross" y-align="center" image="ghostpink.svg"/>
 </Maze>

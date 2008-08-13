@@ -24,6 +24,7 @@
 #include "ghost.h"
 #include "bonus.h"
 
+#include <QPointF>
 #include <QTimer>
 #include <QKeyEvent>
 #include <KGameDifficulty>
@@ -173,6 +174,42 @@ class Game : public QObject {
 		 * @return the current level
 		 */
 		int getLevel() const;
+
+		/**
+		 * Create the new Bonus
+		 * @param p_position the Bonus position
+		 */
+		void createBonus(QPointF p_position);
+
+		/**
+		 * Create the new Kapman
+		 * @param p_position the Kapman position
+		 */
+		void createKapman(QPointF p_position);
+
+		/**
+		 * Create the new Ghost
+		 * @param p_position the Ghost position
+		 * @param p_imageURL the image of the Ghost
+		 */
+		void createGhost(QPointF p_position, const QString & p_imageURL);
+
+		/**
+		 * Initializes a Maze
+		 * @param p_nbRows the number of rows
+		 * @param p_nbColumns the number of columns
+		 */
+		void initMaze(const int p_nbRows, const int p_nbColumns);
+
+		/**
+		 * Initializes a Ghost
+		 */
+		void initGhost();
+
+		/**
+		 * Initializes a Kapman
+		 */
+		void initKapman();
 		
 	private:
 	
@@ -280,6 +317,8 @@ class Game : public QObject {
 		 * Emitted when a ghost or a bonus is eaten. It tells to the scene to
 		 * display the number of won points
 		 * @param p_wonPoints the value to display
+		 * @param p_xPos the x position of the label
+		 * @param p_yPos the y position of the label
 		 */
 		void pointsToDisplay(long p_wonPoints, qreal p_xPos, qreal p_yPos);
 };

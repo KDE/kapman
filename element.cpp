@@ -17,8 +17,9 @@
 
 #include "element.h"
 
-Element::Element(qreal p_x, qreal p_y, Maze* p_maze) :	m_x(p_x), m_y(p_y), m_maze(p_maze) {
+Element::Element(qreal p_x, qreal p_y, Maze* p_maze) : m_xInit(p_x), m_yInit(p_y),  m_maze(p_maze) {
 	m_points = 0;
+	initCoordinate();
 }
 
 Element::~Element() {
@@ -62,3 +63,7 @@ void  Element::setImageUrl(const QString & p_imageUrl){
 	m_imageUrl = p_imageUrl;
 }
 
+void Element::initCoordinate(){
+	setX(m_xInit);
+	setY(m_yInit);
+}

@@ -47,10 +47,16 @@ class Element : public QObject {
 		/** The Element type */
 		Type m_type;
 
-		/** The Element x-coordinate */
+		/** The Element initial x-coordinate */
+		qreal m_xInit;
+
+		/** The Element initial y-coordinate */ 
+		qreal m_yInit;
+
+		/** The Element current x-coordinate */
 		qreal m_x;
 
-		/** The Element y-coordinate */
+		/** The Element current y-coordinate */
 		qreal m_y;
 
 		/** The Maze the Element is on */
@@ -130,6 +136,12 @@ class Element : public QObject {
 		 * @param p_y the y-coordinate to set
 		 */
 		void setY(qreal p_y);
+
+		/**
+		* Initializes Element x-coordinate and y-coordinate with
+		* initial values
+		*/
+		void initCoordinate();
 
 	signals:
 

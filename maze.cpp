@@ -17,7 +17,6 @@
  */
 
 #include "maze.h"
-#include "mazeparser.h"
 
 #include <KDebug>
 #include <KStandardDirs>
@@ -27,16 +26,7 @@
 const QPoint Maze::GHOST_RESURRECT_CELL = QPoint(13, 14);
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
-	// Create the parser that will parse the XML file in order to initialize the Maze instance
-	MazeParser mazeParser(this);
-	// Set the XML file as input source for the parser
-	QFile mazeXmlFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
-	QXmlInputSource source(&mazeXmlFile);
-	// Create the XML file reader
-	QXmlSimpleReader reader;
-	reader.setContentHandler(&mazeParser);
-	// Parse the XML file
-	reader.parse(source);
+	
 }
 	
 Maze::~Maze() {
