@@ -7,4 +7,4 @@ Comment=Eat pills escaping ghosts
 Icon=kapman
 TryExec=kapman
 Exec=kapman
-Categories=Game
+Categories=Game;ArcadeGame
