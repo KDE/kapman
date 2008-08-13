@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Kapman
+GenericName=Pac-Man clone
+Comment=Eat pills escaping ghosts
+Icon=kapman
+TryExec=kapman
+Exec=kapman
+Categories=Game

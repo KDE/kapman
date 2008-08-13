@@ -24,10 +24,10 @@ set(kapmanSources
 	kapman.cpp
 	kapmanitem.cpp
 	kapmanmainwindow.cpp
+	kapmanparser.cpp
 	main.cpp
 	maze.cpp
 	mazeitem.cpp
-	kapmanparser.cpp
 	pill.cpp
 )
 set(kapmanData
@@ -52,4 +52,5 @@ target_link_libraries(kapman ${KDE4_KDEUI_LIBS}	${KDE4_PHONON_LIBS} ${KDEGAMES_L
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
+install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR}/kapman)
 
