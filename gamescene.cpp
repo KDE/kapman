@@ -23,6 +23,7 @@
 
 #include <KStandardDirs>
 #include <KLocalizedString>
+#include <KGameTheme>
 
 GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
@@ -42,7 +43,8 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_cache->setCacheLimit(3 * 1024);
 
 	// Load the SVG file
-	m_renderer = new KSvgRenderer(KStandardDirs::locate("appdata", "themes/retro.svgz"));
+	m_renderer = new KSvgRenderer();
+	loadTheme();
 
 	// Create the MazeItem
 	m_mazeItem = new MazeItem();
@@ -181,10 +183,15 @@ Game* GameScene::getGame() const {
 	return m_game;
 }
 
-void GameScene::loadTheme(const QString& p_theme) {
-	if (m_renderer->load(p_theme)) {
-		m_cache->discard();
+void GameScene::loadTheme() {
+	KGameTheme theme;
+	if (!theme.load(Settings::self()->theme())) {
+		return;
 	}
+	if (!m_renderer->load(theme.graphics())) {
+		return;
+	}
+	m_cache->discard();
 }
 
 void GameScene::intro(const bool p_newLevel) {

@@ -82,6 +82,11 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		void showSettings();
 
 		/**
+		 * Loads the settings.
+		 */
+		void loadSettings();
+
+		/**
 		 * Closes the KapmanMainWindow.
 		 */
 		void close();

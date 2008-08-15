@@ -94,10 +94,9 @@ class GameScene : public QGraphicsScene {
 		Game* getGame() const;
 
 		/**
-		 * Loads the given theme.
-		 * @param p_theme the path to the svgz theme to load
+		 * Loads the game theme.
 		 */
-		void loadTheme(const QString& p_theme);
+		void loadTheme();
 		
 	private slots:
 

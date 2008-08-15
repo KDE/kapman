@@ -18,6 +18,7 @@
 
 #include "kapmanmainwindow.h"
 #include "gameview.h"
+#include "gamescene.h"
 #include "settings.h"
 
 #include <KActionCollection>
@@ -138,8 +139,12 @@ void KapmanMainWindow::showSettings() {
 	}
 	KConfigDialog* settingsDialog = new KConfigDialog(this, "settings", Settings::self());
 	settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "kapman");
-	connect(settingsDialog, SIGNAL(settingsChanged(const QString&)), m_view, SLOT(loadSettings()));
+	connect(settingsDialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
 	settingsDialog->show();
+}
+
+void KapmanMainWindow::loadSettings() {
+	((GameScene*)m_view->scene())->loadTheme();
 }
 
 void KapmanMainWindow::close() {

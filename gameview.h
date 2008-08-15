@@ -65,13 +65,6 @@ class GameView : public QGraphicsView {
 		 */
 		void focusOutEvent(QFocusEvent* p_event);
 
-	public slots:
-
-		/**
-		 * Loads the settings chosen by the user.
-		 */
-		void loadSettings();
-
 	signals:
 
 		/**
