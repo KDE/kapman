@@ -105,7 +105,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 		// Display the score information
 		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());	
 		// Add the score to the highscores table
-		m_kScoreDialog->setConfigGroup(I18N_NOOP(KGameDifficulty::levelString()));
+		m_kScoreDialog->setConfigGroup(KGameDifficulty::localizedLevelString());
 		KScoreDialog::FieldInfo scoreInfo;
 		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
 		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());

@@ -221,7 +221,7 @@ void Ghost::setState(Ghost::State p_state) {
 	emit(stateChanged());
 }
 
-void Ghost::doActionOnCollision(Kapman * p_kapman) {
+void Ghost::doActionOnCollision(Kapman*) {
 	switch (m_state) {
 		case Ghost::HUNTER:
 			emit(lifeLost());

@@ -25,7 +25,7 @@ Element::Element(qreal p_x, qreal p_y, Maze* p_maze) : m_xInit(p_x), m_yInit(p_y
 Element::~Element() {
 }
 
-void Element::doActionOnCollision(Kapman* p_kapman) {
+void Element::doActionOnCollision(Kapman*) {
 	// Do nothing by default : will be redefined within the subclasses
 }
 

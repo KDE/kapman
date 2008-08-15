@@ -28,11 +28,11 @@ GameView::~GameView() {
 
 }
 
-void GameView::resizeEvent(QResizeEvent* p_event) {
+void GameView::resizeEvent(QResizeEvent*) {
 	fitInView(sceneRect(), Qt::KeepAspectRatio);
 }
 
-void GameView::focusOutEvent(QFocusEvent* p_event) {
+void GameView::focusOutEvent(QFocusEvent*) {
 	// Pause the game if it is not already paused
 	if (((GameScene*)scene())->getGame()->getTimer()->isActive()) {
 		((GameScene*)scene())->getGame()->switchPause();
