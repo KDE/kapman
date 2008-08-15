@@ -50,6 +50,13 @@ class CharacterItem : public ElementItem {
 		 * Deletes the CharacterItem instance.
 		 */
 		~CharacterItem();
+
+		/**
+		 * Overrides the default shape function to make it a small circle
+		 * This function is used to determinate collision between items
+		 * @return QPainterPath the new shape of the Character
+		 */
+		QPainterPath shape() const;
 		
 	public slots:
 

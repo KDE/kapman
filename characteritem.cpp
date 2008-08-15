@@ -28,6 +28,18 @@ CharacterItem::~CharacterItem() {
 	delete m_blinkTimer;
 }
 
+QPainterPath CharacterItem::shape() const
+{
+	QPainterPath path;
+	// Temporary variable to keep the boundingRect available
+	QRectF rect = boundingRect();
+
+	// Calculation of the shape
+	QRectF shapeRect = QRectF( rect.x()+rect.width()/4, rect.y()+rect.height()/4, rect.width()/2, rect.height()/2 );
+	path.addEllipse(shapeRect);
+	return path;
+}
+
 void CharacterItem::update(qreal p_x, qreal p_y) {
 	// Compute the top-right coordinates of the item
 	qreal x = p_x - boundingRect().width() / 2;

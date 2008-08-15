@@ -50,12 +50,18 @@ void GhostItem::updateState() {
 		case Ghost::PREY:
 			setElementId("scaredghost");
 			m_startBlinkingTimer->start();
+			// The ghosts are now weaker than the kapman, so they are under him
+			setZValue(1);
 			break;
 		case Ghost::HUNTER:
 			setElementId( ((Ghost*)getModel())->getImageId() );
+			// The ghosts are stronger than the kapman, they are above him
+			setZValue(3);
 			break;
 		case Ghost::EATEN:
 			setElementId("ghosteye");
+			// The ghosts are now weaker than the kapman, so they are under him
+			setZValue(1);
 			break;
 	}
 }

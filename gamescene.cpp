@@ -58,7 +58,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_kapmanItem->setElementId("kapman_0");
 	// Corrects the position of the KapmanItem
 	m_kapmanItem->update(p_game->getKapman()->getX(), p_game->getKapman()->getY());
-	m_kapmanItem->setZValue(1);
+	m_kapmanItem->setZValue(2);
 	// Stops the Kapman animation
 	m_kapmanItem->stopAnim();
 
@@ -68,7 +68,8 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 		ghost->setSharedRenderer(renderer);
 		ghost->setElementId(p_game->getGhosts()[i]->getImageId());
 		ghost->update(p_game->getGhosts()[i]->getX(), p_game->getGhosts()[i]->getY());
-		ghost->setZValue(1);
+		// At the beggining, the ghosts are above the kapman because they eat him
+		ghost->setZValue(3);
 		m_ghostItems.append(ghost);
 	}
 	// Create the Pill and Energizer items
@@ -97,16 +98,21 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_introLabel = new QGraphicsTextItem(i18n("GET READY !!!"));
 	m_introLabel->setFont(QFont("Helvetica", 25, QFont::Bold, false));
 	m_introLabel->setDefaultTextColor(QColor("#FFFF00"));
-	m_introLabel->setZValue(2);
+	m_introLabel->setZValue(4);
 	m_introLabel2 = new QGraphicsTextItem(i18n("Press any arrow key to start"));
 	m_introLabel2->setFont(QFont("Helvetica", 15, QFont::Bold, false));
 	m_introLabel2->setDefaultTextColor(QColor("#FFFF00"));
-	m_introLabel2->setZValue(2);
+	m_introLabel2->setZValue(4);
 	// Create the new level label
 	m_newLevelLabel = new QGraphicsTextItem();
 	m_newLevelLabel->setFont(QFont("Helvetica", 35, QFont::Bold, false));
 	m_newLevelLabel->setDefaultTextColor(QColor("#FFFF00"));
-	m_newLevelLabel->setZValue(2);
+	m_newLevelLabel->setZValue(4);
+	// Create the pause label
+	m_pauseLabel = new QGraphicsTextItem(i18n("PAUSED"));
+	m_pauseLabel->setFont(QFont("Helvetica", 35, QFont::Bold, false));
+	m_pauseLabel->setDefaultTextColor(QColor("#FFFF00"));
+	m_pauseLabel->setZValue(4);
 	// Create the score label
 	m_scoreLabel = new QGraphicsTextItem();
 	m_scoreLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
@@ -119,10 +125,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_levelLabel = new QGraphicsTextItem();
 	m_levelLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
 	m_levelLabel->setDefaultTextColor(QColor("#FFFFFF"));
-	// Create the pause label
-	m_pauseLabel = new QGraphicsTextItem(i18n("PAUSED"));
-	m_pauseLabel->setFont(QFont("Helvetica", 35, QFont::Bold, false));
-	m_pauseLabel->setDefaultTextColor(QColor("#FFFF00"));
 
 	// Display the MazeItem
 	addItem(m_mazeItem);
