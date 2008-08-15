@@ -17,7 +17,7 @@
 
 #include "elementitem.h"
 
-ElementItem::ElementItem(Element* p_model, const QString & p_imagePath) : QGraphicsSvgItem(p_imagePath) {
+ElementItem::ElementItem(Element* p_model) : QGraphicsSvgItem() {
 	m_model = p_model;
 	// Init the view coordinates
 	setPos(p_model->getX() - boundingRect().width() / 2, p_model->getY() - boundingRect().height() / 2);

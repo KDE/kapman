@@ -28,7 +28,7 @@ const int KapmanItem::ANIM_LOW_SPEED = 500;
 const int KapmanItem::ANIM_MEDIUM_SPEED = 400;
 const int KapmanItem::ANIM_HIGH_SPEED = 300;
 
-KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : CharacterItem(p_model, p_imagePath) {
+KapmanItem::KapmanItem(Kapman* p_model) : CharacterItem(p_model) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 	connect(p_model, SIGNAL(stopped()), this, SLOT(stopAnim()));
@@ -46,7 +46,6 @@ KapmanItem::KapmanItem(Kapman* p_model, const QString & p_imagePath) : Character
 		m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
 	}
 	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
-	setElementId("kapman_0");
 }
 
 KapmanItem::~KapmanItem() {

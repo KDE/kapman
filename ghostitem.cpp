@@ -18,7 +18,7 @@
 
 #include "ghostitem.h"
 
-GhostItem::GhostItem(Ghost* p_model, const QString & p_imagePath) : CharacterItem (p_model, p_imagePath) {
+GhostItem::GhostItem(Ghost* p_model) : CharacterItem (p_model) {
 	connect(p_model, SIGNAL(stateChanged()), this, SLOT(updateState()));
 	m_startBlinkingTimer = new QTimer(this);
 	m_startBlinkingTimer->setInterval(7500);
@@ -48,14 +48,14 @@ void GhostItem::updateState() {
 	}
 	switch (((Ghost*)getModel())->getState()) { 
 		case Ghost::PREY:
-			setElementId("ghost_prey");
+			setElementId("scaredghost");
 			m_startBlinkingTimer->start();
 			break;
 		case Ghost::HUNTER:
-			setElementId("ghost_hunter");
+			setElementId( ((Ghost*)getModel())->getImageId() );
 			break;
 		case Ghost::EATEN:
-			setElementId("ghost_eaten");
+			setElementId("ghosteye");
 			break;
 	}
 }
@@ -63,9 +63,9 @@ void GhostItem::updateState() {
 void GhostItem::blink() {
 	CharacterItem::blink();
 	if (m_nbBlinks % 2 == 0) {
-		setElementId("ghost_prey");
+		setElementId("scaredghost");
 	} else {
-		setElementId("ghost_prey_white");
+		setElementId("whitescaredghost");
 	}
 }
 

@@ -43,9 +43,9 @@ class Energizer : public Element {
 		 * @param p_x the x-coordinate
 		 * @param p_y the y-coordinate
 		 * @param p_maze the Maze the Energyzer is on
-		 * @param p_imageUrl the path to the Energyzer image
+		 * @param p_imageId the path to the Energyzer image
 		 */
-		Energizer(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl);
+		Energizer(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageId);
 
 		/**
 		 * Deletes the Energizer instance.

@@ -32,15 +32,7 @@ set(kapmanSources
 )
 set(kapmanData
 	defaultmaze.xml
-	images/bonus.svg
-	images/energizer.svg
-	images/ghostblue.svg
-	images/ghostgreen.svg
-	images/ghostpink.svg
-	images/ghostred.svg
-	images/kapman.svg
-	images/maze.svg
-	images/pill.svg
+	images/retro.svgz
 	kapmanui.rc
 )
 

@@ -49,9 +49,8 @@ class KapmanItem : public CharacterItem {
 		/**
 		 * Creates a new KapmanItem instance.
 		 * @param p_model the Kapman model
-		 * @param p_imagePath the Kapman image path
 		 */
-		KapmanItem(Kapman* p_model, const QString & p_imagePath);
+		KapmanItem(Kapman* p_model);
 
 		/**
 		 * Deletes the KapmanItem instance.

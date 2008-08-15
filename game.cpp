@@ -25,6 +25,7 @@
 const int Game::FPS = 40;
 
 Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
+
 	// Tells the KGameDifficulty singleton that the game is not running
 	KGameDifficulty::setRunning(false);
 	// Initialize the characters speed considering the difficulty level
@@ -170,8 +171,8 @@ void Game::createKapman(QPointF p_position){
 	m_kapman = new Kapman(qreal(Cell::SIZE * p_position.x()),qreal(Cell::SIZE * p_position.y()), m_maze);
 }	
 
-void Game::createGhost(QPointF p_position, const QString & p_imageURL){
-	m_ghosts.append(new Ghost(qreal(Cell::SIZE * p_position.x()),qreal(Cell::SIZE * p_position.y()), p_imageURL, m_maze));
+void Game::createGhost(QPointF p_position, const QString & p_imageId){
+	m_ghosts.append(new Ghost(qreal(Cell::SIZE * p_position.x()),qreal(Cell::SIZE * p_position.y()), p_imageId, m_maze));
 }
 
 

@@ -19,12 +19,11 @@
 
 #include "pill.h"
 #include "kapman.h"
-#include <KStandardDirs>
 
 const int Pill::POINTS = 10;
 
-Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl) : Element(p_x, p_y, p_maze) {
-	Element::setImageUrl(p_imageUrl);
+Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageId) : Element(p_x, p_y, p_maze) {
+	Element::setImageId(p_imageId);
 	m_points = 10;
 	m_type = Element::PILL;
 }

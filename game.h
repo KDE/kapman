@@ -190,9 +190,9 @@ class Game : public QObject {
 		/**
 		 * Create the new Ghost
 		 * @param p_position the Ghost position
-		 * @param p_imageURL the image of the Ghost
+		 * @param p_imageId the image of the Ghost
 		 */
-		void createGhost(QPointF p_position, const QString & p_imageURL);
+		void createGhost(QPointF p_position, const QString & p_imageId);
 
 		/**
 		 * Initializes a Maze

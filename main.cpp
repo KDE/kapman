@@ -18,7 +18,6 @@
 #include <KAboutData>
 #include <KCmdLineArgs>
 #include <KApplication>
-#include <KStandardDirs>
 #include "kapmanmainwindow.h"
 
 int main(int argc, char** argv) {

@@ -23,6 +23,7 @@
 #include <QPixmapCache>
 #include <KStandardDirs>
 #include <KLocalizedString>
+#include <QSvgRenderer>
 
 GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
@@ -40,16 +41,35 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	setItemIndexMethod(NoIndex);
 	QPixmapCache::setCacheLimit(32768);
 
+	// Loading the SVG file
+	QSvgRenderer* renderer = new QSvgRenderer(KStandardDirs::locate("appdata", "retro.svgz"));
+
 	// Create the MazeItem
-	m_mazeItem = new MazeItem(KStandardDirs::locate("appdata", "maze.svg"));
+	m_mazeItem = new MazeItem();
+	// Give it the shared renderer to avoid loading the whole SVG file again
+	m_mazeItem->setSharedRenderer(renderer);
+	// Set the element Id to the right value
+	m_mazeItem->setElementId("maze");
 	m_mazeItem->setZValue(-2);
+
 	// Create the KapmanItem
-	m_kapmanItem = new KapmanItem(p_game->getKapman(), KStandardDirs::locate("appdata", "kapman.svg"));
+	m_kapmanItem = new KapmanItem(p_game->getKapman());
+	m_kapmanItem->setSharedRenderer(renderer);
+	m_kapmanItem->setElementId("kapman_0");
+	// Corrects the position of the KapmanItem
+	m_kapmanItem->update(p_game->getKapman()->getX(), p_game->getKapman()->getY());
 	m_kapmanItem->setZValue(1);
+	// Stops the Kapman animation
+	m_kapmanItem->stopAnim();
+
 	// Create the GhostItems
 	for (int i = 0; i < p_game->getGhosts().size(); i++) {
-		m_ghostItems.append(new GhostItem(p_game->getGhosts()[i], KStandardDirs::locate("appdata", p_game->getGhosts()[i]->getImageURL())));
-		m_ghostItems[i]->setZValue(1);
+		GhostItem* ghost = new GhostItem(p_game->getGhosts()[i]);
+		ghost->setSharedRenderer(renderer);
+		ghost->setElementId(p_game->getGhosts()[i]->getImageId());
+		ghost->update(p_game->getGhosts()[i]->getX(), p_game->getGhosts()[i]->getY());
+		ghost->setZValue(1);
+		m_ghostItems.append(ghost);
 	}
 	// Create the Pill and Energizer items
 	m_elementItems = new ElementItem**[m_game->getMaze()->getNbRows()];
@@ -57,15 +77,21 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 		m_elementItems[i] = new ElementItem*[m_game->getMaze()->getNbColumns()];
 		for (int j = 0; j < m_game->getMaze()->getNbColumns(); j++) {
 			if (m_game->getMaze()->getCell(i, j).getElement() != NULL) {
-				m_elementItems[i][j] = new ElementItem(m_game->getMaze()->getCell(i, j).getElement(),
-						KStandardDirs::locate("appdata", m_game->getMaze()->getCell(i, j).getElement()->getImageUrl()));
+				// Create the element and set the image
+				ElementItem* element = new ElementItem(m_game->getMaze()->getCell(i, j).getElement());
+				element->setSharedRenderer(renderer);
+				element->setElementId(m_game->getMaze()->getCell(i,j).getElement()->getImageId());
+				element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());
+				m_elementItems[i][j] = element;
 			} else {
 				m_elementItems[i][j] = NULL;
 			}
 		}
 	}
 	// Create the Bonus item
-	m_bonusItem = new ElementItem(m_game->getBonus(), KStandardDirs::locate("appdata", "bonus.svg"));
+	m_bonusItem = new ElementItem(m_game->getBonus());
+	m_bonusItem->setSharedRenderer(renderer);
+	m_bonusItem->setElementId("bonus1");
 
 	// Create the introduction labels
 	m_introLabel = new QGraphicsTextItem(i18n("GET READY !!!"));
@@ -238,27 +264,28 @@ void GameScene::displayBonus() {
 	if (!items().contains(m_bonusItem)) {
 		switch (m_game->getLevel()) {
 			case 1:
-				m_bonusItem->setElementId("chicken");
+				m_bonusItem->setElementId("bonus1");
 				break;
 			case 2:
-				m_bonusItem->setElementId("spider");
+				m_bonusItem->setElementId("bonus2");
 				break;
 			case 3:
-				m_bonusItem->setElementId("pizza");
+				m_bonusItem->setElementId("bonus3");
 				break;
 			case 4:
-				m_bonusItem->setElementId("donut");
+				m_bonusItem->setElementId("bonus4");
 				break;
 			case 5:
-				m_bonusItem->setElementId("tomato");
+				m_bonusItem->setElementId("bonus5");
 				break;
 			case 6:
-				m_bonusItem->setElementId("burger");
+				m_bonusItem->setElementId("bonus6");
 				break;
 			default:
-				m_bonusItem->setElementId("carrot");
+				m_bonusItem->setElementId("bonus7");
 				break;	
 		}
+		m_bonusItem->update(m_game->getBonus()->getX(), m_game->getBonus()->getY());
 		addItem(m_bonusItem);
 	}
 }

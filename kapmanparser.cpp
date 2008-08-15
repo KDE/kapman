@@ -20,14 +20,13 @@
 #include "pill.h"
 #include "energizer.h"
 
-#include <KStandardDirs>
-
 KapmanParser::KapmanParser(Game* p_game) {
 	m_game = p_game;
 	m_counterRows = 0;
 }
 
 KapmanParser::~KapmanParser() {
+
 }
 
 bool KapmanParser::characters(const QString & ch ){
@@ -100,7 +99,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 	}
 
 	if (p_qName == "Ghost") {
-		QString image = "";
+		QString imageId = "";
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); i++) {
 			if (p_atts.qName(i) == "rowIndex") {
@@ -119,11 +118,11 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 					y_position += 0.5;
 				}
 			}
-			if (p_atts.qName(i) == "image") {
-				image = p_atts.value(i); 
+			if (p_atts.qName(i) == "imageId") {
+				imageId = p_atts.value(i);
 			}
 		}
-		m_game->createGhost(QPointF(x_position, y_position),image);
+		m_game->createGhost(QPointF(x_position, y_position),imageId);
 	}
 
 	
@@ -143,13 +142,13 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString & 
 					break;
 				case '.': m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					m_game->getMaze()->setCellElement(m_counterRows, i,
-							new Pill(m_counterRows, i, m_game->getMaze(), KStandardDirs::locate("appdata", "pill.svg")));
+							new Pill(m_counterRows, i, m_game->getMaze(), "pill"));
 					break; 
 				case '@': m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					break;
 				case 'o':m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					m_game->getMaze()->setCellElement(m_counterRows, i,
-							new Energizer(m_counterRows, i, m_game->getMaze(), KStandardDirs::locate("appdata", "energizer.svg")));
+							new Energizer(m_counterRows, i, m_game->getMaze(), "energizer"));
 					break;
 				case 'x':m_game->getMaze()->setCellType(m_counterRows,i,Cell::GHOSTCAMP);
 					break;

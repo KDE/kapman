@@ -36,7 +36,6 @@ class Maze : public QObject {
 
 		/** The Cell coordinates where the Ghosts go back when they have been eaten */
 		QPoint m_resurrectionCell;
-				//GHOST_RESURRECT_CELL;
 
 		/** The number of rows of the Maze */
 		int m_nbRows;

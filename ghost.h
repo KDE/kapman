@@ -43,7 +43,7 @@ class Ghost : public Character {
 	private:
 
 		/** The path to the Ghost image */
-		QString m_imageURL;
+		QString m_imageId;
 		
 		/** The ghost current state */
 		State m_state;
@@ -74,10 +74,10 @@ class Ghost : public Character {
 		 * Creates a new Ghost instance.
 		 * @param p_x the initial x-coordinate
 		 * @param p_y the initial y-coordinate
-		 * @param p_imageURL path to the image of the related item
+		 * @param p_imageId path to the image of the related item
 		 * @param p_maze the Maze the Ghost is on
 		 */
-		Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze);
+		Ghost(qreal p_x, qreal p_y, const QString & p_imageId, Maze* p_maze);
 
 		/**
 		 * Deletes the Ghost instance.
@@ -100,7 +100,7 @@ class Ghost : public Character {
 		 * Gets the path to the Ghost image.
 		 * @return the path to the Ghost image
 		 */
-		QString getImageURL() const;
+		QString getImageId() const;
 		
 		/**
 		 * Gets the current state of the Ghost.

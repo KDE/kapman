@@ -37,7 +37,7 @@ class Pill : public Element {
 		/**
 		 * Creates a new Pill instance.
 		 */
-		Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageUrl);
+		Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageId);
 
 		/**
 		 * Deletes the Pill instance.

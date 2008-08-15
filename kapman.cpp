@@ -19,7 +19,7 @@
 #include "kapman.h"
 
 Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
-	init();
+
 	m_type = Element::KAPMAN;
 }
 

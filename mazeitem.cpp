@@ -18,7 +18,7 @@
 
 #include "mazeitem.h"
 
-MazeItem::MazeItem(const QString & p_imagePath) : QGraphicsSvgItem(p_imagePath) {
+MazeItem::MazeItem() : QGraphicsSvgItem() {
 	// Configure the cache in order to increase the performance
 	setCacheMode(DeviceCoordinateCache);
 	setMaximumCacheSize(QSize(2000, 2000));

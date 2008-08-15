@@ -43,9 +43,8 @@ class ElementItem : public QGraphicsSvgItem {
 		/**
 		 * Creates a new ElementItem instance.
 		 * @param p_model the Element model
-		 * @param p_imagePath the Element image path
 		 */
-		ElementItem(Element* p_model, const QString & p_imagePath);
+		ElementItem(Element* p_model);
 
 		/**
 		 * Deletes the ElementItem instance.

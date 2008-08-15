@@ -28,7 +28,6 @@ KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
 	m_game = NULL;
 	m_view = NULL;
-	initGame();
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
@@ -38,10 +37,11 @@ KapmanMainWindow::KapmanMainWindow() {
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
- 	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
- 	// The default level
- 	// TODO : Read this information from a config file
+	// Set the game to restart when the level difficulty is changed
+	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
+ 	// The default level, calls initGame() method
  	KGameDifficulty::setLevel(KGameDifficulty::Medium);
+
 	// KScoreDialog
 	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
 	// Setup the window

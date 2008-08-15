@@ -55,12 +55,12 @@ Element::Type Element::getType() const {
 	return m_type;
 }
 
-QString Element::getImageUrl() const {
-	return m_imageUrl;
+QString Element::getImageId() const {
+	return m_imageId;
 }
 
-void  Element::setImageUrl(const QString & p_imageUrl){
-	m_imageUrl = p_imageUrl;
+void  Element::setImageId(const QString & p_imageId){
+	m_imageId = p_imageId;
 }
 
 void Element::initCoordinate(){

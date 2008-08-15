@@ -18,7 +18,6 @@
 
 #include "ghost.h"
 
-#include <KDebug>
 #include <QPointF>
 
 #include <cstdlib>
@@ -30,9 +29,9 @@ const qreal Ghost::HIGH_SPEED_INC = 0.15;
 qreal Ghost::s_speed = Character::s_speed;
 qreal Ghost::s_speedIncrease = Ghost::MEDIUM_SPEED_INC;
 
-Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageURL, Maze* p_maze) : Character(p_x, p_y, p_maze) {
+Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageId, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	// Initialize the ghost attributes
-	m_imageURL = p_imageURL;
+	m_imageId = p_imageId;
 	m_points = 200;
 	m_type = Element::GHOST;
 	m_state = Ghost::HUNTER;
@@ -193,8 +192,8 @@ void Ghost::updateMove(int p_row, int p_col) {
 	move();
 }
 
-QString Ghost::getImageURL() const  {
-	return m_imageURL;
+QString Ghost::getImageId() const  {
+	return m_imageId;
 }
 
 Ghost::State Ghost::getState() const {

@@ -62,8 +62,8 @@ class Element : public QObject {
 		/** The Maze the Element is on */
 		Maze* m_maze;
 
-		/** The Url of the Element */
-		QString m_imageUrl;
+		/** The Id of the Element */
+		QString m_imageId;
 		
 		/** Points won when the Element is eaten */
 		int m_points;
@@ -93,7 +93,7 @@ class Element : public QObject {
 		 * Gets the path to the Element image.
 		 * @return the path to the Element image
 		 */
-		QString getImageUrl() const;
+		QString getImageId() const;
 		
 		/**
 		 * Gets the value of the Element.
@@ -109,9 +109,9 @@ class Element : public QObject {
 
 		/**
 		 * Sets the Element image.
-		 * @param p_imageUrl the image to set
+		 * @param p_imageId the image to set
 		 */
-		void setImageUrl(const QString & p_imageUrl);
+		void setImageId(const QString & p_imageId);
 
 		/**
 		 * Gets the Element x-coordinate.

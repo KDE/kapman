@@ -19,11 +19,8 @@
 #include "maze.h"
 
 #include <KDebug>
-#include <KStandardDirs>
 
 #include <math.h>
-
-//const QPoint Maze::GHOST_RESURRECT_CELL = QPoint(13, 14);
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 	

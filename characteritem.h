@@ -43,9 +43,8 @@ class CharacterItem : public ElementItem {
 		/**
 		 * Creates a new CharacterItem instance.
 		 * @param p_model the Character model
-		 * @param p_imagePath the path to the Character image
 		 */
-		CharacterItem(Character* p_model, const QString & p_imagePath);
+		CharacterItem(Character* p_model);
 
 		/**
 		 * Deletes the CharacterItem instance.
