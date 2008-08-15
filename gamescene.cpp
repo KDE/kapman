@@ -19,11 +19,10 @@
 #include "gamescene.h"
 #include "cell.h"
 #include "bonus.h"
+#include "settings.h"
 
-#include <QPixmapCache>
 #include <KStandardDirs>
 #include <KLocalizedString>
-#include <QSvgRenderer>
 
 GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
@@ -39,22 +38,23 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 
 	// Set the pixmap cache limit to improve performance
 	setItemIndexMethod(NoIndex);
-	QPixmapCache::setCacheLimit(32768);
+	m_cache = new KPixmapCache("kapman_cache");
+	m_cache->setCacheLimit(3 * 1024);
 
-	// Loading the SVG file
-	QSvgRenderer* renderer = new QSvgRenderer(KStandardDirs::locate("appdata", "retro.svgz"));
+	// Load the SVG file
+	m_renderer = new KSvgRenderer(KStandardDirs::locate("appdata", "themes/retro.svgz"));
 
 	// Create the MazeItem
 	m_mazeItem = new MazeItem();
 	// Give it the shared renderer to avoid loading the whole SVG file again
-	m_mazeItem->setSharedRenderer(renderer);
+	m_mazeItem->setSharedRenderer(m_renderer);
 	// Set the element Id to the right value
 	m_mazeItem->setElementId("maze");
 	m_mazeItem->setZValue(-2);
 
 	// Create the KapmanItem
 	m_kapmanItem = new KapmanItem(p_game->getKapman());
-	m_kapmanItem->setSharedRenderer(renderer);
+	m_kapmanItem->setSharedRenderer(m_renderer);
 	m_kapmanItem->setElementId("kapman_0");
 	// Corrects the position of the KapmanItem
 	m_kapmanItem->update(p_game->getKapman()->getX(), p_game->getKapman()->getY());
@@ -65,7 +65,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	// Create the GhostItems
 	for (int i = 0; i < p_game->getGhosts().size(); i++) {
 		GhostItem* ghost = new GhostItem(p_game->getGhosts()[i]);
-		ghost->setSharedRenderer(renderer);
+		ghost->setSharedRenderer(m_renderer);
 		ghost->setElementId(p_game->getGhosts()[i]->getImageId());
 		ghost->update(p_game->getGhosts()[i]->getX(), p_game->getGhosts()[i]->getY());
 		// At the beggining, the ghosts are above the kapman because they eat him
@@ -80,7 +80,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 			if (m_game->getMaze()->getCell(i, j).getElement() != NULL) {
 				// Create the element and set the image
 				ElementItem* element = new ElementItem(m_game->getMaze()->getCell(i, j).getElement());
-				element->setSharedRenderer(renderer);
+				element->setSharedRenderer(m_renderer);
 				element->setElementId(m_game->getMaze()->getCell(i,j).getElement()->getImageId());
 				element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());
 				m_elementItems[i][j] = element;
@@ -91,7 +91,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	}
 	// Create the Bonus item
 	m_bonusItem = new ElementItem(m_game->getBonus());
-	m_bonusItem->setSharedRenderer(renderer);
+	m_bonusItem->setSharedRenderer(m_renderer);
 	m_bonusItem->setElementId("bonus1");
 
 	// Create the introduction labels
@@ -173,10 +173,18 @@ GameScene::~GameScene() {
 	delete m_livesLabel;
 	delete m_levelLabel;
 	delete m_pauseLabel;
+	delete m_cache;
+	delete m_renderer;
 }
 
 Game* GameScene::getGame() const {
 	return m_game;
+}
+
+void GameScene::loadTheme(const QString& p_theme) {
+	if (m_renderer->load(p_theme)) {
+		m_cache->discard();
+	}
 }
 
 void GameScene::intro(const bool p_newLevel) {

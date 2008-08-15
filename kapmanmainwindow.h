@@ -77,6 +77,11 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		void showHighscores();
 
 		/**
+		 * Shows the settings dialog.
+		 */
+		void showSettings();
+
+		/**
 		 * Closes the KapmanMainWindow.
 		 */
 		void close();

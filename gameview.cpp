@@ -17,6 +17,9 @@
 
 #include "gameview.h"
 #include "gamescene.h"
+#include "settings.h"
+
+#include <KGameTheme>
 
 GameView::GameView(Game * p_game) : QGraphicsView(new GameScene(p_game)) {
 	setFocusPolicy(Qt::StrongFocus);
@@ -36,6 +39,13 @@ void GameView::focusOutEvent(QFocusEvent*) {
 	// Pause the game if it is not already paused
 	if (((GameScene*)scene())->getGame()->getTimer()->isActive()) {
 		((GameScene*)scene())->getGame()->switchPause();
+	}
+}
+
+void GameView::loadSettings() {
+	KGameTheme theme;
+	if (theme.load(Settings::self()->theme())) {
+		((GameScene*)scene())->loadTheme(theme.graphics());
 	}
 }
 

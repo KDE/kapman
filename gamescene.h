@@ -27,6 +27,8 @@
 
 #include <QGraphicsScene>
 #include <QList>
+#include <KPixmapCache>
+#include <KSvgRenderer>
 
 /**
  * @brief This class contains all the Game elements to be drawn on the screen by the GameView instance.
@@ -66,6 +68,12 @@ class GameScene : public QGraphicsScene {
 		QGraphicsTextItem* m_livesLabel;
 		QGraphicsTextItem* m_levelLabel;
 		QGraphicsTextItem* m_pauseLabel;
+
+		/** The pixmap cache */
+		KPixmapCache* m_cache;
+
+		/** The SVG renderer */
+		KSvgRenderer* m_renderer;
 		
 	public:
 
@@ -84,6 +92,12 @@ class GameScene : public QGraphicsScene {
 		 * @return the Game instance
 		 */
 		Game* getGame() const;
+
+		/**
+		 * Loads the given theme.
+		 * @param p_theme the path to the svgz theme to load
+		 */
+		void loadTheme(const QString& p_theme);
 		
 	private slots:
 

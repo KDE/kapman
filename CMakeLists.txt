@@ -32,9 +32,15 @@ set(kapmanSources
 )
 set(kapmanData
 	defaultmaze.xml
-	images/retro.svgz
 	kapmanui.rc
 )
+set(kapmanThemes
+	themes/retro.svgz
+	themes/retro.desktop
+	themes/retro_preview.png
+)
+
+kde4_add_kcfg_files(kapmanSources settings.kcfgc)
 
 kde4_install_icons(${ICON_INSTALL_DIR})
 
@@ -45,4 +51,5 @@ target_link_libraries(kapman ${KDE4_KDEUI_LIBS}	${KDE4_PHONON_LIBS} ${KDEGAMES_L
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR}/kapman)
+install(FILES ${kapmanThemes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
 

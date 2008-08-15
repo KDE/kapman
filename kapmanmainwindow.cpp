@@ -18,11 +18,14 @@
 
 #include "kapmanmainwindow.h"
 #include "gameview.h"
+#include "settings.h"
 
 #include <KActionCollection>
 #include <KDE/KStandardGameAction>
 #include <KMessageBox>
 #include <KLocalizedString>
+#include <KConfigDialog>
+#include <KGameThemeSelector>
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
@@ -31,17 +34,18 @@ KapmanMainWindow::KapmanMainWindow() {
 	// Set the window menus
 	KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
+	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
 	// Initialize the KGameDifficulty singleton
 	KGameDifficulty::init(this, this, SLOT(initGame()));
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
+ 	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
 	// Set the game to restart when the level difficulty is changed
 	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
  	// The default level, calls initGame() method
  	KGameDifficulty::setLevel(KGameDifficulty::Medium);
-
 	// KScoreDialog
 	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
 	// Setup the window
@@ -126,6 +130,16 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 
 void KapmanMainWindow::showHighscores() {
  	m_kScoreDialog->exec();
+}
+
+void KapmanMainWindow::showSettings() {
+	if (KConfigDialog::showDialog("settings")) {
+		return;
+	}
+	KConfigDialog* settingsDialog = new KConfigDialog(this, "settings", Settings::self());
+	settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "kapman");
+	connect(settingsDialog, SIGNAL(settingsChanged(const QString&)), m_view, SLOT(loadSettings()));
+	settingsDialog->show();
 }
 
 void KapmanMainWindow::close() {
