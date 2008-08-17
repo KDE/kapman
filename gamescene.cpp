@@ -192,6 +192,7 @@ void GameScene::loadTheme() {
 		return;
 	}
 	m_cache->discard();
+	update(0, 0, width(), height());
 }
 
 void GameScene::intro(const bool p_newLevel) {
