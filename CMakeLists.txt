@@ -38,6 +38,9 @@ set(kapmanThemes
 	themes/retro.svgz
 	themes/retro.desktop
 	themes/retro_preview.png
+	themes/matches.svgz
+	themes/matches.desktop
+	themes/matches_preview.png
 )
 
 kde4_add_kcfg_files(kapmanSources settings.kcfgc)
