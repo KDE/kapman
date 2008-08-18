@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Retro
 Description=The old game theme revisited
+Description[sv]=Återbesök av det gamla speltemat
 Type=SVG
 FileName=retro.svgz
 Preview=retro_preview.png
