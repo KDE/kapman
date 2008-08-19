@@ -19,14 +19,16 @@
 
 #include "game.h"
 #include "kapmanparser.h"
+#include "settings.h"
 
 #include <KStandardDirs>
+#include <KDebug>
 
 const int Game::FPS = 40;
 
-Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
-	// Create the MediaObject
-	m_media = createPlayer(Phonon::GameCategory);
+Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_media(0) {
+	// Initialize the sound state
+	setSoundsEnabled(Settings::sounds());
 	// Tells the KGameDifficulty singleton that the game is not running
 	KGameDifficulty::setRunning(false);
 	// Initialize the characters speed considering the difficulty level
@@ -182,6 +184,20 @@ void Game::initMaze(const int p_nbRows, const int p_nbColumns){
 	m_maze->init(p_nbRows, p_nbColumns);
 }
 
+void Game::setSoundsEnabled(bool p_enabled) {
+	if (p_enabled) {
+		if (!m_media) {
+			kDebug() << "enabled";
+			m_media = Phonon::createPlayer(Phonon::GameCategory);
+		}
+	} else {
+		delete m_media;
+		m_media = 0;
+	}
+	Settings::setSounds(p_enabled);
+	Settings::self()->writeConfig();
+}
+
 void Game::initCharactersPosition() {
 	// If the timer is stopped, it means that collisions are already being handled
 	if (m_timer->isActive()) {	
@@ -212,10 +228,12 @@ void Game::initCharactersPosition() {
 }
 
 void Game::playSound(const QString& p_sound) {
-	if (m_media->currentSource().fileName() != p_sound) {
-		m_media->setCurrentSource(p_sound);
+	if (m_media) {
+		if (m_media->currentSource().fileName() != p_sound) {
+			m_media->setCurrentSource(p_sound);
+		}
+		m_media->play();
 	}
-	m_media->play();
 }
 
 void Game::keyPressEvent(QKeyEvent* p_event) {
@@ -255,6 +273,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			}
 			break;
 		case Qt::Key_P:
+		case Qt::Key_Escape:
 			switchPause();
 			break;
 		case Qt::Key_K:

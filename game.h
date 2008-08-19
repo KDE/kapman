@@ -214,6 +214,12 @@ class Game : public QObject {
 		 * Initializes a Kapman
 		 */
 		void initKapman();
+
+		/**
+		 * Enables / disables the sounds.
+		 * @param p_enabled if true the sounds will be enabled, otherwise they will be disabled
+		 */
+		void setSoundsEnabled(bool p_enabled);
 		
 	private:
 	
@@ -240,7 +246,7 @@ class Game : public QObject {
 		 * Resumes the Game after the Kapman death.
 		 */
 		void resumeAfterKapmanDeath();
-		
+
 	private slots:
 
 		/**

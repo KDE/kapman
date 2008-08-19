@@ -70,7 +70,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 		ghost->setSharedRenderer(m_renderer);
 		ghost->setElementId(p_game->getGhosts()[i]->getImageId());
 		ghost->update(p_game->getGhosts()[i]->getX(), p_game->getGhosts()[i]->getY());
-		// At the beggining, the ghosts are above the kapman because they eat him
+		// At the beginning, the ghosts are above the kapman because they eat him
 		ghost->setZValue(3);
 		m_ghostItems.append(ghost);
 	}

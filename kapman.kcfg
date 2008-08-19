@@ -9,7 +9,9 @@
       <label>The graphical theme to be used.</label>
       <default>themes/retro.desktop</default>
     </entry>
-  </group>
-  <group name="Preferences">
+    <entry name="Sounds" type="Bool" key="Sounds">
+      <label>Whether sound effects should be played.</label>
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>

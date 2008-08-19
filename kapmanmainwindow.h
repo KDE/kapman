@@ -77,6 +77,12 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		void showHighscores();
 
 		/**
+		 * Sets the sounds enabled / disabled.
+		 * @param p_enabled if true the sounds will be enabled, otherwise they will be disabled
+		 */
+		void setSoundsEnabled(bool p_enabled);
+
+		/**
 		 * Shows the settings dialog.
 		 */
 		void showSettings();

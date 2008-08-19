@@ -23,6 +23,7 @@
 
 #include <KActionCollection>
 #include <KDE/KStandardGameAction>
+#include <KToggleAction>
 #include <KMessageBox>
 #include <KLocalizedString>
 #include <KConfigDialog>
@@ -37,6 +38,10 @@ KapmanMainWindow::KapmanMainWindow() {
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
+    	KAction* action = new KToggleAction(i18n("&Play Sounds"), this);
+	action->setChecked(Settings::sounds());
+	actionCollection()->addAction("sounds", action);
+	connect(action, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
 	// Initialize the KGameDifficulty singleton
 	KGameDifficulty::init(this, this, SLOT(initGame()));
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
@@ -131,6 +136,10 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 
 void KapmanMainWindow::showHighscores() {
  	m_kScoreDialog->exec();
+}
+
+void KapmanMainWindow::setSoundsEnabled(bool p_enabled) {
+	m_game->setSoundsEnabled(p_enabled);
 }
 
 void KapmanMainWindow::showSettings() {

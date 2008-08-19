@@ -11,4 +11,4 @@ Comment[sv]=Ät piller och undkom spöken
 Icon=kapman
 TryExec=kapman
 Exec=kapman
-Categories=Game;ArcadeGame
+Categories=Game;ArcadeGame;
