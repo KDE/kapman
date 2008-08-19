@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Matches
+Name[et]=Tikud
+Name[sv]=Tändstickor
 Description=A matches drawn maze
+Description[et]=Tikkudest labürint
+Description[sv]=En labyrint bestående av tändstickor
 Type=SVG
 FileName=matches.svgz
 Preview=matches_preview.png
