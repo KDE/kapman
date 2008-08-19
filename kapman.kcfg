@@ -5,6 +5,10 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kapmanrc"/>
   <group name="General">
+    <entry name="GameDifficulty" type="Int" key="GameDifficulty">
+      <label>Difficulty of the game.</label>
+      <default>40</default>
+    </entry>
     <entry name="Theme" type="String" key="Theme">
       <label>The graphical theme to be used.</label>
       <default>themes/retro.desktop</default>

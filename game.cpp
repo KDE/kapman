@@ -22,14 +22,15 @@
 #include "settings.h"
 
 #include <KStandardDirs>
-#include <KDebug>
 
 const int Game::FPS = 40;
 
 Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_media(0) {
 	// Initialize the sound state
 	setSoundsEnabled(Settings::sounds());
-	// Tells the KGameDifficulty singleton that the game is not running
+	// Initialize the game difficulty
+    	Settings::setGameDifficulty((int) p_difficulty);
+	Settings::self()->writeConfig();
 	KGameDifficulty::setRunning(false);
 	// Initialize the characters speed considering the difficulty level
 	switch (p_difficulty) {
@@ -187,7 +188,6 @@ void Game::initMaze(const int p_nbRows, const int p_nbColumns){
 void Game::setSoundsEnabled(bool p_enabled) {
 	if (p_enabled) {
 		if (!m_media) {
-			kDebug() << "enabled";
 			m_media = Phonon::createPlayer(Phonon::GameCategory);
 		}
 	} else {

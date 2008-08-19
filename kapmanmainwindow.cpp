@@ -48,10 +48,7 @@ KapmanMainWindow::KapmanMainWindow() {
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
  	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
-	// Set the game to restart when the level difficulty is changed
-	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
- 	// The default level, calls initGame() method
- 	KGameDifficulty::setLevel(KGameDifficulty::Medium);
+    	KGameDifficulty::setLevel(KGameDifficulty::standardLevel(Settings::gameDifficulty()));
 	// KScoreDialog
 	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
 	// Setup the window
@@ -96,7 +93,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 	// If the game was not over
 	if (!gameOver){	
 		// Confirm before starting a new game
-		if (KMessageBox::warningYesNo(this,	ki18n("Are you sure you want to quit the current game ?").toString(), ki18n("New game").toString()) == KMessageBox::Yes) {
+		if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game ?"), i18n("New game")) == KMessageBox::Yes) {
 			// Start a new game
 			initGame();
 		}
@@ -113,7 +110,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 		QString score("Your Score : ");
 		score += QString::number(m_game->getScore());
 		// Display the score information
-		KMessageBox::information(this, ki18n(score.toAscii().data()).toString(), ki18n("Game Over").toString());	
+		KMessageBox::information(this, score.toAscii().data(), i18n("Game Over"));
 		// Add the score to the highscores table
 		m_kScoreDialog->setConfigGroup(KGameDifficulty::localizedLevelString());
 		KScoreDialog::FieldInfo scoreInfo;
@@ -125,7 +122,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 			if (!m_game->isCheater()) {
 				m_kScoreDialog->exec();
 			} else {		// else, warn the player not to cheat again :)
-				KMessageBox::information(this, ki18n("You cheated, no Highscore for you ;)").toString(), ki18n("Cheater !").toString());	
+				KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater !"));	
 			}
 		}
 		
@@ -166,7 +163,7 @@ void KapmanMainWindow::close() {
 		m_game->pause();
 	}
 	// Confirm before closing
-	if(KMessageBox::warningYesNo(this, ki18n("Are you sure you want to quit Kapman ?").toString(), ki18nc("To quit Kapman", "Quit").toString()) == KMessageBox::Yes) {
+	if(KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit Kapman ?"), i18nc("To quit Kapman", "Quit")) == KMessageBox::Yes) {
 		KXmlGuiWindow::close();
 	}
 	else {
