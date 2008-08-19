@@ -42,6 +42,14 @@ set(kapmanThemes
 	themes/matches.desktop
 	themes/matches_preview.png
 )
+set(kapmanSounds
+	sounds/pill.ogg
+	sounds/energizer.ogg
+	sounds/ghost.ogg
+	sounds/bonus.ogg
+	sounds/levelup.ogg
+	sounds/gameover.ogg
+)
 
 kde4_add_kcfg_files(kapmanSources settings.kcfgc)
 
@@ -52,7 +60,8 @@ kde4_add_executable(kapman ${kapmanSources})
 target_link_libraries(kapman ${KDE4_KDEUI_LIBS}	${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR}/kapman)
+install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES ${kapmanThemes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
+install(FILES ${kapmanSounds} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
 

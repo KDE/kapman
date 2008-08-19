@@ -25,7 +25,8 @@
 const int Game::FPS = 40;
 
 Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0) {
-
+	// Create the MediaObject
+	m_media = createPlayer(Phonon::GameCategory);
 	// Tells the KGameDifficulty singleton that the game is not running
 	KGameDifficulty::setRunning(false);
 	// Initialize the characters speed considering the difficulty level
@@ -81,6 +82,7 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 }
 
 Game::~Game() {
+	delete m_media;
 	delete m_timer;
 	delete m_bonusTimer;
 	delete m_maze;
@@ -209,6 +211,13 @@ void Game::initCharactersPosition() {
 	}
 }
 
+void Game::playSound(const QString& p_sound) {
+	if (m_media->currentSource().fileName() != p_sound) {
+		m_media->setCurrentSource(p_sound);
+	}
+	m_media->play();
+}
+
 void Game::keyPressEvent(QKeyEvent* p_event) {
 	// At the beginning or when paused, we start the timer when an arrow key is pressed
 	if ((p_event->key() == Qt::Key_Up || p_event->key() == Qt::Key_Down || p_event->key() ==  Qt::Key_Left || p_event->key() == Qt::Key_Right) && !m_timer->isActive()) {
@@ -280,6 +289,7 @@ void Game::update() {
 }
 
 void Game::kapmanDeath() {
+	playSound(KStandardDirs::locate("sound", "kapman/gameover.ogg"));
 	m_lives--;
 	m_kapman->die();
 	emit(dataChanged(LivesInfo));
@@ -316,15 +326,13 @@ void Game::winPoints(Element* p_element) {
 
 	// If the eaten element is a ghost, win 200 * number of eaten ghosts since the energizer was eaten
 	if (p_element->getType() == Element::GHOST) {
+		playSound(KStandardDirs::locate("sound", "kapman/ghost.ogg"));
 		// Get the position of the ghost
-		// A TESTER (le ghost a peut-être déjà bougé)
 		qreal xPos = p_element->getX();
 		qreal yPos = p_element->getY();
-
 		// Add points to the score
 		wonPoints = p_element->getPoints() * m_nbEatenGhosts;
-
-		// Sends to the scene the number of points to display and its position 
+		// Send to the scene the number of points to display and its position 
 		emit(pointsToDisplay(wonPoints, xPos, yPos));
 	}
 	// Else you just win the value of the element
@@ -342,6 +350,7 @@ void Game::winPoints(Element* p_element) {
 	}
 	// If the eaten element is an energyzer we change the ghosts state
 	if (p_element->getType() == Element::ENERGYZER) {
+		playSound(KStandardDirs::locate("sound", "kapman/energizer.ogg"));
 		for (int i = 0; i < m_ghosts.size(); i++) {
 			if(m_ghosts[i]->getState() != Ghost::EATEN) {
 				m_ghosts[i]->setState(Ghost::PREY);
@@ -350,13 +359,12 @@ void Game::winPoints(Element* p_element) {
 		// Reset the number of eaten ghosts
 		m_nbEatenGhosts = 0;
 		emit(elementEaten(p_element->getX(), p_element->getY()));
-	}
-	else if (p_element->getType() == Element::PILL) {
+	} else if (p_element->getType() == Element::PILL) {
+		playSound(KStandardDirs::locate("sound", "kapman/pill.ogg"));
 		emit(elementEaten(p_element->getX(), p_element->getY()));
-	}
-	else if (p_element->getType() == Element::BONUS) {
+	} else if (p_element->getType() == Element::BONUS) {
+		playSound(KStandardDirs::locate("sound", "kapman/bonus.ogg"));
 		// Get the position of the Bonus
-		// A TESTER (le ghost a peut-être déjà bougé)
 		qreal xPos = p_element->getX();
 		qreal yPos = p_element->getY();
 
@@ -375,6 +383,7 @@ void Game::winPoints(Element* p_element) {
 }
 
 void Game::nextLevel() {
+	playSound(KStandardDirs::locate("sound", "kapman/levelup.ogg"));
 	// Increment the level
 	m_level++;
 	// Initialize the maze items
