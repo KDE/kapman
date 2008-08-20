@@ -377,7 +377,7 @@ void Game::winPoints(Element* p_element) {
 	m_points += wonPoints;
 	
 	// For each 10000 points we get a life more
-	if (m_points / 10000 > (m_points - p_element->getPoints()) / 10000) {
+	if (m_points / 10000 > (m_points - wonPoints) / 10000) {
 		m_lives++;
 		emit(dataChanged(LivesInfo));
 	}
