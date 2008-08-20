@@ -25,7 +25,7 @@
 
 const int Game::FPS = 40;
 
-Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_media(0) {
+Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_media1(0), m_media2(0) {
 	// Initialize the sound state
 	setSoundsEnabled(Settings::sounds());
 	// Initialize the game difficulty
@@ -85,7 +85,8 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 }
 
 Game::~Game() {
-	delete m_media;
+	delete m_media1;
+	delete m_media2;
 	delete m_timer;
 	delete m_bonusTimer;
 	delete m_maze;
@@ -187,12 +188,17 @@ void Game::initMaze(const int p_nbRows, const int p_nbColumns){
 
 void Game::setSoundsEnabled(bool p_enabled) {
 	if (p_enabled) {
-		if (!m_media) {
-			m_media = Phonon::createPlayer(Phonon::GameCategory);
+		if (!m_media1) {
+			m_media1 = Phonon::createPlayer(Phonon::GameCategory);
+		}
+		if (!m_media2) {
+			m_media2 = Phonon::createPlayer(Phonon::GameCategory);
 		}
 	} else {
-		delete m_media;
-		m_media = 0;
+		delete m_media1;
+		delete m_media2;
+		m_media1 = 0;
+		m_media2 = 0;
 	}
 	Settings::setSounds(p_enabled);
 	Settings::self()->writeConfig();
@@ -228,11 +234,19 @@ void Game::initCharactersPosition() {
 }
 
 void Game::playSound(const QString& p_sound) {
-	if (m_media) {
-		if (m_media->currentSource().fileName() != p_sound) {
-			m_media->setCurrentSource(p_sound);
+	Phonon::MediaObject* m_usedMedia;
+
+	if (Settings::sounds()) {
+		// Choose the media object with the smallest remaining time
+		if (m_media1->remainingTime() <= m_media2->remainingTime()) {
+			m_usedMedia = m_media1;
+		} else {
+			m_usedMedia = m_media2;
 		}
-		m_media->play();
+		if (m_usedMedia->currentSource().fileName() != p_sound) {
+			m_usedMedia->setCurrentSource(p_sound);
+		}
+		m_usedMedia->play();
 	}
 }
 

@@ -87,8 +87,11 @@ class Game : public QObject {
 		/** The number of eaten ghosts since the beginning of the current level */
 		int m_nbEatenGhosts;
 
-		/** A MediaObject to play sounds */
-		Phonon::MediaObject* m_media;
+		/** A first MediaObject to play sounds */
+		Phonon::MediaObject* m_media1;
+		
+		/** A second MediaObject to play sounds */
+		Phonon::MediaObject* m_media2;
 		
 	public:
 

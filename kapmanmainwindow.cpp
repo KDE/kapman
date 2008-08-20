@@ -79,6 +79,7 @@ void KapmanMainWindow::initGame() {
 	m_view = new GameView(m_game);
 	m_view->setBackgroundBrush(Qt::black);
 	setCentralWidget(m_view);
+	m_view->setFocus();
 }
 
 void KapmanMainWindow::newGame(const bool gameOver) {
