@@ -39,16 +39,31 @@ class Character : public Element {
 		/** Speed on hard level */
 		static const qreal HIGH_SPEED;
 
-	protected:
+		/** Speed increase on easy level (percentage)  */
+		static const qreal LOW_SPEED_INC;
 
-		/** The Character speed */
- 		static qreal s_speed;
+		/** Speed increase on medium level (percentage)  */
+		static const qreal MEDIUM_SPEED_INC;
+
+		/** Speed increase on hard level (percentage) */
+		static const qreal HIGH_SPEED_INC;
+
+	protected:
 
 		/** The Character x-speed */
 		qreal m_xSpeed;
 
 		/** The Character y-speed */
 		qreal m_ySpeed;
+
+		/** The character speed */
+		qreal m_speed;
+
+		/** Reference to the speed of the character when in "normal" behaviour */
+		qreal m_normalSpeed;
+
+		/** The value the character's speed is incremented by when level up */
+		qreal m_speedIncrease;
 
 	public:
 
@@ -112,6 +127,18 @@ class Character : public Element {
 		 * @return the y-speed value
 		 */
 		qreal getYSpeed() const;
+
+		/**
+		 * Gets the Character speed.
+		 * @return the character speed
+		 */
+		qreal getSpeed();
+
+		/**
+		 * Gets the Character normal speed.
+		 * @return the character speed reference, when in "normal" behaviour
+		 */
+		qreal getNormalSpeed();
 		
 		/**
 		 * Set the Character x-speed value.
@@ -124,6 +151,11 @@ class Character : public Element {
 		 * @param p_ySpeed the y-speed to set
 		 */
 		 void setYSpeed(qreal p_ySpeed);
+
+		/**
+		 * Sets the Character speed.
+		 */
+		void initSpeed();
 		 
 		/**
 		 * Checks the Character is in the line of sight of the given other Character.
@@ -133,16 +165,9 @@ class Character : public Element {
 		bool isInLineSight(Character* p_character);
 
 		/**
-		 * Gets the Character speed.
-		 * @return the character speed
+		 * Increase the Character speed with each level completed
 		 */
-		static qreal getCharactersSpeed();
-
-		/**
-		 * Sets the Character speed.
-		 * @param p_speed the speed to set
-		 */
-		static void setCharactersSpeed(const qreal p_speed);
+		void increaseCharactersSpeed();
 
 	protected:
 

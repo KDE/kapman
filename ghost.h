@@ -48,25 +48,8 @@ class Ghost : public Character {
 		/** The ghost current state */
 		State m_state;
 		
-		/** The ghost speed (different from Character::s_speed since it is increased on level up) */
-		static qreal s_speed;
-
-		/** The value the ghost speed is incremented by when level up */
-		static qreal s_speedIncrease;
-
-		/** The possible speed increase (may change function of the difficulty level) */
-		const static qreal LOW_SPEED_INC;
-		const static qreal MEDIUM_SPEED_INC;
-		const static qreal HIGH_SPEED_INC;
-
-		/** The ghost speed (different from Ghost::s_speed since m_speed can change function of the ghost state) */
-		qreal m_speed;
-
 		/** A list of Cells to go to the camp from the current cell */
 		QList<QPoint> m_pathToCamp;
-
-		/** Timer to manage the prey state */
-		QTimer* m_preyTimer;
 
 	public:
 
@@ -120,15 +103,10 @@ class Ghost : public Character {
 		  */
 		 void doActionOnCollision(Kapman* p_kapman);
 
-		 /**
-		  * Initializes the Ghost speed from the Character speed.
-		  */
-		 static void initGhostsSpeed();
-
-		 /**
-		  * Increases the Ghost speed.
-		  */
-		 static void increaseGhostsSpeed();
+		/**
+		 * Initializes the Ghost speed from the Character speed.
+		 */
+		void initGhostSpeedInc();
 
 	private:
 
@@ -154,11 +132,7 @@ class Ghost : public Character {
 
 	private slots:
 
-		/**
-		 * Ends the Ghost prey state.
-		 */
-		void endPreyState();
-		
+
 	signals:
 	
 		/**

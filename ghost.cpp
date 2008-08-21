@@ -17,17 +17,11 @@
  */
 
 #include "ghost.h"
-
-#include <QPointF>
-
-#include <cstdlib>
 #include "time.h"
 
-const qreal Ghost::LOW_SPEED_INC = 0.05;
-const qreal Ghost::MEDIUM_SPEED_INC = 0.1;
-const qreal Ghost::HIGH_SPEED_INC = 0.15;
-qreal Ghost::s_speed = Character::s_speed;
-qreal Ghost::s_speedIncrease = Ghost::MEDIUM_SPEED_INC;
+#include <QPointF>
+#include <KGameDifficulty>
+#include <cstdlib>
 
 Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageId, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	// Initialize the ghost attributes
@@ -35,20 +29,14 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageId, Maze* p_maze) : Ch
 	m_points = 200;
 	m_type = Element::GHOST;
 	m_state = Ghost::HUNTER;
-	m_speed = Ghost::s_speed;
 	// Initialize the random-number generator
 	srand(time(NULL));
 	// Makes the ghost move as soon as the game is created
 	goLeft();
-	// Prey timer
-	m_preyTimer = new QTimer(this);
-	m_preyTimer->setInterval(10000);
-	m_preyTimer->setSingleShot(true);
-	connect(m_preyTimer, SIGNAL(timeout()), this, SLOT(endPreyState()));
 }
 
 Ghost::~Ghost() {
-	delete m_preyTimer;
+
 }
 
 void Ghost::goUp() {
@@ -82,7 +70,7 @@ void Ghost::updateMove() {
 	int nb = 0;
 	
 	// If the ghost is not "eaten"
-	if (m_state != Ghost::EATEN) {	
+	if (m_state != Ghost::EATEN) {
 		// If the ghost gets on a Cell center
 		if (onCenter()) {
 			// We retrieve all the directions the ghost can choose (save the turnning back)
@@ -201,20 +189,15 @@ Ghost::State Ghost::getState() const {
 }
 
 void Ghost::setState(Ghost::State p_state) {
-	// Stop the prey timer if active
-	if (m_preyTimer->isActive()) {
-		m_preyTimer->stop();
-	}
 	// Change the state
 	m_state = p_state;
 	switch (m_state) {
 		case Ghost::PREY:
-			m_speed = Ghost::s_speed / 2;
-			m_preyTimer->start();
+			m_speed = m_normalSpeed / 2;
 			break;
 		case HUNTER:
 		case EATEN:
-			m_speed = Ghost::s_speed;
+			m_speed = m_normalSpeed;
 			break;
 	}
 	emit(stateChanged());
@@ -234,26 +217,15 @@ void Ghost::doActionOnCollision(Kapman*) {
 	}
 }
 
-void Ghost::initGhostsSpeed() {
-	// Ghosts speed is characters speed
-	Ghost::s_speed = Character::getCharactersSpeed();
+void Ghost::initGhostSpeedInc() {
 	// Ghosts speed increase when level up
-	if(Ghost::s_speed == LOW_SPEED) {
-		s_speedIncrease = LOW_SPEED_INC;
+	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
+		m_speedIncrease = Character::LOW_SPEED_INC;
 	}
-	if(Ghost::s_speed == MEDIUM_SPEED) {
-		s_speedIncrease = MEDIUM_SPEED_INC;
+	if(KGameDifficulty::level() == KGameDifficulty::Medium) {
+		m_speedIncrease = Character::MEDIUM_SPEED_INC;
 	}
-	if(Ghost::s_speed == HIGH_SPEED) {
-		s_speedIncrease = HIGH_SPEED_INC;
+	if(KGameDifficulty::level() == KGameDifficulty::Hard) {
+		m_speedIncrease = Character::HIGH_SPEED_INC;
 	}
 }
-
-void Ghost::increaseGhostsSpeed() {
-	Ghost::s_speed += Ghost::s_speedIncrease;
-}	
-
-void Ghost::endPreyState() {
-	setState(Ghost::HUNTER);
-}
-

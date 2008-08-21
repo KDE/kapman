@@ -17,17 +17,37 @@
  */
 
 #include "ghostitem.h"
+#include "game.h"
 
 GhostItem::GhostItem(Ghost* p_model) : CharacterItem (p_model) {
 	connect(p_model, SIGNAL(stateChanged()), this, SLOT(updateState()));
+
+	// Calculations for the duration of blinking stuff
+	int blinkTimerDuration = (int)(500 * Game::s_durationRatio);
+	int startBlinkingTimerDuration = (int)(Game::s_preyStateDuration*Game::s_durationRatio - 5*blinkTimerDuration);
+
+	// Define the timer which tells the ghosts to start blinking when about to leave prey state
 	m_startBlinkingTimer = new QTimer(this);
-	m_startBlinkingTimer->setInterval(7500);
+	m_startBlinkingTimer->setInterval(startBlinkingTimerDuration);
 	m_startBlinkingTimer->setSingleShot(true);
 	connect(m_startBlinkingTimer, SIGNAL(timeout()), this, SLOT(startBlinking()));
+
+	// Define the timer which sets the blinking frequency
+	m_blinkTimer = new QTimer(this);
+	m_blinkTimer->setInterval(blinkTimerDuration);
+	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
 }
 
 GhostItem::~GhostItem() {
 	delete m_startBlinkingTimer;
+}
+
+void GhostItem::updateBlinkTimersDuration() {
+	// Set the timers duration depending on the prey state duration
+	int blinkTimerDuration = (int)( (Game::s_preyStateDuration*Game::s_durationRatio) / 20);
+	int startBlinkingTimerDuration = (int)(blinkTimerDuration * 15);
+	m_blinkTimer->setInterval(blinkTimerDuration);
+	m_startBlinkingTimer->setInterval(startBlinkingTimerDuration);
 }
 
 void GhostItem::update(qreal p_x, qreal p_y) {
@@ -48,6 +68,7 @@ void GhostItem::updateState() {
 	}
 	switch (((Ghost*)getModel())->getState()) { 
 		case Ghost::PREY:
+			updateBlinkTimersDuration();
 			setElementId("scaredghost");
 			m_startBlinkingTimer->start();
 			// The ghosts are now weaker than the kapman, so they are under him

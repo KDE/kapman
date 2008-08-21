@@ -47,7 +47,6 @@ KapmanMainWindow::KapmanMainWindow() {
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
- 	KGameDifficulty::setRestartOnChange(KGameDifficulty::RestartOnChange);
     	KGameDifficulty::setLevel(KGameDifficulty::standardLevel(Settings::gameDifficulty()));
 	// KScoreDialog
 	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);

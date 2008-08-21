@@ -18,8 +18,9 @@
 
 #include "kapman.h"
 
-Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
+#include <KGameDifficulty>
 
+Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	m_type = Element::KAPMAN;
 }
 
@@ -36,21 +37,21 @@ void Kapman::init() {
 
 void Kapman::goUp() {
 	m_askedXSpeed = 0;
-	m_askedYSpeed = -s_speed;
+	m_askedYSpeed = -m_speed;
 }
 
 void Kapman::goDown() {
 	m_askedXSpeed = 0;
-	m_askedYSpeed = s_speed;
+	m_askedYSpeed = m_speed;
 }
 
 void Kapman::goRight() {
-	m_askedXSpeed = s_speed;
+	m_askedXSpeed = m_speed;
 	m_askedYSpeed = 0;
 }
 
 void Kapman::goLeft() {
-	m_askedXSpeed = -s_speed;
+	m_askedXSpeed = -m_speed;
 	m_askedYSpeed = 0;
 }
 
@@ -80,7 +81,7 @@ void Kapman::updateMove() {
 	// If the kapman is already moving
 	else {
 		// If the kapman wants to go back it does not wait to be on a center
-		if (m_xSpeed != 0 && m_askedXSpeed == -m_xSpeed || m_ySpeed != 0 && m_askedYSpeed == -m_ySpeed) {
+		if ( (m_xSpeed!=0 && m_askedXSpeed==-m_xSpeed) || (m_ySpeed!=0 && m_askedYSpeed==-m_ySpeed) ) {
 			// Go back
 			updateDirection();
 			// Move the kapman
@@ -177,3 +178,16 @@ void Kapman::stopMoving() {
 	emit(stopped());
 }
 
+void Kapman::initKapmanSpeedInc() {
+	// Kapman speed increase when level up
+	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
+	//s_speed == LOW_SPEED) {
+		m_speedIncrease = (Character::LOW_SPEED_INC / 2);
+	}
+	if(KGameDifficulty::level() == KGameDifficulty::Medium) {
+		m_speedIncrease = (Character::MEDIUM_SPEED_INC / 2);
+	}
+	if(KGameDifficulty::level() == KGameDifficulty::Hard) {
+		m_speedIncrease = (Character::HIGH_SPEED_INC / 2);
+	}
+}

@@ -22,6 +22,7 @@
 #include "ghost.h"
 
 #include <QGraphicsScene>
+#include <KGameDifficulty>
 
 const int KapmanItem::NB_FRAMES = 32;
 const int KapmanItem::ANIM_LOW_SPEED = 500;
@@ -32,20 +33,26 @@ KapmanItem::KapmanItem(Kapman* p_model) : CharacterItem(p_model) {
 	connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
 	connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
 	connect(p_model, SIGNAL(stopped()), this, SLOT(stopAnim()));
-	
+
+	// A timeLine for the Kapman animation	
 	m_animationTimer = new QTimeLine();
 	m_animationTimer->setCurveShape(QTimeLine::SineCurve);
 	m_animationTimer->setLoopCount(0);
 	m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
 	// Animation speed
-	if (Character::getCharactersSpeed() == Character::LOW_SPEED) {
+	if (KGameDifficulty::level() == KGameDifficulty::Easy) {
 		m_animationTimer->setDuration(KapmanItem::ANIM_LOW_SPEED);
-	} else if (Character::getCharactersSpeed() == Character::MEDIUM_SPEED) {
+	} else if (KGameDifficulty::level() == KGameDifficulty::Medium) {
 		m_animationTimer->setDuration(KapmanItem::ANIM_MEDIUM_SPEED);
-	} else if (Character::getCharactersSpeed() == Character::HIGH_SPEED) {
+	} else if (KGameDifficulty::level() == KGameDifficulty::Hard) {
 		m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
 	}
 	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
+
+	// Define the timer which sets the blinking frequency
+	m_blinkTimer = new QTimer(this);
+	m_blinkTimer->setInterval(400);
+	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
 }
 
 KapmanItem::~KapmanItem() {

@@ -24,6 +24,9 @@
 #include <KStandardDirs>
 
 const int Game::FPS = 40;
+int Game::s_bonusDuration;
+int Game::s_preyStateDuration;
+qreal Game::s_durationRatio;
 
 Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_lives(3), m_points(0), m_level(1), m_nbEatenGhosts(0), m_media1(0), m_media2(0) {
 	// Initialize the sound state
@@ -31,26 +34,22 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 	// Initialize the game difficulty
     	Settings::setGameDifficulty((int) p_difficulty);
 	Settings::self()->writeConfig();
+
+	// Timers for medium difficulty
+	s_bonusDuration = 7000;
+	s_preyStateDuration = 10000;
+	// Difference ratio between low/high and medium speed
+	s_durationRatio = 1.0;
+
+	// Tells the KGameDifficulty singleton that the game is not running
 	KGameDifficulty::setRunning(false);
-	// Initialize the characters speed considering the difficulty level
-	switch (p_difficulty) {
-		case KGameDifficulty::Easy:
-			Character::setCharactersSpeed(Character::LOW_SPEED);
-			break;
-		case KGameDifficulty::Medium:
-			Character::setCharactersSpeed(Character::MEDIUM_SPEED);
-			break;
-		case KGameDifficulty::Hard:
-			Character::setCharactersSpeed(Character::HIGH_SPEED);
-			break;
-		default:
-			break;
-	}
+
 	// Create the Maze instance
 	m_maze = new Maze();
 	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
 
 	// Create the parser that will parse the XML file in order to initialize the Maze instance
+	// This also creates all the characters
 	KapmanParser kapmanParser(this);
 	// Set the XML file as input source for the parser
 	QFile mazeXmlFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
@@ -63,17 +62,44 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 
 	connect(m_kapman, SIGNAL(sWinPoints(Element*)), this, SLOT(winPoints(Element*)));
 
+	
+
+	// Initialize the characters speed timers duration considering the difficulty level
+	switch (p_difficulty) {
+		case KGameDifficulty::Easy:
+			// Ratio low/medium speed
+			s_durationRatio = Character::MEDIUM_SPEED / Character::LOW_SPEED;
+			break;
+		case KGameDifficulty::Medium:
+			s_durationRatio = 1;
+			break;
+		case KGameDifficulty::Hard:
+			// Ratio high/medium speed
+			s_durationRatio = Character::MEDIUM_SPEED / Character::HIGH_SPEED;
+			break;
+		default:
+			break;
+	}	
+
 	for (int i = 0; i < m_ghosts.size(); i++) {
 		connect(m_ghosts[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 		connect(m_ghosts[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
+		// Initialize the ghosts speed and the ghost speed increase considering the characters speed
+		m_ghosts[i]->initGhostSpeedInc();
 	}
-	// Initialize the ghosts speed and the ghost speed increase considering the characters speed
-	Ghost::initGhostsSpeed();
+	m_kapman->initKapmanSpeedInc();
 
+	// Initialize Bonus timer from the difficulty level
 	m_bonusTimer = new QTimer(this);
-	m_bonusTimer->setInterval(10000);
+	m_bonusTimer->setInterval( (int)(s_bonusDuration * s_durationRatio) );
 	m_bonusTimer->setSingleShot(true);
 	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(hideBonus()));
+	// Initialize the Preys timer from the difficulty level
+	m_preyTimer = new QTimer(this);
+	m_preyTimer->setInterval( (int)(s_preyStateDuration * s_durationRatio) );
+	m_preyTimer->setSingleShot(true);
+	connect(m_preyTimer, SIGNAL(timeout()), this, SLOT(endPreyState()));
+
 	// Start the Game timer
 	m_timer = new QTimer(this);
 	m_timer->setInterval(int(1000 / Game::FPS));
@@ -233,6 +259,15 @@ void Game::initCharactersPosition() {
 	}
 }
 
+void Game::setTimersDuration() {
+	// Updates the timers duration ratio with the ghosts speed
+	s_durationRatio = Character::MEDIUM_SPEED / m_ghosts[0]->getNormalSpeed();
+
+	// Updates the timers duration
+	m_bonusTimer->setInterval( (int)(s_bonusDuration * s_durationRatio) );
+	m_preyTimer->setInterval( (int)(s_preyStateDuration * s_durationRatio) );
+}
+
 void Game::playSound(const QString& p_sound) {
 	Phonon::MediaObject* m_usedMedia;
 
@@ -375,7 +410,7 @@ void Game::winPoints(Element* p_element) {
 
 	// Update of the points value
 	m_points += wonPoints;
-	
+
 	// For each 10000 points we get a life more
 	if (m_points / 10000 > (m_points - wonPoints) / 10000) {
 		m_lives++;
@@ -383,6 +418,8 @@ void Game::winPoints(Element* p_element) {
 	}
 	// If the eaten element is an energyzer we change the ghosts state
 	if (p_element->getType() == Element::ENERGYZER) {
+		// We start the prey timer
+		m_preyTimer->start();
 		playSound(KStandardDirs::locate("sound", "kapman/energizer.ogg"));
 		for (int i = 0; i < m_ghosts.size(); i++) {
 			if(m_ghosts[i]->getState() != Ghost::EATEN) {
@@ -423,10 +460,16 @@ void Game::nextLevel() {
 	m_maze->resetNbElem();
 	// Update Bonus
 	m_bonus->setPoints(m_level * 100);
-	// Increase the ghosts speed
-	Ghost::increaseGhostsSpeed();
 	// Move all characters to their initial positions
 	initCharactersPosition();
+	// Increase the ghosts speed
+	for (int i = 0; i < m_ghosts.size(); i++) {
+		// Increase the ghosts speed increase
+		m_ghosts[i]->increaseCharactersSpeed();
+	}
+	m_kapman->increaseCharactersSpeed();
+	// Update the timers duration with the new speed
+	setTimersDuration();
 	// Update the score, level and lives labels
 	emit(dataChanged(AllInfo));
 	// Update the view
@@ -437,3 +480,10 @@ void Game::hideBonus() {
 	emit(bonusOff());
 }
 
+void Game::endPreyState() {
+	for (int i = 0; i < m_ghosts.size(); i++) {
+		if(m_ghosts[i]->getState() != Ghost::EATEN) {
+			m_ghosts[i]->setState(Ghost::HUNTER);
+		}
+	}
+}

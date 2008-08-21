@@ -18,13 +18,17 @@
 
 #include "character.h"
 
+#include <KGameDifficulty>
+
 const qreal Character::LOW_SPEED = 3.75;
 const qreal Character::MEDIUM_SPEED = 4.5;
 const qreal Character::HIGH_SPEED = 5.25;
-
-qreal Character::s_speed = Character::MEDIUM_SPEED;
+const qreal Character::LOW_SPEED_INC = 0.005;
+const qreal Character::MEDIUM_SPEED_INC = 0.01;
+const qreal Character::HIGH_SPEED_INC = 0.02;
 
 Character::Character(qreal p_x, qreal p_y, Maze* p_maze) : Element(p_x, p_y, p_maze), m_xSpeed(0), m_ySpeed(0) {
+	initSpeed();
 }
 
 Character::~Character() {
@@ -59,12 +63,40 @@ qreal Character::getYSpeed() const {
 	return m_ySpeed;
 }
 
+qreal Character::getSpeed() {
+	return m_speed;
+}
+
+qreal Character::getNormalSpeed() {
+	return m_normalSpeed;
+}
+
 void Character::setXSpeed(qreal p_xSpeed) {
 	m_xSpeed = p_xSpeed;
 }
 
 void Character::setYSpeed(qreal p_ySpeed) {
 	m_ySpeed = p_ySpeed;
+}
+
+void Character::initSpeed() {
+
+	// Kapman speed increase when level up
+	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
+		m_normalSpeed = Character::LOW_SPEED;
+	}
+	if(KGameDifficulty::level() == KGameDifficulty::Medium) {
+		m_normalSpeed = Character::MEDIUM_SPEED;
+	}
+	if(KGameDifficulty::level() == KGameDifficulty::Hard) {
+		m_normalSpeed = Character::HIGH_SPEED;
+	}
+	m_speed = m_normalSpeed;
+}
+
+void Character::increaseCharactersSpeed() {
+	m_normalSpeed += m_normalSpeed * m_speedIncrease;
+	m_speed = m_normalSpeed;
 }
 
 bool Character::isInLineSight(Character* p_character) {
@@ -129,14 +161,6 @@ bool Character::isInLineSight(Character* p_character) {
 	return false;
 }
 
-qreal Character::getCharactersSpeed() {
-	return s_speed;
-}
-
-void Character::setCharactersSpeed(const qreal p_speed) {
-	Character::s_speed = p_speed;
-}	
-
 Cell Character::getNextCell() {
 	Cell nextCell;
 	// Get the current cell coordinates from the character coordinates
@@ -180,7 +204,7 @@ bool Character::onCenter() {
 	else if (m_ySpeed < 0) {
 		willGoPast = (m_y >= centerY && m_y + m_ySpeed <= centerY);
 	}
-	// If does not move
+	// If does not moe
 	else {
 		willGoPast = (m_x == centerX && m_y == centerY);
 	}
@@ -192,4 +216,3 @@ void Character::moveOnCenter() {
 	setX((m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE);
 	setY((m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE);
 }
-

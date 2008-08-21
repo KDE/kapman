@@ -19,9 +19,6 @@
 
 CharacterItem::CharacterItem(Character* p_model) : ElementItem (p_model) {
 	connect(p_model, SIGNAL(eaten()), this, SLOT(startBlinking()));
-	m_blinkTimer = new QTimer(this);
-	m_blinkTimer->setInterval(500);
-	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
 }
 
 CharacterItem::~CharacterItem() {

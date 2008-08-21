@@ -31,7 +31,7 @@ class GhostItem : public CharacterItem {
 
 	private:
 
-		/** Timer to start blinking */
+		/** Timer to start the ghosts blinking */
 		QTimer* m_startBlinkingTimer;
 
 	public:
@@ -46,6 +46,11 @@ class GhostItem : public CharacterItem {
 		 * Deletes the CharacterItem instance.
 		 */
 		~GhostItem();
+
+		/**
+		 * Ensures the blink timers are correctly set
+		 */
+		void updateBlinkTimersDuration();
 		
 	public slots:
 
