@@ -59,7 +59,7 @@ class Game : public QObject {
 			PAUSED_UNLOCKED		// Game paused and user is allowed to unpause
 		};
 		/** A flag for the State enum */
-		Q_DECLARE_FLAGS(GameStates, State);
+		Q_DECLARE_FLAGS(GameStates, State)
 
 		/** The game state */
 		State m_state;
@@ -115,7 +115,7 @@ class Game : public QObject {
 				   LevelInfo = 4,	// Current level
 				   AllInfo = ScoreInfo | LivesInfo | LevelInfo };
 		/** A flag for the Information enum */
-		Q_DECLARE_FLAGS(InformationTypes, Information);
+		Q_DECLARE_FLAGS(InformationTypes, Information)
 
 		/**
 		 * Creates a new Game instance.
