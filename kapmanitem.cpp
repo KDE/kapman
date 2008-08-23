@@ -130,7 +130,7 @@ void KapmanItem::stopAnim() {
 }
 
 void KapmanItem::setFrame(const int p_frame) {
-	setElementId(QString("kapman_") += QString::number(p_frame));
+	setElementId(QString("kapman_%1").arg(p_frame));
 }
 
 void KapmanItem::startBlinking() {
