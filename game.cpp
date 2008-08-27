@@ -360,13 +360,13 @@ void Game::kapmanDeath() {
 	playSound(KStandardDirs::locate("sound", "kapman/gameover.ogg"));
 	m_lives--;
 	m_kapman->die();
-	emit(dataChanged(LivesInfo));
 	// Make a 2 seconds pause while the kapman is blinking
 	pause(true);
 	QTimer::singleShot(2500, this, SLOT(resumeAfterKapmanDeath()));
 }
 
 void Game::resumeAfterKapmanDeath() {
+	emit(dataChanged(LivesInfo));
 	// Start the timer
 	start();
 	// Remove a possible bonus
