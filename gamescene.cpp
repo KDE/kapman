@@ -152,7 +152,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 }
 
 GameScene::~GameScene() {
-	delete m_game;
 	delete m_mazeItem;
 	delete m_kapmanItem;
 	for (int i = 0; i < m_ghostItems.size(); i++) {
