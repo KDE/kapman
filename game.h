@@ -196,6 +196,12 @@ class Game : public QObject {
 		int getLevel() const;
 
 		/**
+		 * Sets the level to the given number.
+		 * @param p_level the new level
+		 */
+		void setLevel(int p_level);
+
+		/**
 		 * Create the new Bonus
 		 * @param p_position the Bonus position
 		 */

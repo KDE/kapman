@@ -6,7 +6,7 @@
   <kcfgfile name="kapmanrc"/>
   <group name="General">
     <entry name="GameDifficulty" type="Int" key="GameDifficulty">
-      <label>Difficulty of the game.</label>
+      <label>Game difficulty level.</label>
       <default>40</default>
     </entry>
     <entry name="Theme" type="String" key="Theme">

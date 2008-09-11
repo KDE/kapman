@@ -106,7 +106,7 @@ class Ghost : public Character {
 		/**
 		 * Initializes the Ghost speed from the Character speed.
 		 */
-		void initGhostSpeedInc();
+		void initSpeedInc();
 
 	private:
 

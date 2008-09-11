@@ -85,9 +85,9 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 		connect(m_ghosts[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 		connect(m_ghosts[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
 		// Initialize the ghosts speed and the ghost speed increase considering the characters speed
-		m_ghosts[i]->initGhostSpeedInc();
+		m_ghosts[i]->initSpeedInc();
 	}
-	m_kapman->initKapmanSpeedInc();
+	m_kapman->initSpeedInc();
 
 	// Initialize Bonus timer from the difficulty level
 	m_bonusTimer = new QTimer(this);
@@ -189,6 +189,29 @@ int Game::getLives() const {
 
 int Game::getLevel() const {
 	return m_level;
+}
+
+void Game::setLevel(int p_level) {
+	m_isCheater = true;
+	m_level = p_level;
+	m_maze->resetNbElem();
+	m_timer->start();	// Needed to reinit character positions
+	initCharactersPosition();
+	for (int i = 0; i < m_ghosts.size(); i++) {
+		m_ghosts[i]->initSpeed();
+	}
+	m_kapman->initSpeed();
+	for (int i = 0; i < m_level; i++) {
+		for (int j = 0; j < m_ghosts.size(); j++) {
+			m_ghosts[j]->increaseCharactersSpeed();
+		}
+		m_kapman->increaseCharactersSpeed();
+	}
+	setTimersDuration();
+	m_bonus->setPoints(m_level * 100);
+	emit(dataChanged(AllInfo));
+	emit(pauseChanged(false, true));
+	emit(levelStarted(true));
 }
 
 Bonus* Game::getBonus() {
@@ -332,6 +355,14 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 				m_isCheater = true;
 				emit(dataChanged(LivesInfo));
 			}
+			break;
+		case Qt::Key_L:
+			// Cheat code to go to the next level
+			if (p_event->modifiers() == (Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier)) {
+				m_isCheater = true;
+				nextLevel();
+			}
+			break;
 		default:
 			break;
 	}

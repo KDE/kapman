@@ -217,7 +217,7 @@ void Ghost::doActionOnCollision(Kapman*) {
 	}
 }
 
-void Ghost::initGhostSpeedInc() {
+void Ghost::initSpeedInc() {
 	// Ghosts speed increase when level up
 	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
 		m_speedIncrease = Character::LOW_SPEED_INC;

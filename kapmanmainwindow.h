@@ -77,6 +77,11 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		void showHighscores();
 
 		/**
+		 * Shows a dialog enabling to change the current level.
+		 */
+		void changeLevel();
+
+		/**
 		 * Sets the sounds enabled / disabled.
 		 * @param p_enabled if true the sounds will be enabled, otherwise they will be disabled
 		 */

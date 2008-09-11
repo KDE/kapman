@@ -2,6 +2,9 @@
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
 <gui name="Kapman" version="1">
 	<MenuBar>
+		<Menu name="game">
+			<Action name="level" />
+		</Menu>
                 <Menu name="settings">
                         <Action name="sounds" />
                 </Menu>

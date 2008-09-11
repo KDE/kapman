@@ -28,6 +28,7 @@
 #include <KLocalizedString>
 #include <KConfigDialog>
 #include <KGameThemeSelector>
+#include <KInputDialog>
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
@@ -38,10 +39,13 @@ KapmanMainWindow::KapmanMainWindow() {
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
-    	KAction* action = new KToggleAction(i18n("&Play Sounds"), this);
-	action->setChecked(Settings::sounds());
-	actionCollection()->addAction("sounds", action);
-	connect(action, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
+    	KAction* soundAction = new KToggleAction(i18n("&Play sounds"), this);
+	soundAction->setChecked(Settings::sounds());
+	actionCollection()->addAction("sounds", soundAction);
+	connect(soundAction, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
+    	KAction* levelAction = new KAction(i18n("&Change level"), this);
+	actionCollection()->addAction("level", levelAction);
+	connect(levelAction, SIGNAL(activated()), this, SLOT(changeLevel()));
 	// Initialize the KGameDifficulty singleton
 	KGameDifficulty::init(this, this, SLOT(initGame()));
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
@@ -128,6 +132,13 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 		
 		// Start a new game
 		initGame();
+	}
+}
+
+void KapmanMainWindow::changeLevel() {
+	int newLevel = KInputDialog::getInteger(i18n("Change level"), i18n("Level"), m_game->getLevel(), 1, INT_MAX, 1, 10, 0, this);
+	if (newLevel > 0) {
+		m_game->setLevel(newLevel);
 	}
 }
 

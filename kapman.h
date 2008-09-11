@@ -104,9 +104,9 @@ class Kapman : public Character {
 		void emitGameUpdated();
 
 		/**
-		 * Initializes the Ghost speed from the Character speed.
+		 * Initializes the Kapman speed from the Character speed.
 		 */
-		void initKapmanSpeedInc();
+		void initSpeedInc();
 
 	private:
 

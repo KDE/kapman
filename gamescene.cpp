@@ -136,8 +136,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	for (int i = 0; i < m_ghostItems.size(); i++) {
 		addItem(m_ghostItems[i]);
 	}
-	// Display each Pill and Energizer item and introduction labels
-	intro(true);
 	// Initialize the information labels (score, lives and label)
 	updateInfo(Game::AllInfo);
 	// Display the score label
@@ -149,6 +147,8 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	// Display the level label
 	addItem(m_levelLabel);
 	m_levelLabel->setPos((width() - m_levelLabel->boundingRect().width()) / 2 , height() - Cell::SIZE - m_levelLabel->boundingRect().height() / 2);
+	// Display each Pill and Energizer item and introduction labels
+	intro(true);
 }
 
 GameScene::~GameScene() {
@@ -208,9 +208,11 @@ void GameScene::intro(const bool p_newLevel) {
 			}
 		}
 		// Display the new level label
-		m_newLevelLabel->setPlainText(i18n("Level %1",m_game->getLevel()));
-		addItem(m_newLevelLabel);
-		m_newLevelLabel->setPos((width() - m_newLevelLabel->boundingRect().width()) / 2, (height() - m_newLevelLabel->boundingRect().height()) / 2);
+		m_newLevelLabel->setPlainText(i18n("Level %1", m_game->getLevel()));
+		if (!items().contains(m_newLevelLabel)) {
+			addItem(m_newLevelLabel);
+			m_newLevelLabel->setPos((width() - m_newLevelLabel->boundingRect().width()) / 2, (height() - m_newLevelLabel->boundingRect().height()) / 2);
+		}
 		// Display the introduction label
 		if (!items().contains(m_introLabel2)) {
 			addItem(m_introLabel2);
@@ -321,8 +323,6 @@ void GameScene::updateInfo(const Game::InformationTypes p_info) {
 	    m_scoreLabel->setPlainText(i18n("Score : %1",m_game->getScore()));
 	}
 	if (p_info & Game::LevelInfo) {
-	    QString level("Level : ");
-	    level += QString::number((int)m_game->getLevel());
 	    m_levelLabel->setPlainText(i18n("Level : %1",m_game->getLevel()));
 	}
 }

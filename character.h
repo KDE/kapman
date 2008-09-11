@@ -153,9 +153,14 @@ class Character : public Element {
 		 void setYSpeed(qreal p_ySpeed);
 
 		/**
-		 * Sets the Character speed.
+		 * Initializes the Character speed considering the difficulty level.
 		 */
 		void initSpeed();
+
+		/**
+		 * Initializes the Character speed increment considering the difficulty level.
+		 */
+		virtual void initSpeedInc() = 0;
 		 
 		/**
 		 * Checks the Character is in the line of sight of the given other Character.
@@ -165,7 +170,7 @@ class Character : public Element {
 		bool isInLineSight(Character* p_character);
 
 		/**
-		 * Increase the Character speed with each level completed
+		 * Increases the Character speed with each level completed.
 		 */
 		void increaseCharactersSpeed();
 

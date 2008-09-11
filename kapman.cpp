@@ -178,7 +178,7 @@ void Kapman::stopMoving() {
 	emit(stopped());
 }
 
-void Kapman::initKapmanSpeedInc() {
+void Kapman::initSpeedInc() {
 	// Kapman speed increase when level up
 	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
 	//s_speed == LOW_SPEED) {
