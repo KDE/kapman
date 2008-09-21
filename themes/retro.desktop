@@ -1,15 +1,8 @@
 [KGameTheme]
 Name=Retro
-Name[el]=Ρετρό
-Name[uk]=Ретро
 Description=The old game theme revisited
-Description[el]=Το παλιό θέμα του παιχνιδιού ανανεωμένο
 Description[et]=Vana mänguteema uus versioon
-Description[gl]=O tema antigo do xogo
-Description[km]=ស្បែក​ល្បែង​ចាស់​ដែល​បាន​ទស្សនា​ម្ដង​ទៀត
-Description[pt]=O antigo tema de jogos revisitado
 Description[sv]=Återbesök av det gamla speltemat
-Description[uk]=Тема старої версії гри
 Type=SVG
 FileName=retro.svgz
 Preview=retro_preview.png
