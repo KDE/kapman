@@ -34,15 +34,11 @@ set(kapmanData
 	defaultmaze.xml
 	kapmanui.rc
 )
-set(kapmanThemes
-	themes/retro.svgz
-	themes/retro.desktop
-	themes/retro_preview.png
-	themes/matches.svgz
-	themes/matches.desktop
-	themes/matches_preview.png
+file(GLOB themes
+	"themes/*.svgz"
+	"themes/*.desktop"
+	"themes/*.png"
 )
-
 file(GLOB sounds_ogg "sounds/*.ogg")
 
 kde4_add_kcfg_files(kapmanSources settings.kcfgc)
@@ -56,6 +52,6 @@ target_link_libraries(kapman ${KDE4_KDEUI_LIBS}	${KDE4_PHONON_LIBS} ${KDEGAMES_L
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR}/kapman)
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
-install(FILES ${kapmanThemes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
+install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
 install(FILES ${sounds_ogg} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
 

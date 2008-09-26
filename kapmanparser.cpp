@@ -144,8 +144,6 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString & 
 					m_game->getMaze()->setCellElement(m_counterRows, i,
 							new Pill(m_counterRows, i, m_game->getMaze(), "pill"));
 					break; 
-				case '@': m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
-					break;
 				case 'o':m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					m_game->getMaze()->setCellElement(m_counterRows, i,
 							new Energizer(m_counterRows, i, m_game->getMaze(), "energizer"));

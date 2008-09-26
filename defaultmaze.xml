@@ -1,4 +1,14 @@
 <?xml version="1.0"?>
+
+<!-- Legend :
+  '|' or '='	: wall
+  ' '		: corridor
+  'x'		: ghost corridor
+  'X'		: ghost home cell (must be unique)
+  '.'		: pill
+  'o'		: energizer
+-->
+
 <Maze rowCount="31" colCount="28">
 	<Row>|==========================|</Row>
 	<Row>|............||............|</Row>
@@ -17,7 +27,7 @@
 	<Row>      .   |xxXxxx|   .      </Row>
 	<Row>=====|.|| |======| ||.|=====</Row>
 	<Row>     |.|| |======| ||.|     </Row>
-	<Row>     |.||    @     ||.|     </Row>
+	<Row>     |.||          ||.|     </Row>
 	<Row>     |.|| |======| ||.|     </Row>
 	<Row>|====|.|| |======| ||.|=====</Row>
 	<Row>|............||............|</Row>
