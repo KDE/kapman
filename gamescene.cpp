@@ -65,7 +65,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_kapmanItem->stopAnim();
 
 	// Create the GhostItems
-	for (int i = 0; i < p_game->getGhosts().size(); i++) {
+	for (int i = 0; i < p_game->getGhosts().size(); ++i) {
 		GhostItem* ghost = new GhostItem(p_game->getGhosts()[i]);
 		ghost->setSharedRenderer(m_renderer);
 		ghost->setElementId(p_game->getGhosts()[i]->getImageId());
@@ -76,9 +76,9 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	}
 	// Create the Pill and Energizer items
 	m_elementItems = new ElementItem**[m_game->getMaze()->getNbRows()];
-	for (int i = 0; i < m_game->getMaze()->getNbRows(); i++) {
+	for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
 		m_elementItems[i] = new ElementItem*[m_game->getMaze()->getNbColumns()];
-		for (int j = 0; j < m_game->getMaze()->getNbColumns(); j++) {
+		for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
 			if (m_game->getMaze()->getCell(i, j).getElement() != NULL) {
 				// Create the element and set the image
 				ElementItem* element = new ElementItem(m_game->getMaze()->getCell(i, j).getElement());
@@ -133,7 +133,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	// Display the KapmanItem
 	addItem(m_kapmanItem);
 	// Display each GhostItem
-	for (int i = 0; i < m_ghostItems.size(); i++) {
+	for (int i = 0; i < m_ghostItems.size(); ++i) {
 		addItem(m_ghostItems[i]);
 	}
 	// Initialize the information labels (score, lives and label)
@@ -154,11 +154,11 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 GameScene::~GameScene() {
 	delete m_mazeItem;
 	delete m_kapmanItem;
-	for (int i = 0; i < m_ghostItems.size(); i++) {
+	for (int i = 0; i < m_ghostItems.size(); ++i) {
 		delete m_ghostItems[i];
 	}
-	for (int i = 0; i < m_game->getMaze()->getNbRows();i++) {
-		for (int j = 0; j < m_game->getMaze()->getNbColumns(); j++) {
+	for (int i = 0; i < m_game->getMaze()->getNbRows();++i) {
+		for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
 			if (m_elementItems[i][j] != NULL) {
 				delete m_elementItems[i][j];
 			}
@@ -198,8 +198,8 @@ void GameScene::intro(const bool p_newLevel) {
 	// If a new level has begun
 	if (p_newLevel) {
 		// Set each Pill and Energizer item to its original coordinates
-		for (int i = 0; i < m_game->getMaze()->getNbRows(); i++) {
-			for (int j = 0; j < m_game->getMaze()->getNbColumns(); j++) {
+		for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
+			for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
 				if (m_elementItems[i][j] != NULL) {
 					if (!items().contains(m_elementItems[i][j])) {
 						addItem(m_elementItems[i][j]);

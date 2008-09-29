@@ -42,7 +42,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 		int nbRows = 0;
 		int nbColumns = 0;
 		// Initialize the number of rows and columns
-		for (int i = 0; i < p_atts.count(); i++) {
+		for (int i = 0; i < p_atts.count(); ++i) {
 			if (p_atts.qName(i) == "rowCount") {
 				nbRows = p_atts.value(i).toInt();
 			}
@@ -55,7 +55,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 	}
 	if (p_qName == "Bonus") {
 		// Initialize the number of rows and columns
-		for (int i = 0; i < p_atts.count(); i++) {
+		for (int i = 0; i < p_atts.count(); ++i) {
 			if (p_atts.qName(i) == "rowIndex") {
 				y_position = p_atts.value(i).toInt();
 			}
@@ -77,7 +77,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 	}
 	if (p_qName == "Kapman") {
 		// Initialize the number of rows and columns
-		for (int i = 0; i < p_atts.count(); i++) {
+		for (int i = 0; i < p_atts.count(); ++i) {
 			if (p_atts.qName(i) == "rowIndex") {
 				y_position = p_atts.value(i).toInt();
 			}
@@ -101,7 +101,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 	if (p_qName == "Ghost") {
 		QString imageId = "";
 		// Initialize the number of rows and columns
-		for (int i = 0; i < p_atts.count(); i++) {
+		for (int i = 0; i < p_atts.count(); ++i) {
 			if (p_atts.qName(i) == "rowIndex") {
 				y_position = p_atts.value(i).toInt();
 			}
@@ -132,7 +132,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 bool KapmanParser::endElement(const QString &, const QString &, const QString & p_qName ){
 	if(p_qName == "Row")
 	{
-		for (int i=0; i<m_buffer.length();i++)
+		for (int i=0; i<m_buffer.length();++i)
 		{
 			switch(m_buffer.at(i).toAscii()){
 				case '|':

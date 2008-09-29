@@ -88,7 +88,7 @@ void KapmanItem::manageCollision() {
 	// The signal is emitted only if the list contains more than 1 items (to exclude the case
 	// when the kapman only collides with the maze)
 	if (collidingList.size() > 1) {
-		for (int i = 0; i < collidingList.size(); i++) {
+		for (int i = 0; i < collidingList.size(); ++i) {
 			// The maze and the points labels have a negative zValue which allows to exclude them from the treatment of collisions
 			if (collidingList[i]->zValue() >= 0) {
 				((ElementItem*)collidingList[i])->getModel()->doActionOnCollision((Kapman*)getModel());

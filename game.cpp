@@ -81,7 +81,7 @@ Game::Game(KGameDifficulty::standardLevel p_difficulty) : m_isCheater(false), m_
 			break;
 	}	
 
-	for (int i = 0; i < m_ghosts.size(); i++) {
+	for (int i = 0; i < m_ghosts.size(); ++i) {
 		connect(m_ghosts[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
 		connect(m_ghosts[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
 		// Initialize the ghosts speed and the ghost speed increase considering the characters speed
@@ -117,7 +117,7 @@ Game::~Game() {
 	delete m_bonusTimer;
 	delete m_maze;
 	delete m_kapman;
-	for (int i = 0; i < m_ghosts.size(); i++) {
+	for (int i = 0; i < m_ghosts.size(); ++i) {
 		delete m_ghosts[i];
 	}
 	delete m_bonus;
@@ -197,12 +197,12 @@ void Game::setLevel(int p_level) {
 	m_maze->resetNbElem();
 	m_timer->start();	// Needed to reinit character positions
 	initCharactersPosition();
-	for (int i = 0; i < m_ghosts.size(); i++) {
+	for (int i = 0; i < m_ghosts.size(); ++i) {
 		m_ghosts[i]->initSpeed();
 	}
 	m_kapman->initSpeed();
-	for (int i = 0; i < m_level; i++) {
-		for (int j = 0; j < m_ghosts.size(); j++) {
+	for (int i = 0; i < m_level; ++i) {
+		for (int j = 0; j < m_ghosts.size(); ++j) {
 			m_ghosts[j]->increaseCharactersSpeed();
 		}
 		m_kapman->increaseCharactersSpeed();
@@ -271,8 +271,8 @@ void Game::initCharactersPosition() {
 		m_ghosts[3]->setState(Ghost::HUNTER);
 		m_kapman->init();
 		// Initialize the Pills & Energizers coordinates
-		for (int i = 0; i < m_maze->getNbRows(); i++) {
-			for (int j = 0; j < m_maze->getNbColumns(); j++) {
+		for (int i = 0; i < m_maze->getNbRows(); ++i) {
+			for (int j = 0; j < m_maze->getNbColumns(); ++j) {
 				if (m_maze->getCell(i,j).getElement() != NULL){
 					m_maze->getCell(i,j).getElement()->setX(Cell::SIZE * (j + 0.5));
 					m_maze->getCell(i,j).getElement()->setY(Cell::SIZE * (i + 0.5));
@@ -375,7 +375,7 @@ void Game::update() {
 	curKapmanRow = m_maze->getRowFromY(m_kapman->getY());
 	curKapmanCol = m_maze->getColFromX(m_kapman->getX());
 	
-	for (int i = 0; i < m_ghosts.size(); i++) {
+	for (int i = 0; i < m_ghosts.size(); ++i) {
 		if (m_ghosts[i]->getState() == Ghost::HUNTER && m_ghosts[i]->isInLineSight(m_kapman)) {
 			m_ghosts[i]->updateMove(curKapmanRow, curKapmanCol);
 		}
@@ -453,7 +453,7 @@ void Game::winPoints(Element* p_element) {
 		// We start the prey timer
 		m_preyTimer->start();
 		playSound(KStandardDirs::locate("sound", "kapman/energizer.ogg"));
-		for (int i = 0; i < m_ghosts.size(); i++) {
+		for (int i = 0; i < m_ghosts.size(); ++i) {
 			if(m_ghosts[i]->getState() != Ghost::EATEN) {
 				m_ghosts[i]->setState(Ghost::PREY);
 			}
@@ -495,7 +495,7 @@ void Game::nextLevel() {
 	// Move all characters to their initial positions
 	initCharactersPosition();
 	// Increase the ghosts speed
-	for (int i = 0; i < m_ghosts.size(); i++) {
+	for (int i = 0; i < m_ghosts.size(); ++i) {
 		// Increase the ghosts speed increase
 		m_ghosts[i]->increaseCharactersSpeed();
 	}
@@ -513,7 +513,7 @@ void Game::hideBonus() {
 }
 
 void Game::endPreyState() {
-	for (int i = 0; i < m_ghosts.size(); i++) {
+	for (int i = 0; i < m_ghosts.size(); ++i) {
 		if(m_ghosts[i]->getState() != Ghost::EATEN) {
 			m_ghosts[i]->setState(Ghost::HUNTER);
 		}

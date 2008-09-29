@@ -27,7 +27,7 @@ Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 }
 	
 Maze::~Maze() {
-	for(int i = 0 ; i < m_nbRows; i++) {
+	for(int i = 0 ; i < m_nbRows; ++i) {
 		delete[] m_cells[i];
 	}
 	delete[] m_cells;
@@ -37,7 +37,7 @@ void Maze::init(const int p_nbRows, const int p_nbColumns) {
 	m_nbRows = p_nbRows;
 	m_nbColumns = p_nbColumns;
 	m_cells = new Cell*[m_nbRows];
-	for (int i = 0; i < m_nbRows; i++) {
+	for (int i = 0; i < m_nbRows; ++i) {
 		m_cells[i] = new Cell[m_nbColumns];
 	}
 }
@@ -95,7 +95,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 	while (!closedList.contains(QPoint(m_resurrectionCell.x(), m_resurrectionCell.y())) && openList.size() != oldSize) {
 		// Look for the lowest cost cell on the open list
 		lowestCost = 1000;
-		for (int i = 0; i < openList.size(); i++) {
+		for (int i = 0; i < openList.size(); ++i) {
 			if (m_cells[openList[i].y()][openList[i].x()].getCost() < lowestCost) {
 				lowestCost = m_cells[openList[i].y()][openList[i].x()].getCost();
 				currentCell = openList[i];
@@ -186,8 +186,8 @@ Cell Maze::getCell(const int p_row, const int p_column) const {
 }
 
 QPoint Maze::getCoords(Cell* p_cell) const {
-	for (int i = 0; i < m_nbRows; i++) {
-		for (int j = 0; j < m_nbColumns; j++) {
+	for (int i = 0; i < m_nbRows; ++i) {
+		for (int j = 0; j < m_nbColumns; ++j) {
 			if (&m_cells[i][j] == p_cell) {
 				return QPoint(j, i);
 			}
