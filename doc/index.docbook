@@ -1,0 +1,436 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!ENTITY kapman "<application>Kapman</application>">
+  <!ENTITY kappname "&kapman;">
+  <!ENTITY package "kdegames">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE">
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title>The &kapman; Handbook</title>
+
+<authorgroup>
+<author>
+<personname>
+<firstname>Thomas</firstname>
+<surname>Gallinari</surname>
+</personname>
+<email>tg8187@yahoo.fr</email>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<copyright>
+<year>2008</year>
+<holder>Thomas Gallinari</holder>
+</copyright>
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2008-09-30</date>
+<releaseinfo>1.0</releaseinfo>
+
+<abstract>
+<para>&kapman; is a clone of the well known game <application>Pac-Man</application>.</para>
+</abstract>
+
+<keywordset>
+<keyword>KDE</keyword>
+<keyword>kdegames</keyword>
+<keyword>Kapman</keyword>
+<keyword>arcade</keyword>
+<keyword>one player</keyword>
+<keyword>pac-man</keyword>
+<keyword>pacman</keyword>
+<keyword>ghost</keyword>
+<keyword>pill</keyword>
+<keyword>energizer</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title>Introduction</title>
+<note><title>Gametype:</title><para>Arcade</para></note>
+<note><title>Number of possible players:</title><para>One</para></note>
+<para>
+&kapman; is a clone of the well known game <application>Pac-Man</application>. You must go through the levels escaping ghosts in a maze. You lose a life when a ghost eats you, but you can eat the ghosts for a few seconds when eating an energizer. You win points when eating pills, energizers, and bonus, and you win one life for each 10,000 points. When you have eaten all the pills and energizers of a level, you go to the next level, and the player and ghost speeds increase. The game ends when you have lost all your lives.
+</para>
+<screenshot>
+<screeninfo>A &kapman; screenshot</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>A &kapman; screenshot</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title>How to Play</title>
+<note><title>Objective:</title><para>Go through the levels by eating all pills and energizers.</para></note>
+<para>
+&kapman; will load level one once you start the game. To start the game, press an arrow key. You move straight ahead without pressing any key. To turn, press an arrow key. You should not turn at the last moment, but anticipate and you will turn as soon as possible. To eat a pill, an energizer, a bonus, or even a ghost, you must get in touch with it. When all the pills and energizers have been eaten, you move to the next level.
+</para>
+</chapter>
+
+<chapter id="rules_and_tips"><title>Game Rules, Strategies and Tips</title>
+<sect1 id="rules">
+<title>Rules</title>
+<para>
+<itemizedlist>
+<listitem><para>To move to the next level, you must eat every pill and energizer in the maze.</para></listitem>
+<listitem><para>A bonus appears when you have eaten 1/3 and 2/3 of the pills and energizers. It disappears after a few seconds (10 seconds at the first level, but it decreases as the level increases) if you have not eaten it.</para></listitem>
+<listitem><para>As the level increases, both your speed and the ghosts speed increase. However, the ghosts will be more and more faster than you.</para></listitem>
+<listitem><para>If you get in touch with a ghost, you lose a life, and the current level restarts (but the eaten pills and energizer do not reappear).</para></listitem>
+<listitem><para>If you are in the line of sight of a ghost (that is to say : no wall between the ghost, and you and you both go to the same direction), the ghost will hunt you. Otherwise, the ghosts have a random moving.</para></listitem>
+<listitem><para>When you eat an energizer, the ghosts slow down and you can eat them. If you eat a ghost, it goes back to its home and its normal behaviour. After a few seconds (10 seconds at the first level, but it decreases as the level increases), the ghosts that have not been eaten go back to their normal behaviour.</para></listitem>
+<listitem><para>You win points when eating an item:</para>
+<table>
+<title>Item values</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry>Pill</entry>
+<entry>10 points</entry>
+</row>
+<row>
+<entry>Energizer</entry>
+<entry>20 points</entry>
+</row>
+<row>
+<entry>Bonus</entry>
+<entry>Current level * 100 points</entry>
+</row>
+<row>
+<entry>Ghost</entry>
+<entry>It depends on the number of ghosts you have eaten since the last energizer was eaten:
+<itemizedlist>
+<listitem><para>1st ghost: 100 points</para></listitem>
+<listitem><para>2nd ghost: 200 points</para></listitem>
+<listitem><para>3rd ghost: 400 points</para></listitem>
+<listitem><para>4th ghost: 800 points</para></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem><para>You get a life more every 10,000 points you win.</para></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect2 id="tips">
+<title>Strategies and Tips</title>
+<para>
+<itemizedlist>
+<listitem><para>To eat an item, you must get it touch with its center, not only a few pixels. So be sure you have really eaten what you wanted, before turning back.</para></listitem>
+<listitem><para>At first levels, the bonus does not make a lot of points and ghosts are not very fast, so you should concentrate on eating the most ghosts that you can.</para></listitem>
+<listitem><para>After about ten levels, the ghosts are faster and the bonus makes more points, so you should try to eat the bonus when possible. Do not hesitate to eat an energizer when you can see the bonus, to not be disturbed by the ghosts.</para></listitem>
+<listitem><para>In the same way, you should try to eat an energizer before going to the dangerous places (like near the ghost home).</para></listitem>
+<listitem><para>When the ghosts are too fast, you should avoid to eat them if you are near their home. They could go back faster than you think.</para></listitem>
+<listitem><para>Do not hesitate to stay in the same place for a few seconds, waiting for the ghosts to go far away from the place you need to go.</para></listitem>
+<listitem><para>You can find cheatcodes from the source code. But be careful: if you make a new high score but have cheated, your high score will not be registered.</para></listitem>
+<listitem><para>Last but not least: Have fun !</para></listitem>
+</itemizedlist>
+</para>
+</sect2>
+</chapter>
+
+<chapter id="interface"><title>Interface Overview</title>
+<sect1 id="menubar">
+<title>Menubar</title>
+<sect2>
+<title>The <guimenu>Game</guimenu> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<shortcut><keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
+<guimenu>Game</guimenu><guimenuitem>New</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Starts a new game.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<shortcut><keycombo action="simul">&Ctrl;<keycap>H</keycap></keycombo></shortcut>
+<guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Brings up the high scores dialog.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Game</guimenu><guimenuitem>Change Level</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Brings up the level selection dialog. Be careful: changing the current level will make the game consider you as a cheater, so you will not able to register in the high scores table.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<shortcut><keycombo action="simul">&Ctrl;<keycap>Q</keycap></keycombo></shortcut>
+<guimenu>Game</guimenu><guimenuitem>Quit</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Quits</action> &kapman;.</para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title>The <guimenu>Settings</guimenu> Menu</title>
+<para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guimenuitem>Play Sounds</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Plays the sounds or mutes.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guimenuitem>Show Statusbar</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Shows or hides the statusbar.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu>
+</menuchoice></term>
+<listitem>
+<para><action>Adjusts the game difficulty.</action></para>
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu><guimenuitem>Easy</guimenuitem>
+</menuchoice></term>
+<listitem><para></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu><guimenuitem>Medium</guimenuitem>
+</menuchoice></term>
+<listitem><para></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu><guimenuitem>Hard</guimenuitem>
+</menuchoice></term>
+<listitem><para></para></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guimenuitem>Configure Shortcuts...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Brings up the shortcut configuration utility.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guimenuitem>Configure Toolbars...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Brings up the toolbar configuration utility.</action></para></listitem>
+</varlistentry>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu><guimenuitem>Configure Kapman...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Brings up the &kapman; configuration utility.</action></para></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title>The <guimenu>Help</guimenu> Menu</title>
+&help.menu.documentation;
+</sect2>
+</sect1>
+<sect1 id="keybindings">
+<title>Default Keybindings</title>
+<para>
+<itemizedlist>
+<listitem><para><action>Turn up</action> - <keysym>Up Arrow</keysym></para></listitem>
+<listitem><para><action>Turn down</action> - <keysym>Down Arrow</keysym></para></listitem>
+<listitem><para><action>Turn right</action> - <keysym>Right Arrow</keysym></para></listitem>
+<listitem><para><action>Turn down</action> - <keysym>Left Arrow</keysym></para></listitem>
+<listitem><para><action>Pause</action> - <keycap>P</keycap> or <keycap>Esc</keycap></para></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title>Questions and Answers</title>
+&reporting.bugs;
+&updating.documentation;
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para>Who made this game?</para>
+</question>
+<answer>
+<para>&kapman; was made by the KapTeam (see the <link linkend="credits">Credits and License</link> chapter). It is maintained by Thomas Gallinari and Pierre-Benoit Besse.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>Where can I get cheatcodes?</para>
+</question>
+<answer>
+<para>You can look for cheatcodes inside the source code.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>How do I start a new game?</para>
+</question>
+<answer>
+<para>A new game is already started when you launch &kapman;. Anyway, you can start a new game by clicking on the <menuchoice><guimenu>Game</guimenu><guimenuitem>New</guimenuitem></menuchoice> menu item, or by the <keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo> key combination. See the <link linkend="menubar">Menubar</link> section for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>I have started a new game. What do I do now?</para>
+</question>
+<answer>
+<para>You can start playing by pressing any arrow key. You must eat every pill and energizer of each level, while escaping the ghosts. See the <link linkend="howto">How to Play</link> chapter for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>How do I pause the game?</para>
+</question>
+<answer>
+<para>You can pause the game by pressing <keycap>P</keycap> or <keycap>Esc</keycap>. See the <link linkend="keybindings">Default Keybindings</link> section for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>I want to change the way this game looks. Can I?</para>
+</question>
+<answer>
+<para>You can select the &kapman; theme in the <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Kapman...</guimenuitem></menuchoice> dialog. See the <link linkend="configuration">Game Configuration</link> chapter for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>Can I skip a level?</para>
+</question>
+<answer>
+<para>There are two ways to change the current level. In both cases, you will be considered as a cheater and you will not be able to register to the high scores. The first way is using a cheatcode. I let you find it. The other way is selecting the level you want from the <menuchoice><guimenu>Game</guimenu><guimenuitem>Change Level</guimenuitem></menuchoice> dialog. See the <link linkend="menubar">Menubar</link> section for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>Can I change default keyboard shortcuts?</para>
+</question>
+<answer>
+<para>It is not possible for now. But it it to be a new feature in a future version of &kapman;. See the <link linkend="keybindings">Default Keybindings</link> section for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para>
+</question>
+<answer>
+<para>You can not, and it is delibarate. We think that the game would be too easy if you could save the game and reload it as you lose your lives.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>Where are the high scores?</para>
+</question>
+<answer>
+<para>You can see the high scores table by clicking on the <menuchoice><guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem></menuchoice> menu item. See the <link linkend="menubar">Menubar</link> section for more details.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para>How can I get more lives?</para>
+</question>
+<answer>
+<para>There are two ways to get lives. The first one is using a cheatcode. I let you find it. The other way is winning points. Every 10,000 points, you get a life more. See the <link linkend="rules">Rules</link> section for more details.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"><title>Game Configuration</title>
+<para>
+	You can select the theme you want to play &kapman;. To do that, select <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Kapman...</guimenuitem></menuchoice>. The &kapman; configuration dialog (see below) appears and you can then select the theme. It is immediately changed on validating your choice, no need to restart the game. You can click on the <guibutton>Defaults</guibutton> button to restore the default theme.
+</para>
+<screenshot>
+<screeninfo>The &kapman; configuration dialog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase>The &kapman; configuration dialog</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"><title>Credits and License</title>
+<para>
+&kapman;
+</para>
+<para>
+Program copyright 2008 Thomas Gallinari <email>tg8187@yahoo.fr</email>
+</para>
+<para>
+Program copyright 2008 Pierre-Benoit Besse <email>besse.pb@gmail.com</email>
+</para>
+<para>
+Program copyright 2008 Alexandre Galinier <email>blluetroy@hotmail.com</email>
+</para>
+<para>
+Program copyright 2008 Nathalie Liesse <email>nathalie.liesse@gmail.com</email>
+</para>
+<para>
+Graphics copyright 2008 Thomas Gallinari <email>tg8187@yahoo.fr</email>
+</para>
+<para>
+Documentation copyright 2008 Thomas Gallinari <email>tg8187@yahoo.fr</email>
+</para>
+<!-- TRANS:CREDIT_FOR_TRANSLATORS -->
+&underFDL;
+&underGPL;
+
+</chapter>
+
+<appendix id="installation">
+<title>Installation</title>
+
+&install.intro.documentation;
+
+<sect1 id="Compilation">
+<title>Compilation and Installation</title>
+
+&install.compile.documentation;
+
+</sect1>
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
