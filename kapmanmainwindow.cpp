@@ -110,11 +110,8 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 		}
 	}
 	else {
-		// Build the score info
-		QString score("Your Score : ");
-		score += QString::number(m_game->getScore());
 		// Display the score information
-		KMessageBox::information(this, score.toAscii().data(), i18n("Game Over"));
+		KMessageBox::information(this, i18n("Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
 		// Add the score to the highscores table
 		m_kScoreDialog->setConfigGroup(KGameDifficulty::localizedLevelString());
 		KScoreDialog::FieldInfo scoreInfo;
