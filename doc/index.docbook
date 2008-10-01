@@ -86,7 +86,7 @@
 <listitem><para>A bonus appears when you have eaten 1/3 and 2/3 of the pills and energizers. It disappears after a few seconds (10 seconds at the first level, but it decreases as the level increases) if you have not eaten it.</para></listitem>
 <listitem><para>As the level increases, both your speed and the ghosts speed increase. However, the ghosts will be more and more faster than you.</para></listitem>
 <listitem><para>If you get in touch with a ghost, you lose a life, and the current level restarts (but the eaten pills and energizer do not reappear).</para></listitem>
-<listitem><para>If you are in the line of sight of a ghost (that is to say : no wall between the ghost, and you and you both go to the same direction), the ghost will hunt you. Otherwise, the ghosts have a random moving.</para></listitem>
+<listitem><para>If you are in the line of sight of a ghost (that is to say : no wall between the ghost, and both of you go to the same direction), the ghost will hunt you. Otherwise, the ghosts have a random moving.</para></listitem>
 <listitem><para>When you eat an energizer, the ghosts slow down and you can eat them. If you eat a ghost, it goes back to its home and its normal behaviour. After a few seconds (10 seconds at the first level, but it decreases as the level increases), the ghosts that have not been eaten go back to their normal behaviour.</para></listitem>
 <listitem><para>You win points when eating an item:</para>
 <table>
@@ -125,7 +125,7 @@
 </para>
 </sect1>
 
-<sect2 id="tips">
+<sect1 id="tips">
 <title>Strategies and Tips</title>
 <para>
 <itemizedlist>
@@ -139,7 +139,7 @@
 <listitem><para>Last but not least: Have fun !</para></listitem>
 </itemizedlist>
 </para>
-</sect2>
+</sect1>
 </chapter>
 
 <chapter id="interface"><title>Interface Overview</title>
@@ -256,7 +256,7 @@
 <listitem><para><action>Turn up</action> - <keysym>Up Arrow</keysym></para></listitem>
 <listitem><para><action>Turn down</action> - <keysym>Down Arrow</keysym></para></listitem>
 <listitem><para><action>Turn right</action> - <keysym>Right Arrow</keysym></para></listitem>
-<listitem><para><action>Turn down</action> - <keysym>Left Arrow</keysym></para></listitem>
+<listitem><para><action>Turn left</action> - <keysym>Left Arrow</keysym></para></listitem>
 <listitem><para><action>Pause</action> - <keycap>P</keycap> or <keycap>Esc</keycap></para></listitem>
 </itemizedlist>
 </para>
@@ -329,7 +329,7 @@
 <para>Can I change default keyboard shortcuts?</para>
 </question>
 <answer>
-<para>It is not possible for now. But it it to be a new feature in a future version of &kapman;. See the <link linkend="keybindings">Default Keybindings</link> section for more details.</para>
+<para>It is not possible for now. But will be a new feature in a future version of &kapman;. See the <link linkend="keybindings">Default Keybindings</link> section for more details.</para>
 </answer>
 </qandaentry>
 <qandaentry>
@@ -337,7 +337,7 @@
 <para>I have to quit the game now, but I am not finished yet. Can I save my progress?</para>
 </question>
 <answer>
-<para>You can not, and it is delibarate. We think that the game would be too easy if you could save the game and reload it as you lose your lives.</para>
+<para>You can not, and it is deliberate. We think that the game would be too easy if you could save the game and reload it as you lose your lives.</para>
 </answer>
 </qandaentry>
 <qandaentry>
