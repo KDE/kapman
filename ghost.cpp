@@ -23,12 +23,15 @@
 #include <KGameDifficulty>
 #include <cstdlib>
 
+const qreal Ghost::MAX_SPEED_RATIO = 2.0;
+
 Ghost::Ghost(qreal p_x, qreal p_y, const QString & p_imageId, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	// Initialize the ghost attributes
 	m_imageId = p_imageId;
 	m_points = 200;
 	m_type = Element::GHOST;
 	m_state = Ghost::HUNTER;
+	m_maxSpeed = m_normalSpeed * MAX_SPEED_RATIO;
 	// Initialize the random-number generator
 	srand(time(NULL));
 	// Makes the ghost move as soon as the game is created
@@ -229,3 +232,4 @@ void Ghost::initSpeedInc() {
 		m_speedIncrease = Character::HIGH_SPEED_INC;
 	}
 }
+

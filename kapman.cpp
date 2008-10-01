@@ -20,8 +20,11 @@
 
 #include <KGameDifficulty>
 
+const qreal Kapman::MAX_SPEED_RATIO = 1.5;
+
 Kapman::Kapman(qreal p_x, qreal p_y, Maze* p_maze) : Character(p_x, p_y, p_maze) {
 	m_type = Element::KAPMAN;
+	m_maxSpeed = m_normalSpeed * MAX_SPEED_RATIO;
 }
 
 Kapman::~Kapman() {
@@ -181,7 +184,6 @@ void Kapman::stopMoving() {
 void Kapman::initSpeedInc() {
 	// Kapman speed increase when level up
 	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
-	//s_speed == LOW_SPEED) {
 		m_speedIncrease = (Character::LOW_SPEED_INC / 2);
 	}
 	if(KGameDifficulty::level() == KGameDifficulty::Medium) {
@@ -191,3 +193,4 @@ void Kapman::initSpeedInc() {
 		m_speedIncrease = (Character::HIGH_SPEED_INC / 2);
 	}
 }
+

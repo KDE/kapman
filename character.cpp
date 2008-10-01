@@ -29,6 +29,7 @@ const qreal Character::HIGH_SPEED_INC = 0.02;
 
 Character::Character(qreal p_x, qreal p_y, Maze* p_maze) : Element(p_x, p_y, p_maze), m_xSpeed(0), m_ySpeed(0) {
 	initSpeed();
+	m_maxSpeed = m_normalSpeed;	// To avoid bugs, but will be overriden in the Ghost and Kapman constructors
 }
 
 Character::~Character() {
@@ -80,7 +81,6 @@ void Character::setYSpeed(qreal p_ySpeed) {
 }
 
 void Character::initSpeed() {
-
 	// Kapman speed increase when level up
 	if(KGameDifficulty::level() == KGameDifficulty::Easy) {
 		m_normalSpeed = Character::LOW_SPEED;
@@ -96,6 +96,10 @@ void Character::initSpeed() {
 
 void Character::increaseCharactersSpeed() {
 	m_normalSpeed += m_normalSpeed * m_speedIncrease;
+	// Do not have a speed over the max allowed speed
+	if (m_normalSpeed > m_maxSpeed) {
+		m_normalSpeed = m_maxSpeed;
+	}
 	m_speed = m_normalSpeed;
 }
 

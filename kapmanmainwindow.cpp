@@ -136,7 +136,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 }
 
 void KapmanMainWindow::changeLevel() {
-	int newLevel = KInputDialog::getInteger(i18n("Change level"), i18n("Level"), m_game->getLevel(), 1, INT_MAX, 1, 10, 0, this);
+	int newLevel = KInputDialog::getInteger(i18n("Change level"), i18n("Level"), m_game->getLevel(), 1, 1000000, 1, 10, 0, this);
 	if (newLevel > 0) {
 		m_game->setLevel(newLevel);
 	}

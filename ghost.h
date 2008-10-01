@@ -42,6 +42,9 @@ class Ghost : public Character {
 
 	private:
 
+		/** Max speed ratio, compared with the initial speed  */
+		static const qreal MAX_SPEED_RATIO;
+
 		/** The path to the Ghost image */
 		QString m_imageId;
 		
@@ -129,9 +132,6 @@ class Ghost : public Character {
 		 * Makes the Ghost go to the left.
 		 */
 		void goLeft();
-
-	private slots:
-
 
 	signals:
 	

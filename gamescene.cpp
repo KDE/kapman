@@ -192,6 +192,9 @@ void GameScene::loadTheme() {
 	}
 	m_cache->discard();
 	update(0, 0, width(), height());
+
+	// Update the theme config: if the default theme is selected, no theme entry is written -> the theme selector does not select the theme
+	Settings::self()->config()->group("General").writeEntry("Theme", Settings::self()->theme());
 }
 
 void GameScene::intro(const bool p_newLevel) {

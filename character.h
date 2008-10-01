@@ -65,6 +65,9 @@ class Character : public Element {
 		/** The value the character's speed is incremented by when level up */
 		qreal m_speedIncrease;
 
+		/** The maximum character speed */
+		qreal m_maxSpeed;
+
 	public:
 
 		/**
@@ -158,11 +161,6 @@ class Character : public Element {
 		void initSpeed();
 
 		/**
-		 * Initializes the Character speed increment considering the difficulty level.
-		 */
-		virtual void initSpeedInc() = 0;
-		 
-		/**
 		 * Checks the Character is in the line of sight of the given other Character.
 		 * @param p_character the other Character
 		 * @return true if the Character is in the same line than the given one
@@ -176,6 +174,11 @@ class Character : public Element {
 
 	protected:
 
+		/**
+		 * Initializes the Character speed increment considering the difficulty level.
+		 */
+		virtual void initSpeedInc() = 0;
+		 
 		/**
 		 * Gets the next Cell the Character is going to reach.
 		 * @return the next Cell the Character is going to reach

@@ -29,6 +29,9 @@ class Kapman : public Character {
 
 	private:
 
+		/** Max speed ratio, compared with the initial speed  */
+		static const qreal MAX_SPEED_RATIO;
+
 		/** Kapman asked speed */
 		qreal m_askedXSpeed, m_askedYSpeed;
 
