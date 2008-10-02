@@ -1,6 +1,13 @@
 [KGameTheme]
 Name=Retro
+Name[uk]=Ретро
 Description=The old game theme revisited
+Description[gl]=O tema antigo do xogo
+Description[nds]=Dat Speel sien oolt Muster wedderbeleevt
+Description[pt]=O tema antigo do jogo de volta
+Description[pt_BR]=O tema antigo do jogo de volta
+Description[uk]=Тема старої версії гри
+Description[zh_TW]=舊式的主題
 Type=SVG
 FileName=retro.svgz
 Preview=retro_preview.png

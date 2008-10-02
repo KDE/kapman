@@ -1,6 +1,18 @@
 [KGameTheme]
 Name=Matches
+Name[gl]=Mistos
+Name[nds]=Rietsteken
+Name[pt]=Fósforos
+Name[pt_BR]=Fósforos
+Name[uk]=Сірники
+Name[zh_TW]=火柴
 Description=A matches drawn maze
+Description[gl]=Un labirinto debuxado con mistos
+Description[nds]=En Biestergoorn ut Rietsteken
+Description[pt]=Um labirinto desenhado com fósforos
+Description[pt_BR]=Um labirinto desenhado com fósforos
+Description[uk]=Лабіринт з сірників
+Description[zh_TW]=火柴式關卡
 Type=SVG
 FileName=matches.svgz
 Preview=matches_preview.png
