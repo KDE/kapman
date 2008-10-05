@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KAPMANPARSER_H
-#define __KAPMANPARSER_H
+#ifndef KAPMANPARSER_H
+#define KAPMANPARSER_H
 
 #include "game.h"
 

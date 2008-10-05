@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CHARACTER_H
-#define __CHARACTER_H
+#ifndef CHARACTER_H
+#define CHARACTER_H
 
 #include "element.h"
 

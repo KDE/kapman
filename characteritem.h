@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CHARACTERITEM_H
-#define __CHARACTERITEM_H
+#ifndef CHARACTERITEM_H
+#define CHARACTERITEM_H
 
 #include "elementitem.h"
 #include "character.h"

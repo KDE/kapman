@@ -18,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __BONUS_H
-#define __BONUS_H
+#ifndef BONUS_H
+#define BONUS_H
 
 #include "element.h"
 

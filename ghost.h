@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GHOST_H
-#define __GHOST_H
+#ifndef GHOST_H
+#define GHOST_H
 
 #include "character.h"
 #include "kapman.h"

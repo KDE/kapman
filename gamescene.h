@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GAMESCENE_H
-#define __GAMESCENE_H
+#ifndef GAMESCENE_H
+#define GAMESCENE_H
 
 #include "game.h"
 #include "elementitem.h"

@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _KAPMAN_ITEM_H
-#define _KAPMAN_ITEM_H
+#ifndef KAPMANITEM_H
+#define KAPMANITEM_H
 
 #include "characteritem.h"
 #include "kapman.h"

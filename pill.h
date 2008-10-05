@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __PILL_H
-#define __PILL_H
+#ifndef PILL_H
+#define PILL_H
 
 #include "element.h"
 

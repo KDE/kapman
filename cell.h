@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CELL_H
-#define __CELL_H
+#ifndef CELL_H
+#define CELL_H
 
 #include <QtGlobal>
 

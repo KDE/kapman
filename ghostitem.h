@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GHOSTITEM_H
-#define __GHOSTITEM_H
+#ifndef GHOSTITEM_H
+#define GHOSTITEM_H
 
 #include "characteritem.h"
 #include "ghost.h"

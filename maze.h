@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __MAZE_H
-#define __MAZE_H
+#ifndef MAZE_H
+#define MAZE_H
 
 #include "cell.h"
 

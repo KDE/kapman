@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __ELEMENT_H
-#define __ELEMENT_H
+#ifndef ELEMENT_H
+#define ELEMENT_H
 
 #include <QObject>
 

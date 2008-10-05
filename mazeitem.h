@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __MAZEITEM_H
-#define __MAZEITEM_H
+#ifndef MAZEITEM_H
+#define MAZEITEM_H
 
 #include <QGraphicsSvgItem>
 

@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __ENERGIZER_H
-#define __ENERGIZER_H
+#ifndef ENERGIZER_H
+#define ENERGIZER_H
 
 #include <QObject>
 

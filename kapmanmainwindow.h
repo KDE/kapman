@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KAPMANMAINWINDOW_H
-#define __KAPMANMAINWINDOW_H
+#ifndef KAPMANMAINWINDOW_H
+#define KAPMANMAINWINDOW_H
 
 #include "game.h"
 #include "gameview.h"

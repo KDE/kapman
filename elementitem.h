@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __ELEMENTITEM_H
-#define __ELEMENTITEM_H
+#ifndef ELEMENTITEM_H
+#define ELEMENTITEM_H
 
 #include <QGraphicsSvgItem>
 

@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GAMEVIEW_H
-#define __GAMEVIEW_H
+#ifndef GAMEVIEW_H
+#define GAMEVIEW_H
 
 #include "game.h"
 

@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GAME_H
-#define __GAME_H
+#ifndef GAME_H
+#define GAME_H
 
 #include "maze.h"
 #include "kapman.h"
