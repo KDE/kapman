@@ -2,10 +2,12 @@
 Name=Retro
 Name[uk]=Ретро
 Description=The old game theme revisited
+Description[es]=El tema del antigüo juego traído nuevamente
 Description[gl]=O tema antigo do xogo
 Description[nds]=Dat Speel sien oolt Muster wedderbeleevt
 Description[pt]=O tema antigo do jogo de volta
 Description[pt_BR]=O tema antigo do jogo de volta
+Description[sv]=Återbesök av det gamla speltemat
 Description[uk]=Тема старої версії гри
 Description[zh_TW]=舊式的主題
 Type=SVG
