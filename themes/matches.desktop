@@ -1,22 +1,6 @@
 [KGameTheme]
 Name=Matches
-Name[es]=Cerillas
-Name[gl]=Mistos
-Name[nds]=Rietsteken
-Name[pt]=Fósforos
-Name[pt_BR]=Fósforos
-Name[sv]=Tändstickor
-Name[uk]=Сірники
-Name[zh_TW]=火柴
 Description=A matches drawn maze
-Description[es]=Un laberinto hecho de cerillas
-Description[gl]=Un labirinto debuxado con mistos
-Description[nds]=En Biestergoorn ut Rietsteken
-Description[pt]=Um labirinto desenhado com fósforos
-Description[pt_BR]=Um labirinto desenhado com fósforos
-Description[sv]=En labyrint bestående av tändstickor
-Description[uk]=Лабіринт з сірників
-Description[zh_TW]=火柴式關卡
 Type=SVG
 FileName=matches.svgz
 Preview=matches_preview.png

@@ -1,21 +1,6 @@
 [KGameTheme]
 Name=Invisible
-Name[gl]=Invisíbel
-Name[nds]=Nich sichtbor
-Name[pt]=Invisível
-Name[pt_BR]=Invisível
-Name[sv]=Osynlig
-Name[uk]=Невидимий
-Name[zh_TW]=隱身
 Description=Getting bored with Kapman ? More than 100,000 points over the level 20 ? Next step : the invisible maze !
-Description[es]=¿Se aburre con Kapman? ¿Logró más de 100,000 puntos más allá del nivel 20? Próximo paso: ¡el laberinto invisible!
-Description[gl]=Abúrrese con Kapman? Máis de 100,000 pontos por riba do nível 20? Seguinte paso: o labirinto invisíbel!
-Description[nds]=Warrt Kapman Di langtöögsch? Mehr as 100.000 Pünkt över de 20. Stoop? Denn kummt: De unsichtbore Biestergoorn!
-Description[pt]=Está farto do Kapman ? Já fez mais de 100 000 no nível 20 ? Próximo passo : o nível invisível !
-Description[pt_BR]=Está farto do Kapman ? Já fez mais de 100 000 no nível 20 ? Próximo passo : o nível invisível !
-Description[sv]=Börjar du tröttna på Kapman? Mer än 100 000 poäng över nivå 20? Nästa steg: Den osynliga labyrinten!
-Description[uk]=Втомилися від Kapman? Маєте більше за 100.000 очок на рівні вищому за 20? Наступний крок: невидимий лабіринт!
-Description[zh_TW]=開始覺得 Kapman 有點無聊了嗎﹖在 20 關內得到十萬分以上了嗎﹖ 下一步：隱形的關卡！
 Type=SVG
 FileName=invisible.svgz
 Preview=invisible_preview.png
