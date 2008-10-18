@@ -22,7 +22,7 @@
 #include "settings.h"
 
 #include <KActionCollection>
-#include <KDE/KStandardGameAction>
+#include <KStandardGameAction>
 #include <KToggleAction>
 #include <KMessageBox>
 #include <KLocalizedString>

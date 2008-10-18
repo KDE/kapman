@@ -24,7 +24,7 @@
 
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
-#include <KDE/KScoreDialog>
+#include <KScoreDialog>
 #include <KGameDifficulty>
 
 /**
