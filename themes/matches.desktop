@@ -1,6 +1,12 @@
 [KGameTheme]
 Name=Matches
+Name[pt]=Fósforos
+Name[pt_BR]=Fósforos
+Name[uk]=Сірники
 Description=A matches drawn maze
+Description[pt]=Um labirinto desenhado a fósforos
+Description[pt_BR]=Um labirinto desenhado a fósforos
+Description[uk]=Лабіринт з сірників
 Type=SVG
 FileName=matches.svgz
 Preview=matches_preview.png
