@@ -1,13 +1,5 @@
 project(kapman)
 
-find_package(KDE4 REQUIRED)
-find_package(LibKDEGames REQUIRED)
-
-include(KDE4Defaults)
-
-include_directories (${KDE4_INCLUDES})
-add_definitions(${KDE4_DEFINITIONS})
-
 set(kapmanSources
 	bonus.cpp
 	cell.cpp
@@ -47,7 +39,7 @@ kde4_install_icons(${ICON_INSTALL_DIR})
 
 kde4_add_executable(kapman ${kapmanSources})
 
-target_link_libraries(kapman ${KDE4_KDEUI_LIBS}	${KDE4_PHONON_LIBS} ${KDEGAMES_LIBRARY})
+target_link_libraries(kapman ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} kdegames)
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR}/kapman)
