@@ -1,10 +1,12 @@
 [KGameTheme]
 Name=Matches
+Name[gl]=Mistos
 Name[pt]=Fósforos
 Name[pt_BR]=Fósforos
 Name[sv]=Tändstickor
 Name[uk]=Сірники
 Description=A matches drawn maze
+Description[gl]=Un labirinto debuxado con mistos
 Description[pt]=Um labirinto desenhado a fósforos
 Description[pt_BR]=Um labirinto desenhado a fósforos
 Description[sv]=En labyrint bestående av tändstickor
