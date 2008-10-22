@@ -1,7 +1,9 @@
 [KGameTheme]
 Name=Retro
+Name[el]=Ρετρό
 Name[uk]=Ретро
 Description=The old game theme revisited
+Description[el]=Το παλιό θέμα του παιχνιδιού ανανεωμένο
 Description[gl]=O tema antigo do xogo
 Description[pt]=O antigo tema do jogo revisitado
 Description[pt_BR]=O antigo tema do jogo revisitado
