@@ -21,4 +21,5 @@ Comment[zh_TW]=吃掉所有的豆子，並設法逃避小精靈的追捕
 Icon=kapman
 TryExec=kapman
 Exec=kapman
-Categories=Game;ArcadeGame;
+Categories=Qt;KDE;Game;ArcadeGame;
+X-DocPath=kapman/index.html

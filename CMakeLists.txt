@@ -42,7 +42,7 @@ kde4_add_executable(kapman ${kapmanSources})
 target_link_libraries(kapman ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} kdegames)
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR}/kapman)
+install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
 install(FILES ${sounds_ogg} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
