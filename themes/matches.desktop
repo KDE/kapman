@@ -2,6 +2,7 @@
 Name=Matches
 Name[el]=Σπίρτα
 Name[gl]=Mistos
+Name[nds]=Rietsteken
 Name[pt]=Fósforos
 Name[pt_BR]=Fósforos
 Name[sv]=Tändstickor
@@ -10,6 +11,7 @@ Name[zh_TW]=火柴
 Description=A matches drawn maze
 Description[el]=Ένας λαβύρινθος με σπίρτα
 Description[gl]=Un labirinto debuxado con mistos
+Description[nds]=En Biestergoorn ut Rietsteken
 Description[pt]=Um labirinto desenhado a fósforos
 Description[pt_BR]=Um labirinto desenhado a fósforos
 Description[sv]=En labyrint bestående av tändstickor
