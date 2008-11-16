@@ -111,7 +111,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 	}
 	else {
 		// Display the score information
-		KMessageBox::information(this, i18n("Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
+		KMessageBox::information(this, i18np("Your score is %1 point.", "Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
 		// Add the score to the highscores table
 		m_kScoreDialog->setConfigGroup(KGameDifficulty::localizedLevelString());
 		KScoreDialog::FieldInfo scoreInfo;
