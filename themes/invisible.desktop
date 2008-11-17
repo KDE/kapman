@@ -8,6 +8,7 @@ Name[pt_BR]=Invisível
 Name[ru]=Невидимый
 Name[sv]=Ät piller och undkom spöken
 Name[uk]=Невидимий
+Name[x-test]=xxInvisiblexx
 Name[zh_TW]=隱身
 Description=Getting bored with Kapman ? More than 100,000 points over the level 20 ? Next step : the invisible maze !
 Description[el]=Βαρεθήκατε το Kapman ; Περισσότεροι από 100,000 πάνω από το επίπεδο 20; Επόμενο βήμα: ο αόρατος λαβύρινθος !
@@ -18,6 +19,7 @@ Description[pt_BR]=Está aborrecido com o Kapman ? Já tem mais de 100 000 ponto
 Description[ru]=Kapman для вас слишком прост? Более 100,000 очков на 20 уровне? Следующий шаг: невидимый лабиринт!
 Description[sv]=Börjar du tröttna på Kapman? Mer än 100 000 poäng över nivå 20? Nästa steg: Den osynliga labyrinten!
 Description[uk]=Втомилися від Kapman? Маєте більше за 100.000 очок на рівні вищому за 20? Наступний крок: невидимий лабіринт!
+Description[x-test]=xxGetting bored with Kapman ? More than 100,000 points over the level 20 ? Next step : the invisible maze !xx
 Description[zh_TW]=開始覺得 Kapman 有點無聊了嗎﹖在 20 關內得到十萬分以上了嗎﹖ 下一步：隱形的關卡！
 Type=SVG
 FileName=invisible.svgz
