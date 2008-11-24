@@ -39,7 +39,7 @@ kde4_install_icons(${ICON_INSTALL_DIR})
 
 kde4_add_executable(kapman ${kapmanSources})
 
-target_link_libraries(kapman ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} kdegames)
+target_link_libraries(kapman ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${QT_QTXML_LIBRARY} kdegames)
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
