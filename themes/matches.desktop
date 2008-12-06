@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Matches
+Name[cs]=Zápalky
 Name[el]=Σπίρτα
 Name[gl]=Mistos
 Name[km]=ប្រកួត
@@ -11,6 +12,7 @@ Name[ru]=Спички
 Name[sv]=Tändstickor
 Name[uk]=Сірники
 Name[x-test]=xxMatchesxx
+Name[zh_CN]=火柴
 Name[zh_TW]=火柴
 Description=A matches drawn maze
 Description[el]=Ένας λαβύρινθος με σπίρτα
@@ -24,6 +26,7 @@ Description[ru]=Лабиринт из спичек
 Description[sv]=En labyrint bestående av tändstickor
 Description[uk]=Лабіринт з сірників
 Description[x-test]=xxA matches drawn mazexx
+Description[zh_CN]=火柴风格的迷宫
 Description[zh_TW]=火柴式關卡
 Type=SVG
 FileName=matches.svgz
