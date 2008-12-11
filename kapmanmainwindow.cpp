@@ -123,7 +123,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 			if (!m_game->isCheater()) {
 				m_kScoreDialog->exec();
 			} else {		// else, warn the player not to cheat again :)
-				KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater !"));	
+				KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));	
 			}
 		}
 		

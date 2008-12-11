@@ -320,13 +320,13 @@ void GameScene::hideBonus() {
 
 void GameScene::updateInfo(const Game::InformationTypes p_info) {
 	if (p_info & Game::LivesInfo) {
-	    m_livesLabel->setPlainText(i18n("Lives : %1", m_game->getLives()));
+	    m_livesLabel->setPlainText(i18n("Lives: %1", m_game->getLives()));
 	}
 	if (p_info & Game::ScoreInfo) {
-	    m_scoreLabel->setPlainText(i18n("Score : %1", m_game->getScore()));
+	    m_scoreLabel->setPlainText(i18n("Score: %1", m_game->getScore()));
 	}
 	if (p_info & Game::LevelInfo) {
-	    m_levelLabel->setPlainText(i18nc("The number of the game level", "Level : %1", m_game->getLevel()));
+	    m_levelLabel->setPlainText(i18nc("The number of the game level", "Level: %1", m_game->getLevel()));
 	}
 }
 
