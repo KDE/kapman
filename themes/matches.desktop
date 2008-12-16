@@ -2,6 +2,7 @@
 Name=Matches
 Name[cs]=Zápalky
 Name[el]=Σπίρτα
+Name[et]=Tikud
 Name[gl]=Mistos
 Name[km]=ប្រកួត
 Name[nds]=Rietsteken
@@ -17,6 +18,7 @@ Name[zh_CN]=火柴
 Name[zh_TW]=火柴
 Description=A matches drawn maze
 Description[el]=Ένας λαβύρινθος με σπίρτα
+Description[et]=Tikkudest labürint
 Description[gl]=Un labirinto debuxado con mistos
 Description[km]=កា​រផ្គូផ្គង​បានគូរ​ផ្លូវ
 Description[nds]=En Biestergoorn ut Rietsteken
