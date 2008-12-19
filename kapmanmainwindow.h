@@ -25,7 +25,6 @@
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
 #include <KScoreDialog>
-#include <KGameDifficulty>
 
 /**
  * @brief This class enables to create the main window for Kapman.

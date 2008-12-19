@@ -22,7 +22,6 @@
 #include "game.h"
 
 #include <QXmlDefaultHandler>
-#include <QPointF>
 
 /**
  * @brief This class handles XML reader events in order to initialize the Maze properties.

@@ -22,7 +22,6 @@
 
 #include <QGraphicsView>
 #include <QKeyEvent>
-#include <QSize>
 
 /**
  * @brief This class manages the drawing of each element of the Game instance.

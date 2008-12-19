@@ -22,7 +22,6 @@
 #include "character.h"
 #include "kapman.h"
 
-#include <QTimer>
 
 /**
  * @brief This class represents a Ghost for kapman.

@@ -22,7 +22,6 @@
 #include "kapman.h"
 
 #include <QTimeLine>
-#include <QTimer>
 
 /**
  * @brief This class manage the display of the Kapman.

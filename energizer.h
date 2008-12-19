@@ -20,7 +20,6 @@
 #ifndef ENERGIZER_H
 #define ENERGIZER_H
 
-#include <QObject>
 
 #include "element.h"
 

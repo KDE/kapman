@@ -25,10 +25,10 @@
 #include <KStandardGameAction>
 #include <KToggleAction>
 #include <KMessageBox>
-#include <KLocalizedString>
 #include <KConfigDialog>
 #include <KGameThemeSelector>
 #include <KInputDialog>
+#include <KLocale>
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
