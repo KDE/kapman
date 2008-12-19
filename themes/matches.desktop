@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Matches
 Name[cs]=Zápalky
+Name[de]=Streichhölzer
 Name[el]=Σπίρτα
 Name[et]=Tikud
 Name[gl]=Mistos
@@ -17,6 +18,7 @@ Name[x-test]=xxMatchesxx
 Name[zh_CN]=火柴
 Name[zh_TW]=火柴
 Description=A matches drawn maze
+Description[de]=Ein Labyrinth aus Streichhölzern.
 Description[el]=Ένας λαβύρινθος με σπίρτα
 Description[et]=Tikkudest labürint
 Description[gl]=Un labirinto debuxado con mistos
