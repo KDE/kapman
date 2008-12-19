@@ -45,7 +45,7 @@ KapmanMainWindow::KapmanMainWindow() {
 	connect(soundAction, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
     	KAction* levelAction = new KAction(i18n("&Change level"), this);
 	actionCollection()->addAction("level", levelAction);
-	connect(levelAction, SIGNAL(activated()), this, SLOT(changeLevel()));
+	connect(levelAction, SIGNAL(triggered(bool)), this, SLOT(changeLevel()));
 	// Initialize the KGameDifficulty singleton
 	KGameDifficulty::init(this, this, SLOT(initGame()));
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
