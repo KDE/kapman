@@ -20,6 +20,7 @@
 #include "kapmanitem.h"
 #include "characteritem.h"
 #include "ghost.h"
+#include "settings.h"
 
 #include <QGraphicsScene>
 #include <KGameDifficulty>
@@ -60,6 +61,11 @@ KapmanItem::~KapmanItem() {
 }
 
 void KapmanItem::updateDirection() {
+	// TODO This is a temporary fix to avoid the character rotating when the game theme is "Mountain Adventure".
+	// This has to be changed to manage the rotation independently of the used theme.
+	if (Settings::self()->theme() == "themes/mountain.desktop") {
+		return;
+	}
 	QTransform transform;
 	int angle = 0;
 	Kapman* model = (Kapman*)getModel();
