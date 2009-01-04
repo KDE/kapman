@@ -1,0 +1,8 @@
+[KGameTheme]
+Name=Mountain Adventure
+Description=The old game theme revisited
+Type=SVG
+FileName=mountain.svgz
+Preview=mountain_preview.png
+Author=KDE Games Team
+AuthorEmail=kde-games-devel@kde.org

@@ -11,7 +11,7 @@
     </entry>
     <entry name="Theme" type="String" key="Theme">
       <label>The graphical theme to be used.</label>
-      <default>themes/retro.desktop</default>
+      <default>themes/mountain.desktop</default>
     </entry>
     <entry name="Sounds" type="Bool" key="Sounds">
       <label>Whether sound effects should be played.</label>
