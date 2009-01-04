@@ -22,6 +22,7 @@ Name[x-test]=xxMatchesxx
 Name[zh_CN]=火柴
 Name[zh_TW]=火柴
 Description=A matches drawn maze
+Description[da]=En labyrint lavet af tændstikker
 Description[de]=Ein Labyrinth aus Streichhölzern.
 Description[el]=Ένας λαβύρινθος με σπίρτα
 Description[et]=Tikkudest labürint
