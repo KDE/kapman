@@ -29,6 +29,7 @@ set(kapmanData
 file(GLOB themes
 	"themes/*.svgz"
 	"themes/*.desktop"
+	"themes/*.copyright"
 	"themes/*.png"
 )
 file(GLOB sounds_ogg "sounds/*.ogg")
