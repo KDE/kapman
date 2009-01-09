@@ -97,6 +97,11 @@ class GameScene : public QGraphicsScene {
 		 * Loads the game theme.
 		 */
 		void loadTheme();
+
+		/**
+		 * Update theme id elements.
+		 */
+		void updateSvgIds();
 		
 	private slots:
 

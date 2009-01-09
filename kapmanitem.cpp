@@ -61,11 +61,6 @@ KapmanItem::~KapmanItem() {
 }
 
 void KapmanItem::updateDirection() {
-	// TODO This is a temporary fix to avoid the character rotating when the game theme is "Mountain Adventure".
-	// This has to be changed to manage the rotation independently of the used theme.
-	if (Settings::self()->theme() == "themes/mountain.desktop") {
-		return;
-	}
 	QTransform transform;
 	int angle = 0;
 	Kapman* model = (Kapman*)getModel();
@@ -80,6 +75,12 @@ void KapmanItem::updateDirection() {
 		angle = 90;
 	} else if (model->getYSpeed() < 0) {
 		angle = -90;
+	}
+
+	// TODO This is a temporary fix to avoid the character rotating when the game theme is "Mountain Adventure".
+	// This has to be changed to manage the rotation independently of the used theme.
+	if (Settings::self()->theme() == "themes/mountain.desktop") {
+		angle=0;
 	}
 	// Rotate the item
 	transform.translate(boundingRect().width() / 2, boundingRect().height() / 2);
