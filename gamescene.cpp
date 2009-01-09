@@ -190,10 +190,43 @@ void GameScene::loadTheme() {
 		return;
 	}
 	m_cache->discard();
+
+	//Update elementIDs,
+	updateSvgIds();
+
 	update(0, 0, width(), height());
 
 	// Update the theme config: if the default theme is selected, no theme entry is written -> the theme selector does not select the theme
 	Settings::self()->config()->group("General").writeEntry("Theme", Settings::self()->theme());
+}
+
+void GameScene::updateSvgIds() {
+	//Needed so new boundingRects() are read for all SVG elements after a theme change
+	//Only update if elements already exist
+	if (m_ghostItems.size()==0) return;
+
+	// Set the element Id to the right value
+	m_mazeItem->setElementId("maze");
+
+	// Create the KapmanItem
+	m_kapmanItem->setElementId("kapman_0");
+	// Corrects the position of the KapmanItem
+	m_kapmanItem->update(m_game->getKapman()->getX(), m_game->getKapman()->getY());
+
+	for (int i = 0; i < m_ghostItems.size(); ++i) {
+		GhostItem* ghost = m_ghostItems[i];
+		ghost->setElementId(m_game->getGhosts()[i]->getImageId());
+		ghost->update(m_game->getGhosts()[i]->getX(), m_game->getGhosts()[i]->getY());
+	}
+	for (int i = 0; i < m_game->getMaze()->getNbRows();++i) {
+		for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
+			if (m_elementItems[i][j] != NULL) {
+				ElementItem* element = m_elementItems[i][j];
+				element->setElementId(m_game->getMaze()->getCell(i,j).getElement()->getImageId());
+				element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());
+			}
+		}
+	}
 }
 
 void GameScene::intro(const bool p_newLevel) {
