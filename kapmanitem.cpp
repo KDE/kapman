@@ -77,9 +77,7 @@ void KapmanItem::updateDirection() {
 		angle = -90;
 	}
 
-	// TODO This is a temporary fix to avoid the character rotating when the game theme is "Mountain Adventure".
-	// This has to be changed to manage the rotation independently of the used theme.
-	if (Settings::self()->theme() == "themes/mountain.desktop") {
+	if (m_rotationFlag==0) {
 		angle=0;
 	}
 	// Rotate the item

@@ -29,6 +29,7 @@
 #include <QList>
 #include <KPixmapCache>
 #include <KSvgRenderer>
+#include <KGameTheme>
 
 /**
  * @brief This class contains all the Game elements to be drawn on the screen by the GameView instance.
@@ -74,6 +75,9 @@ class GameScene : public QGraphicsScene {
 
 		/** The SVG renderer */
 		KSvgRenderer* m_renderer;
+
+		/** The Game theme */
+		KGameTheme* m_theme;
 		
 	public:
 
@@ -97,11 +101,6 @@ class GameScene : public QGraphicsScene {
 		 * Loads the game theme.
 		 */
 		void loadTheme();
-
-		/**
-		 * Update theme id elements.
-		 */
-		void updateSvgIds();
 		
 	private slots:
 
@@ -159,6 +158,16 @@ class GameScene : public QGraphicsScene {
 		 * Hide the first label in the list of won points labels
 		 */
 		void hidePoints();
+
+		/**
+		 * Update theme id elements.
+		 */
+		void updateSvgIds();
+
+		/**
+		 * Update theme properties.
+		 */
+		void updateThemeProperties();
 };
 
 #endif
