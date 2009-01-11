@@ -43,6 +43,9 @@ class KapmanItem : public CharacterItem {
 		/** Timer used to animate the KapmanItem */
 		QTimeLine * m_animationTimer;
 
+		/** Rotation flag set by theme */
+		bool m_rotationFlag;
+
 	public:
 
 		/**
@@ -110,6 +113,13 @@ class KapmanItem : public CharacterItem {
 		 * Implements the CharacterItem method.
 		 */
 		void blink();
+
+		/**
+		 * Set if the KapmanItem should be rotated (set by theme flag RotateKapman).
+		 * @param 0 or 1
+		 */
+		void setRotationFlag(bool rotate) { m_rotationFlag=rotate; }
+
 };
 
 #endif

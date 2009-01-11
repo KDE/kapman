@@ -24,7 +24,7 @@
 #include <KGameTheme>
 #include <KLocale>
 
-GameScene::GameScene(Game* p_game) : m_game(p_game) {
+GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem(0) {
 	connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
 	connect(p_game, SIGNAL(gameStarted()), this, SLOT(start()));
 	connect(p_game, SIGNAL(pauseChanged(bool, bool)), this, SLOT(setPaused(bool, bool)));
@@ -35,6 +35,9 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 
 	// Connection between Game and GameScene for the display of won points when a bonus or a ghost is eaten
 	connect(p_game, SIGNAL(pointsToDisplay(long, qreal, qreal)), this, SLOT(displayPoints(long, qreal, qreal)));
+
+	// Create the theme instance
+	m_theme = new KGameTheme();
 
 	// Set the pixmap cache limit to improve performance
 	setItemIndexMethod(NoIndex);
@@ -47,7 +50,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 
 	// Create the MazeItem
 	m_mazeItem = new MazeItem();
-	// Give it the shared renderer to avoid loading the whole SVG file again
+	// Give the maze the shared renderer to avoid loading the whole SVG file again
 	m_mazeItem->setSharedRenderer(m_renderer);
 	// Set the element Id to the right value
 	m_mazeItem->setElementId("maze");
@@ -94,6 +97,10 @@ GameScene::GameScene(Game* p_game) : m_game(p_game) {
 	m_bonusItem = new ElementItem(m_game->getBonus());
 	m_bonusItem->setSharedRenderer(m_renderer);
 	m_bonusItem->setElementId("bonus1");
+
+	// All elements are created, update theme properties
+	updateSvgIds();
+	updateThemeProperties();
 
 	// Create the introduction labels
 	m_introLabel = new QGraphicsTextItem(i18n("GET READY !!!"));
@@ -175,6 +182,7 @@ GameScene::~GameScene() {
 	delete m_pauseLabel;
 	delete m_cache;
 	delete m_renderer;
+	delete m_theme;
 }
 
 Game* GameScene::getGame() const {
@@ -182,17 +190,17 @@ Game* GameScene::getGame() const {
 }
 
 void GameScene::loadTheme() {
-	KGameTheme theme;
-	if (!theme.load(Settings::self()->theme())) {
+	if (!m_theme->load(Settings::self()->theme())) {
 		return;
 	}
-	if (!m_renderer->load(theme.graphics())) {
+	if (!m_renderer->load(m_theme->graphics())) {
 		return;
 	}
 	m_cache->discard();
 
-	//Update elementIDs,
+	//Update elementIDs, theme properties
 	updateSvgIds();
+	updateThemeProperties();
 
 	update(0, 0, width(), height());
 
@@ -202,8 +210,8 @@ void GameScene::loadTheme() {
 
 void GameScene::updateSvgIds() {
 	//Needed so new boundingRects() are read for all SVG elements after a theme change
-	//Only update if elements already exist
-	if (m_ghostItems.size()==0) return;
+	// Sanity check, see if game elements already exist
+	if (!m_kapmanItem) return;
 
 	// Set the element Id to the right value
 	m_mazeItem->setElementId("maze");
@@ -226,6 +234,18 @@ void GameScene::updateSvgIds() {
 				element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());
 			}
 		}
+	}
+}
+
+void GameScene::updateThemeProperties() {
+	// Sanity check, see if game elements already exist
+	if (!m_kapmanItem) return;
+
+	// Set the Rotation flag for KapmanItem
+	if (m_theme->themeProperty("RotateKapman")=="0") {
+		m_kapmanItem->setRotationFlag(false);
+	} else {
+		m_kapmanItem->setRotationFlag(true);
 	}
 }
 
