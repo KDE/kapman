@@ -97,7 +97,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 	// If the game was not over
 	if (!gameOver){	
 		// Confirm before starting a new game
-		if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game ?"), i18n("New game")) == KMessageBox::Yes) {
+		if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game?"), i18n("New game")) == KMessageBox::Yes) {
 			// Start a new game
 			initGame();
 		}
@@ -171,7 +171,7 @@ void KapmanMainWindow::close() {
 		m_game->pause();
 	}
 	// Confirm before closing
-	if(KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit Kapman ?"), i18nc("To quit Kapman", "Quit")) == KMessageBox::Yes) {
+	if(KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit Kapman?"), i18nc("To quit Kapman", "Quit")) == KMessageBox::Yes) {
 		KXmlGuiWindow::close();
 	}
 	else {

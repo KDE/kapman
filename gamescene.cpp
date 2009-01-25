@@ -103,7 +103,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	updateThemeProperties();
 
 	// Create the introduction labels
-	m_introLabel = new QGraphicsTextItem(i18n("GET READY !!!"));
+	m_introLabel = new QGraphicsTextItem(i18n("GET READY!!!"));
 	m_introLabel->setFont(QFont("Helvetica", 25, QFont::Bold, false));
 	m_introLabel->setDefaultTextColor(QColor("#FFFF00"));
 	m_introLabel->setZValue(4);
