@@ -292,19 +292,19 @@ void Game::setTimersDuration() {
 }
 
 void Game::playSound(const QString& p_sound) {
-	Phonon::MediaObject* m_usedMedia;
+	Phonon::MediaObject* usedMedia;
 
 	if (Settings::sounds()) {
 		// Choose the media object with the smallest remaining time
 		if (m_media1->remainingTime() <= m_media2->remainingTime()) {
-			m_usedMedia = m_media1;
+			usedMedia = m_media1;
 		} else {
-			m_usedMedia = m_media2;
+			usedMedia = m_media2;
 		}
-		if (m_usedMedia->currentSource().fileName() != p_sound) {
-			m_usedMedia->setCurrentSource(p_sound);
+		if (usedMedia->currentSource().fileName() != p_sound) {
+			usedMedia->setCurrentSource(p_sound);
 		}
-		m_usedMedia->play();
+		usedMedia->play();
 	}
 }
 
