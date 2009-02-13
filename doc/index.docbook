@@ -270,46 +270,6 @@
 <qandaset id="faqlist">
 <qandaentry>
 <question>
-<para>Who made this game?</para>
-</question>
-<answer>
-<para>&kapman; was made by the KapTeam (see the <link linkend="credits">Credits and License</link> chapter). It is maintained by Thomas Gallinari and Pierre-Benoit Besse.</para>
-</answer>
-</qandaentry>
-<qandaentry>
-<question>
-<para>Where can I get cheatcodes?</para>
-</question>
-<answer>
-<para>You can look for cheatcodes inside the source code.</para>
-</answer>
-</qandaentry>
-<qandaentry>
-<question>
-<para>How do I start a new game?</para>
-</question>
-<answer>
-<para>A new game is already started when you launch &kapman;. Anyway, you can start a new game by clicking on the <menuchoice><guimenu>Game</guimenu><guimenuitem>New</guimenuitem></menuchoice> menu item, or by the <keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo> key combination. See the <link linkend="menubar">Menubar</link> section for more details.</para>
-</answer>
-</qandaentry>
-<qandaentry>
-<question>
-<para>I have started a new game. What do I do now?</para>
-</question>
-<answer>
-<para>You can start playing by pressing any arrow key. You must eat every pill and energizer of each level, while escaping the ghosts. See the <link linkend="howto">How to Play</link> chapter for more details.</para>
-</answer>
-</qandaentry>
-<qandaentry>
-<question>
-<para>How do I pause the game?</para>
-</question>
-<answer>
-<para>You can pause the game by pressing <keycap>P</keycap> or <keycap>Esc</keycap>. See the <link linkend="keybindings">Default Keybindings</link> section for more details.</para>
-</answer>
-</qandaentry>
-<qandaentry>
-<question>
 <para>I want to change the way this game looks. Can I?</para>
 </question>
 <answer>
@@ -338,14 +298,6 @@
 </question>
 <answer>
 <para>You can not, and it is deliberate. We think that the game would be too easy if you could save the game and reload it as you lose your lives.</para>
-</answer>
-</qandaentry>
-<qandaentry>
-<question>
-<para>Where are the high scores?</para>
-</question>
-<answer>
-<para>You can see the high scores table by clicking on the <menuchoice><guimenu>Game</guimenu><guimenuitem>Show High Scores</guimenuitem></menuchoice> menu item. See the <link linkend="menubar">Menubar</link> section for more details.</para>
 </answer>
 </qandaentry>
 <qandaentry>
