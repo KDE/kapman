@@ -1,0 +1,10 @@
+[KGameTheme]
+Name=Mummies Crypt
+Description=Avoid the Mummies at all costs!
+Type=SVG
+VersionFormat=1
+FileName=mummies_crypt.svgz
+Preview=mummy_preview.png
+Author=Sean Wilson
+AuthorEmail=suseux@gmail.com
+RotateKapman=0
