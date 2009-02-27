@@ -103,7 +103,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	updateThemeProperties();
 
 	// Create the introduction labels
-	m_introLabel = new QGraphicsTextItem(i18n("GET READY !!!"));
+	m_introLabel = new QGraphicsTextItem(i18n("GET READY!!!"));
 	m_introLabel->setFont(QFont("Helvetica", 25, QFont::Bold, false));
 	m_introLabel->setDefaultTextColor(QColor("#FFFF00"));
 	m_introLabel->setZValue(4);
@@ -147,12 +147,12 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	// Display the score label
 	addItem(m_scoreLabel);
 	m_scoreLabel->setPos(Cell::SIZE, height() + Cell::SIZE);
-	// Display the lives label
-	addItem(m_livesLabel);
-	m_livesLabel->setPos(width() - m_livesLabel->boundingRect().width() - 20 , height() - Cell::SIZE - m_livesLabel->boundingRect().height() / 2);
 	// Display the level label
 	addItem(m_levelLabel);
-	m_levelLabel->setPos((width() - m_levelLabel->boundingRect().width()) / 2 , height() - Cell::SIZE - m_levelLabel->boundingRect().height() / 2);
+	m_levelLabel->setPos((width() - m_levelLabel->boundingRect().width()) / 2 , height() + Cell::SIZE);
+	// Display the lives label
+	addItem(m_livesLabel);
+	m_livesLabel->setPos(width() - m_livesLabel->boundingRect().width() - Cell::SIZE , height() + Cell::SIZE);
 	// Display each Pill and Energizer item and introduction labels
 	intro(true);
 }
