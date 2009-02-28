@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Mummies Crypt
+Name[uk]=Склеп з муміями
+Name[zh_TW]=木乃伊之穴
 Description=Avoid the Mummies at all costs!
+Description[uk]=Уникайте мумій за будь-яку ціну!
+Description[zh_TW]=盡全力躲開木乃伊！
 Type=SVG
 VersionFormat=1
 FileName=mummies_crypt.svgz
