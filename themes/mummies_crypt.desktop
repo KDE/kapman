@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Mummies Crypt
 Name[et]=Muumiate krüpt
+Name[ga]=Uaimh na Mumaithe
 Name[nds]=De Mumien ehr Graff
 Name[pt]=Cripta das Múmias
 Name[pt_BR]=Cripta das Múmias
@@ -8,6 +9,12 @@ Name[sv]=Mumiens krypta
 Name[uk]=Склеп з муміями
 Name[zh_TW]=木乃伊之穴
 Description=Avoid the mummies at all costs!
+Description[ga]=Seachain na mumaithe ar ais nó ar éigean!
+Description[nds]=Nienich de Mumien in de Mööt kamen!
+Description[pt]=Evitar as múmias a todo o custo!
+Description[pt_BR]=Evitar as múmias a todo o custo!
+Description[sv]=Undvik mumier till varje pris!
+Description[uk]=Уникайте мумій за будь-яку ціну!
 Type=SVG
 VersionFormat=1
 FileName=mummies_crypt.svgz
