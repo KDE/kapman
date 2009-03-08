@@ -2,6 +2,7 @@
 Type=Application
 Version=1.0
 Name=Kapman
+Name[hne]=केपमेन
 Name[nn]=Kappmann
 Name[x-test]=xxKapmanxx
 GenericName=Pac-Man clone
@@ -14,6 +15,7 @@ GenericName[et]=Pac-Mani kloon
 GenericName[fr]=Clone de Pac-Man
 GenericName[ga]=Clón Pac Man
 GenericName[gl]=Clone do Pac-Man
+GenericName[hne]=पेक-मेन प्रतिरूप
 GenericName[it]=Clone di Pac-Man
 GenericName[ja]=パックマンのクローン
 GenericName[km]=ក្លូន Pac-Man
