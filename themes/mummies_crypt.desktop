@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Mummies Crypt
 Name[de]=Mumien-Gruft
+Name[el]=Η κρύπτη με τις μούμιες
 Name[et]=Muumiate krüpt
 Name[ga]=Uaimh na Mumaithe
 Name[nds]=De Mumien ehr Graff
@@ -12,6 +13,7 @@ Name[x-test]=xxMummies Cryptxx
 Name[zh_TW]=木乃伊之穴
 Description=Avoid the mummies at all costs!
 Description[de]=Meiden Sie die Mumien auf jeden Fall!
+Description[el]=Αποφύγετε τις μούμιες με κάθε τρόπο!
 Description[et]=Väldi iga hinna eest muumiaid!
 Description[ga]=Seachain na mumaithe ar ais nó ar éigean!
 Description[nds]=Nienich de Mumien in de Mööt kamen!
