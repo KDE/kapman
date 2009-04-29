@@ -135,13 +135,13 @@ class Character : public Element {
 		 * Gets the Character speed.
 		 * @return the character speed
 		 */
-		qreal getSpeed();
+		qreal getSpeed() const;
 
 		/**
 		 * Gets the Character normal speed.
 		 * @return the character speed reference, when in "normal" behaviour
 		 */
-		qreal getNormalSpeed();
+		qreal getNormalSpeed() const;
 		
 		/**
 		 * Set the Character x-speed value.

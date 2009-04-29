@@ -64,11 +64,11 @@ qreal Character::getYSpeed() const {
 	return m_ySpeed;
 }
 
-qreal Character::getSpeed() {
+qreal Character::getSpeed() const {
 	return m_speed;
 }
 
-qreal Character::getNormalSpeed() {
+qreal Character::getNormalSpeed() const {
 	return m_normalSpeed;
 }
 
