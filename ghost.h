@@ -39,6 +39,10 @@ class Ghost : public Character {
 			EATEN = 2
 		};
 
+        /** The value of an Ghost */
+        static const int POINTS;
+
+
 	private:
 
 		/** Max speed ratio, compared with the initial speed  */

@@ -163,7 +163,7 @@ class Game : public QObject {
 		/**
 		 * @return the Bonus instance
 		 */
-		Bonus* getBonus(); 
+		Bonus* getBonus() const; 
 		
 		/**
 		 * @return the main timer

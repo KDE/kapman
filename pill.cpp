@@ -24,7 +24,7 @@ const int Pill::POINTS = 10;
 
 Pill::Pill(qreal p_x, qreal p_y, Maze* p_maze, const QString& p_imageId) : Element(p_x, p_y, p_maze) {
 	Element::setImageId(p_imageId);
-	m_points = 10;
+	m_points = Pill::POINTS;
 	m_type = Element::PILL;
 }
 

@@ -214,7 +214,7 @@ void Game::setLevel(int p_level) {
 	emit(levelStarted(true));
 }
 
-Bonus* Game::getBonus() {
+Bonus* Game::getBonus() const {
 	return m_bonus;
 }
 

@@ -53,7 +53,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 		// Create the Maze matrix
 		m_game->getMaze()->init(nbRows, nbColumns);
 	}
-	if (p_qName == "Bonus") {
+	else if (p_qName == "Bonus") {
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {
 			if (p_atts.qName(i) == "rowIndex") {
@@ -75,7 +75,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 		}
 		m_game->createBonus(QPointF(x_position, y_position));
 	}
-	if (p_qName == "Kapman") {
+	else if (p_qName == "Kapman") {
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {
 			if (p_atts.qName(i) == "rowIndex") {
@@ -97,8 +97,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 		}
 		m_game->createKapman(QPointF(x_position, y_position));
 	}
-
-	if (p_qName == "Ghost") {
+	else if (p_qName == "Ghost") {
 		QString imageId = "";
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {

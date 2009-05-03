@@ -28,7 +28,7 @@ Cell::~Cell() {
 	delete m_element;
 }
 
-Cell::Type Cell::getType() {
+Cell::Type Cell::getType() const {
 	return m_type;
 }
 
@@ -36,7 +36,7 @@ void Cell::setType(Cell::Type p_type) {
 	m_type = p_type;
 }
 
-Element* Cell::getElement() {
+Element* Cell::getElement() const {
 	return m_element;
 }
 

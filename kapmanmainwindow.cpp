@@ -17,7 +17,6 @@
  */
 
 #include "kapmanmainwindow.h"
-#include "gameview.h"
 #include "gamescene.h"
 #include "settings.h"
 

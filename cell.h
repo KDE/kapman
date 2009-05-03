@@ -69,7 +69,7 @@ class Cell {
 		 * Gets the Cell type.
 		 * @return the Cell type
 		 */
-		Type getType();
+		Type getType() const;
 
 		/**
 		 * Sets the Cell type.
@@ -81,7 +81,7 @@ class Cell {
 		 * Gets the Element that is on the Cell.
 		 * @return the Element that is on the Cell
 		 */
-		Element* getElement();
+		Element* getElement() const;
 
 		/**
 		 * Sets the Element that is on the Cell.
