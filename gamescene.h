@@ -65,9 +65,6 @@ class GameScene : public QGraphicsScene {
 		QGraphicsTextItem* m_introLabel;
 		QGraphicsTextItem* m_introLabel2;
 		QGraphicsTextItem* m_newLevelLabel;
-		QGraphicsTextItem* m_scoreLabel;
-		QGraphicsTextItem* m_livesLabel;
-		QGraphicsTextItem* m_levelLabel;
 		QGraphicsTextItem* m_pauseLabel;
 
 		/** The pixmap cache */
@@ -139,12 +136,6 @@ class GameScene : public QGraphicsScene {
 		 * Remove the Bonus from the GameScene.
 		 */
 		void hideBonus();
-	
-		/**
-		 * Upadates the Game information labels.
-		 * @param p_info the type of the information to be updated
-		 */
-		void updateInfo(const Game::InformationTypes p_info);
 
 		/**
 		 * Display won Points on the scene when a Bonus or a Ghosts is eaten

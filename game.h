@@ -108,15 +108,6 @@ class Game : public QObject {
 		
 	public:
 
-		/** The different types of information about the game */
-		enum Information { NoInfo = 0,
-				   ScoreInfo = 1,	// Score
-				   LivesInfo = 2,	// Number of remaining lives
-				   LevelInfo = 4,	// Current level
-				   AllInfo = ScoreInfo | LivesInfo | LevelInfo };
-		/** A flag for the Information enum */
-		Q_DECLARE_FLAGS(InformationTypes, Information)
-
 		/**
 		 * Creates a new Game instance.
 		 * @param p_difficulty the KGameDifficulty level of the Game
@@ -357,11 +348,24 @@ class Game : public QObject {
 		void bonusOff();
 		
 		/**
-		 * Emitted when the Game data (score, level, lives) have changed.
-		 * @param p_infoType the type of data that have changed
+		 * Emitted when the level have changed.
+		 * @param p_level the new level data
 		 */
-		void dataChanged(Game::InformationTypes p_infoType);
+		void levelChanged( unsigned int p_level );
 
+		/**
+		 * Emitted when the score have changed.
+		 * @param p_score the new score data
+		 */
+		void scoreChanged( unsigned int p_score );
+		
+		/**
+		 * Emitted when the lives have changed.
+		 * @param p_lives the new lives data
+		 */
+		void livesChanged( unsigned int p_lives );
+
+		
 		/**
 		 * Emitted when a ghost or a bonus is eaten. It tells to the scene to
 		 * display the number of won points

@@ -26,6 +26,8 @@
 #include <QGraphicsView>
 #include <KScoreDialog>
 
+class KStatusBar;
+
 /**
  * @brief This class enables to create the main window for Kapman.
  */
@@ -43,6 +45,8 @@ class KapmanMainWindow : public KXmlGuiWindow {
 
 		/** The highscores dialog */
 		KScoreDialog* m_kScoreDialog;
+
+		KStatusBar* m_statusBar;
 		
 	public:
 
@@ -100,6 +104,25 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 * Closes the KapmanMainWindow.
 		 */
 		void close();
+		
+		/**
+		 * Refreshes new level value on Status Bar.
+		 * @param p_level is level value
+		 */
+		void displayLevel( unsigned int p_level );
+		
+		/**
+		 * Refreshes new score value on Status Bar.
+		 * @param p_score is score value
+		 */
+		void displayScore( unsigned int p_score );
+		
+		/**
+		 * Refreshes new lives value on Status Bar.
+		 * @param p_lives is lives value
+		 */
+		void displayLives( unsigned int p_lives );
+
 };
 
 #endif

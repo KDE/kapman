@@ -209,7 +209,9 @@ void Game::setLevel(int p_level) {
 	}
 	setTimersDuration();
 	m_bonus->setPoints(m_level * 100);
-	emit(dataChanged(AllInfo));
+	emit(scoreChanged(m_points));
+	emit(livesChanged(m_lives));
+	emit(levelChanged(m_level));
 	emit(pauseChanged(false, true));
 	emit(levelStarted(true));
 }
@@ -353,7 +355,7 @@ void Game::keyPressEvent(QKeyEvent* p_event) {
 			if (p_event->modifiers() == (Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier)) {
 				m_lives++;
 				m_isCheater = true;
-				emit(dataChanged(LivesInfo));
+				emit(livesChanged(m_lives));
 			}
 			break;
 		case Qt::Key_L:
@@ -397,7 +399,7 @@ void Game::kapmanDeath() {
 }
 
 void Game::resumeAfterKapmanDeath() {
-	emit(dataChanged(LivesInfo));
+	emit(livesChanged(m_lives));
 	// Start the timer
 	start();
 	// Remove a possible bonus
@@ -446,7 +448,7 @@ void Game::winPoints(Element* p_element) {
 	if (m_points / 10000 > (m_points - wonPoints) / 10000) {
 		playSound(KStandardDirs::locate("sound", "kapman/life.ogg"));
 		m_lives++;
-		emit(dataChanged(LivesInfo));
+		emit(livesChanged(m_lives));
 	}
 	// If the eaten element is an energyzer we change the ghosts state
 	if (p_element->getType() == Element::ENERGYZER) {
@@ -481,7 +483,7 @@ void Game::winPoints(Element* p_element) {
 		emit(bonusOn());
 		m_bonusTimer->start();
 	}	
-	emit(dataChanged(ScoreInfo));
+	emit(scoreChanged(m_points));
 }
 
 void Game::nextLevel() {
@@ -503,7 +505,9 @@ void Game::nextLevel() {
 	// Update the timers duration with the new speed
 	setTimersDuration();
 	// Update the score, level and lives labels
-	emit(dataChanged(AllInfo));
+	emit(scoreChanged(m_points));
+	emit(livesChanged(m_lives));
+	emit(levelChanged(m_level));
 	// Update the view
 	emit(levelStarted(true));
 }

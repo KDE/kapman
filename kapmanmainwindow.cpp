@@ -28,6 +28,7 @@
 #include <KGameThemeSelector>
 #include <KInputDialog>
 #include <KLocale>
+#include <KStatusBar>
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
@@ -45,6 +46,13 @@ KapmanMainWindow::KapmanMainWindow() {
     	KAction* levelAction = new KAction(i18n("&Change level"), this);
 	actionCollection()->addAction("level", levelAction);
 	connect(levelAction, SIGNAL(triggered(bool)), this, SLOT(changeLevel()));
+	// Add a statusbar to show level,score,lives information
+	m_statusBar = statusBar();
+	m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
+	m_statusBar->insertItem(i18nc("Used to inform the user of their current score", "Score: %1", 0), 2, 1);
+	m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", 3), 4, 1);
+
+	
 	// Initialize the KGameDifficulty singleton
 	KGameDifficulty::init(this, this, SLOT(initGame()));
  	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
@@ -58,6 +66,7 @@ KapmanMainWindow::KapmanMainWindow() {
 }
 
 KapmanMainWindow::~KapmanMainWindow() {
+	delete m_statusBar;
 	delete m_game;
 	delete m_view;
 	delete m_kScoreDialog;
@@ -72,6 +81,11 @@ void KapmanMainWindow::initGame() {
 	// Create a new Game instance
 	m_game = new Game(KGameDifficulty::level());
 	connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));		// TODO Remove the useless bool parameter from gameOver()
+	connect(m_game, SIGNAL( levelChanged( unsigned int ) ), this, SLOT( displayLevel( unsigned int ) ));
+	connect(m_game, SIGNAL( scoreChanged( unsigned int ) ), this, SLOT( displayScore( unsigned int ) ));
+	connect(m_game, SIGNAL( livesChanged( unsigned int ) ), this, SLOT( displayLives( unsigned int ) ));
+	
+	
 	// If a GameView instance already exists
 	if (m_view) {
 		// Delete the GameView instance
@@ -83,6 +97,7 @@ void KapmanMainWindow::initGame() {
 	setCentralWidget(m_view);
 	m_view->setFocus();
 }
+
 
 void KapmanMainWindow::newGame(const bool gameOver) {
 	bool gameRunning;		// True if the game is running (game timer is active), false otherwise
@@ -182,3 +197,23 @@ void KapmanMainWindow::close() {
 	}
 }
 
+void KapmanMainWindow::displayLevel(unsigned int p_level)
+{
+	m_statusBar->changeItem(i18nc(
+			"Used to display the current level of play to the user",
+			"Level: %1", p_level), 1);
+}
+
+void KapmanMainWindow::displayScore(unsigned int p_score)
+{
+	m_statusBar->changeItem(i18nc(
+			"Used to inform the user of their current score", "Score: %1",
+			p_score), 2);
+}
+
+void KapmanMainWindow::displayLives(unsigned int p_lives)
+{
+	m_statusBar->changeItem(i18nc(
+			"Used to tell the user how many lives they have left", "Lives: %1",
+			p_lives), 4);
+}

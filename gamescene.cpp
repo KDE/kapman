@@ -31,7 +31,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	connect(p_game, SIGNAL(elementEaten(qreal, qreal)), this, SLOT(hideElement(qreal, qreal)));
 	connect(p_game, SIGNAL(bonusOn()), this, SLOT(displayBonus()));	
 	connect(p_game, SIGNAL(bonusOff()), this, SLOT(hideBonus()));
-	connect(p_game, SIGNAL(dataChanged(Game::InformationTypes)), this, SLOT(updateInfo(Game::InformationTypes)));
 
 	// Connection between Game and GameScene for the display of won points when a bonus or a ghost is eaten
 	connect(p_game, SIGNAL(pointsToDisplay(long, qreal, qreal)), this, SLOT(displayPoints(long, qreal, qreal)));
@@ -121,18 +120,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	m_pauseLabel->setFont(QFont("Helvetica", 35, QFont::Bold, false));
 	m_pauseLabel->setDefaultTextColor(QColor("#FFFF00"));
 	m_pauseLabel->setZValue(4);
-	// Create the score label
-	m_scoreLabel = new QGraphicsTextItem();
-	m_scoreLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
-	m_scoreLabel->setDefaultTextColor(QColor("#FFFFFF"));
-	// Create the lives label
-	m_livesLabel = new QGraphicsTextItem();
-	m_livesLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
-	m_livesLabel->setDefaultTextColor(QColor("#FFFFFF"));
-	// Create the level label
-	m_levelLabel = new QGraphicsTextItem();
-	m_levelLabel->setFont(QFont("Helvetica", 15, QFont::Bold, false));
-	m_levelLabel->setDefaultTextColor(QColor("#FFFFFF"));
 
 	// Display the MazeItem
 	addItem(m_mazeItem);
@@ -142,17 +129,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	for (int i = 0; i < m_ghostItems.size(); ++i) {
 		addItem(m_ghostItems[i]);
 	}
-	// Initialize the information labels (score, lives and label)
-	updateInfo(Game::AllInfo);
-	// Display the score label
-	addItem(m_scoreLabel);
-	m_scoreLabel->setPos(Cell::SIZE, height() + Cell::SIZE);
-	// Display the level label
-	addItem(m_levelLabel);
-	m_levelLabel->setPos((width() - m_levelLabel->boundingRect().width()) / 2 , height() + Cell::SIZE);
-	// Display the lives label
-	addItem(m_livesLabel);
-	m_livesLabel->setPos(width() - m_livesLabel->boundingRect().width() - Cell::SIZE , height() + Cell::SIZE);
 	// Display each Pill and Energizer item and introduction labels
 	intro(true);
 }
@@ -176,9 +152,6 @@ GameScene::~GameScene() {
 	delete m_introLabel;
 	delete m_introLabel2;
 	delete m_newLevelLabel;
-	delete m_scoreLabel;
-	delete m_livesLabel;
-	delete m_levelLabel;
 	delete m_pauseLabel;
 	delete m_cache;
 	delete m_renderer;
@@ -370,17 +343,6 @@ void GameScene::hideBonus() {
 	}
 }
 
-void GameScene::updateInfo(const Game::InformationTypes p_info) {
-	if (p_info & Game::LivesInfo) {
-	    m_livesLabel->setPlainText(i18n("Lives: %1", m_game->getLives()));
-	}
-	if (p_info & Game::ScoreInfo) {
-	    m_scoreLabel->setPlainText(i18n("Score: %1", m_game->getScore()));
-	}
-	if (p_info & Game::LevelInfo) {
-	    m_levelLabel->setPlainText(i18nc("The number of the game level", "Level: %1", m_game->getLevel()));
-	}
-}
 
 void GameScene::displayPoints(long p_wonPoints, qreal p_xPos, qreal p_yPos) {
 	// Launch a singleShot timer
