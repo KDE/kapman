@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Mummies Crypt
+Name[da]=Mumiernes krypt
 Name[de]=Mumien-Gruft
 Name[el]=Η κρύπτη με τις μούμιες
 Name[et]=Muumiate krüpt
@@ -16,6 +17,7 @@ Name[x-test]=xxMummies Cryptxx
 Name[zh_CN]=木乃伊的洞窟
 Name[zh_TW]=木乃伊之穴
 Description=Avoid the mummies at all costs!
+Description[da]=Undgå mumierne for enhver pris
 Description[de]=Meiden Sie die Mumien auf jeden Fall!
 Description[el]=Αποφύγετε τις μούμιες με κάθε τρόπο!
 Description[et]=Väldi iga hinna eest muumiaid!
