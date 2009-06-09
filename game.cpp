@@ -438,7 +438,7 @@ void Game::winPoints(Element* p_element) {
 	}
 	// Else you just win the value of the element
 	else {
-		wonPoints = p_element->getPoints()*m_level;
+		wonPoints = p_element->getPoints();
 	}
 
 	// Update of the points value
