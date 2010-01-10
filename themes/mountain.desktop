@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Mountain Adventure
 Name[ca]=Aventura de la muntanya
+Name[ca@valencia]=Aventura de la muntanya
 Name[cs]=Horské dobrodružství
 Name[da]=Mountain Adventure
 Name[de]=Bergabenteuer
@@ -36,6 +37,7 @@ Name[zh_CN]=山中冒险
 Name[zh_TW]=山中冒險
 Description=Default
 Description[ca]=Per omissió
+Description[ca@valencia]=Per omissió
 Description[cs]=Výchozí
 Description[da]=Standard
 Description[de]=Standard

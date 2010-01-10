@@ -1,6 +1,7 @@
 [KGameTheme]
 Name=Matches
 Name[ca]=Llumins
+Name[ca@valencia]=Llumins
 Name[cs]=Zápalky
 Name[da]=Matches
 Name[de]=Streichhölzer
@@ -39,6 +40,7 @@ Name[zh_CN]=火柴
 Name[zh_TW]=火柴
 Description=A matches drawn maze
 Description[ca]=Un laberint dissenyat amb llumins
+Description[ca@valencia]=Un laberint dissenyat amb llumins
 Description[da]=En labyrint lavet af tændstikker
 Description[de]=Ein Labyrinth aus Streichhölzern.
 Description[el]=Ένας λαβύρινθος με σπίρτα
