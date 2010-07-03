@@ -28,7 +28,7 @@
 #include <QGraphicsScene>
 #include <QList>
 #include <KPixmapCache>
-#include <KSvgRenderer>
+#include <QSvgRenderer>
 #include <KGameTheme>
 
 /**
@@ -71,7 +71,7 @@ class GameScene : public QGraphicsScene {
 		KPixmapCache* m_cache;
 
 		/** The SVG renderer */
-		KSvgRenderer* m_renderer;
+		QSvgRenderer* m_renderer;
 
 		/** The Game theme */
 		KGameTheme* m_theme;

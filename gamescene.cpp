@@ -44,7 +44,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	m_cache->setCacheLimit(3 * 1024);
 
 	// Load the SVG file
-	m_renderer = new KSvgRenderer();
+	m_renderer = new QSvgRenderer();
 	loadTheme();
 
 	// Create the MazeItem
