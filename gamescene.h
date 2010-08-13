@@ -27,7 +27,6 @@
 
 #include <QGraphicsScene>
 #include <QList>
-#include <KPixmapCache>
 #include <QSvgRenderer>
 #include <KGameTheme>
 
@@ -66,9 +65,6 @@ class GameScene : public QGraphicsScene {
 		QGraphicsTextItem* m_introLabel2;
 		QGraphicsTextItem* m_newLevelLabel;
 		QGraphicsTextItem* m_pauseLabel;
-
-		/** The pixmap cache */
-		KPixmapCache* m_cache;
 
 		/** The SVG renderer */
 		QSvgRenderer* m_renderer;

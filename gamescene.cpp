@@ -38,10 +38,7 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	// Create the theme instance
 	m_theme = new KGameTheme();
 
-	// Set the pixmap cache limit to improve performance
 	setItemIndexMethod(NoIndex);
-	m_cache = new KPixmapCache("kapman_cache");
-	m_cache->setCacheLimit(3 * 1024);
 
 	// Load the SVG file
 	m_renderer = new QSvgRenderer();
@@ -153,7 +150,6 @@ GameScene::~GameScene() {
 	delete m_introLabel2;
 	delete m_newLevelLabel;
 	delete m_pauseLabel;
-	delete m_cache;
 	delete m_renderer;
 	delete m_theme;
 }
@@ -169,7 +165,6 @@ void GameScene::loadTheme() {
 	if (!m_renderer->load(m_theme->graphics())) {
 		return;
 	}
-	m_cache->discard();
 
 	//Update elementIDs, theme properties
 	updateSvgIds();
