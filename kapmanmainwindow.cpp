@@ -41,10 +41,10 @@ KapmanMainWindow::KapmanMainWindow() {
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     	KAction* soundAction = new KToggleAction(i18n("&Play sounds"), this);
 	soundAction->setChecked(Settings::sounds());
-	actionCollection()->addAction("sounds", soundAction);
+	actionCollection()->addAction( QLatin1String( "sounds" ), soundAction);
 	connect(soundAction, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
     	KAction* levelAction = new KAction(i18n("&Change level"), this);
-	actionCollection()->addAction("level", levelAction);
+	actionCollection()->addAction( QLatin1String( "level" ), levelAction);
 	connect(levelAction, SIGNAL(triggered(bool)), this, SLOT(changeLevel()));
 	// Add a statusbar to show level,score,lives information
 	m_statusBar = statusBar();

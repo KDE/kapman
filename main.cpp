@@ -38,7 +38,7 @@ int main(int argc, char** argv) {
 	// Create the application
 	KApplication app;
 	// Insert libkdegames catalog, for translation of libkdegames messages
-	KGlobal::locale()->insertCatalog("libkdegames");
+	KGlobal::locale()->insertCatalog( QLatin1String( "libkdegames" ));
 	// Create the main window
 	KapmanMainWindow* window = new KapmanMainWindow();
 	// Show the main window
