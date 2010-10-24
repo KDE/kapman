@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Mummies Crypt
+Name[ast]=La cripta de la momia
 Name[ca]=La cripta de les mòmies
 Name[ca@valencia]=La cripta de les mòmies
 Name[cs]=Krypta mumií
@@ -39,6 +40,7 @@ Name[x-test]=xxMummies Cryptxx
 Name[zh_CN]=木乃伊的洞窟
 Name[zh_TW]=木乃伊之穴
 Description=Avoid the mummies at all costs!
+Description[ast]=¡Evita les momies como seya!
 Description[ca]=Evita les mòmies a tota costa!
 Description[ca@valencia]=Evita les mòmies a tota costa!
 Description[da]=Undgå mumierne for enhver pris
