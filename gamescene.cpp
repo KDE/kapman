@@ -38,8 +38,6 @@ GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 	// Create the theme instance
 	m_theme = new KGameTheme();
 
-	setItemIndexMethod(NoIndex);
-
 	// Load the SVG file
 	m_renderer = new QSvgRenderer();
 	loadTheme();

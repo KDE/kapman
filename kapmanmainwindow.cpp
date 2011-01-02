@@ -73,12 +73,8 @@ KapmanMainWindow::~KapmanMainWindow() {
 }
 
 void KapmanMainWindow::initGame() {
-	// If a Game instance already exists
-	if (m_game) {
-		// Delete the Game instance
-		delete m_game;
-	}
 	// Create a new Game instance
+	delete m_game;
 	m_game = new Game(KGameDifficulty::level());
 	connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));		// TODO Remove the useless bool parameter from gameOver()
 	connect(m_game, SIGNAL( levelChanged( unsigned int ) ), this, SLOT( displayLevel( unsigned int ) ));
@@ -86,16 +82,15 @@ void KapmanMainWindow::initGame() {
 	connect(m_game, SIGNAL( livesChanged( unsigned int ) ), this, SLOT( displayLives( unsigned int ) ));
 	
 	
-	// If a GameView instance already exists
-	if (m_view) {
-		// Delete the GameView instance
-		delete m_view;
-	}
 	// Create a new GameView instance
+	delete m_view;
 	m_view = new GameView(m_game);
 	m_view->setBackgroundBrush(Qt::black);
 	setCentralWidget(m_view);
 	m_view->setFocus();
+	// For some reason, calling setFocus() immediately won't work after the
+	// score dialog has been shown, so do it again after an eventloop run.
+	QTimer::singleShot(0, m_view, SLOT(setFocus()));
 }
 
 
