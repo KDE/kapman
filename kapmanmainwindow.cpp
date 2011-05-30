@@ -162,6 +162,7 @@ void KapmanMainWindow::showSettings() {
 	}
 	KConfigDialog* settingsDialog = new KConfigDialog(this, "settings", Settings::self());
 	settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "kapman");
+	settingsDialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
 	connect(settingsDialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
 	settingsDialog->show();
 }
