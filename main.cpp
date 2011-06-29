@@ -22,7 +22,7 @@
 
 int main(int argc, char** argv) {
 	// About Kapman
-	KAboutData about("kapman", 0, ki18n("Kapman"), "1.0.0",
+	KAboutData about("kapman", 0, ki18n("Kapman"), "1.0.1",
 		ki18n("Kapman: Go through the levels escaping ghosts!"),
 		KAboutData::License_GPL, ki18n("Copyright (c) 2007-2008 The KapTeam"));
 	// Alphabetical order of Developers of Kapman
