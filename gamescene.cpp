@@ -274,6 +274,10 @@ void GameScene::setPaused(const bool p_pause, const bool p_fromUser) {
 		if (p_fromUser) {
 			// If the label was not displayed yet
 			if (!items().contains(m_pauseLabel)) {
+				// FIXME: Hack to remove labels when pausing game while init labels are shown (icwiener)
+				//        This should be done cleaner
+				// FIXME #2: start() is a misleading method name ...
+				start();
 				// Display the pause label
 				addItem(m_pauseLabel);
 				m_pauseLabel->setPos((width() - m_pauseLabel->boundingRect().width()) / 2, (height() - m_pauseLabel->boundingRect().height()) / 2);
