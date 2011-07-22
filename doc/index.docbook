@@ -257,7 +257,7 @@
 <listitem><para><action>Turn down</action> - <keysym>Down Arrow</keysym></para></listitem>
 <listitem><para><action>Turn right</action> - <keysym>Right Arrow</keysym></para></listitem>
 <listitem><para><action>Turn left</action> - <keysym>Left Arrow</keysym></para></listitem>
-<listitem><para><action>Pause</action> - <keycap>P</keycap> or <keycap>Esc</keycap></para></listitem>
+<listitem><para><action>Pause</action> - <keycap>P</keycap> or &Esc;</para></listitem>
 </itemizedlist>
 </para>
 </sect1>
