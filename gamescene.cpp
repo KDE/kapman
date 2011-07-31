@@ -27,13 +27,13 @@
 GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem(0) {
 	connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
 	connect(p_game, SIGNAL(gameStarted()), this, SLOT(start()));
-	connect(p_game, SIGNAL(pauseChanged(bool, bool)), this, SLOT(setPaused(bool, bool)));
-	connect(p_game, SIGNAL(elementEaten(qreal, qreal)), this, SLOT(hideElement(qreal, qreal)));
+	connect(p_game, SIGNAL(pauseChanged(bool,bool)), this, SLOT(setPaused(bool,bool)));
+	connect(p_game, SIGNAL(elementEaten(qreal,qreal)), this, SLOT(hideElement(qreal,qreal)));
 	connect(p_game, SIGNAL(bonusOn()), this, SLOT(displayBonus()));	
 	connect(p_game, SIGNAL(bonusOff()), this, SLOT(hideBonus()));
 
 	// Connection between Game and GameScene for the display of won points when a bonus or a ghost is eaten
-	connect(p_game, SIGNAL(pointsToDisplay(long, qreal, qreal)), this, SLOT(displayPoints(long, qreal, qreal)));
+	connect(p_game, SIGNAL(pointsToDisplay(long,qreal,qreal)), this, SLOT(displayPoints(long,qreal,qreal)));
 
 	// Create the theme instance
 	m_theme = new KGameTheme();

@@ -77,9 +77,9 @@ void KapmanMainWindow::initGame() {
 	delete m_game;
 	m_game = new Game(KGameDifficulty::level());
 	connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));		// TODO Remove the useless bool parameter from gameOver()
-	connect(m_game, SIGNAL( levelChanged( unsigned int ) ), this, SLOT( displayLevel( unsigned int ) ));
-	connect(m_game, SIGNAL( scoreChanged( unsigned int ) ), this, SLOT( displayScore( unsigned int ) ));
-	connect(m_game, SIGNAL( livesChanged( unsigned int ) ), this, SLOT( displayLives( unsigned int ) ));
+	connect(m_game, SIGNAL(levelChanged(uint)), this, SLOT(displayLevel(uint)));
+	connect(m_game, SIGNAL(scoreChanged(uint)), this, SLOT(displayScore(uint)));
+	connect(m_game, SIGNAL(livesChanged(uint)), this, SLOT(displayLives(uint)));
 	
 	
 	// Create a new GameView instance
@@ -163,7 +163,7 @@ void KapmanMainWindow::showSettings() {
 	KConfigDialog* settingsDialog = new KConfigDialog(this, "settings", Settings::self());
 	settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "kapman");
 	settingsDialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
-	connect(settingsDialog, SIGNAL(settingsChanged(const QString&)), this, SLOT(loadSettings()));
+	connect(settingsDialog, SIGNAL(settingsChanged(QString)), this, SLOT(loadSettings()));
 	settingsDialog->show();
 }
 

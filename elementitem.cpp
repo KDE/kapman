@@ -22,7 +22,7 @@ ElementItem::ElementItem(Element* p_model) : QGraphicsSvgItem() {
 	// Init the view coordinates
 	setPos(p_model->getX() - boundingRect().width() / 2, p_model->getY() - boundingRect().height() / 2);
 	// Connects the model to the view
-	connect(p_model, SIGNAL(moved(qreal, qreal)), this, SLOT(update(qreal, qreal)));
+	connect(p_model, SIGNAL(moved(qreal,qreal)), this, SLOT(update(qreal,qreal)));
 	setCacheMode(DeviceCoordinateCache);
 	setMaximumCacheSize(QSize(500, 500));
 }
