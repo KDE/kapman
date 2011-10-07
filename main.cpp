@@ -33,11 +33,6 @@ int main(int argc, char** argv) {
 	about.addAuthor(ki18n("Romain Castan"), ki18n("Developer"), "romaincastan@gmail.com", 0);
 	about.addAuthor(ki18n("Thomas Gallinari"), ki18n("Developer"), "tg8187@yahoo.fr", 0);
 
-	// Raster graphicssystem improves performance drastically on X11
-#ifdef Q_WS_X11
-	QApplication::setGraphicsSystem("raster");
-#endif
-
 	// Command line arguments
 	KCmdLineArgs::init(argc, argv, &about);
 	// Create the application
