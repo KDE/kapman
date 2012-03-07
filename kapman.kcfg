@@ -5,10 +5,6 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kapmanrc"/>
   <group name="General">
-    <entry name="GameDifficulty" type="Int" key="GameDifficulty">
-      <label>Game difficulty level.</label>
-      <default>40</default>
-    </entry>
     <entry name="Theme" type="String" key="Theme">
       <label>The graphical theme to be used.</label>
       <default>themes/mummies_crypt.desktop</default>

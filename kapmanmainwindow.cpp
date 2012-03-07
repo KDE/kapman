@@ -20,6 +20,7 @@
 #include "gamescene.h"
 #include "settings.h"
 
+#include <QPointer>
 #include <KActionCollection>
 #include <KStandardGameAction>
 #include <KToggleAction>
@@ -29,6 +30,8 @@
 #include <KInputDialog>
 #include <KLocale>
 #include <KStatusBar>
+#include <KgDifficulty>
+#include <KScoreDialog>
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game
@@ -53,29 +56,29 @@ KapmanMainWindow::KapmanMainWindow() {
 	m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", 3), 4, 1);
 
 	
-	// Initialize the KGameDifficulty singleton
-	KGameDifficulty::init(this, this, SLOT(initGame()));
- 	KGameDifficulty::addStandardLevel(KGameDifficulty::Easy);
- 	KGameDifficulty::addStandardLevel(KGameDifficulty::Medium);
- 	KGameDifficulty::addStandardLevel(KGameDifficulty::Hard);
-    	KGameDifficulty::setLevel(KGameDifficulty::standardLevel(Settings::gameDifficulty()));
-	// KScoreDialog
-	m_kScoreDialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+	// Initialize the KgDifficulty singleton
+	Kg::difficulty()->addStandardLevelRange(
+		KgDifficultyLevel::Easy, KgDifficultyLevel::Hard, //range
+		KgDifficultyLevel::Medium //default
+	);
+	KgDifficultyGUI::init(this);
+	connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(initGame()));
 	// Setup the window
 	setupGUI();
+
+	initGame();
 }
 
 KapmanMainWindow::~KapmanMainWindow() {
 	delete m_statusBar;
 	delete m_game;
 	delete m_view;
-	delete m_kScoreDialog;
 }
 
 void KapmanMainWindow::initGame() {
 	// Create a new Game instance
 	delete m_game;
-	m_game = new Game(KGameDifficulty::level());
+	m_game = new Game();
 	connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));		// TODO Remove the useless bool parameter from gameOver()
 	connect(m_game, SIGNAL(levelChanged(uint)), this, SLOT(displayLevel(uint)));
 	connect(m_game, SIGNAL(scoreChanged(uint)), this, SLOT(displayScore(uint)));
@@ -122,19 +125,21 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 		// Display the score information
 		KMessageBox::information(this, i18np("Your score is %1 point.", "Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
 		// Add the score to the highscores table
-		m_kScoreDialog->setConfigGroup(KGameDifficulty::localizedLevelString());
+		QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+		dialog->initFromDifficulty(Kg::difficulty());
 		KScoreDialog::FieldInfo scoreInfo;
 		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
 		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
 		// If the new score is a highscore then display the highscore dialog
-		if (m_kScoreDialog->addScore(scoreInfo)) {
+		if (dialog->addScore(scoreInfo)) {
 			// If the payer did not cheat, manage Highscores
 			if (!m_game->isCheater()) {
-				m_kScoreDialog->exec();
+				dialog->exec();
 			} else {		// else, warn the player not to cheat again :)
 				KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));	
 			}
 		}
+		delete dialog;
 		
 		// Start a new game
 		initGame();
@@ -149,7 +154,10 @@ void KapmanMainWindow::changeLevel() {
 }
 
 void KapmanMainWindow::showHighscores() {
- 	m_kScoreDialog->exec();
+	QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+	dialog->initFromDifficulty(Kg::difficulty());
+	dialog->exec();
+	delete dialog;
 }
 
 void KapmanMainWindow::setSoundsEnabled(bool p_enabled) {

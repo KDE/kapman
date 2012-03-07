@@ -23,7 +23,7 @@
 #include "settings.h"
 
 #include <QGraphicsScene>
-#include <KGameDifficulty>
+#include <KgDifficulty>
 
 const int KapmanItem::NB_FRAMES = 32;
 const int KapmanItem::ANIM_LOW_SPEED = 500;
@@ -41,12 +41,17 @@ KapmanItem::KapmanItem(Kapman* p_model) : CharacterItem(p_model) {
 	m_animationTimer->setLoopCount(0);
 	m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
 	// Animation speed
-	if (KGameDifficulty::level() == KGameDifficulty::Easy) {
-		m_animationTimer->setDuration(KapmanItem::ANIM_LOW_SPEED);
-	} else if (KGameDifficulty::level() == KGameDifficulty::Medium) {
-		m_animationTimer->setDuration(KapmanItem::ANIM_MEDIUM_SPEED);
-	} else if (KGameDifficulty::level() == KGameDifficulty::Hard) {
-		m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
+	switch ((int) Kg::difficultyLevel())
+	{
+		case KgDifficultyLevel::Easy:
+			m_animationTimer->setDuration(KapmanItem::ANIM_LOW_SPEED);
+			break;
+		case KgDifficultyLevel::Medium:
+			m_animationTimer->setDuration(KapmanItem::ANIM_MEDIUM_SPEED);
+			break;
+		case KgDifficultyLevel::Hard:
+			m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
+			break;
 	}
 	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
 

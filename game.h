@@ -27,7 +27,6 @@
 #include <QPointF>
 #include <QTimer>
 #include <QKeyEvent>
-#include <KGameDifficulty>
 #include <Phonon/MediaObject>
 
 /**
@@ -110,9 +109,8 @@ class Game : public QObject {
 
 		/**
 		 * Creates a new Game instance.
-		 * @param p_difficulty the KGameDifficulty level of the Game
 		 */
-		Game(KGameDifficulty::standardLevel p_difficulty = KGameDifficulty::Medium);
+		Game();
 
 		/**
 		 * Deletes the Game instance.

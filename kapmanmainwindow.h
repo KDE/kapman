@@ -24,7 +24,6 @@
 
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
-#include <KScoreDialog>
 
 class KStatusBar;
 
@@ -42,9 +41,6 @@ class KapmanMainWindow : public KXmlGuiWindow {
 
 		/** The Game instance that manages the main loop and events */
 		Game* m_game;
-
-		/** The highscores dialog */
-		KScoreDialog* m_kScoreDialog;
 
 		KStatusBar* m_statusBar;
 		
