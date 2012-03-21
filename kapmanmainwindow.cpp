@@ -53,7 +53,7 @@ KapmanMainWindow::KapmanMainWindow() {
 	m_statusBar = statusBar();
 	m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
 	m_statusBar->insertItem(i18nc("Used to inform the user of their current score", "Score: %1", 0), 2, 1);
-	m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", 3), 4, 1);
+	m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", initLives), 4, 1);
 
 	
 	// Initialize the KgDifficulty singleton
@@ -94,6 +94,7 @@ void KapmanMainWindow::initGame() {
 	// For some reason, calling setFocus() immediately won't work after the
 	// score dialog has been shown, so do it again after an eventloop run.
 	QTimer::singleShot(0, m_view, SLOT(setFocus()));
+    resetStatusBar();
 }
 
 
@@ -220,4 +221,11 @@ void KapmanMainWindow::displayLives(unsigned int p_lives)
 	m_statusBar->changeItem(i18nc(
 			"Used to tell the user how many lives they have left", "Lives: %1",
 			p_lives), 4);
+}
+
+void KapmanMainWindow::resetStatusBar()
+{
+    displayLevel(0);
+    displayScore(0);
+    displayLives(initLives);
 }

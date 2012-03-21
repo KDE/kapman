@@ -25,6 +25,8 @@
 #include <KXmlGuiWindow>
 #include <QGraphicsView>
 
+static const int initLives = 3;
+
 class KStatusBar;
 
 /**
@@ -119,6 +121,7 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 */
 		void displayLives( unsigned int p_lives );
 
+        void resetStatusBar();
 };
 
 #endif
