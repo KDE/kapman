@@ -121,7 +121,10 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		 */
 		void displayLives( unsigned int p_lives );
 
-        void resetStatusBar();
+		/**
+		 * Resets the status bar values alltogether for convenience.
+		 */
+		void resetStatusBar();
 };
 
 #endif

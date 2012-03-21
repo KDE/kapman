@@ -94,7 +94,7 @@ void KapmanMainWindow::initGame() {
 	// For some reason, calling setFocus() immediately won't work after the
 	// score dialog has been shown, so do it again after an eventloop run.
 	QTimer::singleShot(0, m_view, SLOT(setFocus()));
-    resetStatusBar();
+	resetStatusBar();
 }
 
 
@@ -225,7 +225,7 @@ void KapmanMainWindow::displayLives(unsigned int p_lives)
 
 void KapmanMainWindow::resetStatusBar()
 {
-    displayLevel(0);
-    displayScore(0);
-    displayLives(initLives);
+	displayLevel(0);
+	displayScore(0);
+	displayLives(initLives);
 }
