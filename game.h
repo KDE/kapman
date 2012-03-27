@@ -27,7 +27,7 @@
 #include <QPointF>
 #include <QTimer>
 #include <QKeyEvent>
-#include <Phonon/MediaObject>
+#include <KgSound>
 
 /**
  * @brief This class manages the game main loop : it regularly checks the key press events, computes the character moves and updates their coordinates.
@@ -98,12 +98,18 @@ class Game : public QObject {
 
 		/** The number of eaten ghosts since the beginning of the current level */
 		int m_nbEatenGhosts;
-
-		/** A first MediaObject to play sounds */
-		Phonon::MediaObject* m_media1;
 		
-		/** A second MediaObject to play sounds */
-		Phonon::MediaObject* m_media2;
+		/** Flag if sound is enabled */
+		bool m_soundEnabled;
+		
+		KgSound m_soundGameOver;
+		KgSound m_soundGhost;
+		KgSound m_soundGainLife;
+		KgSound m_soundEnergizer;
+		KgSound m_soundBonus;
+		KgSound m_soundPill;
+		KgSound m_soundLevelUp;
+		
 		
 	public:
 
@@ -244,12 +250,6 @@ class Game : public QObject {
 		 * The value is in Ghost::s_speed
 		 */
 		void setTimersDuration();
-
-		/**
-		 * Plays the given sound.
-		 * @param p_sound the path to the sound to play
-		 */
-		void playSound(const QString& p_sound);
 
 	public slots:
 
