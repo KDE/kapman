@@ -125,23 +125,23 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 	else {
 		// Display the score information
 		KMessageBox::information(this, i18np("Your score is %1 point.", "Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
-		// Add the score to the highscores table
-		QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
-		dialog->initFromDifficulty(Kg::difficulty());
-		KScoreDialog::FieldInfo scoreInfo;
-		scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
-		scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
-		// If the new score is a highscore then display the highscore dialog
-		if (dialog->addScore(scoreInfo)) {
-			// If the payer did not cheat, manage Highscores
-			if (!m_game->isCheater()) {
-				dialog->exec();
-			} else {		// else, warn the player not to cheat again :)
-				KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));	
-			}
+		// manage Highscores only if player did not cheat
+		if (m_game->isCheater()) {
+			KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));	
 		}
-		delete dialog;
-		
+		else {
+			// Add the score to the highscores table
+			QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+			dialog->initFromDifficulty(Kg::difficulty());
+			KScoreDialog::FieldInfo scoreInfo;
+			scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
+			scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
+			// If the new score is a highscore then display the highscore dialog
+			if (dialog->addScore(scoreInfo)) {
+				dialog->exec();
+			}
+			delete dialog;
+		}
 		// Start a new game
 		initGame();
 	}
