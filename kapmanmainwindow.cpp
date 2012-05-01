@@ -26,12 +26,14 @@
 #include <KToggleAction>
 #include <KMessageBox>
 #include <KConfigDialog>
-#include <KGameThemeSelector>
 #include <KInputDialog>
 #include <KLocale>
 #include <KStatusBar>
 #include <KgDifficulty>
 #include <KScoreDialog>
+
+#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
+#include <libkdegamesprivate/kgamethemeselector.h>
 
 KapmanMainWindow::KapmanMainWindow() {
 	// Initialize the game

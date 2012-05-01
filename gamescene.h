@@ -28,7 +28,9 @@
 #include <QGraphicsScene>
 #include <QList>
 #include <QSvgRenderer>
-#include <KGameTheme>
+
+#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
+#include <libkdegamesprivate/kgametheme.h>
 
 /**
  * @brief This class contains all the Game elements to be drawn on the screen by the GameView instance.

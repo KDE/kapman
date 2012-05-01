@@ -21,7 +21,6 @@
 #include "bonus.h"
 #include "settings.h"
 
-#include <KGameTheme>
 #include <KLocale>
 
 GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem(0) {
