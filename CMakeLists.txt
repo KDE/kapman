@@ -11,6 +11,8 @@ if(NOT COMPILING_KDEGAMES)
 	include_directories(${QDBUS_INCLUDE_DIRS} ${KDE4_INCLUDES} ${KDEGAMES_INCLUDE_DIRS})
 endif(NOT COMPILING_KDEGAMES)
 
+add_subdirectory(doc)
+
 set(kapman_SRCS
 	bonus.cpp
 	cell.cpp
