@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Invisible
+Name[uk]=Невидимий
+Name[x-test]=xxInvisiblexx
 Description=Getting bored with Kapman? More than 100,000 points over level 20? Next step: the invisible maze!
+Description[uk]=Втомилися від Kapman? Маєте більше за 100.000 очок на рівні вищому за 20? Наступний крок: невидимий лабіринт!
+Description[x-test]=xxGetting bored with Kapman? More than 100,000 points over level 20? Next step: the invisible maze!xx
 Type=SVG
 VersionFormat=1
 FileName=invisible.svgz

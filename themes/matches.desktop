@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Matches
+Name[uk]=Сірники
+Name[x-test]=xxMatchesxx
 Description=A matches drawn maze
+Description[uk]=Лабіринт з сірників
+Description[x-test]=xxA matches drawn mazexx
 Type=SVG
 VersionFormat=1
 FileName=matches.svgz

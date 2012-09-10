@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Mummies Crypt
+Name[uk]=Склеп з муміями
+Name[x-test]=xxMummies Cryptxx
 Description=Avoid the mummies at all costs!
+Description[uk]=Уникайте мумій за будь-яку ціну!
+Description[x-test]=xxAvoid the mummies at all costs!xx
 Type=SVG
 VersionFormat=1
 FileName=mummies_crypt.svgz

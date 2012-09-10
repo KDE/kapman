@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Retro
+Name[uk]=Ретро
+Name[x-test]=xxRetroxx
 Description=The old game theme revisited
+Description[uk]=Тема старої версії гри
+Description[x-test]=xxThe old game theme revisitedxx
 Type=SVG
 VersionFormat=1
 FileName=retro.svgz

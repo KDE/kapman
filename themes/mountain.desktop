@@ -1,6 +1,10 @@
 [KGameTheme]
 Name=Mountain Adventure
+Name[uk]=Пригоди в горах
+Name[x-test]=xxMountain Adventurexx
 Description=Default
+Description[uk]=Типова
+Description[x-test]=xxDefaultxx
 Type=SVG
 VersionFormat=1
 FileName=mountain.svgz

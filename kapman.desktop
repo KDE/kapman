@@ -2,8 +2,16 @@
 Type=Application
 Version=1.0
 Name=Kapman
+Name[ms]=Kapman
+Name[uk]=Kapman
+Name[x-test]=xxKapmanxx
 GenericName=Pac-Man Clone
+GenericName[ms]=Klon Pac-Man
+GenericName[uk]=Клон гри Pac-Man
+GenericName[x-test]=xxPac-Man Clonexx
 Comment=Eat pills escaping ghosts
+Comment[uk]=Їжте пілюлі, тікайте від привидів
+Comment[x-test]=xxEat pills escaping ghostsxx
 Icon=kapman
 TryExec=kapman
 Exec=kapman
