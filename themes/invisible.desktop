@@ -1,7 +1,6 @@
 [KGameTheme]
 Name=Invisible
 Name[ast]=Invisible
-Name[bs]=Nevidljivo
 Name[ca]=Invisible
 Name[ca@valencia]=Invisible
 Name[cs]=Neviditelný
@@ -49,7 +48,6 @@ Name[zh_CN]=隐形
 Name[zh_TW]=隱身
 Description=Getting bored with Kapman? More than 100,000 points over level 20? Next step: the invisible maze!
 Description[ast]=¿Aburríu de Kapman? ¿Conseguisti más de 100.000 puntos nel nivel 20? Siguiente pasu: ¡el llaberintu invisible!
-Description[bs]=Dosadio vam je Kapman? Više od 100,000 bodova iznad nivoa 20? Sljedeći korak: nevidljivi lavirint!
 Description[ca]=Estàs avorrit del Kapman? Has aconseguit més de 100,000 punts en el nivell 20? Següent pas: el laberint invisible!
 Description[ca@valencia]=Estàs avorrit del Kapman? Has aconseguit més de 100,000 punts en el nivell 20? Següent pas: el laberint invisible!
 Description[cs]=Začíná Vás kapman nudit? Máte víc než 100 000 bodu přes level 20? Následující krok: Neviditelné bludiště!
