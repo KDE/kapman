@@ -35,13 +35,13 @@ Game::Game() :
     m_points(0),
     m_level(1),
     m_nbEatenGhosts(0),
-    m_soundBonus(KStandardDirs::locate("sound", "kapman/bonus.ogg")),
-    m_soundEnergizer(KStandardDirs::locate("sound", "kapman/energizer.ogg")),
-    m_soundGainLife(KStandardDirs::locate("sound", "kapman/life.ogg")),
     m_soundGameOver(KStandardDirs::locate("sound", "kapman/gameover.ogg")),
     m_soundGhost(KStandardDirs::locate("sound", "kapman/ghost.ogg")),
-    m_soundLevelUp(KStandardDirs::locate("sound", "kapman/levelup.ogg")),
-    m_soundPill(KStandardDirs::locate("sound", "kapman/pill.ogg"))
+    m_soundGainLife(KStandardDirs::locate("sound", "kapman/life.ogg")),
+    m_soundEnergizer(KStandardDirs::locate("sound", "kapman/energizer.ogg")),
+    m_soundBonus(KStandardDirs::locate("sound", "kapman/bonus.ogg")),
+    m_soundPill(KStandardDirs::locate("sound", "kapman/pill.ogg")),
+    m_soundLevelUp(KStandardDirs::locate("sound", "kapman/levelup.ogg"))
 {
 	// Initialize the sound state
 	setSoundsEnabled(Settings::sounds());
