@@ -27,8 +27,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2008-09-30</date>
-<releaseinfo>1.0</releaseinfo>
+<date>2013-05-05</date>
+<releaseinfo>1.0.1 (&kde; 4.11)</releaseinfo>
 
 <abstract>
 <para>&kapman; is a clone of the well known game <application>Pac-Man</application>.</para>
@@ -143,11 +143,9 @@
 </chapter>
 
 <chapter id="interface"><title>Interface Overview</title>
-<sect1 id="menubar">
-<title>Menubar</title>
-<sect2>
-<title>The <guimenu>Game</guimenu> Menu</title>
-<para>
+<sect1 id="menu">
+<title>Menu Items</title>
+
 <variablelist>
 <varlistentry>
 <term><menuchoice>
@@ -176,79 +174,32 @@
 </menuchoice></term>
 <listitem><para><action>Quits</action> &kapman;.</para></listitem>
 </varlistentry>
-</variablelist>
-</para>
-</sect2>
-<sect2>
-<title>The <guimenu>Settings</guimenu> Menu</title>
-<para>
-<variablelist>
+
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu><guimenuitem>Play Sounds</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Plays the sounds or mutes.</action></para></listitem>
 </varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guimenuitem>Show Statusbar</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Shows or hides the statusbar.</action></para></listitem>
-</varlistentry>
+
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu>
 </menuchoice></term>
 <listitem>
-<para><action>Adjusts the game difficulty.</action></para>
-<variablelist>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu><guimenuitem>Easy</guimenuitem>
-</menuchoice></term>
-<listitem><para></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu><guimenuitem>Medium</guimenuitem>
-</menuchoice></term>
-<listitem><para></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guisubmenu>Difficulty</guisubmenu><guimenuitem>Hard</guimenuitem>
-</menuchoice></term>
-<listitem><para></para></listitem>
-</varlistentry>
-</variablelist>
+<para><action>Adjusts the game difficulty to <guimenuitem>Easy</guimenuitem>,
+<guimenuitem>Medium</guimenuitem> or <guimenuitem>Hard</guimenuitem>.</action></para>
 </listitem>
 </varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guimenuitem>Configure Shortcuts...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Brings up the shortcut configuration utility.</action></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guimenuitem>Configure Toolbars...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Brings up the toolbar configuration utility.</action></para></listitem>
-</varlistentry>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Settings</guimenu><guimenuitem>Configure Kapman...</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Brings up the &kapman; configuration utility.</action></para></listitem>
-</varlistentry>
 </variablelist>
+<para>
+Additionally &kapman; has the common &kde; <guimenu>Settings</guimenu> and <guimenu>Help</guimenu>
+menu items, for more information read the sections about the <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Settings Menu</ulink> and <ulink url="help:/fundamentals/ui.html#menus-help">Help Menu</ulink>
+of the &kde; Fundamentals.
 </para>
-</sect2>
-<sect2>
-<title>The <guimenu>Help</guimenu> Menu</title>
-&help.menu.documentation;
-</sect2>
 </sect1>
+
 <sect1 id="keybindings">
 <title>Default Keybindings</title>
 <para>
@@ -281,7 +232,7 @@
 <para>Can I skip a level?</para>
 </question>
 <answer>
-<para>There are two ways to change the current level. In both cases, you will be considered as a cheater and you will not be able to register to the high scores. The first way is using a cheatcode. I let you find it. The other way is selecting the level you want from the <menuchoice><guimenu>Game</guimenu><guimenuitem>Change Level</guimenuitem></menuchoice> dialog. See the <link linkend="menubar">Menubar</link> section for more details.</para>
+<para>There are two ways to change the current level. In both cases, you will be considered as a cheater and you will not be able to register to the high scores. The first way is using a cheatcode. I let you find it. The other way is selecting the level you want from the <menuchoice><guimenu>Game</guimenu><guimenuitem>Change Level</guimenuitem></menuchoice> dialog. See the <link linkend="menu">Menubar</link> section for more details.</para>
 </answer>
 </qandaentry>
 <qandaentry>
