@@ -51,7 +51,7 @@ kde4_add_kcfg_files(kapman_SRCS settings.kcfgc)
 
 kde4_install_icons(${ICON_INSTALL_DIR})
 
-kde4_add_app_icon(kapman_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kapman.png"})
+kde4_add_app_icon(kapman_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kapman.png")
 kde4_add_executable(kapman ${kapman_SRCS})
 
 target_link_libraries(kapman ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${QT_QTXML_LIBRARY} kdegames kdegamesprivate)
