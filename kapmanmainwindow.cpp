@@ -227,7 +227,7 @@ void KapmanMainWindow::displayLives(unsigned int p_lives)
 
 void KapmanMainWindow::resetStatusBar()
 {
-	displayLevel(0);
+	displayLevel(1);
 	displayScore(0);
 	displayLives(initLives);
 }
