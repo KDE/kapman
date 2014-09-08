@@ -67,8 +67,6 @@ void Ghost::updateMove() {
 	// Get the current cell coordinates from the character coordinates
 	int curCellRow = m_maze->getRowFromY(m_y);
 	int curCellCol = m_maze->getColFromX(m_x);
-	// Flag to know when the ghost has no choice but go back
-	bool halfTurnRequired = true;
 	// Contains the different directions a ghost can choose when on a cell center
 	QList<QPointF> directionsList;
 	int nb = 0;
@@ -77,13 +75,12 @@ void Ghost::updateMove() {
 	if (m_state != Ghost::EATEN) {
 		// If the ghost gets on a Cell center
 		if (onCenter()) {
-			// We retrieve all the directions the ghost can choose (save the turnning back)
+			// We retrieve all the directions the ghost can choose (save the turning back)
 			if (m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::CORRIDOR || 
 					(m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
 					 m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::GHOSTCAMP)) {
 				if (m_xSpeed >= 0) {
 					directionsList.append(QPointF(m_speed, 0.0));
-					halfTurnRequired = false;
 				}
 			}
 			if (m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::CORRIDOR ||
@@ -91,7 +88,6 @@ void Ghost::updateMove() {
 					 m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 				if (m_ySpeed >= 0) {
 					directionsList.append(QPointF(0.0, m_speed));
-					halfTurnRequired = false;
 				}
 			}
 			if (m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::CORRIDOR ||
@@ -99,7 +95,6 @@ void Ghost::updateMove() {
 					 m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
 				if (m_ySpeed <= 0) {
 					directionsList.append(QPointF(0.0, -m_speed));
-					halfTurnRequired = false;
 				}
 			}
 			if (m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::CORRIDOR ||
@@ -107,7 +102,6 @@ void Ghost::updateMove() {
 					 m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::GHOSTCAMP)) {
 				if (m_xSpeed <= 0) {
 					directionsList.append(QPointF(-m_speed, 0.0));
-					halfTurnRequired = false;
 				}
 			}
 			// Random number generation to choose one of the directions

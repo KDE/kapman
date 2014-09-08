@@ -52,7 +52,7 @@ class KapmanItem : public CharacterItem {
 		 * Creates a new KapmanItem instance.
 		 * @param p_model the Kapman model
 		 */
-		KapmanItem(Kapman* p_model);
+		explicit KapmanItem(Kapman* p_model);
 
 		/**
 		 * Deletes the KapmanItem instance.
@@ -116,7 +116,7 @@ class KapmanItem : public CharacterItem {
 
 		/**
 		 * Set if the KapmanItem should be rotated (set by theme flag RotateKapman).
-		 * @param 0 or 1
+		 * @param rotate 0 or 1
 		 */
 		void setRotationFlag(bool rotate) { m_rotationFlag=rotate; }
 

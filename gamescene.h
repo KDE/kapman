@@ -80,7 +80,7 @@ class GameScene : public QGraphicsScene {
 		 * Creates a new GameScene instance.
 		 * @param p_game the Game instance whose elements must be contained in the GameScene in order to be drawn
 		 */
-		GameScene(Game* p_game);
+		explicit GameScene(Game* p_game);
 
 		/**
 		 * Deletes the Game instance.

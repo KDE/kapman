@@ -44,7 +44,7 @@ class ElementItem : public QGraphicsSvgItem {
 		 * Creates a new ElementItem instance.
 		 * @param p_model the Element model
 		 */
-		ElementItem(Element* p_model);
+		explicit ElementItem(Element* p_model);
 
 		/**
 		 * Deletes the ElementItem instance.

@@ -37,7 +37,7 @@ class GameView : public QGraphicsView {
 		 * Creates a new GameView instance.
 		 * @param p_game the Game instance whose elements have to be drawn
 		 */
-		GameView(Game* p_game);
+		explicit GameView(Game* p_game);
 
 		/**
 		 * Deletes the GameView instance.

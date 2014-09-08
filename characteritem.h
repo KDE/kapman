@@ -44,7 +44,7 @@ class CharacterItem : public ElementItem {
 		 * Creates a new CharacterItem instance.
 		 * @param p_model the Character model
 		 */
-		CharacterItem(Character* p_model);
+		explicit CharacterItem(Character* p_model);
 
 		/**
 		 * Deletes the CharacterItem instance.

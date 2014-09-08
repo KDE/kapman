@@ -40,7 +40,7 @@ class GhostItem : public CharacterItem {
 		 * Creates a new GhostItem instance.
 		 * @param p_model the Ghost model
 		 */
-		GhostItem(Ghost* p_model);
+		explicit GhostItem(Ghost* p_model);
 
 		/**
 		 * Deletes the CharacterItem instance.

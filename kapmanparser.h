@@ -44,7 +44,7 @@ class KapmanParser : public QXmlDefaultHandler {
 		 * Creates a new GameParser.
 		 * @param p_game the Game to initialize
 		 */
-		 KapmanParser(Game* p_game);
+		 explicit KapmanParser(Game* p_game);
 		
 		/**
 		 * Deletes the GameParser instance.
