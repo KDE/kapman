@@ -58,7 +58,7 @@ target_link_libraries(kapman ${KDE4_KDEUI_LIBS} ${KDE4_PHONON_LIBS} ${QT_QTXML_L
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES kapman.appdata.xml DESTINATION ${DATA_INSTALL_DIR}/appdata)
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
 install(FILES ${sounds_ogg} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
-

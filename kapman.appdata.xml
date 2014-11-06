@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<component type="desktop">
+  <id>kapman.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0+</project_license>
+  <name>Kapman</name>
+  <summary>Pac-Man Clone</summary>
+  <description>
+    <p>
+      Kapman is a clone of the well known game Pac-Man.
+    </p>
+    <p>
+      You must run through the maze to eat all pills without being captured by a ghost.
+      By eating an energizer, Kapman gets the ability to eat ghosts for a few seconds.
+      When a stage is cleared of pills and energizer the player is taken to the next stage with slightly
+      increased game speed.
+    </p>
+  </description>
+  <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman</url>
+  <url type="help">http://docs.kde.org/stable/en/kdegames/kapman/index.html</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://kde.org/images/screenshots/kapman.png</image>
+    </screenshot>
+  </screenshots>
+  <project_group>KDE</project_group>
+</component>
