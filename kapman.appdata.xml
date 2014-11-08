@@ -1,20 +1,29 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <component type="desktop">
   <id>kapman.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Kapman</name>
+  <name xml:lang="pt">Kapman</name>
+  <name xml:lang="uk">Kapman</name>
+  <name xml:lang="x-test">xxKapmanxx</name>
   <summary>Pac-Man Clone</summary>
+  <summary xml:lang="uk">Клон гри «Пакмен»</summary>
+  <summary xml:lang="x-test">xxPac-Man Clonexx</summary>
   <description>
     <p>
       Kapman is a clone of the well known game Pac-Man.
     </p>
+    <p xml:lang="uk">Kapman є клоном добре відомої гри «Пакмен».</p>
+    <p xml:lang="x-test">xxKapman is a clone of the well known game Pac-Man.xx</p>
     <p>
       You must run through the maze to eat all pills without being captured by a ghost.
       By eating an energizer, Kapman gets the ability to eat ghosts for a few seconds.
       When a stage is cleared of pills and energizer the player is taken to the next stage with slightly
       increased game speed.
     </p>
+    <p xml:lang="uk">Вам слід пройтися лабіринтом, з’їсти усі пігулки і уникнути зустрічі з привидом. Ваш герой, Kapman, може проковтнути енергетик і на декілька секунд отримати здатність самому їсти привидів. Щойно ваш герой з’їсть усі пігулки і енергетики, ви зможете перейти на наступний рівень, швидкість гри на якому буде збільшено.</p>
+    <p xml:lang="x-test">xxYou must run through the maze to eat all pills without being captured by a ghost. By eating an energizer, Kapman gets the ability to eat ghosts for a few seconds. When a stage is cleared of pills and energizer the player is taken to the next stage with slightly increased game speed.xx</p>
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman</url>
   <url type="help">http://docs.kde.org/stable/en/kdegames/kapman/index.html</url>
