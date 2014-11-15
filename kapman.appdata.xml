@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Kapman</name>
+  <name xml:lang="cs">Kapman</name>
   <name xml:lang="de">Kapman</name>
   <name xml:lang="nl">Kapman</name>
   <name xml:lang="pl">Kapman</name>
@@ -17,6 +18,7 @@
   <name xml:lang="uk">Kapman</name>
   <name xml:lang="x-test">xxKapmanxx</name>
   <summary>Pac-Man Clone</summary>
+  <summary xml:lang="cs">Klon Pacmana</summary>
   <summary xml:lang="de">Pac-Man-Klone</summary>
   <summary xml:lang="nl">Kloon van Pac-Man</summary>
   <summary xml:lang="pl">Klon Pac-mana</summary>
