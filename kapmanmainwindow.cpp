@@ -48,10 +48,10 @@ KapmanMainWindow::KapmanMainWindow() {
     	KToggleAction* soundAction = new KToggleAction(i18n("&Play sounds"), this);
 	soundAction->setChecked(Settings::sounds());
 	actionCollection()->addAction( QLatin1String( "sounds" ), soundAction);
-	connect(soundAction, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
+	connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
     	KAction* levelAction = new KAction(i18n("&Change level"), this);
 	actionCollection()->addAction( QLatin1String( "level" ), levelAction);
-	connect(levelAction, SIGNAL(triggered(bool)), this, SLOT(changeLevel()));
+	connect(levelAction, &KAction::triggered, this, &KapmanMainWindow::changeLevel);
 	// Add a statusbar to show level,score,lives information
 	m_statusBar = statusBar();
 	//QT5 m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
@@ -83,9 +83,9 @@ void KapmanMainWindow::initGame() {
 	delete m_game;
 	m_game = new Game();
 	connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));		// TODO Remove the useless bool parameter from gameOver()
-	connect(m_game, SIGNAL(levelChanged(uint)), this, SLOT(displayLevel(uint)));
-	connect(m_game, SIGNAL(scoreChanged(uint)), this, SLOT(displayScore(uint)));
-	connect(m_game, SIGNAL(livesChanged(uint)), this, SLOT(displayLives(uint)));
+	connect(m_game, &Game::levelChanged, this, &KapmanMainWindow::displayLevel);
+	connect(m_game, &Game::scoreChanged, this, &KapmanMainWindow::displayScore);
+	connect(m_game, &Game::livesChanged, this, &KapmanMainWindow::displayLives);
 	
 	
 	// Create a new GameView instance
@@ -175,7 +175,7 @@ void KapmanMainWindow::showSettings() {
 	KConfigDialog* settingsDialog = new KConfigDialog(this, "settings", Settings::self());
 	settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "kapman");
 	settingsDialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
-	connect(settingsDialog, SIGNAL(settingsChanged(QString)), this, SLOT(loadSettings()));
+	connect(settingsDialog, &KConfigDialog::settingsChanged, this, &KapmanMainWindow::loadSettings);
 	settingsDialog->show();
 }
 

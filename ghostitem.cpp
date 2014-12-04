@@ -30,12 +30,12 @@ GhostItem::GhostItem(Ghost* p_model) : CharacterItem (p_model) {
 	m_startBlinkingTimer = new QTimer(this);
 	m_startBlinkingTimer->setInterval(startBlinkingTimerDuration);
 	m_startBlinkingTimer->setSingleShot(true);
-	connect(m_startBlinkingTimer, SIGNAL(timeout()), this, SLOT(startBlinking()));
+	connect(m_startBlinkingTimer, &QTimer::timeout, this, &GhostItem::startBlinking);
 
 	// Define the timer which sets the blinking frequency
 	m_blinkTimer = new QTimer(this);
 	m_blinkTimer->setInterval(blinkTimerDuration);
-	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
+	connect(m_blinkTimer, &QTimer::timeout, this, &GhostItem::blink);
 }
 
 GhostItem::~GhostItem() {

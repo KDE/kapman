@@ -57,7 +57,7 @@ Game::Game() :
 
 	// Create the Maze instance
 	m_maze = new Maze();
-	connect(m_maze, SIGNAL(allElementsEaten()), this, SLOT(nextLevel()));
+	connect(m_maze, &Maze::allElementsEaten, this, &Game::nextLevel);
 
 	// Create the parser that will parse the XML file in order to initialize the Maze instance
 	// This also creates all the characters
@@ -71,7 +71,7 @@ Game::Game() :
 	// Parse the XML file
 	reader.parse(source);
 
-	connect(m_kapman, SIGNAL(sWinPoints(Element*)), this, SLOT(winPoints(Element*)));
+	connect(m_kapman, &Kapman::sWinPoints, this, &Game::winPoints);
 
 	
 
@@ -104,17 +104,17 @@ Game::Game() :
 	m_bonusTimer = new QTimer(this);
 	m_bonusTimer->setInterval( (int)(s_bonusDuration * s_durationRatio) );
 	m_bonusTimer->setSingleShot(true);
-	connect(m_bonusTimer, SIGNAL(timeout()), this, SLOT(hideBonus()));
+	connect(m_bonusTimer, &QTimer::timeout, this, &Game::hideBonus);
 	// Initialize the Preys timer from the difficulty level
 	m_preyTimer = new QTimer(this);
 	m_preyTimer->setInterval( (int)(s_preyStateDuration * s_durationRatio) );
 	m_preyTimer->setSingleShot(true);
-	connect(m_preyTimer, SIGNAL(timeout()), this, SLOT(endPreyState()));
+	connect(m_preyTimer, &QTimer::timeout, this, &Game::endPreyState);
 
 	// Start the Game timer
 	m_timer = new QTimer(this);
 	m_timer->setInterval(int(1000 / Game::FPS));
-	connect(m_timer, SIGNAL(timeout()), this, SLOT(update()));
+	connect(m_timer, &QTimer::timeout, this, &Game::update);
 	m_timer->start();
 	m_state = RUNNING;
 	// Init the characters coordinates on the Maze
@@ -249,7 +249,7 @@ void Game::setSoundsEnabled(bool p_enabled)
 {
 	m_soundEnabled = p_enabled;
 	Settings::setSounds(p_enabled);
-	Settings::self()->writeConfig();
+	Settings::self()->save();
 }
 
 void Game::initCharactersPosition() {

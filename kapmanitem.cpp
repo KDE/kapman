@@ -53,12 +53,12 @@ KapmanItem::KapmanItem(Kapman* p_model) : CharacterItem(p_model) {
 			m_animationTimer->setDuration(KapmanItem::ANIM_HIGH_SPEED);
 			break;
 	}
-	connect(m_animationTimer, SIGNAL(frameChanged(int)), this, SLOT(setFrame(int)));
+	connect(m_animationTimer, &QTimeLine::frameChanged, this, &KapmanItem::setFrame);
 
 	// Define the timer which sets the blinking frequency
 	m_blinkTimer = new QTimer(this);
 	m_blinkTimer->setInterval(400);
-	connect(m_blinkTimer, SIGNAL(timeout()), this, SLOT(blink()));
+	connect(m_blinkTimer, &QTimer::timeout, this, &KapmanItem::blink);
 }
 
 KapmanItem::~KapmanItem() {
