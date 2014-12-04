@@ -64,10 +64,6 @@ set(kapman_SRCS
 	mazeitem.cpp
 	pill.cpp
 )
-set(kapmanData
-	defaultmaze.xml
-	kapmanui.rc
-)
 file(GLOB themes
 	"themes/*.svgz"
 	"themes/*.desktop"
@@ -88,6 +84,7 @@ target_link_libraries(kapman  Phonon::phonon4qt5 Qt5::Xml KF5KDEGames KF5KDEGame
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 install(FILES kapman.appdata.xml DESTINATION ${DATA_INSTALL_DIR}/appdata)
-install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
+install(FILES kapmanui.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/kapman)
+install(FILES defaultmaze.xml DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
 install(FILES ${sounds_ogg} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
