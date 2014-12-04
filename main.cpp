@@ -15,16 +15,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <KAboutData>
+#include <K4AboutData>
 #include <KCmdLineArgs>
 #include <KApplication>
 #include "kapmanmainwindow.h"
 
 int main(int argc, char** argv) {
 	// About Kapman
-	KAboutData about("kapman", 0, ki18n("Kapman"), "1.0.1",
+	K4AboutData about("kapman", 0, ki18n("Kapman"), "1.0.1",
 		ki18n("Kapman: Go through the levels escaping ghosts!"),
-		KAboutData::License_GPL, ki18n("Copyright (c) 2007-2008 The KapTeam"));
+		K4AboutData::License_GPL, ki18n("Copyright (c) 2007-2008 The KapTeam"));
 	// Alphabetical order of Developers of Kapman
 	about.addAuthor(ki18n("Alexandre Galinier"), ki18n("Developer"), "alex.galinier@gmail.com", 0);
 	about.addAuthor(ki18n("Nathalie Liesse"), ki18n("Developer"), "nathalie.liesse@gmail.com", 0);
@@ -38,8 +38,6 @@ int main(int argc, char** argv) {
 	KCmdLineArgs::init(argc, argv, &about);
 	// Create the application
 	KApplication app;
-	// Insert libkdegames catalog, for translation of libkdegames messages
-	KGlobal::locale()->insertCatalog( QLatin1String( "libkdegames" ));
 	// Create the main window
 	KapmanMainWindow* window = new KapmanMainWindow();
 	// Show the main window

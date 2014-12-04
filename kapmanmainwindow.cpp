@@ -28,9 +28,10 @@
 #include <KConfigDialog>
 #include <KInputDialog>
 #include <KLocale>
-#include <KStatusBar>
+#include <QStatusBar>
 #include <KgDifficulty>
 #include <KScoreDialog>
+#include <KAction>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
@@ -44,7 +45,7 @@ KapmanMainWindow::KapmanMainWindow() {
 	KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
 	KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
 	KStandardGameAction::quit(this, SLOT(close()), actionCollection());
-    	KAction* soundAction = new KToggleAction(i18n("&Play sounds"), this);
+    	KToggleAction* soundAction = new KToggleAction(i18n("&Play sounds"), this);
 	soundAction->setChecked(Settings::sounds());
 	actionCollection()->addAction( QLatin1String( "sounds" ), soundAction);
 	connect(soundAction, SIGNAL(triggered(bool)), this, SLOT(setSoundsEnabled(bool)));
@@ -53,9 +54,9 @@ KapmanMainWindow::KapmanMainWindow() {
 	connect(levelAction, SIGNAL(triggered(bool)), this, SLOT(changeLevel()));
 	// Add a statusbar to show level,score,lives information
 	m_statusBar = statusBar();
-	m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
-	m_statusBar->insertItem(i18nc("Used to inform the user of their current score", "Score: %1", 0), 2, 1);
-	m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", initLives), 4, 1);
+	//QT5 m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
+	//QT5 m_statusBar->insertItem(i18nc("Used to inform the user of their current score", "Score: %1", 0), 2, 1);
+	//QT5 m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", initLives), 4, 1);
 
 	
 	// Initialize the KgDifficulty singleton
@@ -206,23 +207,29 @@ void KapmanMainWindow::close() {
 
 void KapmanMainWindow::displayLevel(unsigned int p_level)
 {
+#if 0 //QT5
 	m_statusBar->changeItem(i18nc(
 			"Used to display the current level of play to the user",
 			"Level: %1", p_level), 1);
+#endif
 }
 
 void KapmanMainWindow::displayScore(unsigned int p_score)
 {
+#if 0 //QT5
 	m_statusBar->changeItem(i18nc(
 			"Used to inform the user of their current score", "Score: %1",
 			p_score), 2);
+#endif
 }
 
 void KapmanMainWindow::displayLives(unsigned int p_lives)
 {
+#if 0 //QT5
 	m_statusBar->changeItem(i18nc(
 			"Used to tell the user how many lives they have left", "Lives: %1",
 			p_lives), 4);
+#endif
 }
 
 void KapmanMainWindow::resetStatusBar()
