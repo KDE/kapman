@@ -78,15 +78,15 @@ file(GLOB sounds_ogg "sounds/*.ogg")
 
 kconfig_add_kcfg_files(kapman_SRCS settings.kcfgc)
 
-ecm_install_icons(${ICON_INSTALL_DIR})
+ecm_install_icons(ICONS hi128-apps-kapman.png  hi16-apps-kapman.png  hi22-apps-kapman.png  hi32-apps-kapman.png  hi48-apps-kapman.png  hi64-apps-kapman.png DESTINATION ${ICON_INSTALL_DIR})
 
-kde4_add_app_icon(kapman_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-app-kapman.png")
+kde4_add_app_icon(kapman_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-apps-kapman.png")
 add_executable(kapman ${kapman_SRCS})
 
 target_link_libraries(kapman  Phonon::phonon4qt5 Qt5::Xml KF5KDEGames KF5KDEGamesPrivate Qt5::Svg)
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(PROGRAMS kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(PROGRAMS org.kde.kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 install(FILES kapman.appdata.xml DESTINATION ${DATA_INSTALL_DIR}/appdata)
 install(FILES ${kapmanData} DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)

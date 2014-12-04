@@ -153,3 +153,4 @@ TryExec=kapman
 Exec=kapman
 Categories=Qt;KDE;Game;ArcadeGame;
 X-DocPath=kapman/index.html
+X-DBUS-ServiceName=org.kde.kapman
