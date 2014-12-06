@@ -21,8 +21,9 @@
 #include "kapmanparser.h"
 #include "settings.h"
 
-#include <KStandardDirs>
+
 #include <KgDifficulty>
+#include <QStandardPaths>
 
 const int Game::FPS = 40;
 int Game::s_bonusDuration;
@@ -35,13 +36,13 @@ Game::Game() :
     m_points(0),
     m_level(1),
     m_nbEatenGhosts(0),
-    m_soundGameOver(KStandardDirs::locate("sound", "kapman/gameover.ogg")),
-    m_soundGhost(KStandardDirs::locate("sound", "kapman/ghost.ogg")),
-    m_soundGainLife(KStandardDirs::locate("sound", "kapman/life.ogg")),
-    m_soundEnergizer(KStandardDirs::locate("sound", "kapman/energizer.ogg")),
-    m_soundBonus(KStandardDirs::locate("sound", "kapman/bonus.ogg")),
-    m_soundPill(KStandardDirs::locate("sound", "kapman/pill.ogg")),
-    m_soundLevelUp(KStandardDirs::locate("sound", "kapman/levelup.ogg"))
+    m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/gameover.ogg")),
+    m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/ghost.ogg")),
+    m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/life.ogg")),
+    m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/energizer.ogg")),
+    m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/bonus.ogg")),
+    m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/pill.ogg")),
+    m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/") + "kapman/levelup.ogg"))
 {
 	// Initialize the sound state
 	setSoundsEnabled(Settings::sounds());
@@ -63,7 +64,7 @@ Game::Game() :
 	// This also creates all the characters
 	KapmanParser kapmanParser(this);
 	// Set the XML file as input source for the parser
-	QFile mazeXmlFile(KStandardDirs::locate("appdata", "defaultmaze.xml"));
+	QFile mazeXmlFile(QStandardPaths::locate(QStandardPaths::DataLocation, "defaultmaze.xml"));
 	QXmlInputSource source(&mazeXmlFile);
 	// Create the XML file reader
 	QXmlSimpleReader reader;

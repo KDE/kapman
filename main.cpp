@@ -15,29 +15,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <K4AboutData>
-#include <KCmdLineArgs>
-#include <KApplication>
+#include <KAboutData>
+
+#include <QApplication>
+#include <KLocalizedString>
+#include <QCommandLineParser>
+
 #include "kapmanmainwindow.h"
 
 int main(int argc, char** argv) {
 	// About Kapman
-	K4AboutData about("kapman", 0, ki18n("Kapman"), "1.0.1",
-		ki18n("Kapman: Go through the levels escaping ghosts!"),
-		K4AboutData::License_GPL, ki18n("Copyright (c) 2007-2008 The KapTeam"));
+	KAboutData about("kapman", i18n("Kapman"), QLatin1String("1.0.1"),
+		i18n("Kapman: Go through the levels escaping ghosts!"),
+		KAboutLicense::GPL, i18n("Copyright (c) 2007-2008 The KapTeam"));
 	// Alphabetical order of Developers of Kapman
-	about.addAuthor(ki18n("Alexandre Galinier"), ki18n("Developer"), "alex.galinier@gmail.com", 0);
-	about.addAuthor(ki18n("Nathalie Liesse"), ki18n("Developer"), "nathalie.liesse@gmail.com", 0);
-	about.addAuthor(ki18n("Ömer Fadıl USTA"), ki18n("Developer"), "omerusta@gmail.com", 0);
-	about.addAuthor(ki18n("Pierre-Benoit Besse"), ki18n("Developer"), "besse.pb@gmail.com", 0);
-	about.addAuthor(ki18n("Romain Castan"), ki18n("Developer"), "romaincastan@gmail.com", 0);
-	about.addAuthor(ki18n("Thomas Gallinari"), ki18n("Developer"), "tg8187@yahoo.fr", 0);
-	about.addCredit(ki18n("Roney Gomes"), ki18n("Port to KgSound framework"), "roney477@gmail.com", 0);
+	about.addAuthor(i18n("Alexandre Galinier"), i18n("Developer"), "alex.galinier@gmail.com");
+	about.addAuthor(i18n("Nathalie Liesse"), i18n("Developer"), "nathalie.liesse@gmail.com");
+	about.addAuthor(i18n("Ömer Fadıl USTA"), i18n("Developer"), "omerusta@gmail.com");
+	about.addAuthor(i18n("Pierre-Benoit Besse"), i18n("Developer"), "besse.pb@gmail.com");
+	about.addAuthor(i18n("Romain Castan"), i18n("Developer"), "romaincastan@gmail.com");
+	about.addAuthor(i18n("Thomas Gallinari"), i18n("Developer"), "tg8187@yahoo.fr");
+	about.addCredit(i18n("Roney Gomes"), i18n("Port to KgSound framework"), "roney477@gmail.com");
 
 	// Command line arguments
-	KCmdLineArgs::init(argc, argv, &about);
+    QApplication app(argc, argv);
+    QCommandLineParser parser;
+    KAboutData::setApplicationData(about);
+    parser.addVersionOption();
+    parser.addHelpOption();
+    //PORTING SCRIPT: adapt aboutdata variable if necessary
+    about.setupCommandLine(&parser);
+    parser.process(app);
+    about.processCommandLine(&parser);
 	// Create the application
-	KApplication app;
 	// Create the main window
 	KapmanMainWindow* window = new KapmanMainWindow();
 	// Show the main window
