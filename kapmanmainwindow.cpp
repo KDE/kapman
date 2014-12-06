@@ -31,7 +31,7 @@
 #include <QStatusBar>
 #include <KgDifficulty>
 #include <KScoreDialog>
-#include <KAction>
+#include <QAction>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
@@ -49,9 +49,9 @@ KapmanMainWindow::KapmanMainWindow() {
 	soundAction->setChecked(Settings::sounds());
 	actionCollection()->addAction( QLatin1String( "sounds" ), soundAction);
 	connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
-    	KAction* levelAction = new KAction(i18n("&Change level"), this);
+    	QAction * levelAction = new QAction(i18n("&Change level"), this);
 	actionCollection()->addAction( QLatin1String( "level" ), levelAction);
-	connect(levelAction, &KAction::triggered, this, &KapmanMainWindow::changeLevel);
+	connect(levelAction, &QAction::triggered, this, &KapmanMainWindow::changeLevel);
 	// Add a statusbar to show level,score,lives information
 	m_statusBar = statusBar();
 	//QT5 m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
