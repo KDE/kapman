@@ -27,7 +27,7 @@
 #include <KMessageBox>
 #include <KConfigDialog>
 #include <KInputDialog>
-#include <KLocale>
+#include <KLocalizedString>
 #include <QStatusBar>
 #include <KgDifficulty>
 #include <KScoreDialog>

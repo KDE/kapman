@@ -21,7 +21,7 @@
 #include "bonus.h"
 #include "settings.h"
 
-#include <KLocale>
+#include <KLocalizedString>
 
 GameScene::GameScene(Game* p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem(0) {
 	connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
