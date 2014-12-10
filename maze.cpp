@@ -18,9 +18,9 @@
 
 #include "maze.h"
 
-#include <KDebug>
 
 #include <math.h>
+#include <QDebug>
 
 Maze::Maze() : m_totalNbElem(0), m_nbElem(0) {
 	
@@ -44,14 +44,14 @@ void Maze::init(const int p_nbRows, const int p_nbColumns) {
 
 void Maze::setCellType(const int p_row, const int p_column, const Cell::Type p_type) {
 	if (p_row < 0 || p_row >= m_nbRows || p_column < 0 || p_column >= m_nbColumns) {
-		kError() << "Bad maze coordinates";
+		qCritical() << "Bad maze coordinates";
 	}
 	m_cells[p_row][p_column].setType(p_type);
 }
 
 void Maze::setCellElement(const int p_row, const int p_column, Element * p_element) {
 	if (p_row < 0 || p_row >= m_nbRows || p_column < 0 || p_column >= m_nbColumns) {
-		kError() << "Bad maze coordinates";
+		qCritical() << "Bad maze coordinates";
 	}
 	m_cells[p_row][p_column].setElement(p_element);
 	if (p_element != NULL) {
@@ -165,7 +165,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 		}
 	}
 	if (oldSize == openList.size()) {
-		kError() << "Path to ghost home not found";
+		qCritical() << "Path to ghost home not found";
 		return QList<QPoint>();
 	}
 	// Save the path : from the target cell, go from each cell to its parent cell until reaching the starting cell
@@ -180,7 +180,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
 Cell Maze::getCell(const int p_row, const int p_column) const {
 	if (p_row < 0 || p_row >= m_nbRows ||
 		p_column < 0 || p_column >= m_nbColumns) {
-		kError() << "Bad maze coordinates";
+		qCritical() << "Bad maze coordinates";
 	}
 	return m_cells[p_row][p_column];
 }
