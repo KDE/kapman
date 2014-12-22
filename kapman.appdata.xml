@@ -4,6 +4,7 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
   <name>Kapman</name>
+  <name xml:lang="ca">Kapman</name>
   <name xml:lang="cs">Kapman</name>
   <name xml:lang="da">Kapman</name>
   <name xml:lang="de">Kapman</name>
@@ -23,6 +24,7 @@
   <name xml:lang="uk">Kapman</name>
   <name xml:lang="x-test">xxKapmanxx</name>
   <summary>Pac-Man Clone</summary>
+  <summary xml:lang="ca">Un clon del Pac-Man</summary>
   <summary xml:lang="cs">Klon Pacmana</summary>
   <summary xml:lang="de">Pac-Man-Klone</summary>
   <summary xml:lang="en-GB">Pac-Man Clone</summary>
@@ -44,6 +46,7 @@
     <p>
       Kapman is a clone of the well known game Pac-Man.
     </p>
+    <p xml:lang="ca">El Kapman és un clon del ben conegut joc Pac-Man.</p>
     <p xml:lang="en-GB">Kapman is a clone of the well known game Pac-Man.</p>
     <p xml:lang="es">Kapman es un clon del conocido juego Pac-Man.</p>
     <p xml:lang="it">Kapman è un clone del famoso gioco Pac-Man.</p>
@@ -65,6 +68,7 @@
       When a stage is cleared of pills and energizer the player is taken to the next stage with slightly
       increased game speed.
     </p>
+    <p xml:lang="ca">Heu de recórrer el laberint per menjar les píndoles sense ser capturat per cap fantasma. Si menja un energitzant, el Kapman aconsegueix la capacitat de menjar els fantasmes durant uns segons. Quan una etapa es neteja de píndoles i energitzants, el jugador es porta a l'etapa següent amb un lleuger increment de la velocitat de joc.</p>
     <p xml:lang="en-GB">You must run through the maze to eat all pills without being captured by a ghost. By eating an energiser, Kapman gets the ability to eat ghosts for a few seconds. When a stage is cleared of pills and energiser the player is taken to the next stage with slightly increased game speed.</p>
     <p xml:lang="es">Debes correr a través de un laberinto para comerte todas las pastillas sin que te capture un fantasma. Al tomarse un vigorizador, Kapman adquiere la habilidad de comer a los fantasmas durante algnos segundos. Cuando en un nivel se acaban las pastillas y vigorizantes, el jugador es llevado al siguiente nivel que tendrá la velocidad del juego ligeramente aumentada.</p>
     <p xml:lang="it">Devi correre attraverso il labirinto e mangiare tutte le pillole, senza essere catturato da un fantasma. Mangiando un energetico, per pochi secondi, Kapman sarà in grado di mangiare i fantasmi. Quando in un livello finiscono le pillole e gli energetici si passa al livello successivo in cui aumenterà leggermente la velocità del gioco.</p>
