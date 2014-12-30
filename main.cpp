@@ -20,10 +20,16 @@
 #include <QApplication>
 #include <KLocalizedString>
 #include <QCommandLineParser>
+#include <kdelibs4configmigrator.h>
 
 #include "kapmanmainwindow.h"
 
 int main(int argc, char** argv) {
+    Kdelibs4ConfigMigrator migrate(QStringLiteral("kapman"));
+    migrate.setConfigFiles(QStringList() << QStringLiteral("kapmanrc"));
+    migrate.setUiFiles(QStringList() << QStringLiteral("kapmanui.rc"));
+    migrate.migrate();
+
 	// About Kapman
 	KAboutData about("kapman", i18n("Kapman"), QLatin1String("1.0.1"),
 		i18n("Kapman: Go through the levels escaping ghosts!"),
