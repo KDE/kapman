@@ -88,3 +88,5 @@ install(FILES kapmanui.rc DESTINATION ${KXMLGUI_INSTALL_DIR}/kapman)
 install(FILES defaultmaze.xml DESTINATION ${DATA_INSTALL_DIR}/kapman)
 install(FILES ${themes} DESTINATION ${DATA_INSTALL_DIR}/kapman/themes)
 install(FILES ${sounds_ogg} DESTINATION ${SOUND_INSTALL_DIR}/kapman)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
