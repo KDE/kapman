@@ -21,10 +21,12 @@
 #include <KLocalizedString>
 #include <QCommandLineParser>
 #include <kdelibs4configmigrator.h>
-
+#include <KDBusService>
 #include "kapmanmainwindow.h"
 
 int main(int argc, char** argv) {
+    QApplication app(argc, argv);
+
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kapman"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kapmanrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kapmanui.rc"));
@@ -44,7 +46,6 @@ int main(int argc, char** argv) {
 	about.addCredit(i18n("Roney Gomes"), i18n("Port to KgSound framework"), "roney477@gmail.com");
 
 	// Command line arguments
-    QApplication app(argc, argv);
     QCommandLineParser parser;
     KAboutData::setApplicationData(about);
     parser.addVersionOption();
@@ -53,6 +54,7 @@ int main(int argc, char** argv) {
     about.setupCommandLine(&parser);
     parser.process(app);
     about.processCommandLine(&parser);
+    KDBusService service;
 	// Create the application
 	// Create the main window
 	KapmanMainWindow* window = new KapmanMainWindow();
