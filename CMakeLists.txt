@@ -75,7 +75,16 @@ ecm_install_icons(ICONS hi128-apps-kapman.png  hi16-apps-kapman.png  hi22-apps-k
 kde4_add_app_icon(kapman_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-apps-kapman.png")
 add_executable(kapman ${kapman_SRCS})
 
-target_link_libraries(kapman  Phonon::phonon4qt5 Qt5::Xml KF5KDEGames KF5KDEGamesPrivate Qt5::Svg KF5::DBusAddons)
+target_link_libraries(kapman 
+   Phonon::phonon4qt5
+   KF5KDEGames
+   KF5KDEGamesPrivate
+   Qt5::Svg
+   Qt5::Xml
+   KF5::DBusAddons
+   KF5::XmlGui
+   KF5::KDELibs4Support # KInputDialog
+)
 
 install(TARGETS kapman ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.kapman.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
