@@ -28,6 +28,7 @@
 static const int initLives = 3;
 
 class QStatusBar;
+class QLabel;
 
 /**
  * @brief This class enables to create the main window for Kapman.
@@ -45,6 +46,9 @@ class KapmanMainWindow : public KXmlGuiWindow {
 		Game* m_game;
 
 		QStatusBar* m_statusBar;
+                QLabel *mLevel;
+                QLabel *mScore;
+                QLabel *mLives;
 		
 	public:
 

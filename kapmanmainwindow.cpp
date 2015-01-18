@@ -32,6 +32,7 @@
 #include <KgDifficulty>
 #include <KScoreDialog>
 #include <QAction>
+#include <QLabel>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
@@ -54,9 +55,12 @@ KapmanMainWindow::KapmanMainWindow() {
 	connect(levelAction, &QAction::triggered, this, &KapmanMainWindow::changeLevel);
 	// Add a statusbar to show level,score,lives information
 	m_statusBar = statusBar();
-	//QT5 m_statusBar->insertItem(i18nc("Used to display the current level of play to the user", "Level: %1", 1), 1, 1);
-	//QT5 m_statusBar->insertItem(i18nc("Used to inform the user of their current score", "Score: %1", 0), 2, 1);
-	//QT5 m_statusBar->insertItem(i18nc("Used to tell the user how many lives they have left", "Lives: %1", initLives), 4, 1);
+        mLevel = new QLabel(i18nc("Used to display the current level of play to the user", "Level: %1", 1));
+        m_statusBar->addPermanentWidget(mLevel);
+        mScore = new QLabel(i18nc("Used to inform the user of their current score", "Score: %1", 0));
+        m_statusBar->addPermanentWidget(mScore);
+        mLives = new QLabel(i18nc("Used to tell the user how many lives they have left", "Lives: %1", initLives));
+        m_statusBar->addPermanentWidget(mLives);
 
 	
 	// Initialize the KgDifficulty singleton
@@ -207,29 +211,23 @@ void KapmanMainWindow::close() {
 
 void KapmanMainWindow::displayLevel(unsigned int p_level)
 {
-#if 0 //QT5
-	m_statusBar->changeItem(i18nc(
-			"Used to display the current level of play to the user",
-			"Level: %1", p_level), 1);
-#endif
+        mLevel->setText(i18nc(
+                        "Used to display the current level of play to the user",
+                        "Level: %1", p_level));
 }
 
 void KapmanMainWindow::displayScore(unsigned int p_score)
 {
-#if 0 //QT5
-	m_statusBar->changeItem(i18nc(
-			"Used to inform the user of their current score", "Score: %1",
-			p_score), 2);
-#endif
+        mScore->setText(i18nc(
+                        "Used to inform the user of their current score", "Score: %1",
+                        p_score));
 }
 
 void KapmanMainWindow::displayLives(unsigned int p_lives)
 {
-#if 0 //QT5
-	m_statusBar->changeItem(i18nc(
-			"Used to tell the user how many lives they have left", "Lives: %1",
-			p_lives), 4);
-#endif
+        mLives->setText(i18nc(
+                        "Used to tell the user how many lives they have left", "Lives: %1",
+                        p_lives));
 }
 
 void KapmanMainWindow::resetStatusBar()
