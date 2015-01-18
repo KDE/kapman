@@ -26,7 +26,7 @@
 #include <KToggleAction>
 #include <KMessageBox>
 #include <KConfigDialog>
-#include <KInputDialog>
+#include <QInputDialog>
 #include <KLocalizedString>
 #include <QStatusBar>
 #include <KgDifficulty>
@@ -155,7 +155,7 @@ void KapmanMainWindow::newGame(const bool gameOver) {
 }
 
 void KapmanMainWindow::changeLevel() {
-	int newLevel = KInputDialog::getInteger(i18n("Change level"), i18nc("The number of the game level", "Level"), m_game->getLevel(), 1, 1000000, 1, 10, 0, this);
+	const int newLevel = QInputDialog::getInteger(this, i18n("Change level"), i18nc("The number of the game level", "Level"), m_game->getLevel(), 1, 1000000, 1);
 	if (newLevel > 0) {
 		m_game->setLevel(newLevel);
 	}
