@@ -1,16 +1,16 @@
 /*
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of 
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -24,7 +24,8 @@
 #include <KDBusService>
 #include "kapmanmainwindow.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
     QApplication app(argc, argv);
 
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kapman"));
@@ -32,11 +33,11 @@ int main(int argc, char** argv) {
     migrate.setUiFiles(QStringList() << QStringLiteral("kapmanui.rc"));
     migrate.migrate();
 
-	// About Kapman
+    // About Kapman
     KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QLatin1String("1.0.1"),
-		i18n("Kapman: Go through the levels escaping ghosts!"),
-		KAboutLicense::GPL, i18n("Copyright (c) 2007-2008 The KapTeam"));
-	// Alphabetical order of Developers of Kapman
+                     i18n("Kapman: Go through the levels escaping ghosts!"),
+                     KAboutLicense::GPL, i18n("Copyright (c) 2007-2008 The KapTeam"));
+    // Alphabetical order of Developers of Kapman
     about.addAuthor(i18n("Alexandre Galinier"), i18n("Developer"), QStringLiteral("alex.galinier@gmail.com"));
     about.addAuthor(i18n("Nathalie Liesse"), i18n("Developer"), QStringLiteral("nathalie.liesse@gmail.com"));
     about.addAuthor(i18n("Ömer Fadıl USTA"), i18n("Developer"), QStringLiteral("omerusta@gmail.com"));
@@ -45,7 +46,7 @@ int main(int argc, char** argv) {
     about.addAuthor(i18n("Thomas Gallinari"), i18n("Developer"), QStringLiteral("tg8187@yahoo.fr"));
     about.addCredit(i18n("Roney Gomes"), i18n("Port to KgSound framework"), QStringLiteral("roney477@gmail.com"));
 
-	// Command line arguments
+    // Command line arguments
     QCommandLineParser parser;
     KAboutData::setApplicationData(about);
     parser.addVersionOption();
@@ -54,12 +55,12 @@ int main(int argc, char** argv) {
     parser.process(app);
     about.processCommandLine(&parser);
     KDBusService service;
-	// Create the application
-	// Create the main window
-	KapmanMainWindow* window = new KapmanMainWindow();
-	// Show the main window
-	window->show();
-	// Execute the application
-	return app.exec();
+    // Create the application
+    // Create the main window
+    KapmanMainWindow *window = new KapmanMainWindow();
+    // Show the main window
+    window->show();
+    // Execute the application
+    return app.exec();
 }
 

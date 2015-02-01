@@ -1,17 +1,17 @@
 /*
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
  * Copyright 2007-2008 Pierre-Benoit Besse <besse.pb@gmail.com>
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of 
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,51 +25,52 @@
 /**
  * @brief This class is the graphical representation of a Ghost.
  */
-class GhostItem : public CharacterItem {
+class GhostItem : public CharacterItem
+{
 
-	Q_OBJECT
+    Q_OBJECT
 
-	private:
+private:
 
-		/** Timer to start the ghosts blinking */
-		QTimer* m_startBlinkingTimer;
+    /** Timer to start the ghosts blinking */
+    QTimer *m_startBlinkingTimer;
 
-	public:
+public:
 
-		/**
-		 * Creates a new GhostItem instance.
-		 * @param p_model the Ghost model
-		 */
-		explicit GhostItem(Ghost* p_model);
+    /**
+     * Creates a new GhostItem instance.
+     * @param p_model the Ghost model
+     */
+    explicit GhostItem(Ghost *p_model);
 
-		/**
-		 * Deletes the CharacterItem instance.
-		 */
-		~GhostItem();
+    /**
+     * Deletes the CharacterItem instance.
+     */
+    ~GhostItem();
 
-		/**
-		 * Ensures the blink timers are correctly set
-		 */
-		void updateBlinkTimersDuration();
-		
-	public slots:
+    /**
+     * Ensures the blink timers are correctly set
+     */
+    void updateBlinkTimersDuration();
 
-		/**
-		 * Updates the view coordinates.
-		 * @param p_x the new x-coordinate
-		 * @param p_y the new y-coordinate
-		 */
-		void update(qreal p_x, qreal p_y);
-		
-		/**
-		 * Update the image function of the Ghost state.
-		 */
-		void updateState();
+public slots:
 
-		/**
-		 * Implements the CharacterItem method.
-		 */
-		void blink();
+    /**
+     * Updates the view coordinates.
+     * @param p_x the new x-coordinate
+     * @param p_y the new y-coordinate
+     */
+    void update(qreal p_x, qreal p_y);
+
+    /**
+     * Update the image function of the Ghost state.
+     */
+    void updateState();
+
+    /**
+     * Implements the CharacterItem method.
+     */
+    void blink();
 };
 
 #endif

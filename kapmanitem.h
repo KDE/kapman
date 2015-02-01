@@ -1,16 +1,16 @@
 /*
  * Copyright 2007-2008 Thomas Gallinari <tg8187@yahoo.fr>
- * 
+ *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
- * published by the Free Software Foundation; either version 2 of 
+ * published by the Free Software Foundation; either version 2 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -26,99 +26,103 @@
 /**
  * @brief This class manage the display of the Kapman.
  */
-class KapmanItem : public CharacterItem {
+class KapmanItem : public CharacterItem
+{
 
-	Q_OBJECT
+    Q_OBJECT
 
-	private:
+private:
 
-		/** Number of frames to animate the KapmanItem */
-		static const int NB_FRAMES;
+    /** Number of frames to animate the KapmanItem */
+    static const int NB_FRAMES;
 
-		/** Animation update interval */
-		static const int ANIM_LOW_SPEED;
-		static const int ANIM_MEDIUM_SPEED;
-		static const int ANIM_HIGH_SPEED;
+    /** Animation update interval */
+    static const int ANIM_LOW_SPEED;
+    static const int ANIM_MEDIUM_SPEED;
+    static const int ANIM_HIGH_SPEED;
 
-		/** Timer used to animate the KapmanItem */
-		QTimeLine * m_animationTimer;
+    /** Timer used to animate the KapmanItem */
+    QTimeLine *m_animationTimer;
 
-		/** Rotation flag set by theme */
-		bool m_rotationFlag;
+    /** Rotation flag set by theme */
+    bool m_rotationFlag;
 
-	public:
+public:
 
-		/**
-		 * Creates a new KapmanItem instance.
-		 * @param p_model the Kapman model
-		 */
-		explicit KapmanItem(Kapman* p_model);
+    /**
+     * Creates a new KapmanItem instance.
+     * @param p_model the Kapman model
+     */
+    explicit KapmanItem(Kapman *p_model);
 
-		/**
-		 * Deletes the KapmanItem instance.
-		 */
-		~KapmanItem();
+    /**
+     * Deletes the KapmanItem instance.
+     */
+    ~KapmanItem();
 
-	public slots:
+public slots:
 
-		/**
-		 * Rotates the image function of the Kapman direction.
-		 */
-		void updateDirection();
+    /**
+     * Rotates the image function of the Kapman direction.
+     */
+    void updateDirection();
 
-		/**
-		 * Manages the collisions with any Element.
-		 */
-		void manageCollision();
-		
-		/**
-		 * Updates the KapmanItem coordinates.
-		 * @param p_x the new x-coordinate
-		 * @param p_y the new y-coordinate
-		 */
-		void update(qreal p_x, qreal p_y);
+    /**
+     * Manages the collisions with any Element.
+     */
+    void manageCollision();
 
-		/**
-		 * Starts the KapmanItem animation.
-		 */
-		void startAnim();
+    /**
+     * Updates the KapmanItem coordinates.
+     * @param p_x the new x-coordinate
+     * @param p_y the new y-coordinate
+     */
+    void update(qreal p_x, qreal p_y);
 
-		/**
-		 * Pauses the KapmanItem animation.
-		 */
-		void pauseAnim();
+    /**
+     * Starts the KapmanItem animation.
+     */
+    void startAnim();
 
-		/**
-		 * Resumes the KapmanItem animation.
-		 */
-		void resumeAnim();
+    /**
+     * Pauses the KapmanItem animation.
+     */
+    void pauseAnim();
 
-		/**
-		 * Stops the KapmanItem animation.
-		 */
-		void stopAnim();
+    /**
+     * Resumes the KapmanItem animation.
+     */
+    void resumeAnim();
 
-		/**
-		 * Sets the given frame to the KapmanItem.
-		 * @param p_frame the frame to set
-		 */
-		void setFrame(const int p_frame);
+    /**
+     * Stops the KapmanItem animation.
+     */
+    void stopAnim();
 
-		/**
-		 * Implements the CharacterItem method.
-		 */
-		void startBlinking();
+    /**
+     * Sets the given frame to the KapmanItem.
+     * @param p_frame the frame to set
+     */
+    void setFrame(const int p_frame);
 
-		/**
-		 * Implements the CharacterItem method.
-		 */
-		void blink();
+    /**
+     * Implements the CharacterItem method.
+     */
+    void startBlinking();
 
-		/**
-		 * Set if the KapmanItem should be rotated (set by theme flag RotateKapman).
-		 * @param rotate 0 or 1
-		 */
-		void setRotationFlag(bool rotate) { m_rotationFlag=rotate; }
+    /**
+     * Implements the CharacterItem method.
+     */
+    void blink();
+
+    /**
+     * Set if the KapmanItem should be rotated (set by theme flag RotateKapman).
+     * @param rotate 0 or 1
+     */
+    void setRotationFlag(bool rotate)
+    {
+        m_rotationFlag = rotate;
+    }
 
 };
 
