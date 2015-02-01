@@ -137,27 +137,27 @@ void KapmanItem::resumeAnim() {
 }
 
 void KapmanItem::stopAnim() {
-	setElementId("kapman_0");
+    setElementId(QLatin1Literal("kapman_0"));
         if (m_animationTimer->state() == QTimeLine::Running)
 	    m_animationTimer->stop();
 }
 
 void KapmanItem::setFrame(const int p_frame) {
-	setElementId(QString("kapman_%1").arg(p_frame));
+    setElementId(QString::fromLatin1("kapman_%1").arg(p_frame));
 }
 
 void KapmanItem::startBlinking() {
 	stopAnim();
-	setElementId("kapman_0");
+    setElementId(QLatin1Literal("kapman_0"));
 	CharacterItem::startBlinking();
 }
 
 void KapmanItem::blink() {
 	CharacterItem::blink();
 	if (m_nbBlinks % 2 == 0) {
-		setElementId("kapman_0");
+        setElementId(QLatin1Literal("kapman_0"));
 	} else {
-		setElementId("kapman_blink");
+        setElementId(QLatin1Literal("kapman_blink"));
 	}
 	// Make the kapman blink 2 times (4 ticks)
 	if (m_nbBlinks == 4) {

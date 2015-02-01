@@ -69,7 +69,7 @@ void GhostItem::updateState() {
 	switch (((Ghost*)getModel())->getState()) { 
 		case Ghost::PREY:
 			updateBlinkTimersDuration();
-			setElementId("scaredghost");
+            setElementId(QLatin1Literal("scaredghost"));
 			m_startBlinkingTimer->start();
 			// The ghosts are now weaker than the kapman, so they are under him
 			setZValue(1);
@@ -80,7 +80,7 @@ void GhostItem::updateState() {
 			setZValue(3);
 			break;
 		case Ghost::EATEN:
-			setElementId("ghosteye");
+            setElementId(QLatin1Literal("ghosteye"));
 			// The ghosts are now weaker than the kapman, so they are under him
 			setZValue(1);
 			break;
@@ -90,9 +90,9 @@ void GhostItem::updateState() {
 void GhostItem::blink() {
 	CharacterItem::blink();
 	if (m_nbBlinks % 2 == 0) {
-		setElementId("scaredghost");
+        setElementId(QLatin1Literal("scaredghost"));
 	} else {
-		setElementId("whitescaredghost");
+        setElementId(QLatin1Literal("whitescaredghost"));
 	}
 }
 

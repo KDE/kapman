@@ -173,11 +173,11 @@ void KapmanMainWindow::setSoundsEnabled(bool p_enabled) {
 }
 
 void KapmanMainWindow::showSettings() {
-	if (KConfigDialog::showDialog("settings")) {
+    if (KConfigDialog::showDialog(QLatin1Literal("settings"))) {
 		return;
 	}
-	KConfigDialog* settingsDialog = new KConfigDialog(this, "settings", Settings::self());
-	settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), "kapman");
+    KConfigDialog* settingsDialog = new KConfigDialog(this, QLatin1Literal("settings"), Settings::self());
+    settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), QLatin1Literal("kapman"));
 	settingsDialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
 	connect(settingsDialog, &KConfigDialog::settingsChanged, this, &KapmanMainWindow::loadSettings);
 	settingsDialog->show();

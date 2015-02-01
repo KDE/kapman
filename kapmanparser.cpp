@@ -38,86 +38,86 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 	qreal x_position = 0.0;
 	qreal y_position = 0.0;
 	
-	if (p_qName == "Maze") {
+    if (p_qName == QLatin1String("Maze")) {
 		int nbRows = 0;
 		int nbColumns = 0;
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {
-			if (p_atts.qName(i) == "rowCount") {
+            if (p_atts.qName(i) == QLatin1String("rowCount")) {
 				nbRows = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "colCount") {
+            if (p_atts.qName(i) == QLatin1String("colCount")) {
 				nbColumns = p_atts.value(i).toInt();
 			}
 		}
 		// Create the Maze matrix
 		m_game->getMaze()->init(nbRows, nbColumns);
 	}
-	else if (p_qName == "Bonus") {
+    else if (p_qName == QLatin1String("Bonus")) {
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {
-			if (p_atts.qName(i) == "rowIndex") {
+            if (p_atts.qName(i) == QLatin1String("rowIndex")) {
 				y_position = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "colIndex") {
+            if (p_atts.qName(i) == QLatin1String("colIndex")) {
 				x_position = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "x-align") {
-				if(p_atts.value(i) == "center"){
+            if (p_atts.qName(i) == QLatin1String("x-align")) {
+                if(p_atts.value(i) == QLatin1String("center")){
 					x_position += 0.5;
 				}
 			}
-			if (p_atts.qName(i) == "y-align") {
-				if(p_atts.value(i) == "center"){
+            if (p_atts.qName(i) == QLatin1String("y-align")) {
+                if(p_atts.value(i) == QLatin1String("center")){
 					y_position += 0.5;
 				}
 			}
 		}
 		m_game->createBonus(QPointF(x_position, y_position));
 	}
-	else if (p_qName == "Kapman") {
+    else if (p_qName == QLatin1String("Kapman")) {
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {
-			if (p_atts.qName(i) == "rowIndex") {
+            if (p_atts.qName(i) == QLatin1String("rowIndex")) {
 				y_position = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "colIndex") {
+            if (p_atts.qName(i) == QLatin1String("colIndex")) {
 				x_position = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "x-align") {
-				if(p_atts.value(i) == "center"){
+            if (p_atts.qName(i) == QLatin1String("x-align")) {
+                if(p_atts.value(i) == QLatin1String("center")){
 					x_position += 0.5;
 				}
 			}
-			if (p_atts.qName(i) == "y-align") {
-				if(p_atts.value(i) == "center"){
+            if (p_atts.qName(i) == QLatin1String("y-align")) {
+                if(p_atts.value(i) == QLatin1String("center")){
 					y_position += 0.5;
 				}
 			}
 		}
 		m_game->createKapman(QPointF(x_position, y_position));
 	}
-	else if (p_qName == "Ghost") {
-		QString imageId = "";
+    else if (p_qName == QLatin1String("Ghost")) {
+        QString imageId = QString();
 		// Initialize the number of rows and columns
 		for (int i = 0; i < p_atts.count(); ++i) {
-			if (p_atts.qName(i) == "rowIndex") {
+            if (p_atts.qName(i) == QLatin1String("rowIndex")) {
 				y_position = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "colIndex") {
+            if (p_atts.qName(i) == QLatin1String("colIndex")) {
 				x_position = p_atts.value(i).toInt();
 			}
-			if (p_atts.qName(i) == "x-align") {
-				if(p_atts.value(i) == "center"){
+            if (p_atts.qName(i) == QLatin1String("x-align")) {
+                if(p_atts.value(i) == QLatin1String("center")){
 					x_position += 0.5;
 				}
 			}
-			if (p_atts.qName(i) == "y-align") {
-				if(p_atts.value(i) == "center"){
+            if (p_atts.qName(i) == QLatin1String("y-align")) {
+                if(p_atts.value(i) == QLatin1String("center")){
 					y_position += 0.5;
 				}
 			}
-			if (p_atts.qName(i) == "imageId") {
+            if (p_atts.qName(i) == QLatin1String("imageId")) {
 				imageId = p_atts.value(i);
 			}
 		}
@@ -129,7 +129,7 @@ bool KapmanParser::startElement(const QString&, const QString&, const QString& p
 }
 
 bool KapmanParser::endElement(const QString &, const QString &, const QString & p_qName ){
-	if(p_qName == "Row")
+    if(p_qName == QLatin1String("Row"))
 	{
 		for (int i=0; i<m_buffer.length();++i)
 		{
@@ -141,11 +141,11 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString & 
 					break;
 				case '.': m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					m_game->getMaze()->setCellElement(m_counterRows, i,
-							new Pill(m_counterRows, i, m_game->getMaze(), "pill"));
+                            new Pill(m_counterRows, i, m_game->getMaze(), QLatin1String("pill")));
 					break; 
 				case 'o':m_game->getMaze()->setCellType(m_counterRows,i,Cell::CORRIDOR);
 					m_game->getMaze()->setCellElement(m_counterRows, i,
-							new Energizer(m_counterRows, i, m_game->getMaze(), "energizer"));
+                            new Energizer(m_counterRows, i, m_game->getMaze(), QLatin1String("energizer")));
 					break;
 				case 'x':m_game->getMaze()->setCellType(m_counterRows,i,Cell::GHOSTCAMP);
 					break;
@@ -154,7 +154,7 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString & 
 					break;
 			}
 		}
-		m_counterRows ++;
+        ++m_counterRows;
 	}
 	return true;
 }
