@@ -34,7 +34,7 @@ int main(int argc, char **argv)
     migrate.migrate();
 
     // About Kapman
-    KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QLatin1String("1.0.1"),
+    KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QLatin1String("1.1.0"),
                      i18n("Kapman: Go through the levels escaping ghosts!"),
                      KAboutLicense::GPL, i18n("Copyright (c) 2007-2008 The KapTeam"));
     // Alphabetical order of Developers of Kapman
