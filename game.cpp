@@ -35,13 +35,13 @@ Game::Game() :
     m_points(0),
     m_level(1),
     m_nbEatenGhosts(0),
-    m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/gameover.ogg"))),
-    m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/ghost.ogg"))),
-    m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/life.ogg"))),
-    m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/energizer.ogg"))),
-    m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/bonus.ogg"))),
-    m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/pill.ogg"))),
-    m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sound/kapman/levelup.ogg")))
+    m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/gameover.ogg"))),
+    m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/ghost.ogg"))),
+    m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/life.ogg"))),
+    m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/energizer.ogg"))),
+    m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/bonus.ogg"))),
+    m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/pill.ogg"))),
+    m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/levelup.ogg")))
 {
     // Initialize the sound state
     setSoundsEnabled(Settings::sounds());
