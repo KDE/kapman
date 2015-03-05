@@ -28,6 +28,7 @@
   <name xml:lang="sv">Kapman</name>
   <name xml:lang="uk">Kapman</name>
   <name xml:lang="x-test">xxKapmanxx</name>
+  <name xml:lang="zh-CN">Kapman</name>
   <name xml:lang="zh-TW">Kapman</name>
   <summary>Pac-Man Clone</summary>
   <summary xml:lang="bs">Klon Pac-Mana</summary>
@@ -52,6 +53,7 @@
   <summary xml:lang="sv">Klon av Pac-Man</summary>
   <summary xml:lang="uk">Клон гри «Пакмен»</summary>
   <summary xml:lang="x-test">xxPac-Man Clonexx</summary>
+  <summary xml:lang="zh-CN">Pac-Man 克隆</summary>
   <summary xml:lang="zh-TW">另一款小精靈遊戲</summary>
   <description>
     <p>
