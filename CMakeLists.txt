@@ -70,9 +70,9 @@ file(GLOB sounds_ogg "sounds/*.ogg")
 
 kconfig_add_kcfg_files(kapman_SRCS settings.kcfgc)
 
-ecm_install_icons(ICONS hi128-apps-kapman.png  hi16-apps-kapman.png  hi22-apps-kapman.png  hi32-apps-kapman.png  hi48-apps-kapman.png  hi64-apps-kapman.png DESTINATION ${KDE_INSTALL_ICONDIR})
+ecm_install_icons(ICONS 128-apps-kapman.png  16-apps-kapman.png  22-apps-kapman.png  32-apps-kapman.png  48-apps-kapman.png  64-apps-kapman.png DESTINATION ${KDE_INSTALL_ICONDIR} THEME hicolor)
 
-file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/hi*-apps-kapman.png")
+file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kapman.png")
 ecm_add_app_icon(kapman_SRCS ICONS ${ICONS_SRCS})
 add_executable(kapman ${kapman_SRCS})
 
