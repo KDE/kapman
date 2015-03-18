@@ -26,13 +26,11 @@
 
 int main(int argc, char **argv)
 {
-    QApplication app(argc, argv);
-
     Kdelibs4ConfigMigrator migrate(QStringLiteral("kapman"));
     migrate.setConfigFiles(QStringList() << QStringLiteral("kapmanrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kapmanui.rc"));
     migrate.migrate();
-
+    QApplication app(argc, argv);
     // About Kapman
     KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QLatin1String("1.1.0"),
                      i18n("Kapman: Go through the levels escaping ghosts!"),
