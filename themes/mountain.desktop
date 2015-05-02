@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Mountain Adventure
+Name[ast]=Aventura de montaña
 Name[bs]=Planinska avantura
 Name[ca]=Aventura de la muntanya
 Name[ca@valencia]=Aventura de la muntanya
@@ -46,6 +47,7 @@ Name[x-test]=xxMountain Adventurexx
 Name[zh_CN]=山中冒险
 Name[zh_TW]=山中冒險
 Description=Default
+Description[ast]=Predetermináu
 Description[bs]=Podrazumijevano
 Description[ca]=Per omissió
 Description[ca@valencia]=Per omissió

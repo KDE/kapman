@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Matches
+Name[ast]=Coincidencies
 Name[bs]=Šibice
 Name[ca]=Llumins
 Name[ca@valencia]=Llumins
@@ -50,6 +51,7 @@ Name[x-test]=xxMatchesxx
 Name[zh_CN]=火柴
 Name[zh_TW]=火柴
 Description=A matches drawn maze
+Description[ast]=Un llaberintu dibuxáu por coincidencies
 Description[bs]=Lavirint od šibica
 Description[ca]=Un laberint dissenyat amb llumins
 Description[ca@valencia]=Un laberint dissenyat amb llumins
