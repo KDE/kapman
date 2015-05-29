@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     migrate.setConfigFiles(QStringList() << QStringLiteral("kapmanrc"));
     migrate.setUiFiles(QStringList() << QStringLiteral("kapmanui.rc"));
     migrate.migrate();
+    KLocalizedString::setApplicationDomain("kapman");
     // About Kapman
     KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QLatin1String("1.1.0"),
                      i18n("Kapman: Go through the levels escaping ghosts!"),
