@@ -154,7 +154,7 @@ void KapmanMainWindow::newGame(const bool gameOver)
 
 void KapmanMainWindow::changeLevel()
 {
-    const int newLevel = QInputDialog::getInteger(this, i18n("Change level"), i18nc("The number of the game level", "Level"), m_game->getLevel(), 1, 1000000, 1);
+    const int newLevel = QInputDialog::getInt(this, i18n("Change level"), i18nc("The number of the game level", "Level"), m_game->getLevel(), 1, 1000000, 1);
     if (newLevel > 0) {
         m_game->setLevel(newLevel);
     }

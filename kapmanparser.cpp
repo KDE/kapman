@@ -132,7 +132,7 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString &p
 {
     if (p_qName == QLatin1String("Row")) {
         for (int i = 0; i < m_buffer.length(); ++i) {
-            switch (m_buffer.at(i).toAscii()) {
+            switch (m_buffer.at(i).toLatin1()) {
             case '|':
             case '=': m_game->getMaze()->setCellType(m_counterRows, i, Cell::WALL);
                 break;
