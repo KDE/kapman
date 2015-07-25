@@ -10,6 +10,8 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Svg)
 find_package(KF5 REQUIRED COMPONENTS 
     CoreAddons
     Config
+    DBusAddons
+    DocTools
     WindowSystem
     Config
     I18n
