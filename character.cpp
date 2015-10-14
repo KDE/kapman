@@ -233,6 +233,16 @@ bool Character::onCenter()
     return willGoPast;
 }
 
+bool Character::isOnCenter()
+{
+    // Get the current cell center coordinates
+    qreal centerX = (m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE;
+    qreal centerY = (m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE;
+
+    return m_x == centerX && m_y == centerY;
+}
+
+
 void Character::moveOnCenter()
 {
     setX((m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE);

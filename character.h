@@ -193,6 +193,12 @@ protected:
     bool onCenter();
 
     /**
+     * Checks whether the Character is currently on a Cell center.
+     * @return true if the Character is on a Cell center, false otherwise
+     */
+    bool isOnCenter();
+
+    /**
      * Moves the character on the center of its current Cell.
      */
     void moveOnCenter();
@@ -206,4 +212,3 @@ signals:
 };
 
 #endif
-

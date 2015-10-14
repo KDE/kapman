@@ -95,31 +95,25 @@ void Kapman::updateMove()
         if ((m_xSpeed != 0 && m_askedXSpeed == -m_xSpeed) || (m_ySpeed != 0 && m_askedYSpeed == -m_ySpeed)) {
             // Go back
             updateDirection();
-            // Move the kapman
-            move();
+            // If the kapman just turned at a corner and instantly makes a half-turn, do not run into a wall
+            if (isOnCenter() && getNextCell().getType() != Cell::CORRIDOR) {
+                // Stop moving
+                stopMoving();
+            } else {
+                // Move the kapman
+                move();
+            }
         } else {
             // If the kapman gets on a cell center
             if (onCenter()) {
-                // If there is an asked direction (but not a half-turn)
-                if ((m_askedXSpeed != 0 || m_askedYSpeed != 0) && (m_askedXSpeed != m_xSpeed || m_askedYSpeed != m_ySpeed)) {
-                    // Check the next cell with the kapman asked direction
-                    if (getAskedNextCell().getType() == Cell::CORRIDOR) {
-                        // Move the kapman on the cell center
-                        moveOnCenter();
-                        // Update the direction
-                        updateDirection();
-                    } else {
-                        // Check the next cell with the kapman current direction
-                        if (getNextCell().getType() != Cell::CORRIDOR) {
-                            // Move the kapman on the cell center
-                            moveOnCenter();
-                            // Stop moving
-                            stopMoving();
-                        } else {
-                            // Move the kapman
-                            move();
-                        }
-                    }
+                // If there is an asked direction (not a half-turn) and the corresponding next cell is accessible
+                if ((m_askedXSpeed != 0 || m_askedYSpeed != 0)
+                    && (m_askedXSpeed != m_xSpeed || m_askedYSpeed != m_ySpeed)
+                    && (getAskedNextCell().getType() == Cell::CORRIDOR)) {
+                    // Move the kapman on the cell center
+                    moveOnCenter();
+                    // Update the direction
+                    updateDirection();
                 } else {
                     // Check the next cell with the kapman current direction
                     if (getNextCell().getType() != Cell::CORRIDOR) {
@@ -211,4 +205,3 @@ void Kapman::initSpeedInc()
         break;
     }
 }
-
