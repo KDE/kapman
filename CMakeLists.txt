@@ -12,19 +12,13 @@ find_package(KF5 REQUIRED COMPONENTS
     Config
     DBusAddons
     DocTools
-    WindowSystem
     Config
     I18n
     ConfigWidgets
     XmlGui
-    KIO
-    NotifyConfig
     )
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
-find_package(Phonon4Qt5 CONFIG REQUIRED)
-
-include_directories(BEFORE ${PHONON_INCLUDES})
 
 include(FeatureSummary)
 include(ECMInstallIcons)
@@ -78,7 +72,6 @@ ecm_add_app_icon(kapman_SRCS ICONS ${ICONS_SRCS})
 add_executable(kapman ${kapman_SRCS})
 
 target_link_libraries(kapman 
-   Phonon::phonon4qt5
    KF5KDEGames
    KF5KDEGamesPrivate
    Qt5::Svg
