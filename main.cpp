@@ -45,6 +45,7 @@ int main(int argc, char **argv)
     about.addAuthor(i18n("Romain Castan"), i18n("Developer"), QStringLiteral("romaincastan@gmail.com"));
     about.addAuthor(i18n("Thomas Gallinari"), i18n("Developer"), QStringLiteral("tg8187@yahoo.fr"));
     about.addCredit(i18n("Roney Gomes"), i18n("Port to KgSound framework"), QStringLiteral("roney477@gmail.com"));
+    about.setHomepage(QStringLiteral("https://www.kde.org/applications/games/kapman/"));
 
     // Command line arguments
     QCommandLineParser parser;
