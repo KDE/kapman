@@ -99,7 +99,7 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
         }
         m_game->createKapman(QPointF(x_position, y_position));
     } else if (p_qName == QLatin1String("Ghost")) {
-        QString imageId = QString();
+        QString imageId;
         // Initialize the number of rows and columns
         for (int i = 0; i < p_atts.count(); ++i) {
             if (p_atts.qName(i) == QLatin1String("rowIndex")) {
