@@ -10,6 +10,7 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Svg)
 find_package(KF5 REQUIRED COMPONENTS 
     CoreAddons
     Config
+    Crash
     DBusAddons
     DocTools
     Config
@@ -76,6 +77,7 @@ target_link_libraries(kapman
    KF5KDEGamesPrivate
    Qt5::Svg
    Qt5::Xml
+   KF5::Crash
    KF5::DBusAddons
    KF5::XmlGui
 )
