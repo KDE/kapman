@@ -17,11 +17,11 @@
  */
 
 #include "ghost.h"
-#include "time.h"
 
 #include <QPointF>
 #include <KgDifficulty>
 #include <cstdlib>
+#include <ctime>
 
 const qreal Ghost::MAX_SPEED_RATIO = 2.0;
 const int Ghost::POINTS = 200;
@@ -35,7 +35,7 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze) : Cha
     m_state = Ghost::HUNTER;
     m_maxSpeed = m_normalSpeed * MAX_SPEED_RATIO;
     // Initialize the random-number generator
-    qsrand(time(NULL));
+    qsrand(std::time(nullptr));
     // Makes the ghost move as soon as the game is created
     goLeft();
 }
