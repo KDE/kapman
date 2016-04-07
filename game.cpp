@@ -63,7 +63,7 @@ Game::Game() :
     // This also creates all the characters
     KapmanParser kapmanParser(this);
     // Set the XML file as input source for the parser
-    QFile mazeXmlFile(QStandardPaths::locate(QStandardPaths::DataLocation, QLatin1Literal("defaultmaze.xml")));
+    QFile mazeXmlFile(QStandardPaths::locate(QStandardPaths::AppDataLocation, QLatin1Literal("defaultmaze.xml")));
     QXmlInputSource source(&mazeXmlFile);
     // Create the XML file reader
     QXmlSimpleReader reader;
