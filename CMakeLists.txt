@@ -25,7 +25,7 @@ find_package(KF5KDEGames 4.9.0 REQUIRED)
 include(FeatureSummary)
 include(ECMInstallIcons)
 include(KDEInstallDirs)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(ECMAddAppIcon)
 
