@@ -91,7 +91,7 @@ target_link_libraries(kapman
 
 install(TARGETS kapman ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.kapman.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES org.kde.kapman.appdata.xml DESTINATION ${KDE_INSTALL_METAINFO})
+install(FILES org.kde.kapman.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 install(FILES kapmanui.rc DESTINATION ${KDE_INSTALL_KXMLGUI5DIR}/kapman)
 install(FILES defaultmaze.xml DESTINATION ${KDE_INSTALL_DATADIR}/kapman)
 install(FILES ${themes} DESTINATION ${KDE_INSTALL_DATADIR}/kapman/themes)
