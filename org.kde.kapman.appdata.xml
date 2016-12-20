@@ -39,7 +39,6 @@
   <name xml:lang="zh-CN">Kapman</name>
   <name xml:lang="zh-TW">Kapman</name>
   <summary>Pac-Man Clone</summary>
-  <summary xml:lang="ast">Copia del Pac-Man</summary>
   <summary xml:lang="bs">Klon Pac-Mana</summary>
   <summary xml:lang="ca">Un clon del Pac-Man</summary>
   <summary xml:lang="ca-valencia">Un clon del Pac-Man</summary>
@@ -76,7 +75,6 @@
     <p>
       Kapman is a clone of the well known game Pac-Man.
     </p>
-    <p xml:lang="ast">Kapman ye una copia del bien conocíu xuegu Pac-Man.</p>
     <p xml:lang="ca">El Kapman és un clon del ben conegut joc Pac-Man.</p>
     <p xml:lang="ca-valencia">El Kapman és un clon del ben conegut joc Pac-Man.</p>
     <p xml:lang="de">Kapman ist eine Kopie des sehr bekannten Spiels Pac-Man.</p>
@@ -112,7 +110,6 @@
       When a stage is cleared of pills and energizer the player is taken to the next stage with slightly
       increased game speed.
     </p>
-    <p xml:lang="ast">Tienes de correr pente una mazmorra pa comer toles píldores ensin ser capturáu por una bisarma. Comiendo un enerxizante, Kapman algama l'habilidá de comer bisarmes por dellos segundos.  Cuando una etapa ta llimpia de pildores y enerxizantes al xugador llévase-y a la etapa siguiente con una velocidá del xuegu un poco mayor.</p>
     <p xml:lang="ca">Heu de recórrer el laberint per menjar les píndoles sense ser capturat per cap fantasma. Si menja un energitzant, el Kapman aconsegueix la capacitat de menjar els fantasmes durant uns segons. Quan una etapa es neteja de píndoles i energitzants, el jugador es porta a l'etapa següent amb un lleuger increment de la velocitat de joc.</p>
     <p xml:lang="ca-valencia">Heu de recórrer el laberint per menjar les píndoles sense ser capturat per cap fantasma. Si menja un energitzant, el Kapman aconsegueix la capacitat de menjar els fantasmes durant uns segons. Quan una etapa es neteja de píndoles i energitzants, el jugador es porta a l'etapa següent amb un lleuger increment de la velocitat de joc.</p>
     <p xml:lang="de">Sie müssen durch ein Labyrinth rennen und alle „Pillen“ fressen ohne von einem Geist erwischt zu werden. Nach dem Fressen eines „Appetitanregers“ können Sie für einige Sekunden auch Geister fressen. Wenn alle „Pillen“ und „Appetitanreger“ in der jeweiligen Ebene gefressen wurden, steigt man in die nächste Ebene auf, in der die Geschwindigkeit der Figur und Geister steigt.</p>
