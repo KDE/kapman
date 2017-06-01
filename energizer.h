@@ -61,7 +61,7 @@ public:
      * Computes an action on a collision with the Kapman.
      * @param p_kapman the instance of Kapman which collides with the Energyzer
      */
-    void doActionOnCollision(Kapman *p_kapman);
+    void doActionOnCollision(Kapman *p_kapman) Q_DECL_OVERRIDE;
 };
 
 #endif

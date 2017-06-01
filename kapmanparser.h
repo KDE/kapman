@@ -55,17 +55,17 @@ public:
     /**
     * Implement QXmlDefaultHandler::characters
     */
-    bool characters(const QString &ch);
+    bool characters(const QString &ch) Q_DECL_OVERRIDE;
 
     /**
      * Implements QXmlDefaultHandler::startElement()
      */
-    bool startElement(const QString &, const QString &, const QString &p_qName, const QXmlAttributes &p_atts);
+    bool startElement(const QString &, const QString &, const QString &p_qName, const QXmlAttributes &p_atts) Q_DECL_OVERRIDE;
 
     /**
     * Implements QXmlDefaultHandler::endElement()
     */
-    bool endElement(const QString &, const QString &, const QString &p_qName);
+    bool endElement(const QString &, const QString &, const QString &p_qName) Q_DECL_OVERRIDE;
 
 };
 

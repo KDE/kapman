@@ -75,7 +75,7 @@ public:
     /**
      * Updates the Ghost move.
      */
-    void updateMove();
+    void updateMove() Q_DECL_OVERRIDE;
 
     /**
      * Updates the Ghost with a direction to follow.
@@ -106,34 +106,34 @@ public:
      * Manages the collison with the Kapman.
      * @param p_kapman the instance of Kapman which collides with the Ghost
      */
-    void doActionOnCollision(Kapman *p_kapman);
+    void doActionOnCollision(Kapman *p_kapman) Q_DECL_OVERRIDE;
 
     /**
      * Initializes the Ghost speed from the Character speed.
      */
-    void initSpeedInc();
+    void initSpeedInc() Q_DECL_OVERRIDE;
 
 private:
 
     /**
      * Makes the Ghost go up.
      */
-    void goUp();
+    void goUp() Q_DECL_OVERRIDE;
 
     /**
      * Makes the Ghost go down.
      */
-    void goDown();
+    void goDown() Q_DECL_OVERRIDE;
 
     /**
      * Makes the Ghost go to the right.
      */
-    void goRight();
+    void goRight() Q_DECL_OVERRIDE;
 
     /**
      * Makes the Ghost go to the left.
      */
-    void goLeft();
+    void goLeft() Q_DECL_OVERRIDE;
 
 signals:
 

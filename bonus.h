@@ -49,7 +49,7 @@ public:
      * Computes an action on a collision with the Kapman.
      * @param p_kapman the Kapman instance that collides with the Bonus
      */
-    void doActionOnCollision(Kapman *p_kapman);
+    void doActionOnCollision(Kapman *p_kapman) Q_DECL_OVERRIDE;
 
     /**
      * Sets the given value to the Bonus.

@@ -57,7 +57,7 @@ public:
      * This function is used to determinate collision between items
      * @return QPainterPath the new shape of the Character
      */
-    QPainterPath shape() const;
+    QPainterPath shape() const Q_DECL_OVERRIDE;
 
 public slots:
 
@@ -66,7 +66,7 @@ public slots:
      * @param p_x the new x-coordinate
      * @param p_y the new y-coordinate
      */
-    virtual void update(qreal p_x, qreal p_y);
+    void update(qreal p_x, qreal p_y) Q_DECL_OVERRIDE;
 
     /**
      * Starts the character blinking.

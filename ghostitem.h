@@ -60,7 +60,7 @@ public slots:
      * @param p_x the new x-coordinate
      * @param p_y the new y-coordinate
      */
-    void update(qreal p_x, qreal p_y);
+    void update(qreal p_x, qreal p_y) Q_DECL_OVERRIDE;
 
     /**
      * Update the image function of the Ghost state.
@@ -70,7 +70,7 @@ public slots:
     /**
      * Implements the CharacterItem method.
      */
-    void blink();
+    void blink() Q_DECL_OVERRIDE;
 };
 
 #endif
