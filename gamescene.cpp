@@ -238,6 +238,9 @@ void GameScene::intro(const bool p_newLevel)
                 }
             }
         }
+        if (items().contains(m_introLabel)) {
+            removeItem(m_introLabel);
+        }
         // Display the new level label
         m_newLevelLabel->setPlainText(i18nc("The number of the game level", "Level %1", m_game->getLevel()));
         if (!items().contains(m_newLevelLabel)) {
