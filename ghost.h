@@ -103,7 +103,7 @@ public:
     void setState(Ghost::State p_state);
 
     /**
-     * Manages the collison with the Kapman.
+     * Manages the collision with the Kapman.
      * @param p_kapman the instance of Kapman which collides with the Ghost
      */
     void doActionOnCollision(Kapman *p_kapman) Q_DECL_OVERRIDE;
