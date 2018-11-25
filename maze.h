@@ -167,8 +167,8 @@ public:
     int getTotalNbElem() const;
 
     /**
-     * Gets the cell on witch the ghosts resurects
-     * @return the cell on witch the ghosts resurects
+     * Gets the cell on witch the ghosts resurrects
+     * @return the cell on witch the ghosts resurrects
      */
     QPoint getResurrectionCell() const;
 

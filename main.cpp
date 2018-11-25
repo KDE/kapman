@@ -56,7 +56,7 @@ int main(int argc, char **argv)
     parser.process(app);
     about.processCommandLine(&parser);
     KDBusService service;
-    // Set the application incon
+    // Set the application icon
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kapman")));
     // Create the main window
     KapmanMainWindow *window = new KapmanMainWindow();
