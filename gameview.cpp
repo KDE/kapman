@@ -23,7 +23,7 @@ GameView::GameView(Game *p_game) : QGraphicsView(new GameScene(p_game))
     setFrameStyle(QFrame::NoFrame);
     setFocusPolicy(Qt::StrongFocus);
     // Forward the key press events to the Game instance
-    connect(this, SIGNAL(keyPressed(QKeyEvent*)), p_game, SLOT(keyPressEvent(QKeyEvent*)));
+    connect(this, &GameView::keyPressed, p_game, &Game::keyPressEvent);
 }
 
 GameView::~GameView()

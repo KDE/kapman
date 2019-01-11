@@ -19,7 +19,7 @@
 
 CharacterItem::CharacterItem(Character *p_model) : ElementItem(p_model)
 {
-    connect(p_model, SIGNAL(eaten()), this, SLOT(startBlinking()));
+    connect(p_model, &Character::eaten, this, &CharacterItem::startBlinking);
 }
 
 CharacterItem::~CharacterItem()

@@ -35,13 +35,13 @@ Game::Game() :
     m_points(0),
     m_level(1),
     m_nbEatenGhosts(0),
-    m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/gameover.ogg"))),
-    m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/ghost.ogg"))),
-    m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/life.ogg"))),
-    m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/energizer.ogg"))),
-    m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/bonus.ogg"))),
-    m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/pill.ogg"))),
-    m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("sounds/kapman/levelup.ogg")))
+    m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/gameover.ogg"))),
+    m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/ghost.ogg"))),
+    m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/life.ogg"))),
+    m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/energizer.ogg"))),
+    m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/bonus.ogg"))),
+    m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/pill.ogg"))),
+    m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/levelup.ogg")))
 {
     // Initialize the sound state
     setSoundsEnabled(Settings::sounds());
@@ -63,7 +63,7 @@ Game::Game() :
     // This also creates all the characters
     KapmanParser kapmanParser(this);
     // Set the XML file as input source for the parser
-    QFile mazeXmlFile(QStandardPaths::locate(QStandardPaths::AppDataLocation, QLatin1Literal("defaultmaze.xml")));
+    QFile mazeXmlFile(QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("defaultmaze.xml")));
     QXmlInputSource source(&mazeXmlFile);
     // Create the XML file reader
     QXmlSimpleReader reader;
@@ -91,8 +91,8 @@ Game::Game() :
     }
 
     for (int i = 0; i < m_ghosts.size(); ++i) {
-        connect(m_ghosts[i], SIGNAL(lifeLost()), this, SLOT(kapmanDeath()));
-        connect(m_ghosts[i], SIGNAL(ghostEaten(Ghost*)), this, SLOT(ghostDeath(Ghost*)));
+        connect(m_ghosts[i], &Ghost::lifeLost, this, &Game::kapmanDeath);
+        connect(m_ghosts[i], &Ghost::ghostEaten, this, &Game::ghostDeath);
         // Initialize the ghosts speed and the ghost speed increase considering the characters speed
         m_ghosts[i]->initSpeedInc();
     }
@@ -399,7 +399,7 @@ void Game::kapmanDeath()
     m_kapman->die();
     // Make a 2 seconds pause while the kapman is blinking
     pause(true);
-    QTimer::singleShot(2500, this, SLOT(resumeAfterKapmanDeath()));
+    QTimer::singleShot(2500, this, &Game::resumeAfterKapmanDeath);
 }
 
 void Game::resumeAfterKapmanDeath()

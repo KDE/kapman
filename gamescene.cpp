@@ -25,15 +25,15 @@
 
 GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem(0)
 {
-    connect(p_game, SIGNAL(levelStarted(bool)), SLOT(intro(bool)));
-    connect(p_game, SIGNAL(gameStarted()), this, SLOT(start()));
-    connect(p_game, SIGNAL(pauseChanged(bool,bool)), this, SLOT(setPaused(bool,bool)));
-    connect(p_game, SIGNAL(elementEaten(qreal,qreal)), this, SLOT(hideElement(qreal,qreal)));
-    connect(p_game, SIGNAL(bonusOn()), this, SLOT(displayBonus()));
-    connect(p_game, SIGNAL(bonusOff()), this, SLOT(hideBonus()));
+    connect(p_game, &Game::levelStarted, this, &GameScene::intro);
+    connect(p_game, &Game::gameStarted, this, &GameScene::start);
+    connect(p_game, &Game::pauseChanged, this, &GameScene::setPaused);
+    connect(p_game, &Game::elementEaten, this, &GameScene::hideElement);
+    connect(p_game, &Game::bonusOn, this, &GameScene::displayBonus);
+    connect(p_game, &Game::bonusOff, this, &GameScene::hideBonus);
 
     // Connection between Game and GameScene for the display of won points when a bonus or a ghost is eaten
-    connect(p_game, SIGNAL(pointsToDisplay(long,qreal,qreal)), this, SLOT(displayPoints(long,qreal,qreal)));
+    connect(p_game, &Game::pointsToDisplay, this, &GameScene::displayPoints);
 
     // Create the theme instance
     m_theme = new KGameTheme();
@@ -47,13 +47,13 @@ GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
     // Give the maze the shared renderer to avoid loading the whole SVG file again
     m_mazeItem->setSharedRenderer(m_renderer);
     // Set the element Id to the right value
-    m_mazeItem->setElementId(QLatin1Literal("maze"));
+    m_mazeItem->setElementId(QStringLiteral("maze"));
     m_mazeItem->setZValue(-2);
 
     // Create the KapmanItem
     m_kapmanItem = new KapmanItem(p_game->getKapman());
     m_kapmanItem->setSharedRenderer(m_renderer);
-    m_kapmanItem->setElementId(QLatin1Literal("kapman_0"));
+    m_kapmanItem->setElementId(QStringLiteral("kapman_0"));
     // Corrects the position of the KapmanItem
     m_kapmanItem->update(p_game->getKapman()->getX(), p_game->getKapman()->getY());
     m_kapmanItem->setZValue(2);
@@ -90,7 +90,7 @@ GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
     // Create the Bonus item
     m_bonusItem = new ElementItem(m_game->getBonus());
     m_bonusItem->setSharedRenderer(m_renderer);
-    m_bonusItem->setElementId(QLatin1Literal("bonus1"));
+    m_bonusItem->setElementId(QStringLiteral("bonus1"));
 
     // All elements are created, update theme properties
     updateSvgIds();
@@ -98,21 +98,21 @@ GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
 
     // Create the introduction labels
     m_introLabel = new QGraphicsTextItem(i18n("GET READY!!!"));
-    m_introLabel->setFont(QFont(QLatin1Literal("Helvetica"), 25, QFont::Bold, false));
+    m_introLabel->setFont(QFont(QStringLiteral("Helvetica"), 25, QFont::Bold, false));
     m_introLabel->setDefaultTextColor(QColor(QLatin1Literal("#FFFF00")));
     m_introLabel->setZValue(4);
     m_introLabel2 = new QGraphicsTextItem(i18n("Press any arrow key to start"));
-    m_introLabel2->setFont(QFont(QLatin1Literal("Helvetica"), 15, QFont::Bold, false));
+    m_introLabel2->setFont(QFont(QStringLiteral("Helvetica"), 15, QFont::Bold, false));
     m_introLabel2->setDefaultTextColor(QColor(QLatin1Literal("#FFFF00")));
     m_introLabel2->setZValue(4);
     // Create the new level label
     m_newLevelLabel = new QGraphicsTextItem();
-    m_newLevelLabel->setFont(QFont(QLatin1Literal("Helvetica"), 35, QFont::Bold, false));
+    m_newLevelLabel->setFont(QFont(QStringLiteral("Helvetica"), 35, QFont::Bold, false));
     m_newLevelLabel->setDefaultTextColor(QColor(QLatin1Literal("#FFFF00")));
     m_newLevelLabel->setZValue(4);
     // Create the pause label
     m_pauseLabel = new QGraphicsTextItem(i18n("PAUSED"));
-    m_pauseLabel->setFont(QFont(QLatin1Literal("Helvetica"), 35, QFont::Bold, false));
+    m_pauseLabel->setFont(QFont(QStringLiteral("Helvetica"), 35, QFont::Bold, false));
     m_pauseLabel->setDefaultTextColor(QColor(QLatin1Literal("#FFFF00")));
     m_pauseLabel->setZValue(4);
 
@@ -186,10 +186,10 @@ void GameScene::updateSvgIds()
     }
 
     // Set the element Id to the right value
-    m_mazeItem->setElementId(QLatin1Literal("maze"));
+    m_mazeItem->setElementId(QStringLiteral("maze"));
 
     // Create the KapmanItem
-    m_kapmanItem->setElementId(QLatin1Literal("kapman_0"));
+    m_kapmanItem->setElementId(QStringLiteral("kapman_0"));
     // Corrects the position of the KapmanItem
     m_kapmanItem->update(m_game->getKapman()->getX(), m_game->getKapman()->getY());
 
@@ -217,7 +217,7 @@ void GameScene::updateThemeProperties()
     }
 
     // Set the Rotation flag for KapmanItem
-    if (m_theme->themeProperty(QLatin1Literal("RotateKapman")) == QLatin1String("0")) {
+    if (m_theme->themeProperty(QStringLiteral("RotateKapman")) == QLatin1String("0")) {
         m_kapmanItem->setRotationFlag(false);
     } else {
         m_kapmanItem->setRotationFlag(true);
@@ -325,25 +325,25 @@ void GameScene::displayBonus()
     if (!items().contains(m_bonusItem)) {
         switch (m_game->getLevel()) {
         case 1:
-            m_bonusItem->setElementId(QLatin1Literal("bonus1"));
+            m_bonusItem->setElementId(QStringLiteral("bonus1"));
             break;
         case 2:
-            m_bonusItem->setElementId(QLatin1Literal("bonus2"));
+            m_bonusItem->setElementId(QStringLiteral("bonus2"));
             break;
         case 3:
-            m_bonusItem->setElementId(QLatin1Literal("bonus3"));
+            m_bonusItem->setElementId(QStringLiteral("bonus3"));
             break;
         case 4:
-            m_bonusItem->setElementId(QLatin1Literal("bonus4"));
+            m_bonusItem->setElementId(QStringLiteral("bonus4"));
             break;
         case 5:
-            m_bonusItem->setElementId(QLatin1Literal("bonus5"));
+            m_bonusItem->setElementId(QStringLiteral("bonus5"));
             break;
         case 6:
-            m_bonusItem->setElementId(QLatin1Literal("bonus6"));
+            m_bonusItem->setElementId(QStringLiteral("bonus6"));
             break;
         default:
-            m_bonusItem->setElementId(QLatin1Literal("bonus7"));
+            m_bonusItem->setElementId(QStringLiteral("bonus7"));
             break;
         }
         m_bonusItem->update(m_game->getBonus()->getX(), m_game->getBonus()->getY());
@@ -361,7 +361,7 @@ void GameScene::hideBonus()
 void GameScene::displayPoints(long p_wonPoints, qreal p_xPos, qreal p_yPos)
 {
     // Launch a singleShot timer
-    QTimer::singleShot(1000, this, SLOT(hidePoints()));
+    QTimer::singleShot(1000, this, &GameScene::hidePoints);
 
     // Add a label in the list of won points Labels
     m_wonPointsLabels.prepend(new QGraphicsTextItem(QString::number(p_wonPoints)));
@@ -372,7 +372,7 @@ void GameScene::displayPoints(long p_wonPoints, qreal p_xPos, qreal p_yPos)
 
     // Positioning and customization of the point label
     tempRef->setDefaultTextColor(QColor(QLatin1Literal("#FFFF00")));
-    tempRef->setFont(QFont(QLatin1Literal("Helvetica"), 15, QFont::Normal, false));
+    tempRef->setFont(QFont(QStringLiteral("Helvetica"), 15, QFont::Normal, false));
     tempRef->setPos(p_xPos - (tempRef->boundingRect().width() / 2), p_yPos - (tempRef->boundingRect().height() / 2));
     tempRef->setZValue(-1);
 }

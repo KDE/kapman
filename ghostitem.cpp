@@ -21,7 +21,7 @@
 
 GhostItem::GhostItem(Ghost *p_model) : CharacterItem(p_model)
 {
-    connect(p_model, SIGNAL(stateChanged()), this, SLOT(updateState()));
+    connect(p_model, &Ghost::stateChanged, this, &GhostItem::updateState);
 
     // Calculations for the duration of blinking stuff
     int blinkTimerDuration = (int)(500 * Game::s_durationRatio);
@@ -74,7 +74,7 @@ void GhostItem::updateState()
     switch (((Ghost *)getModel())->getState()) {
     case Ghost::PREY:
         updateBlinkTimersDuration();
-        setElementId(QLatin1Literal("scaredghost"));
+        setElementId(QStringLiteral("scaredghost"));
         m_startBlinkingTimer->start();
         // The ghosts are now weaker than the kapman, so they are under him
         setZValue(1);
@@ -85,7 +85,7 @@ void GhostItem::updateState()
         setZValue(3);
         break;
     case Ghost::EATEN:
-        setElementId(QLatin1Literal("ghosteye"));
+        setElementId(QStringLiteral("ghosteye"));
         // The ghosts are now weaker than the kapman, so they are under him
         setZValue(1);
         break;
@@ -96,9 +96,9 @@ void GhostItem::blink()
 {
     CharacterItem::blink();
     if (m_nbBlinks % 2 == 0) {
-        setElementId(QLatin1Literal("scaredghost"));
+        setElementId(QStringLiteral("scaredghost"));
     } else {
-        setElementId(QLatin1Literal("whitescaredghost"));
+        setElementId(QStringLiteral("whitescaredghost"));
     }
 }
 

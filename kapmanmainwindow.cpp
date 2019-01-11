@@ -49,10 +49,10 @@ KapmanMainWindow::KapmanMainWindow()
     KStandardGameAction::quit(this, SLOT(close()), actionCollection());
     KToggleAction *soundAction = new KToggleAction(i18n("&Play sounds"), this);
     soundAction->setChecked(Settings::sounds());
-    actionCollection()->addAction(QLatin1String("sounds"), soundAction);
+    actionCollection()->addAction(QStringLiteral("sounds"), soundAction);
     connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
     QAction *levelAction = new QAction(i18n("&Change level"), this);
-    actionCollection()->addAction(QLatin1String("level"), levelAction);
+    actionCollection()->addAction(QStringLiteral("level"), levelAction);
     connect(levelAction, &QAction::triggered, this, &KapmanMainWindow::changeLevel);
     // Add a statusbar to show level,score,lives information
     m_statusBar = statusBar();
@@ -69,7 +69,7 @@ KapmanMainWindow::KapmanMainWindow()
         KgDifficultyLevel::Medium //default
     );
     KgDifficultyGUI::init(this);
-    connect(Kg::difficulty(), SIGNAL(currentLevelChanged(const KgDifficultyLevel*)), SLOT(initGame()));
+    connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KapmanMainWindow::initGame);
     // Setup the window
     setupGUI();
 
@@ -88,7 +88,7 @@ void KapmanMainWindow::initGame()
     // Create a new Game instance
     delete m_game;
     m_game = new Game();
-    connect(m_game, SIGNAL(gameOver(bool)), this, SLOT(newGame(bool)));     // TODO Remove the useless bool parameter from gameOver()
+    connect(m_game, &Game::gameOver, this, &KapmanMainWindow::newGame);     // TODO Remove the useless bool parameter from gameOver()
     connect(m_game, &Game::levelChanged, this, &KapmanMainWindow::displayLevel);
     connect(m_game, &Game::scoreChanged, this, &KapmanMainWindow::displayScore);
     connect(m_game, &Game::livesChanged, this, &KapmanMainWindow::displayLives);
@@ -175,11 +175,11 @@ void KapmanMainWindow::setSoundsEnabled(bool p_enabled)
 
 void KapmanMainWindow::showSettings()
 {
-    if (KConfigDialog::showDialog(QLatin1Literal("settings"))) {
+    if (KConfigDialog::showDialog(QStringLiteral("settings"))) {
         return;
     }
-    KConfigDialog *settingsDialog = new KConfigDialog(this, QLatin1Literal("settings"), Settings::self());
-    settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), QLatin1Literal("kapman"));
+    KConfigDialog *settingsDialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
+    settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), QStringLiteral("kapman"));
     settingsDialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
     connect(settingsDialog, &KConfigDialog::settingsChanged, this, &KapmanMainWindow::loadSettings);
     settingsDialog->show();

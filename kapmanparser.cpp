@@ -140,11 +140,11 @@ bool KapmanParser::endElement(const QString &, const QString &, const QString &p
                 break;
             case '.': m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
                 m_game->getMaze()->setCellElement(m_counterRows, i,
-                                                  new Pill(m_counterRows, i, m_game->getMaze(), QLatin1String("pill")));
+                                                  new Pill(m_counterRows, i, m_game->getMaze(), QStringLiteral("pill")));
                 break;
             case 'o': m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
                 m_game->getMaze()->setCellElement(m_counterRows, i,
-                                                  new Energizer(m_counterRows, i, m_game->getMaze(), QLatin1String("energizer")));
+                                                  new Energizer(m_counterRows, i, m_game->getMaze(), QStringLiteral("energizer")));
                 break;
             case 'x': m_game->getMaze()->setCellType(m_counterRows, i, Cell::GHOSTCAMP);
                 break;

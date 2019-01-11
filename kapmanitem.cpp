@@ -31,9 +31,9 @@ const int KapmanItem::ANIM_HIGH_SPEED = 300;
 
 KapmanItem::KapmanItem(Kapman *p_model) : CharacterItem(p_model)
 {
-    connect(p_model, SIGNAL(directionChanged()), this, SLOT(updateDirection()));
-    connect(p_model, SIGNAL(gameUpdated()), this, SLOT(manageCollision()));
-    connect(p_model, SIGNAL(stopped()), this, SLOT(stopAnim()));
+    connect(p_model, &Kapman::directionChanged, this, &KapmanItem::updateDirection);
+    connect(p_model, &Kapman::gameUpdated, this, &KapmanItem::manageCollision);
+    connect(p_model, &Kapman::stopped, this, &KapmanItem::stopAnim);
 
     // A timeLine for the Kapman animation
     m_animationTimer = new QTimeLine();
@@ -146,7 +146,7 @@ void KapmanItem::resumeAnim()
 
 void KapmanItem::stopAnim()
 {
-    setElementId(QLatin1Literal("kapman_0"));
+    setElementId(QStringLiteral("kapman_0"));
     if (m_animationTimer->state() == QTimeLine::Running) {
         m_animationTimer->stop();
     }
@@ -154,13 +154,13 @@ void KapmanItem::stopAnim()
 
 void KapmanItem::setFrame(const int p_frame)
 {
-    setElementId(QString::fromLatin1("kapman_%1").arg(p_frame));
+    setElementId(QStringLiteral("kapman_%1").arg(p_frame));
 }
 
 void KapmanItem::startBlinking()
 {
     stopAnim();
-    setElementId(QLatin1Literal("kapman_0"));
+    setElementId(QStringLiteral("kapman_0"));
     CharacterItem::startBlinking();
 }
 
@@ -168,9 +168,9 @@ void KapmanItem::blink()
 {
     CharacterItem::blink();
     if (m_nbBlinks % 2 == 0) {
-        setElementId(QLatin1Literal("kapman_0"));
+        setElementId(QStringLiteral("kapman_0"));
     } else {
-        setElementId(QLatin1Literal("kapman_blink"));
+        setElementId(QStringLiteral("kapman_blink"));
     }
     // Make the kapman blink 2 times (4 ticks)
     if (m_nbBlinks == 4) {
