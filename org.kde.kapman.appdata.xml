@@ -17,6 +17,7 @@
   <name xml:lang="fi">Kapman</name>
   <name xml:lang="fr">Kapman</name>
   <name xml:lang="gl">Kapman</name>
+  <name xml:lang="id">Kapman</name>
   <name xml:lang="it">Kapman</name>
   <name xml:lang="ko">Kapman</name>
   <name xml:lang="nl">Kapman</name>
@@ -50,6 +51,7 @@
   <summary xml:lang="fi">Pac-Man-klooni</summary>
   <summary xml:lang="fr">Clone de Pac-Man</summary>
   <summary xml:lang="gl">Clon do Pac-Man</summary>
+  <summary xml:lang="id">Kloningan Pac-Man</summary>
   <summary xml:lang="it">Clone di Pac-Man</summary>
   <summary xml:lang="ko">팩맨 클론</summary>
   <summary xml:lang="nl">Kloon van Pac-Man</summary>
@@ -84,6 +86,7 @@
     <p xml:lang="fi">Kapman on tunnetun Pac-Man-pelin klooni.</p>
     <p xml:lang="fr">Kapman est un clone du jeu très connu Pac-Man.</p>
     <p xml:lang="gl">Kapman é un clon do coñecido xogo do Pac-Man.</p>
+    <p xml:lang="id">Kapman adalah sebuah kloningan permainan yang terkenal yang bernama Pac-Man.</p>
     <p xml:lang="it">Kapman è un clone del famoso gioco Pac-Man.</p>
     <p xml:lang="ko">Kapman은 잘 알려진 팩맨 게임 클론입니다.</p>
     <p xml:lang="nl">Kapman is een kloon van het welbekende spel Pac-Man.</p>
@@ -119,6 +122,7 @@
     <p xml:lang="fi">Pelissä täytyy juosta sokkelon läpi, syödä palloja ja olla aaveiden saavuttamattomissa. Piristeen syömällä Kapman pystyy syömään aaveita muutaman sekunnin ajan. Kun kaikki tason pallot ja piristeet on syöty, pelaaja pääsee seuraavalle tasolle, jossa peli etenee hiukan nopeammin.</p>
     <p xml:lang="fr">Vous devez courir à travers un labyrinthe pour manger toutes les pilules sans vous faire capturer par un fantôme. En mangeant un bonbon énergisant, Kapman gagne la possibilité d'avaler les fantômes durant quelques secondes. Lorsqu'il n'y a plus de pilules ni de bonbons énergisants dans un niveau, le joueur passe au niveau suivant et la vitesse de jeu augmente légèrement.</p>
     <p xml:lang="gl">Tes que correr polo labirinto para comer as pílulas evitando que te capturen os fantasmas. Tras inxerir un alimento enerxético, Kapman consigue a habilidade de comerse os fantasmas durante uns segundos. Despois de que Kapman consuma todas as pílulas e alimentos enerxéticos do labirinto, pasas a un novo nivel no que a velocidade do xogo é lixeiramente superior.</p>
+    <p xml:lang="id">Kamu harus berjalan melalui lorong-lorong simpang untuk memakan semua pil tanpa tertangkap oleh hantu. Dengan memakan sebuah pil penggairah, Kapman mendapatkan kemampuan untuk memakan para hantu dalam beberapa detik. Ketika tahap telah bersih dari pil dan pil penggairah, pemain dibawa ke tahap selanjutnya dengan sedikit penambahan kecepatan.</p>
     <p xml:lang="it">Devi correre attraverso il labirinto e mangiare tutte le pillole, senza essere catturato da un fantasma. Mangiando un energetico, per pochi secondi, Kapman sarà in grado di mangiare i fantasmi. Quando in un livello finiscono le pillole e gli energetici si passa al livello successivo in cui aumenterà leggermente la velocità del gioco.</p>
     <p xml:lang="ko">귀신에게 잡아먹히기 전에 미로를 돌아다니면서 모든 알약을 먹어야 합니다. 에너지 보충제를 먹으면 Kapman은 귀신을 잡아먹을 수 있는 능력을 잠시 동안 얻습니다. 모든 알약과 에너지 보충제를 먹으면 다음 판이 시작되며 게임 속도가 빨라집니다.</p>
     <p xml:lang="nl">U moet door een doolhof rennen om alle pillen op te eten zonder gevangen te worden door een spook. Door een energiegever te eten krijgt Kapman de mogelijkheid spoken gedurende een paar seconden op te eten. Wanneer een niveau is ontdaan van pillen en energiegevers, zal de speler naar het volgende niveau gaan met een iets verhoogde spelsnelheid.</p>
