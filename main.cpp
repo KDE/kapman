@@ -24,6 +24,7 @@
 #include <kdelibs4configmigrator.h>
 #include <KDBusService>
 #include "kapmanmainwindow.h"
+#include "kapman_version.h"
 
 int main(int argc, char **argv)
 {
@@ -35,7 +36,7 @@ int main(int argc, char **argv)
     migrate.migrate();
     KLocalizedString::setApplicationDomain("kapman");
     // About Kapman
-    KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QStringLiteral("1.1.0"),
+    KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QStringLiteral(KAPMAN_VERSION_STRING),
                      i18n("Kapman: Go through the levels escaping ghosts!"),
                      KAboutLicense::GPL, i18n("Copyright (c) 2007-2008 The KapTeam"));
     // Alphabetical order of Developers of Kapman
