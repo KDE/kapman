@@ -77,7 +77,7 @@ public slots:
      * @param p_x the new x-coordinate
      * @param p_y the new y-coordinate
      */
-    void update(qreal p_x, qreal p_y) Q_DECL_OVERRIDE;
+    void update(qreal p_x, qreal p_y) override;
 
     /**
      * Starts the KapmanItem animation.
@@ -108,12 +108,12 @@ public slots:
     /**
      * Implements the CharacterItem method.
      */
-    void startBlinking() Q_DECL_OVERRIDE;
+    void startBlinking() override;
 
     /**
      * Implements the CharacterItem method.
      */
-    void blink() Q_DECL_OVERRIDE;
+    void blink() override;
 
     /**
      * Set if the KapmanItem should be rotated (set by theme flag RotateKapman).

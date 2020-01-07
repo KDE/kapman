@@ -49,7 +49,7 @@ public:
      * Computes an action on a collision with the Kapman.
      * @param p_kapman the instance of Kapman which collides with the Pill
      */
-    void doActionOnCollision(Kapman *p_kapman) Q_DECL_OVERRIDE;
+    void doActionOnCollision(Kapman *p_kapman) override;
 };
 
 #endif

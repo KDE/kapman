@@ -59,27 +59,27 @@ public:
     /**
      * Makes the Kapman ask to go up
      */
-    void goUp() Q_DECL_OVERRIDE;
+    void goUp() override;
 
     /**
      * Makes the Kapman ask to go down
      */
-    void goDown() Q_DECL_OVERRIDE;
+    void goDown() override;
 
     /**
      * Makes the Kapman ask to go to the right
      */
-    void goRight() Q_DECL_OVERRIDE;
+    void goRight() override;
 
     /**
      * Makes the Kapman ask to go to the left
      */
-    void goLeft() Q_DECL_OVERRIDE;
+    void goLeft() override;
 
     /**
      * Updates the Kapman move
      */
-    void updateMove() Q_DECL_OVERRIDE;
+    void updateMove() override;
 
     /**
      * @return the asked x speed value
@@ -110,7 +110,7 @@ public:
     /**
      * Initializes the Kapman speed from the Character speed.
      */
-    void initSpeedInc() Q_DECL_OVERRIDE;
+    void initSpeedInc() override;
 
 private:
 

@@ -20,6 +20,7 @@
 
 #include <QPointF>
 #include <KgDifficulty>
+#include <QRandomGenerator>
 #include <cstdlib>
 #include <ctime>
 
@@ -34,8 +35,6 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze) : Cha
     m_type = Element::GHOST;
     m_state = Ghost::HUNTER;
     m_maxSpeed = m_normalSpeed * MAX_SPEED_RATIO;
-    // Initialize the random-number generator
-    qsrand(std::time(nullptr));
     // Makes the ghost move as soon as the game is created
     goLeft();
 }
@@ -112,7 +111,7 @@ void Ghost::updateMove()
                 }
             }
             // Random number generation to choose one of the directions
-            nb = int(double(qrand()) / (double(RAND_MAX) + 1) * directionsList.size());
+            nb = int(double(QRandomGenerator::global()->bounded(RAND_MAX)) / (double(RAND_MAX) + 1) * directionsList.size());
             // If there is no directions in the list, the character goes backward
             if (directionsList.size() == 0) {
                 m_xSpeed = -m_xSpeed;

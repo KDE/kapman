@@ -41,15 +41,15 @@ class KapmanMainWindow : public KXmlGuiWindow
 private :
 
     /** The GameView instance that manages the game drawing and the collisions */
-    GameView *m_view;
+    GameView *m_view = nullptr;
 
     /** The Game instance that manages the main loop and events */
-    Game *m_game;
+    Game *m_game = nullptr;
 
-    QStatusBar *m_statusBar;
-    QLabel *mLevel;
-    QLabel *mScore;
-    QLabel *mLives;
+    QStatusBar *m_statusBar = nullptr;
+    QLabel *mLevel = nullptr;
+    QLabel *mScore = nullptr;
+    QLabel *mLives = nullptr;
 
 public:
 

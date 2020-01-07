@@ -32,12 +32,12 @@ class ElementItem : public QGraphicsSvgItem
 
 private:
     /** The Label containing the points won when eaten, to display on the scene */
-    QGraphicsTextItem *m_pointsToDisplay;
+    QGraphicsTextItem *m_pointsToDisplay = nullptr;
 
 protected:
 
     /** The instance of Element the ElementItem will represent */
-    Element *m_model;
+    Element *m_model = nullptr;
 
 public:
 
@@ -61,7 +61,7 @@ public:
     /**
      * Reimplement QGraphicsItem::shape() to return an ellipse to improve collisions.
      */
-    QPainterPath shape() const Q_DECL_OVERRIDE;
+    QPainterPath shape() const override;
 
 public slots:
 

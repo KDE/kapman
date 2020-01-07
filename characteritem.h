@@ -34,7 +34,7 @@ class CharacterItem : public ElementItem
 protected:
 
     /** Timer used to make the character blink */
-    QTimer *m_blinkTimer;
+    QTimer *m_blinkTimer = nullptr;
 
     /** Number of ticks of the blink timer */
     int m_nbBlinks;
@@ -57,7 +57,7 @@ public:
      * This function is used to determinate collision between items
      * @return QPainterPath the new shape of the Character
      */
-    QPainterPath shape() const Q_DECL_OVERRIDE;
+    QPainterPath shape() const override;
 
 public slots:
 
@@ -66,7 +66,7 @@ public slots:
      * @param p_x the new x-coordinate
      * @param p_y the new y-coordinate
      */
-    void update(qreal p_x, qreal p_y) Q_DECL_OVERRIDE;
+    void update(qreal p_x, qreal p_y) override;
 
     /**
      * Starts the character blinking.
