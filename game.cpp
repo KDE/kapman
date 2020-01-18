@@ -58,7 +58,6 @@ Game::Game() :
     // Create the Maze instance
     m_maze = new Maze();
     connect(m_maze, &Maze::allElementsEaten, this, &Game::nextLevel);
-
     // Create the parser that will parse the XML file in order to initialize the Maze instance
     // This also creates all the characters
     KapmanParser kapmanParser(this);

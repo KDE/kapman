@@ -47,10 +47,10 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
         int nbColumns = 0;
         // Initialize the number of rows and columns
         for (int i = 0; i < p_atts.count(); ++i) {
-            if (p_atts.qName(i) == QLatin1String("rowCount")) {
+            const QString &qname = p_atts.qName(i);
+            if (qname == QLatin1String("rowCount")) {
                 nbRows = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("colCount")) {
+            } else if (qname == QLatin1String("colCount")) {
                 nbColumns = p_atts.value(i).toInt();
             }
         }
@@ -59,18 +59,16 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
     } else if (p_qName == QLatin1String("Bonus")) {
         // Initialize the number of rows and columns
         for (int i = 0; i < p_atts.count(); ++i) {
-            if (p_atts.qName(i) == QLatin1String("rowIndex")) {
+            const QString &qname = p_atts.qName(i);
+            if (qname == QLatin1String("rowIndex")) {
                 y_position = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("colIndex")) {
+            } else if (qname == QLatin1String("colIndex")) {
                 x_position = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("x-align")) {
+            } else if (qname == QLatin1String("x-align")) {
                 if (p_atts.value(i) == QLatin1String("center")) {
                     x_position += 0.5;
                 }
-            }
-            if (p_atts.qName(i) == QLatin1String("y-align")) {
+            } else if (qname == QLatin1String("y-align")) {
                 if (p_atts.value(i) == QLatin1String("center")) {
                     y_position += 0.5;
                 }
@@ -80,18 +78,16 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
     } else if (p_qName == QLatin1String("Kapman")) {
         // Initialize the number of rows and columns
         for (int i = 0; i < p_atts.count(); ++i) {
-            if (p_atts.qName(i) == QLatin1String("rowIndex")) {
+            const QString &qname = p_atts.qName(i);
+            if (qname == QLatin1String("rowIndex")) {
                 y_position = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("colIndex")) {
+            } else if (qname == QLatin1String("colIndex")) {
                 x_position = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("x-align")) {
+            } else if (qname == QLatin1String("x-align")) {
                 if (p_atts.value(i) == QLatin1String("center")) {
                     x_position += 0.5;
                 }
-            }
-            if (p_atts.qName(i) == QLatin1String("y-align")) {
+            } else if (qname == QLatin1String("y-align")) {
                 if (p_atts.value(i) == QLatin1String("center")) {
                     y_position += 0.5;
                 }
@@ -102,23 +98,20 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
         QString imageId;
         // Initialize the number of rows and columns
         for (int i = 0; i < p_atts.count(); ++i) {
-            if (p_atts.qName(i) == QLatin1String("rowIndex")) {
+            const QString &qname = p_atts.qName(i);
+            if (qname == QLatin1String("rowIndex")) {
                 y_position = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("colIndex")) {
+            } else if (qname == QLatin1String("colIndex")) {
                 x_position = p_atts.value(i).toInt();
-            }
-            if (p_atts.qName(i) == QLatin1String("x-align")) {
+            } else if (qname == QLatin1String("x-align")) {
                 if (p_atts.value(i) == QLatin1String("center")) {
                     x_position += 0.5;
                 }
-            }
-            if (p_atts.qName(i) == QLatin1String("y-align")) {
+            } else if (qname == QLatin1String("y-align")) {
                 if (p_atts.value(i) == QLatin1String("center")) {
                     y_position += 0.5;
                 }
-            }
-            if (p_atts.qName(i) == QLatin1String("imageId")) {
+            } else if (qname == QLatin1String("imageId")) {
                 imageId = p_atts.value(i);
             }
         }
@@ -131,7 +124,7 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
 bool KapmanParser::endElement(const QString &, const QString &, const QString &p_qName)
 {
     if (p_qName == QLatin1String("Row")) {
-        for (int i = 0; i < m_buffer.length(); ++i) {
+        for (int i = 0, total = m_buffer.length(); i < total; ++i) {
             switch (m_buffer.at(i).toLatin1()) {
             case '|':
             case '=': m_game->getMaze()->setCellType(m_counterRows, i, Cell::WALL);
