@@ -63,12 +63,8 @@ Game::Game() :
     KapmanParser kapmanParser(this);
     // Set the XML file as input source for the parser
     QFile mazeXmlFile(QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("defaultmaze.xml")));
-    QXmlInputSource source(&mazeXmlFile);
-    // Create the XML file reader
-    QXmlSimpleReader reader;
-    reader.setContentHandler(&kapmanParser);
-    // Parse the XML file
-    reader.parse(source);
+    mazeXmlFile.open(QIODevice::ReadOnly);
+    kapmanParser.parse(&mazeXmlFile);
 
     connect(m_kapman, &Kapman::sWinPoints, this, &Game::winPoints);
 

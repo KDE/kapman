@@ -21,12 +21,12 @@
 
 #include "game.h"
 
-#include <QXmlDefaultHandler>
+#include <QXmlStreamAttributes>
 
 /**
  * @brief This class handles XML reader events in order to initialize the Maze properties.
  */
-class KapmanParser : public QXmlDefaultHandler
+class KapmanParser
 {
 
 private:
@@ -52,21 +52,15 @@ public:
      */
     ~KapmanParser();
 
-    /**
-    * Implement QXmlDefaultHandler::characters
-    */
-    bool characters(const QString &ch) override;
+    bool characters(const QStringRef &ch);
 
-    /**
-     * Implements QXmlDefaultHandler::startElement()
-     */
-    bool startElement(const QString &, const QString &, const QString &p_qName, const QXmlAttributes &p_atts) override;
+    bool startElement(const QStringRef &namespaceURI, const QStringRef &localName,
+                      const QStringRef &qName, const QXmlStreamAttributes &atts);
 
-    /**
-    * Implements QXmlDefaultHandler::endElement()
-    */
-    bool endElement(const QString &, const QString &, const QString &p_qName) override;
+    bool endElement(const QStringRef &namespaceURI,
+                    const QStringRef &localName, const QStringRef &qName);
 
+    bool parse(QIODevice *input);
 };
 
 #endif

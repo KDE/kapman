@@ -19,6 +19,8 @@
 #include "element.h"
 #include "pill.h"
 #include "energizer.h"
+#include <QDebug>
+#include <QXmlStreamAttributes>
 
 KapmanParser::KapmanParser(Game *p_game)
 {
@@ -31,89 +33,129 @@ KapmanParser::~KapmanParser()
 
 }
 
-bool KapmanParser::characters(const QString &ch)
+bool KapmanParser::parse(QIODevice *input)
 {
-    m_buffer = ch;
+    QXmlStreamReader reader(input);
+
+    while (!reader.atEnd()) {
+        reader.readNext();
+        if (reader.hasError())
+            return false;
+
+        switch (reader.tokenType()) {
+        case QXmlStreamReader::StartElement:
+            if (!startElement(reader.namespaceUri(), reader.name(),
+                              reader.qualifiedName(), reader.attributes())) {
+                return false;
+            }
+            break;
+        case QXmlStreamReader::EndElement:
+            if (!endElement(reader.namespaceUri(), reader.name(),
+                            reader.qualifiedName())) {
+                return false;
+            }
+            break;
+        case QXmlStreamReader::Characters:
+            if (!reader.isWhitespace() && !reader.text().toString().trimmed().isEmpty()) {
+                if (!characters(reader.text()))
+                    return false;
+            }
+            break;
+        default:
+            break;
+        }
+    }
+
+    if (reader.isEndDocument())
+        return false;
+
     return true;
 }
 
-bool KapmanParser::startElement(const QString &, const QString &, const QString &p_qName, const QXmlAttributes &p_atts)
+bool KapmanParser::characters(const QStringRef &ch)
 {
+    m_buffer = ch.toString();
+    return true;
+}
+
+bool KapmanParser::startElement(const QStringRef &namespaceURI, const QStringRef &localName, const QStringRef &qName, const QXmlStreamAttributes &atts)
+{
+    Q_UNUSED(namespaceURI)
+    Q_UNUSED(localName)
     qreal x_position = 0.0;
     qreal y_position = 0.0;
 
-    if (p_qName == QLatin1String("Maze")) {
+    if (qName == QLatin1String("Maze")) {
         int nbRows = 0;
         int nbColumns = 0;
         // Initialize the number of rows and columns
-        for (int i = 0; i < p_atts.count(); ++i) {
-            const QString &qname = p_atts.qName(i);
-            if (qname == QLatin1String("rowCount")) {
-                nbRows = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("colCount")) {
-                nbColumns = p_atts.value(i).toInt();
-            }
+        if (atts.hasAttribute(QLatin1String("rowCount"))) {
+            nbRows = atts.value(QLatin1String("rowCount")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("colCount"))) {
+            nbColumns = atts.value(QLatin1String("colCount")).toInt();
         }
         // Create the Maze matrix
         m_game->getMaze()->init(nbRows, nbColumns);
-    } else if (p_qName == QLatin1String("Bonus")) {
+    } else if (qName == QLatin1String("Bonus")) {
         // Initialize the number of rows and columns
-        for (int i = 0; i < p_atts.count(); ++i) {
-            const QString &qname = p_atts.qName(i);
-            if (qname == QLatin1String("rowIndex")) {
-                y_position = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("colIndex")) {
-                x_position = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("x-align")) {
-                if (p_atts.value(i) == QLatin1String("center")) {
-                    x_position += 0.5;
-                }
-            } else if (qname == QLatin1String("y-align")) {
-                if (p_atts.value(i) == QLatin1String("center")) {
-                    y_position += 0.5;
-                }
+        if (atts.hasAttribute(QLatin1String("rowIndex"))) {
+            y_position = atts.value(QLatin1String("rowIndex")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("colIndex"))) {
+            x_position = atts.value(QLatin1String("colIndex")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("x-align"))) {
+            if (atts.value(QLatin1String("x-align")).toString() == QLatin1String("center")) {
+                x_position += 0.5;
+            }
+        }
+        if (atts.hasAttribute(QLatin1String("y-align"))) {
+            if (atts.value(QLatin1String("y-align")).toString() == QLatin1String("center")) {
+                y_position += 0.5;
             }
         }
         m_game->createBonus(QPointF(x_position, y_position));
-    } else if (p_qName == QLatin1String("Kapman")) {
-        // Initialize the number of rows and columns
-        for (int i = 0; i < p_atts.count(); ++i) {
-            const QString &qname = p_atts.qName(i);
-            if (qname == QLatin1String("rowIndex")) {
-                y_position = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("colIndex")) {
-                x_position = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("x-align")) {
-                if (p_atts.value(i) == QLatin1String("center")) {
-                    x_position += 0.5;
-                }
-            } else if (qname == QLatin1String("y-align")) {
-                if (p_atts.value(i) == QLatin1String("center")) {
-                    y_position += 0.5;
-                }
+    } else if (qName == QLatin1String("Kapman")) {
+        if (atts.hasAttribute(QLatin1String("rowIndex"))) {
+            y_position = atts.value(QLatin1String("rowIndex")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("colIndex"))) {
+            x_position = atts.value(QLatin1String("colIndex")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("x-align"))) {
+            if (atts.value(QLatin1String("x-align")).toString() == QLatin1String("center")) {
+                x_position += 0.5;
             }
         }
+        if (atts.hasAttribute(QLatin1String("y-align"))) {
+            if (atts.value(QLatin1String("y-align")).toString() == QLatin1String("center")) {
+                y_position += 0.5;
+            }
+        }
+
         m_game->createKapman(QPointF(x_position, y_position));
-    } else if (p_qName == QLatin1String("Ghost")) {
+    } else if (qName == QLatin1String("Ghost")) {
         QString imageId;
         // Initialize the number of rows and columns
-        for (int i = 0; i < p_atts.count(); ++i) {
-            const QString &qname = p_atts.qName(i);
-            if (qname == QLatin1String("rowIndex")) {
-                y_position = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("colIndex")) {
-                x_position = p_atts.value(i).toInt();
-            } else if (qname == QLatin1String("x-align")) {
-                if (p_atts.value(i) == QLatin1String("center")) {
-                    x_position += 0.5;
-                }
-            } else if (qname == QLatin1String("y-align")) {
-                if (p_atts.value(i) == QLatin1String("center")) {
-                    y_position += 0.5;
-                }
-            } else if (qname == QLatin1String("imageId")) {
-                imageId = p_atts.value(i);
+        if (atts.hasAttribute(QLatin1String("rowIndex"))) {
+            y_position = atts.value(QLatin1String("rowIndex")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("colIndex"))) {
+            x_position = atts.value(QLatin1String("colIndex")).toInt();
+        }
+        if (atts.hasAttribute(QLatin1String("x-align"))) {
+            if (atts.value(QLatin1String("x-align")).toString() == QLatin1String("center")) {
+                x_position += 0.5;
             }
+        }
+        if (atts.hasAttribute(QLatin1String("y-align"))) {
+            if (atts.value(QLatin1String("y-align")).toString() == QLatin1String("center")) {
+                y_position += 0.5;
+            }
+        }
+        if (atts.hasAttribute(QLatin1String("imageId"))) {
+            imageId = atts.value(QLatin1String("imageId")).toString();
         }
         m_game->createGhost(QPointF(x_position, y_position), imageId);
     }
@@ -121,27 +163,36 @@ bool KapmanParser::startElement(const QString &, const QString &, const QString 
     return true;
 }
 
-bool KapmanParser::endElement(const QString &, const QString &, const QString &p_qName)
+bool KapmanParser::endElement(const QStringRef &namespaceURI, const QStringRef &localName, const QStringRef &qName)
 {
-    if (p_qName == QLatin1String("Row")) {
+    Q_UNUSED(namespaceURI)
+    Q_UNUSED(localName)
+
+    if (qName.toString() == QLatin1String("Row")) {
         for (int i = 0, total = m_buffer.length(); i < total; ++i) {
             switch (m_buffer.at(i).toLatin1()) {
             case '|':
-            case '=': m_game->getMaze()->setCellType(m_counterRows, i, Cell::WALL);
+            case '=':
+                m_game->getMaze()->setCellType(m_counterRows, i, Cell::WALL);
                 break;
-            case ' ': m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
+            case ' ':
+                m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
                 break;
-            case '.': m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
+            case '.':
+                m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
                 m_game->getMaze()->setCellElement(m_counterRows, i,
                                                   new Pill(m_counterRows, i, m_game->getMaze(), QStringLiteral("pill")));
                 break;
-            case 'o': m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
+            case 'o':
+                m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
                 m_game->getMaze()->setCellElement(m_counterRows, i,
                                                   new Energizer(m_counterRows, i, m_game->getMaze(), QStringLiteral("energizer")));
                 break;
-            case 'x': m_game->getMaze()->setCellType(m_counterRows, i, Cell::GHOSTCAMP);
+            case 'x':
+                m_game->getMaze()->setCellType(m_counterRows, i, Cell::GHOSTCAMP);
                 break;
-            case 'X': m_game->getMaze()->setCellType(m_counterRows, i, Cell::GHOSTCAMP);
+            case 'X':
+                m_game->getMaze()->setCellType(m_counterRows, i, Cell::GHOSTCAMP);
                 m_game->getMaze()->setResurrectionCell(QPoint(m_counterRows, i));
                 break;
             }
