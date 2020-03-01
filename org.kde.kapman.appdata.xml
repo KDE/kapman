@@ -144,11 +144,11 @@
     <p xml:lang="zh-TW">您要在迷宮內吃到所有的豆子，避免被小精靈抓到。此外也有能量豆，讓您可以在時限內不怕小精靈。當所有的豆子，包括能量豆都被吃完以後，就可以進到下一關。越後面的關卡速度越快。</p>
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman</url>
-  <url type="help">http://docs.kde.org/stable/en/kdegames/kapman/index.html</url>
+  <url type="help">https://docs.kde.org/?application=kapman</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kapman&amp;source=appdata</url>
   <screenshots>
     <screenshot type="default">
-      <image>http://kde.org/images/screenshots/kapman.png</image>
+      <image>https://cdn.kde.org/screenshots/kapman/kapman.png</image>
     </screenshot>
   </screenshots>
   <project_group>KDE</project_group>
