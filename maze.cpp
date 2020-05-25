@@ -75,7 +75,7 @@ void Maze::decrementNbElem()
 {
     m_nbElem--;
     if (m_nbElem == 0) {
-        emit(allElementsEaten());
+        Q_EMIT allElementsEaten();
     }
 }
 

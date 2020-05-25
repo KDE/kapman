@@ -208,17 +208,17 @@ void Ghost::setState(Ghost::State p_state)
         m_speed = m_normalSpeed;
         break;
     }
-    emit(stateChanged());
+    Q_EMIT stateChanged();
 }
 
 void Ghost::doActionOnCollision(Kapman *)
 {
     switch (m_state) {
     case Ghost::HUNTER:
-        emit(lifeLost());
+        Q_EMIT lifeLost();
         break;
     case Ghost::PREY:
-        emit(ghostEaten(this));
+        Q_EMIT ghostEaten(this);
         break;
     case Ghost::EATEN:
         // Do nothing

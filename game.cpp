@@ -131,7 +131,7 @@ void Game::start()
     // Restart the Game timer
     m_timer->start();
     m_state = RUNNING;
-    emit(pauseChanged(false, false));
+    Q_EMIT pauseChanged(false, false);
 }
 
 void Game::pause(bool p_locked)
@@ -143,7 +143,7 @@ void Game::pause(bool p_locked)
     } else {
         m_state = PAUSED_UNLOCKED;
     }
-    emit(pauseChanged(true, false));
+    Q_EMIT pauseChanged(true, false);
 }
 
 void Game::switchPause(bool p_locked)
@@ -152,13 +152,13 @@ void Game::switchPause(bool p_locked)
     if (m_state == RUNNING) {
         // Pause the Game
         pause(p_locked);
-        emit(pauseChanged(true, true));
+        Q_EMIT pauseChanged(true, true);
     }
     // If the Game is already paused
     else {
         // Resume the Game
         start();
-        emit(pauseChanged(false, true));
+        Q_EMIT pauseChanged(false, true);
     }
 }
 
@@ -225,11 +225,11 @@ void Game::setLevel(int p_level)
     }
     setTimersDuration();
     m_bonus->setPoints(m_level * 100);
-    emit(scoreChanged(m_points));
-    emit(livesChanged(m_lives));
-    emit(levelChanged(m_level));
-    emit(pauseChanged(false, true));
-    emit(levelStarted(true));
+    Q_EMIT scoreChanged(m_points);
+    Q_EMIT livesChanged(m_lives);
+    Q_EMIT levelChanged(m_level);
+    Q_EMIT pauseChanged(false, true);
+    Q_EMIT levelStarted(true);
 }
 
 Bonus *Game::getBonus() const
@@ -314,7 +314,7 @@ void Game::keyPressEvent(QKeyEvent *p_event)
         } else if (m_state == RUNNING) {    // At the game beginning
             // Start the game
             m_timer->start();
-            emit(gameStarted());
+            Q_EMIT gameStarted();
         }
         // Tells the KgDifficulty singleton that the game now runs
         Kg::difficulty()->setGameRunning(true);
@@ -350,7 +350,7 @@ void Game::keyPressEvent(QKeyEvent *p_event)
         if (p_event->modifiers() == (Qt::AltModifier | Qt::ControlModifier | Qt::ShiftModifier)) {
             m_lives++;
             m_isCheater = true;
-            emit(livesChanged(m_lives));
+            Q_EMIT livesChanged(m_lives);
         }
         break;
     case Qt::Key_L:
@@ -399,16 +399,16 @@ void Game::kapmanDeath()
 
 void Game::resumeAfterKapmanDeath()
 {
-    emit(livesChanged(m_lives));
+    Q_EMIT livesChanged(m_lives);
     // Start the timer
     start();
     // Remove a possible bonus
-    emit(bonusOff());
+    Q_EMIT bonusOff();
     // If their is no lives left, we start a new game
     if (m_lives <= 0) {
-        emit(gameOver(true));
+        Q_EMIT gameOver(true);
     } else {
-        emit(levelStarted(false));
+        Q_EMIT levelStarted(false);
         // Move all characters to their initial positions
         initCharactersPosition();
     }
@@ -439,7 +439,7 @@ void Game::winPoints(Element *p_element)
         // Add points to the score
         wonPoints = p_element->getPoints() * m_nbEatenGhosts;
         // Send to the scene the number of points to display and its position
-        emit(pointsToDisplay(wonPoints, xPos, yPos));
+        Q_EMIT pointsToDisplay(wonPoints, xPos, yPos);
     }
     // Else you just win the value of the element
     else {
@@ -456,7 +456,7 @@ void Game::winPoints(Element *p_element)
         }
 
         m_lives++;
-        emit(livesChanged(m_lives));
+        Q_EMIT livesChanged(m_lives);
     }
     // If the eaten element is an energyzer we change the ghosts state
     if (p_element->getType() == Element::ENERGYZER) {
@@ -474,13 +474,13 @@ void Game::winPoints(Element *p_element)
         }
         // Reset the number of eaten ghosts
         m_nbEatenGhosts = 0;
-        emit(elementEaten(p_element->getX(), p_element->getY()));
+        Q_EMIT elementEaten(p_element->getX(), p_element->getY());
     } else if (p_element->getType() == Element::PILL) {
         if (m_soundEnabled) {
             m_soundPill.start();
         }
 
-        emit(elementEaten(p_element->getX(), p_element->getY()));
+        Q_EMIT elementEaten(p_element->getX(), p_element->getY());
     } else if (p_element->getType() == Element::BONUS) {
         if (m_soundEnabled) {
             m_soundBonus.start();
@@ -491,17 +491,17 @@ void Game::winPoints(Element *p_element)
         qreal yPos = p_element->getY();
 
         // Sends to the scene the number of points to display and its position
-        emit(pointsToDisplay(wonPoints, xPos, yPos));
+        Q_EMIT pointsToDisplay(wonPoints, xPos, yPos);
 
-        emit(bonusOff());
+        Q_EMIT bonusOff();
     }
     // If 1/3 or 2/3 of the pills are eaten
     if (m_maze->getNbElem() == m_maze->getTotalNbElem() / 3 || m_maze->getNbElem() == (m_maze->getTotalNbElem() * 2 / 3)) {
         // Display the Bonus
-        emit(bonusOn());
+        Q_EMIT bonusOn();
         m_bonusTimer->start();
     }
-    emit(scoreChanged(m_points));
+    Q_EMIT scoreChanged(m_points);
 }
 
 void Game::nextLevel()
@@ -527,16 +527,16 @@ void Game::nextLevel()
     // Update the timers duration with the new speed
     setTimersDuration();
     // Update the score, level and lives labels
-    emit(scoreChanged(m_points));
-    emit(livesChanged(m_lives));
-    emit(levelChanged(m_level));
+    Q_EMIT scoreChanged(m_points);
+    Q_EMIT livesChanged(m_lives);
+    Q_EMIT levelChanged(m_level);
     // Update the view
-    emit(levelStarted(true));
+    Q_EMIT levelStarted(true);
 }
 
 void Game::hideBonus()
 {
-    emit(bonusOff());
+    Q_EMIT bonusOff();
 }
 
 void Game::endPreyState()

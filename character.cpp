@@ -52,12 +52,12 @@ void Character::move()
     // Move the Character
     m_x += m_xSpeed;
     m_y += m_ySpeed;
-    emit(moved(m_x, m_y));
+    Q_EMIT moved(m_x, m_y);
 }
 
 void Character::die()
 {
-    emit(eaten());
+    Q_EMIT eaten();
 }
 
 qreal Character::getXSpeed() const

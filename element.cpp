@@ -45,13 +45,13 @@ qreal Element::getY() const
 void Element::setX(qreal p_x)
 {
     m_x = p_x;
-    emit(moved(m_x, m_y));
+    Q_EMIT moved(m_x, m_y);
 }
 
 void Element::setY(qreal p_y)
 {
     m_y = p_y;
-    emit(moved(m_x, m_y));
+    Q_EMIT moved(m_x, m_y);
 }
 
 int Element::getPoints() const

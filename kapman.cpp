@@ -37,7 +37,7 @@ void Kapman::init()
     goRight();
     updateDirection();
     // Stop animation
-    emit(stopped());
+    Q_EMIT stopped();
 }
 
 void Kapman::goUp()
@@ -71,7 +71,7 @@ void Kapman::updateDirection()
     m_askedXSpeed = 0;
     m_askedYSpeed = 0;
     // Signal to the kapman item that the direction changed
-    emit(directionChanged());
+    Q_EMIT directionChanged();
 }
 
 void Kapman::updateMove()
@@ -137,17 +137,17 @@ void Kapman::updateMove()
 void Kapman::winPoints(Element *p_element)
 {
     // Emits a signal to the game
-    emit(sWinPoints(p_element));
+    Q_EMIT sWinPoints(p_element);
 }
 
 void Kapman::die()
 {
-    emit(eaten());
+    Q_EMIT eaten();
 }
 
 void Kapman::emitGameUpdated()
 {
-    emit(gameUpdated());
+    Q_EMIT gameUpdated();
 }
 
 qreal Kapman::getAskedXSpeed() const
@@ -187,7 +187,7 @@ void Kapman::stopMoving()
     setYSpeed(0);
     m_askedXSpeed = 0;
     m_askedYSpeed = 0;
-    emit(stopped());
+    Q_EMIT stopped();
 }
 
 void Kapman::initSpeedInc()

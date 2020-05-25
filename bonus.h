@@ -28,7 +28,7 @@
  */
 class Bonus : public Element
 {
-
+    Q_OBJECT
 public:
 
     /**

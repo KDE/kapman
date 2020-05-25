@@ -46,6 +46,6 @@ void GameView::focusOutEvent(QFocusEvent *)
 
 void GameView::keyPressEvent(QKeyEvent *p_event)
 {
-    emit(keyPressed(p_event));
+    Q_EMIT keyPressed(p_event);
 }
 

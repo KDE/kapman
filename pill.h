@@ -27,7 +27,7 @@
  */
 class Pill : public Element
 {
-
+    Q_OBJECT
 public:
 
     /** The Pill value */
