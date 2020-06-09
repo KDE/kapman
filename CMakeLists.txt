@@ -50,9 +50,6 @@ if (${KF5Config_VERSION} STRGREATER "5.56.0")
         add_definitions(-DQT_NO_FOREACH)
         MESSAGE(STATUS "compile without foreach")
 endif()
-if (EXISTS "${CMAKE_SOURCE_DIR}/.git")
-   add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x060000)
-endif()
 
 add_subdirectory(doc)
 
