@@ -35,6 +35,7 @@
   <name xml:lang="sv">Kapman</name>
   <name xml:lang="tr">Kapman</name>
   <name xml:lang="uk">Kapman</name>
+  <name xml:lang="x-test">xxKapmanxx</name>
   <name xml:lang="zh-CN">Kapman</name>
   <name xml:lang="zh-TW">Kapman</name>
   <summary>Pac-Man Clone</summary>
@@ -68,6 +69,7 @@
   <summary xml:lang="sv">Klon av Pac-Man</summary>
   <summary xml:lang="tr">Pac-Man Klonu</summary>
   <summary xml:lang="uk">Клон гри «Пакмен»</summary>
+  <summary xml:lang="x-test">xxPac-Man Clonexx</summary>
   <summary xml:lang="zh-CN">Pac-Man 克隆</summary>
   <summary xml:lang="zh-TW">另一款小精靈遊戲</summary>
   <description>
@@ -102,6 +104,7 @@
     <p xml:lang="sv">Kapman är en klon av det välkända spelet Pac-Man.</p>
     <p xml:lang="tr">Kapman çok bilinen Pac-Man oyununun bir klonudur.</p>
     <p xml:lang="uk">Kapman є клоном добре відомої гри «Пакмен».</p>
+    <p xml:lang="x-test">xxKapman is a clone of the well known game Pac-Man.xx</p>
     <p xml:lang="zh-TW">Kapman 是傳統小精靈遊戲的再生。</p>
     <p>
       You must run through the maze to eat all pills without being captured by a ghost.
@@ -137,6 +140,7 @@
     <p xml:lang="sv">Du måste springa igenom labyrinten för att äta upp alla piller utan att bli tillfångatagen av ett spöke. Genom att äta ett energitablett får Kapman förmågan att äta spöken under några sekunder. När spelplanen har rensats från piller och energitabletter, kommer spelaren till nästa spelplan med något snabbare spelhastighet.</p>
     <p xml:lang="tr">Bir hayalet tarafından yenmeden labirentteki tüm hapları yemeniz gerekir. Enerji verici yediğinde Kapman bir kaç saniye için hayaletleri yiyebilme kabiliyeti kazanır. Alandaki tüm haplar ve enerji vericiler yendiğinde oyuncu hızı biraz daha arttırılmış bir seviyeye geçer.</p>
     <p xml:lang="uk">Вам слід пройтися лабіринтом, з’їсти усі пігулки і уникнути зустрічі з привидом. Ваш герой, Kapman, може проковтнути енергетик і на декілька секунд отримати здатність самому їсти привидів. Щойно ваш герой з’їсть усі пігулки і енергетики, ви зможете перейти на наступний рівень, швидкість гри на якому буде збільшено.</p>
+    <p xml:lang="x-test">xxYou must run through the maze to eat all pills without being captured by a ghost. By eating an energizer, Kapman gets the ability to eat ghosts for a few seconds. When a stage is cleared of pills and energizer the player is taken to the next stage with slightly increased game speed.xx</p>
     <p xml:lang="zh-TW">您要在迷宮內吃到所有的豆子，避免被小精靈抓到。此外也有能量豆，讓您可以在時限內不怕小精靈。當所有的豆子，包括能量豆都被吃完以後，就可以進到下一關。越後面的關卡速度越快。</p>
   </description>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman</url>
