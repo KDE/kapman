@@ -37,7 +37,7 @@ KapmanItem::KapmanItem(Kapman *p_model) : CharacterItem(p_model)
 
     // A timeLine for the Kapman animation
     m_animationTimer = new QTimeLine();
-    m_animationTimer->setCurveShape(QTimeLine::SineCurve);
+    m_animationTimer->setEasingCurve(QEasingCurve::SineCurve);
     m_animationTimer->setLoopCount(0);
     m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
     // Animation speed
