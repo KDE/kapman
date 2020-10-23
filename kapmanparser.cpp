@@ -20,7 +20,6 @@
 #include "pill.h"
 #include "energizer.h"
 #include <QDebug>
-#include <QXmlStreamAttributes>
 
 KapmanParser::KapmanParser(Game *p_game)
 {

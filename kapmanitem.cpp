@@ -17,7 +17,6 @@
  */
 
 #include "kapmanitem.h"
-#include "characteritem.h"
 #include "ghost.h"
 #include "settings.h"
 
