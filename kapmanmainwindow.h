@@ -63,7 +63,7 @@ public:
      */
     ~KapmanMainWindow();
 
-private slots:
+private Q_SLOTS:
 
     /**
      * Initializes the KapmanMainWindow for a new game.

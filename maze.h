@@ -172,7 +172,7 @@ public:
      */
     QPoint getResurrectionCell() const;
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted when all the elements on the Maze have been eaten.

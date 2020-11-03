@@ -65,7 +65,7 @@ protected:
      */
     void focusOutEvent(QFocusEvent *p_event) override;
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted on key press event for the Game instance

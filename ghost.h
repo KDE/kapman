@@ -135,7 +135,7 @@ private:
      */
     void goLeft() override;
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted when the Kapman has lost a life.

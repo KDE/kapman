@@ -98,7 +98,7 @@ public:
      */
     void loadTheme();
 
-private slots:
+private Q_SLOTS:
 
     /**
      * Updates the elements to be drawn on Game introduction.

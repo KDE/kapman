@@ -53,7 +53,7 @@ public:
      */
     void updateBlinkTimersDuration();
 
-public slots:
+public Q_SLOTS:
 
     /**
      * Updates the view coordinates.

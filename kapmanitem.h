@@ -60,7 +60,7 @@ public:
      */
     ~KapmanItem();
 
-public slots:
+public Q_SLOTS:
 
     /**
      * Rotates the image function of the Kapman direction.

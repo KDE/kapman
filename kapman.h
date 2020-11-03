@@ -129,7 +129,7 @@ private:
      */
     void stopMoving();
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted when the direction changed

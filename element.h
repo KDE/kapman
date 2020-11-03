@@ -144,7 +144,7 @@ public:
     */
     void initCoordinate();
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted on Element move.

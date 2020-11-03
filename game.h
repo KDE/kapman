@@ -251,7 +251,7 @@ private:
      */
     void setTimersDuration();
 
-public slots:
+public Q_SLOTS:
 
     /**
      * Manages the key press events.
@@ -264,7 +264,7 @@ public slots:
      */
     void resumeAfterKapmanDeath();
 
-private slots:
+private Q_SLOTS:
 
     /**
      * Updates the Game data.
@@ -302,7 +302,7 @@ private slots:
      */
     void endPreyState();
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted when the Game is started.

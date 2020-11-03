@@ -203,7 +203,7 @@ protected:
      */
     void moveOnCenter();
 
-signals:
+Q_SIGNALS:
 
     /**
      * Emitted when the character is eaten.
