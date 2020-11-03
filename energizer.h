@@ -49,7 +49,7 @@ public:
     /**
      * Deletes the Energizer instance.
      */
-    ~Energizer();
+    ~Energizer() override;
 
     /**
      * Gets the type of the Energyzer.

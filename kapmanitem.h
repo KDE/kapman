@@ -58,7 +58,7 @@ public:
     /**
      * Deletes the KapmanItem instance.
      */
-    ~KapmanItem();
+    ~KapmanItem() override;
 
 public Q_SLOTS:
 

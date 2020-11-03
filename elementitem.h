@@ -50,7 +50,7 @@ public:
     /**
      * Deletes the ElementItem instance.
      */
-    ~ElementItem();
+    ~ElementItem() override;
 
     /**
      * Gets the Element model.

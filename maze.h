@@ -63,7 +63,7 @@ public:
     /**
      * Deletes the Maze instance.
      */
-    ~Maze();
+    ~Maze() override;
 
     /**
      * Creates the Maze matrix.

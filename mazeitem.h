@@ -39,7 +39,7 @@ public:
     /**
      * Deletes the MazeItem instance.
      */
-    ~MazeItem();
+    ~MazeItem() override;
 };
 
 #endif

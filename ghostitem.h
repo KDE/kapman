@@ -46,7 +46,7 @@ public:
     /**
      * Deletes the CharacterItem instance.
      */
-    ~GhostItem();
+    ~GhostItem() override;
 
     /**
      * Ensures the blink timers are correctly set

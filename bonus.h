@@ -43,7 +43,7 @@ public:
     /**
      * Deletes the Bonus instance.
      */
-    ~Bonus();
+    ~Bonus() override;
 
     /**
      * Computes an action on a collision with the Kapman.

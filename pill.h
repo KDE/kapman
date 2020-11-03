@@ -43,7 +43,7 @@ public:
     /**
      * Deletes the Pill instance.
      */
-    ~Pill();
+    ~Pill() override;
 
     /**
      * Computes an action on a collision with the Kapman.

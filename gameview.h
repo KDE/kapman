@@ -43,7 +43,7 @@ public:
     /**
      * Deletes the GameView instance.
      */
-    ~GameView();
+    ~GameView() override;
 
     /**
      * Resizes the items when the view is resized.

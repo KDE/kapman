@@ -49,7 +49,7 @@ public:
     /**
      * Deletes the Kapman instance.
      */
-    ~Kapman();
+    ~Kapman() override;
 
     /**
      * Initializes the Kapman.

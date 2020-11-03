@@ -70,7 +70,7 @@ public:
     /**
      * Deletes the Ghost instance.
      */
-    ~Ghost();
+    ~Ghost() override;
 
     /**
      * Updates the Ghost move.

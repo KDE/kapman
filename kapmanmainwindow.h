@@ -61,7 +61,7 @@ public:
     /**
      * Deletes the KapmanMainWindow instance.
      */
-    ~KapmanMainWindow();
+    ~KapmanMainWindow() override;
 
 private Q_SLOTS:
 

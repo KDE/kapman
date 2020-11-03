@@ -50,7 +50,7 @@ public:
     /**
      * Deletes the CharacterItem instance.
      */
-    ~CharacterItem();
+    ~CharacterItem() override;
 
     /**
      * Overrides the default shape function to make it a small circle
