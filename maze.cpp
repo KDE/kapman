@@ -58,7 +58,7 @@ void Maze::setCellElement(const int p_row, const int p_column, Element *p_elemen
         qCritical() << "Bad maze coordinates";
     }
     m_cells[p_row][p_column].setElement(p_element);
-    if (p_element != NULL) {
+    if (p_element != nullptr) {
         m_totalNbElem++;
         m_nbElem++;
     }

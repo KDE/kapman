@@ -40,8 +40,8 @@
 KapmanMainWindow::KapmanMainWindow()
 {
     // Initialize the game
-    m_game = NULL;
-    m_view = NULL;
+    m_game = nullptr;
+    m_view = nullptr;
     // Set the window menus
     KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
     KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());

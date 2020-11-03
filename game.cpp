@@ -285,7 +285,7 @@ void Game::initCharactersPosition()
         // Initialize the Pills & Energizers coordinates
         for (int i = 0; i < m_maze->getNbRows(); ++i) {
             for (int j = 0; j < m_maze->getNbColumns(); ++j) {
-                if (m_maze->getCell(i, j).getElement() != NULL) {
+                if (m_maze->getCell(i, j).getElement() != nullptr) {
                     m_maze->getCell(i, j).getElement()->setX(Cell::SIZE * (j + 0.5));
                     m_maze->getCell(i, j).getElement()->setY(Cell::SIZE * (i + 0.5));
                 }

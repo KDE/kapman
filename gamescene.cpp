@@ -23,7 +23,7 @@
 
 #include <KLocalizedString>
 
-GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem(0)
+GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(nullptr), m_mazeItem(nullptr)
 {
     connect(p_game, &Game::levelStarted, this, &GameScene::intro);
     connect(p_game, &Game::gameStarted, this, &GameScene::start);
@@ -75,7 +75,7 @@ GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
     for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
         m_elementItems[i] = new ElementItem*[m_game->getMaze()->getNbColumns()];
         for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
-            if (m_game->getMaze()->getCell(i, j).getElement() != NULL) {
+            if (m_game->getMaze()->getCell(i, j).getElement() != nullptr) {
                 // Create the element and set the image
                 ElementItem *element = new ElementItem(m_game->getMaze()->getCell(i, j).getElement());
                 element->setSharedRenderer(m_renderer);
@@ -83,7 +83,7 @@ GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(0), m_mazeItem
                 element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());
                 m_elementItems[i][j] = element;
             } else {
-                m_elementItems[i][j] = NULL;
+                m_elementItems[i][j] = nullptr;
             }
         }
     }
@@ -137,7 +137,7 @@ GameScene::~GameScene()
     }
     for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
         for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
-            if (m_elementItems[i][j] != NULL) {
+            if (m_elementItems[i][j] != nullptr) {
                 delete m_elementItems[i][j];
             }
         }
@@ -200,7 +200,7 @@ void GameScene::updateSvgIds()
     }
     for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
         for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
-            if (m_elementItems[i][j] != NULL) {
+            if (m_elementItems[i][j] != nullptr) {
                 ElementItem *element = m_elementItems[i][j];
                 element->setElementId(m_game->getMaze()->getCell(i, j).getElement()->getImageId());
                 element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());
@@ -231,7 +231,7 @@ void GameScene::intro(const bool p_newLevel)
         // Set each Pill and Energizer item to its original coordinates
         for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
             for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
-                if (m_elementItems[i][j] != NULL) {
+                if (m_elementItems[i][j] != nullptr) {
                     if (!items().contains(m_elementItems[i][j])) {
                         addItem(m_elementItems[i][j]);
                     }
