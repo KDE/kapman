@@ -112,4 +112,7 @@ install(FILES defaultmaze.xml DESTINATION ${KDE_INSTALL_DATADIR}/kapman)
 install(FILES ${themes} DESTINATION ${KDE_INSTALL_DATADIR}/kapman/themes)
 install(FILES ${sounds_ogg} DESTINATION ${KDE_INSTALL_SOUNDDIR}/kapman)
 
+ki18n_install(po)
+kdoctools_install(po)
+
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
