@@ -54,18 +54,9 @@ endif()
 
 add_subdirectory(doc)
 add_subdirectory(icons)
+add_subdirectory(sounds)
+add_subdirectory(themes)
 add_subdirectory(src)
-
-file(GLOB themes
-	"themes/*.svgz"
-	"themes/*.desktop"
-	"themes/*.copyright"
-	"themes/*.png"
-)
-file(GLOB sounds_ogg "sounds/*.ogg")
-
-install(FILES ${themes} DESTINATION ${KDE_INSTALL_DATADIR}/kapman/themes)
-install(FILES ${sounds_ogg} DESTINATION ${KDE_INSTALL_SOUNDDIR}/kapman)
 
 ki18n_install(po)
 kdoctools_install(po)
