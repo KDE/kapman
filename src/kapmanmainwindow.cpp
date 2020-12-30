@@ -43,10 +43,10 @@ KapmanMainWindow::KapmanMainWindow()
     m_game = nullptr;
     m_view = nullptr;
     // Set the window menus
-    KStandardGameAction::gameNew(this, SLOT(newGame(bool)), actionCollection());
-    KStandardGameAction::highscores(this, SLOT(showHighscores()), actionCollection());
-    KStandardAction::preferences(this, SLOT(showSettings()), actionCollection());
-    KStandardGameAction::quit(this, SLOT(close()), actionCollection());
+    KStandardGameAction::gameNew(this, &KapmanMainWindow::newGame, actionCollection());
+    KStandardGameAction::highscores(this, &KapmanMainWindow::showHighscores, actionCollection());
+    KStandardAction::preferences(this, &KapmanMainWindow::showSettings, actionCollection());
+    KStandardGameAction::quit(this, &KapmanMainWindow::close, actionCollection());
     KToggleAction *soundAction = new KToggleAction(i18n("&Play sounds"), this);
     soundAction->setChecked(Settings::sounds());
     actionCollection()->addAction(QStringLiteral("sounds"), soundAction);
