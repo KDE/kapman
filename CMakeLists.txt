@@ -53,6 +53,7 @@ if (${KF5Config_VERSION} STRGREATER "5.56.0")
 endif()
 
 add_subdirectory(doc)
+add_subdirectory(icons)
 
 set(kapman_SRCS
 	bonus.cpp
@@ -89,9 +90,8 @@ file(GLOB sounds_ogg "sounds/*.ogg")
 
 kconfig_add_kcfg_files(kapman_SRCS settings.kcfgc)
 
-ecm_install_icons(ICONS 128-apps-kapman.png  16-apps-kapman.png  22-apps-kapman.png  32-apps-kapman.png  48-apps-kapman.png  64-apps-kapman.png DESTINATION ${KDE_INSTALL_ICONDIR} THEME hicolor)
 
-file(GLOB ICONS_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/*-apps-kapman.png")
+file(GLOB ICONS_SRCS "${CMAKE_SOURCE_DIR}/icons/*-apps-kapman.png")
 ecm_add_app_icon(kapman_SRCS ICONS ${ICONS_SRCS})
 add_executable(kapman ${kapman_SRCS})
 
