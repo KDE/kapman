@@ -212,16 +212,6 @@ public:
     void initMaze(const int p_nbRows, const int p_nbColumns);
 
     /**
-     * Initializes a Ghost
-     */
-    void initGhost();
-
-    /**
-     * Initializes a Kapman
-     */
-    void initKapman();
-
-    /**
      * Enables / disables the sounds.
      * @param p_enabled if true the sounds will be enabled, otherwise they will be disabled
      */
