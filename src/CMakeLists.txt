@@ -19,6 +19,7 @@ set(kapman_SRCS
     maze.cpp
     mazeitem.cpp
     pill.cpp
+    kapman.qrc
 )
 
 ecm_setup_version(${RELEASE_SERVICE_VERSION}
@@ -27,10 +28,6 @@ ecm_setup_version(${RELEASE_SERVICE_VERSION}
 )
 
 kconfig_add_kcfg_files(kapman_SRCS settings.kcfgc)
-
-qt5_add_resources(kapman_SRCS
-    kapman.qrc
-)
 
 file(GLOB ICONS_SRCS "${CMAKE_SOURCE_DIR}/icons/*-apps-kapman.png")
 ecm_add_app_icon(kapman_SRCS ICONS ${ICONS_SRCS})
