@@ -119,6 +119,8 @@ void Game::start()
 {
     // Restart the Game timer
     m_timer->start();
+    m_bonusTimer->start();
+    m_preyTimer->start();
     m_state = RUNNING;
     Q_EMIT pauseChanged(false, false);
 }
@@ -127,6 +129,19 @@ void Game::pause(bool p_locked)
 {
     // Stop the Game timer
     m_timer->stop();
+
+    if (m_bonusTimer->isActive()) {
+        const auto remainingTime{m_bonusTimer->remainingTime()};
+        m_bonusTimer->stop();
+        m_bonusTimer->setInterval(remainingTime);
+    }
+
+    if (m_preyTimer->isActive()) {
+        const auto remainingTime{m_preyTimer->remainingTime()};
+        m_preyTimer->stop();
+        m_preyTimer->setInterval(remainingTime);
+    }
+
     if (p_locked) {
         m_state = PAUSED_LOCKED;
     } else {
@@ -288,8 +303,17 @@ void Game::setTimersDuration()
     // Updates the timers duration ratio with the ghosts speed
     s_durationRatio = Character::MEDIUM_SPEED / m_ghosts[0]->getNormalSpeed();
 
-    // Updates the timers duration
+    setPreyTimerDuration();
+    setBonusTimerDuration();
+}
+
+void Game::setBonusTimerDuration()
+{
     m_bonusTimer->setInterval((int)(s_bonusDuration * s_durationRatio));
+}
+
+void Game::setPreyTimerDuration()
+{
     m_preyTimer->setInterval((int)(s_preyStateDuration * s_durationRatio));
 }
 
@@ -526,6 +550,8 @@ void Game::nextLevel()
 void Game::hideBonus()
 {
     Q_EMIT bonusOff();
+
+    setBonusTimerDuration();
 }
 
 void Game::endPreyState()
@@ -535,4 +561,6 @@ void Game::endPreyState()
             m_ghosts[i]->setState(Ghost::HUNTER);
         }
     }
+
+    setPreyTimerDuration();
 }

@@ -229,6 +229,8 @@ private:
      * The value is in Ghost::s_speed
      */
     void setTimersDuration();
+    void setPreyTimerDuration();
+    void setBonusTimerDuration();
 
 public Q_SLOTS:
 
