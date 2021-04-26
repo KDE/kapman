@@ -395,7 +395,7 @@ void Game::resumeAfterKapmanDeath()
     Q_EMIT bonusOff();
     // If their is no lives left, we start a new game
     if (m_lives <= 0) {
-        Q_EMIT gameOver(true);
+        Q_EMIT gameOver();
     } else {
         Q_EMIT levelStarted(false);
         // Move all characters to their initial positions

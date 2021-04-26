@@ -77,7 +77,7 @@ void KapmanMainWindow::initGame()
     // Create a new Game instance
     delete m_game;
     m_game = new Game();
-    connect(m_game, &Game::gameOver, this, &KapmanMainWindow::newGame);     // TODO Remove the useless bool parameter from gameOver()
+    connect(m_game, &Game::gameOver, this, &KapmanMainWindow::handleGameOver);
     connect(m_game, &Game::levelChanged, this, &KapmanMainWindow::displayLevel);
     connect(m_game, &Game::scoreChanged, this, &KapmanMainWindow::displayScore);
     connect(m_game, &Game::livesChanged, this, &KapmanMainWindow::displayLives);
@@ -94,7 +94,7 @@ void KapmanMainWindow::initGame()
     resetStatusBar();
 }
 
-void KapmanMainWindow::newGame(const bool gameOver)
+void KapmanMainWindow::newGame()
 {
     bool gameRunning;       // True if the game is running (game timer is active), false otherwise
 
@@ -104,41 +104,50 @@ void KapmanMainWindow::newGame(const bool gameOver)
         // Pause the game
         m_game->pause();
     }
-    // If the game was not over
-    if (!gameOver) {
-        // Confirm before starting a new game
-        if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game?"), i18n("New game")) == KMessageBox::Yes) {
-            // Start a new game
-            initGame();
-        } else {
-            // If the game was running
-            if (gameRunning) {
-                // Resume the game
-                m_game->start();
-            }
-        }
-    } else {
-        // Display the score information
-        KMessageBox::information(this, i18np("Your score is %1 point.", "Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
-        // manage Highscores only if player did not cheat
-        if (m_game->isCheater()) {
-            KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));
-        } else {
-            // Add the score to the highscores table
-            QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
-            dialog->initFromDifficulty(Kg::difficulty());
-            KScoreDialog::FieldInfo scoreInfo;
-            scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
-            scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
-            // If the new score is a highscore then display the highscore dialog
-            if (dialog->addScore(scoreInfo)) {
-                dialog->exec();
-            }
-            delete dialog;
-        }
+
+    // Confirm before starting a new game
+    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game?"), i18n("New game")) == KMessageBox::Yes) {
         // Start a new game
         initGame();
+    } else {
+        // If the game was running
+        if (gameRunning) {
+            // Resume the game
+            m_game->start();
+        }
     }
+}
+
+void KapmanMainWindow::handleGameOver()
+{
+    bool gameRunning;       // True if the game is running (game timer is active), false otherwise
+
+    gameRunning = m_game->getTimer()->isActive();
+    // If the game is running
+    if (gameRunning) {
+        // Pause the game
+        m_game->pause();
+    }
+    // Display the score information
+    KMessageBox::information(this, i18np("Your score is %1 point.", "Your score is %1 points.", m_game->getScore()), i18n("Game Over"));
+    // manage Highscores only if player did not cheat
+    if (m_game->isCheater()) {
+        KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));
+    } else {
+        // Add the score to the highscores table
+        QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+        dialog->initFromDifficulty(Kg::difficulty());
+        KScoreDialog::FieldInfo scoreInfo;
+        scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
+        scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
+        // If the new score is a highscore then display the highscore dialog
+        if (dialog->addScore(scoreInfo)) {
+            dialog->exec();
+        }
+        delete dialog;
+    }
+    // Start a new game
+    initGame();
 }
 
 void KapmanMainWindow::changeLevel()

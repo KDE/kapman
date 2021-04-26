@@ -290,9 +290,8 @@ Q_SIGNALS:
 
     /**
      * Emitted when the Game is over.
-     * @param p_unused this parameter must always be true !
      */
-    void gameOver(const bool p_unused);
+    void gameOver();
 
     /**
      * Emitted when a level begins, if level up or if a life has been lost.
