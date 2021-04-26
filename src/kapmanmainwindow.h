@@ -60,11 +60,12 @@ private Q_SLOTS:
      */
     void initGame();
 
+    void handleGameOver();
+
     /**
      * Starts a new game.
-     * @param p_gameOver true if the game was over, false if a game is running
      */
-    void newGame(const bool p_gameOver = false);
+    void newGame();
 
     /**
      * Shows the highscores dialog.
