@@ -45,6 +45,8 @@ private:
     /** A list of Cells to go to the camp from the current cell */
     QList<QPoint> m_pathToCamp;
 
+    bool m_preyStateAlmostOver;
+
 public:
 
     /**
@@ -102,6 +104,8 @@ public:
      */
     void initSpeedInc() override;
 
+    void setPreyStateAlmostOverEnabled(bool enable);
+    bool preyStateAlmostOver() const;
 private:
 
     /**

@@ -392,6 +392,13 @@ void Game::update()
         } else {
             m_ghosts[i]->updateMove();
         }
+
+        const int startBlinkingDelay = s_preyStateDuration * s_durationRatio - 5 * (500 * s_durationRatio);
+        if (m_preyTimer->remainingTime() < (m_preyTimer->interval() - startBlinkingDelay)) {
+            m_ghosts[i]->setPreyStateAlmostOverEnabled(true);
+        } else {
+            m_ghosts[i]->setPreyStateAlmostOverEnabled(false);
+        }
     }
     m_kapman->updateMove();
     m_kapman->emitGameUpdated();

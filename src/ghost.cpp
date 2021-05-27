@@ -17,6 +17,7 @@ const qreal Ghost::MAX_SPEED_RATIO = 2.0;
 const int Ghost::POINTS = 200;
 
 Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze) : Character(p_x, p_y, p_maze)
+  , m_preyStateAlmostOver(false)
 {
     // Initialize the ghost attributes
     m_imageId = p_imageId;
@@ -231,3 +232,12 @@ void Ghost::initSpeedInc()
     }
 }
 
+void Ghost::setPreyStateAlmostOverEnabled(bool enable)
+{
+    m_preyStateAlmostOver = enable;
+}
+
+bool Ghost::preyStateAlmostOver() const
+{
+    return m_preyStateAlmostOver;
+}

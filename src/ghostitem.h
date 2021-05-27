@@ -19,11 +19,6 @@ class GhostItem : public CharacterItem
 
     Q_OBJECT
 
-private:
-
-    /** Timer to start the ghosts blinking */
-    QTimer *m_startBlinkingTimer = nullptr;
-
 public:
 
     /**
