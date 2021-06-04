@@ -25,8 +25,8 @@
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2016-05-09</date>
-<releaseinfo>1.1.0 (Applications 16.04)</releaseinfo>
+<date>2021-04-06</date>
+<releaseinfo>KDE Gear 21.04</releaseinfo>
 
 <abstract>
 <para>&kapman; is a clone of the well known game <application>Pac-Man</application>.</para>
@@ -202,10 +202,10 @@ of the &kde; Fundamentals.
 <title>Default Keybindings</title>
 <para>
 <itemizedlist>
-<listitem><para><action>Turn up</action> - <keysym>Up Arrow</keysym></para></listitem>
-<listitem><para><action>Turn down</action> - <keysym>Down Arrow</keysym></para></listitem>
-<listitem><para><action>Turn right</action> - <keysym>Right Arrow</keysym></para></listitem>
-<listitem><para><action>Turn left</action> - <keysym>Left Arrow</keysym></para></listitem>
+<listitem><para><action>Turn up</action> - &Up; arrow</para></listitem>
+<listitem><para><action>Turn down</action> - &Down; arrow</para></listitem>
+<listitem><para><action>Turn right</action> - &Right; arrow</para></listitem>
+<listitem><para><action>Turn left</action> - &Left; arrow</para></listitem>
 <listitem><para><action>Pause</action> - <keycap>P</keycap> or &Esc;</para></listitem>
 </itemizedlist>
 </para>
@@ -221,7 +221,7 @@ of the &kde; Fundamentals.
 <para>I want to change the way this game looks. Can I?</para>
 </question>
 <answer>
-<para>You can select the &kapman; theme in the <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Kapman...</guimenuitem></menuchoice> dialog. See the <link linkend="configuration">Game Configuration</link> chapter for more details.</para>
+<para>You can select the &kapman; theme in the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kapman;...</guimenuitem></menuchoice> dialog. See the <link linkend="configuration">Game Configuration</link> chapter for more details.</para>
 </answer>
 </qandaentry>
 <qandaentry>
@@ -261,7 +261,7 @@ of the &kde; Fundamentals.
 
 <chapter id="configuration"><title>Game Configuration</title>
 <para>
-	You can select the theme you want to play &kapman;. To do that, select <menuchoice><guimenu>Settings</guimenu><guimenuitem>Configure Kapman...</guimenuitem></menuchoice>. The &kapman; configuration dialog (see below) appears and you can then select the theme. It is immediately changed on validating your choice, no need to restart the game. You can click on the <guibutton>Defaults</guibutton> button to restore the default theme.
+	You can select the theme you want to play &kapman;. To do that, select <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kapman;...</guimenuitem></menuchoice>. The &kapman; configuration dialog (see below) appears and you can then select the theme. It is immediately changed on validating your choice, no need to restart the game. You can click on the <guibutton>Defaults</guibutton> button to restore the default theme.
 </para>
 <screenshot>
 <screeninfo>The &kapman; configuration dialog</screeninfo>
