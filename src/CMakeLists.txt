@@ -41,8 +41,8 @@ target_link_libraries(kapman
     KF5::DBusAddons
     KF5::XmlGui
     KF5::Crash
-    Qt5::Svg
-    Qt5::Xml
+    Qt::Svg
+    Qt::Xml
 )
 
 install(TARGETS kapman ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
