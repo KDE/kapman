@@ -7,25 +7,44 @@ add_executable(kapman)
 
 target_sources(kapman PRIVATE
     bonus.cpp
+    bonus.h
     cell.cpp
+    cell.h
     character.cpp
+    character.h
     characteritem.cpp
+    characteritem.h
     element.cpp
+    element.h
     elementitem.cpp
+    elementitem.h
     energizer.cpp
+    energizer.h
     game.cpp
+    game.h
     gamescene.cpp
+    gamescene.h
     gameview.cpp
+    gameview.h
     ghost.cpp
+    ghost.h
     ghostitem.cpp
+    ghostitem.h
     kapman.cpp
+    kapman.h
     kapmanitem.cpp
+    kapmanitem.h
     kapmanmainwindow.cpp
+    kapmanmainwindow.h
     kapmanparser.cpp
+    kapmanparser.h
     main.cpp
     maze.cpp
+    maze.h
     mazeitem.cpp
+    mazeitem.h
     pill.cpp
+    pill.h
 
     kapman.qrc
 )
