@@ -30,9 +30,7 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze)
     goLeft();
 }
 
-Ghost::~Ghost()
-{
-}
+Ghost::~Ghost() = default;
 
 void Ghost::goUp()
 {

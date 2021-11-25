@@ -25,9 +25,7 @@ Character::Character(qreal p_x, qreal p_y, Maze *p_maze)
     m_maxSpeed = m_normalSpeed; // To avoid bugs, but will be overridden in the Ghost and Kapman constructors
 }
 
-Character::~Character()
-{
-}
+Character::~Character() = default;
 
 void Character::move()
 {

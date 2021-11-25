@@ -8,7 +8,7 @@
 #include "maze.h"
 
 #include <QDebug>
-#include <math.h>
+#include <cmath>
 
 Maze::Maze()
     : m_totalNbElem(0)
@@ -160,7 +160,7 @@ QList<QPoint> Maze::getPathToGhostCamp(const int p_row, const int p_column) cons
     }
     if (oldSize == openList.size()) {
         qCritical() << "Path to ghost home not found";
-        return QList<QPoint>();
+        return {};
     }
     // Save the path : from the target cell, go from each cell to its parent cell until reaching the starting cell
     for (Cell *cell = &m_cells[m_resurrectionCell.y()][m_resurrectionCell.x()]; cell->getParent() != &m_cells[p_row][p_column]; cell = cell->getParent()) {
@@ -183,11 +183,11 @@ QPoint Maze::getCoords(Cell *p_cell) const
     for (int i = 0; i < m_nbRows; ++i) {
         for (int j = 0; j < m_nbColumns; ++j) {
             if (&m_cells[i][j] == p_cell) {
-                return QPoint(j, i);
+                return {j, i};
             }
         }
     }
-    return QPoint();
+    return {};
 }
 
 int Maze::getRowFromY(const qreal p_y) const

@@ -17,9 +17,7 @@ Kapman::Kapman(qreal p_x, qreal p_y, Maze *p_maze)
     m_maxSpeed = m_normalSpeed * MAX_SPEED_RATIO;
 }
 
-Kapman::~Kapman()
-{
-}
+Kapman::~Kapman() = default;
 
 void Kapman::init()
 {

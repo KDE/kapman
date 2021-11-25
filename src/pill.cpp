@@ -19,9 +19,7 @@ Pill::Pill(qreal p_x, qreal p_y, Maze *p_maze, const QString &p_imageId)
     m_type = Element::PILL;
 }
 
-Pill::~Pill()
-{
-}
+Pill::~Pill() = default;
 
 void Pill::doActionOnCollision(Kapman *p_kapman)
 {

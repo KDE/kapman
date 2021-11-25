@@ -15,9 +15,7 @@ Element::Element(qreal p_x, qreal p_y, Maze *p_maze)
     initCoordinate();
 }
 
-Element::~Element()
-{
-}
+Element::~Element() = default;
 
 void Element::doActionOnCollision(Kapman *)
 {

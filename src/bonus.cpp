@@ -17,9 +17,7 @@ Bonus::Bonus(qreal p_x, qreal p_y, Maze *p_maze, int p_points)
     m_type = Element::BONUS;
 }
 
-Bonus::~Bonus()
-{
-}
+Bonus::~Bonus() = default;
 
 void Bonus::doActionOnCollision(Kapman *p_kapman)
 {

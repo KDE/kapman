@@ -19,9 +19,7 @@ Energizer::Energizer(qreal p_x, qreal p_y, Maze *p_maze, const QString &p_imageI
     m_type = Element::ENERGYZER;
 }
 
-Energizer::~Energizer()
-{
-}
+Energizer::~Energizer() = default;
 
 void Energizer::doActionOnCollision(Kapman *p_kapman)
 {

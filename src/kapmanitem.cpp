@@ -58,7 +58,7 @@ void KapmanItem::updateDirection()
 {
     QTransform transform;
     int angle = 0;
-    Kapman *model = (Kapman *)getModel();
+    auto model = (Kapman *)getModel();
 
     // Compute the angle
     if (model->getXSpeed() > 0) {
@@ -92,7 +92,7 @@ void KapmanItem::manageCollision()
         for (int i = 0; i < collidingList.size(); ++i) {
             // The maze and the points labels have a negative zValue which allows to exclude them from the treatment of collisions
             if (collidingList[i]->zValue() >= 0) {
-                ElementItem *item = dynamic_cast<ElementItem *>(collidingList[i]);
+                auto item = dynamic_cast<ElementItem *>(collidingList[i]);
                 if (item) {
                     item->getModel()->doActionOnCollision((Kapman *)getModel());
                 }

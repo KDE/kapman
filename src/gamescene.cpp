@@ -54,7 +54,7 @@ GameScene::GameScene(Game *p_game)
 
     // Create the GhostItems
     for (int i = 0; i < p_game->getGhosts().size(); ++i) {
-        GhostItem *ghost = new GhostItem(p_game->getGhosts()[i]);
+        auto ghost = new GhostItem(p_game->getGhosts()[i]);
         ghost->setSharedRenderer(m_renderer);
         ghost->setElementId(p_game->getGhosts()[i]->getImageId());
         ghost->update(p_game->getGhosts()[i]->getX(), p_game->getGhosts()[i]->getY());
@@ -69,7 +69,7 @@ GameScene::GameScene(Game *p_game)
         for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
             if (m_game->getMaze()->getCell(i, j).getElement() != nullptr) {
                 // Create the element and set the image
-                ElementItem *element = new ElementItem(m_game->getMaze()->getCell(i, j).getElement());
+                auto element = new ElementItem(m_game->getMaze()->getCell(i, j).getElement());
                 element->setSharedRenderer(m_renderer);
                 element->setElementId(m_game->getMaze()->getCell(i, j).getElement()->getImageId());
                 element->update(m_game->getMaze()->getCell(i, j).getElement()->getX(), m_game->getMaze()->getCell(i, j).getElement()->getY());

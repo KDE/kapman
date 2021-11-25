@@ -36,11 +36,11 @@ KapmanMainWindow::KapmanMainWindow()
     KStandardGameAction::highscores(this, &KapmanMainWindow::showHighscores, actionCollection());
     KStandardAction::preferences(this, &KapmanMainWindow::showSettings, actionCollection());
     KStandardGameAction::quit(this, &KapmanMainWindow::close, actionCollection());
-    KToggleAction *soundAction = new KToggleAction(i18n("&Play Sounds"), this);
+    auto soundAction = new KToggleAction(i18n("&Play Sounds"), this);
     soundAction->setChecked(Settings::sounds());
     actionCollection()->addAction(QStringLiteral("sounds"), soundAction);
     connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
-    QAction *levelAction = new QAction(i18n("&Change Level"), this);
+    auto levelAction = new QAction(i18n("&Change Level"), this);
     actionCollection()->addAction(QStringLiteral("level"), levelAction);
     connect(levelAction, &QAction::triggered, this, &KapmanMainWindow::changeLevel);
     // Add a statusbar to show level,score,lives information
@@ -176,7 +176,7 @@ void KapmanMainWindow::showSettings()
     if (KConfigDialog::showDialog(QStringLiteral("settings"))) {
         return;
     }
-    KConfigDialog *settingsDialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
+    auto settingsDialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
     settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload),
                             i18n("Theme"),
                             QStringLiteral("kapman"));

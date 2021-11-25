@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     // Set the application icon
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kapman")));
     // Create the main window
-    KapmanMainWindow *window = new KapmanMainWindow();
+    auto window = new KapmanMainWindow();
     // Show the main window
     window->show();
     // Execute the application

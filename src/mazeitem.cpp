@@ -15,6 +15,4 @@ MazeItem::MazeItem()
     setMaximumCacheSize(QSize(2000, 2000));
 }
 
-MazeItem::~MazeItem()
-{
-}
+MazeItem::~MazeItem() = default;

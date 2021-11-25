@@ -16,9 +16,7 @@ KapmanParser::KapmanParser(Game *p_game)
     m_counterRows = 0;
 }
 
-KapmanParser::~KapmanParser()
-{
-}
+KapmanParser::~KapmanParser() = default;
 
 bool KapmanParser::parse(QIODevice *input)
 {

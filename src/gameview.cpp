@@ -16,9 +16,7 @@ GameView::GameView(Game *p_game)
     connect(this, &GameView::keyPressed, p_game, &Game::keyPressEvent);
 }
 
-GameView::~GameView()
-{
-}
+GameView::~GameView() = default;
 
 void GameView::resizeEvent(QResizeEvent *)
 {
