@@ -17,9 +17,7 @@
  */
 class KapmanParser
 {
-
 private:
-
     /** The Game to initialize */
     Game *m_game;
 
@@ -28,8 +26,8 @@ private:
 
     /** The rows counter */
     int m_counterRows;
-public:
 
+public:
     /**
      * Creates a new GameParser.
      * @param p_game the Game to initialize
@@ -43,14 +41,11 @@ public:
 
     bool characters(const QStringRef &ch);
 
-    bool startElement(const QStringRef &namespaceURI, const QStringRef &localName,
-                      const QStringRef &qName, const QXmlStreamAttributes &atts);
+    bool startElement(const QStringRef &namespaceURI, const QStringRef &localName, const QStringRef &qName, const QXmlStreamAttributes &atts);
 
-    bool endElement(const QStringRef &namespaceURI,
-                    const QStringRef &localName, const QStringRef &qName);
+    bool endElement(const QStringRef &namespaceURI, const QStringRef &localName, const QStringRef &qName);
 
     bool parse(QIODevice *input);
 };
 
 #endif
-

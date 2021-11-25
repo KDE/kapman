@@ -7,8 +7,8 @@
 
 #include "ghost.h"
 
-#include <QPointF>
 #include <KgDifficulty>
+#include <QPointF>
 #include <QRandomGenerator>
 #include <cstdlib>
 #include <ctime>
@@ -16,8 +16,9 @@
 const qreal Ghost::MAX_SPEED_RATIO = 2.0;
 const int Ghost::POINTS = 200;
 
-Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze) : Character(p_x, p_y, p_maze)
-  , m_preyStateAlmostOver(false)
+Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze)
+    : Character(p_x, p_y, p_maze)
+    , m_preyStateAlmostOver(false)
 {
     // Initialize the ghost attributes
     m_imageId = p_imageId;
@@ -31,7 +32,6 @@ Ghost::Ghost(qreal p_x, qreal p_y, const QString &p_imageId, Maze *p_maze) : Cha
 
 Ghost::~Ghost()
 {
-
 }
 
 void Ghost::goUp()
@@ -72,30 +72,30 @@ void Ghost::updateMove()
         // If the ghost gets on a Cell center
         if (onCenter()) {
             // We retrieve all the directions the ghost can choose (save the turning back)
-            if (m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::CORRIDOR ||
-                    (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-                     m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::GHOSTCAMP)) {
+            if (m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::CORRIDOR
+                || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP
+                    && m_maze->getCell(curCellRow, curCellCol + 1).getType() == Cell::GHOSTCAMP)) {
                 if (m_xSpeed >= 0) {
                     directionsList.append(QPointF(m_speed, 0.0));
                 }
             }
-            if (m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::CORRIDOR ||
-                    (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-                     m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
+            if (m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::CORRIDOR
+                || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP
+                    && m_maze->getCell(curCellRow + 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
                 if (m_ySpeed >= 0) {
                     directionsList.append(QPointF(0.0, m_speed));
                 }
             }
-            if (m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::CORRIDOR ||
-                    (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-                     m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
+            if (m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::CORRIDOR
+                || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP
+                    && m_maze->getCell(curCellRow - 1, curCellCol).getType() == Cell::GHOSTCAMP)) {
                 if (m_ySpeed <= 0) {
                     directionsList.append(QPointF(0.0, -m_speed));
                 }
             }
-            if (m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::CORRIDOR ||
-                    (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP &&
-                     m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::GHOSTCAMP)) {
+            if (m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::CORRIDOR
+                || (m_maze->getCell(curCellRow, curCellCol).getType() == Cell::GHOSTCAMP
+                    && m_maze->getCell(curCellRow, curCellCol - 1).getType() == Cell::GHOSTCAMP)) {
                 if (m_xSpeed <= 0) {
                     directionsList.append(QPointF(-m_speed, 0.0));
                 }
@@ -106,8 +106,8 @@ void Ghost::updateMove()
             if (directionsList.size() == 0) {
                 m_xSpeed = -m_xSpeed;
                 m_ySpeed = -m_ySpeed;
-            } else if ((m_xSpeed != 0 && m_xSpeed != directionsList[nb].x()) ||
-                       (m_ySpeed != 0 && m_ySpeed != directionsList[nb].y())) {     // If the chosen direction isn't forward
+            } else if ((m_xSpeed != 0 && m_xSpeed != directionsList[nb].x())
+                       || (m_ySpeed != 0 && m_ySpeed != directionsList[nb].y())) { // If the chosen direction isn't forward
                 // We move the ghost on the center of the cell and update the directions
                 moveOnCenter();
                 m_xSpeed = directionsList[nb].x();
@@ -116,7 +116,7 @@ void Ghost::updateMove()
         }
         // We move the ghost
         move();
-    } else {    // If the ghost has been eaten
+    } else { // If the ghost has been eaten
         if (onCenter()) {
             // If the ghost has not reached the camp yet
             if (m_pathToCamp.size() != 0) {
@@ -137,7 +137,7 @@ void Ghost::updateMove()
                         m_y = m_maze->getResurrectionCell().y() * Cell::SIZE + Cell::SIZE / 2;
                         setState(Ghost::HUNTER);
                     }
-                } else {    // The ghost has reached the ghost camp
+                } else { // The ghost has reached the ghost camp
                     setState(Ghost::HUNTER);
                 }
             }
@@ -219,7 +219,7 @@ void Ghost::doActionOnCollision(Kapman *)
 void Ghost::initSpeedInc()
 {
     // Ghosts speed increase when level up
-    switch ((int) Kg::difficultyLevel()) {
+    switch ((int)Kg::difficultyLevel()) {
     case KgDifficultyLevel::Easy:
         m_speedIncrease = Character::LOW_SPEED_INC;
         break;

@@ -7,7 +7,8 @@
 #include "gameview.h"
 #include "gamescene.h"
 
-GameView::GameView(Game *p_game) : QGraphicsView(new GameScene(p_game))
+GameView::GameView(Game *p_game)
+    : QGraphicsView(new GameScene(p_game))
 {
     setFrameStyle(QFrame::NoFrame);
     setFocusPolicy(Qt::StrongFocus);
@@ -17,7 +18,6 @@ GameView::GameView(Game *p_game) : QGraphicsView(new GameScene(p_game))
 
 GameView::~GameView()
 {
-
 }
 
 void GameView::resizeEvent(QResizeEvent *)
@@ -37,4 +37,3 @@ void GameView::keyPressEvent(QKeyEvent *p_event)
 {
     Q_EMIT keyPressed(p_event);
 }
-

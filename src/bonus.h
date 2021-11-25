@@ -19,7 +19,6 @@ class Bonus : public Element
 {
     Q_OBJECT
 public:
-
     /**
      * Creates a new Bonus instance.
      * @param p_x the initial x-coordinate
@@ -48,4 +47,3 @@ public:
 };
 
 #endif
-

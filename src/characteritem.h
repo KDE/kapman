@@ -7,8 +7,8 @@
 #ifndef CHARACTERITEM_H
 #define CHARACTERITEM_H
 
-#include "elementitem.h"
 #include "character.h"
+#include "elementitem.h"
 
 #include <QTimer>
 
@@ -17,11 +17,9 @@
  */
 class CharacterItem : public ElementItem
 {
-
     Q_OBJECT
 
 protected:
-
     /** Timer used to make the character blink */
     QTimer *m_blinkTimer = nullptr;
 
@@ -29,7 +27,6 @@ protected:
     int m_nbBlinks;
 
 public:
-
     /**
      * Creates a new CharacterItem instance.
      * @param p_model the Character model
@@ -69,4 +66,3 @@ public Q_SLOTS:
 };
 
 #endif
-

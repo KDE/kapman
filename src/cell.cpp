@@ -9,7 +9,11 @@
 
 const qreal Cell::SIZE = 20.0;
 
-Cell::Cell() : m_type(Cell::WALL), m_element(nullptr), m_cost(0), m_parent(nullptr)
+Cell::Cell()
+    : m_type(Cell::WALL)
+    , m_element(nullptr)
+    , m_cost(0)
+    , m_parent(nullptr)
 {
 }
 
@@ -58,4 +62,3 @@ void Cell::setParent(Cell *p_parent)
 {
     m_parent = p_parent;
 }
-

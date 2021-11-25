@@ -10,7 +10,8 @@
 #include "bonus.h"
 #include "kapman.h"
 
-Bonus::Bonus(qreal p_x, qreal p_y, Maze *p_maze, int p_points) : Element(p_x, p_y, p_maze)
+Bonus::Bonus(qreal p_x, qreal p_y, Maze *p_maze, int p_points)
+    : Element(p_x, p_y, p_maze)
 {
     m_points = p_points;
     m_type = Element::BONUS;
@@ -18,7 +19,6 @@ Bonus::Bonus(qreal p_x, qreal p_y, Maze *p_maze, int p_points) : Element(p_x, p_
 
 Bonus::~Bonus()
 {
-
 }
 
 void Bonus::doActionOnCollision(Kapman *p_kapman)
@@ -30,4 +30,3 @@ void Bonus::setPoints(const int p_points)
 {
     m_points = p_points;
 }
-

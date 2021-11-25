@@ -18,19 +18,19 @@ int Game::s_bonusDuration;
 int Game::s_preyStateDuration;
 qreal Game::s_durationRatio;
 
-Game::Game() :
-    m_isCheater(false),
-    m_lives(3),
-    m_points(0),
-    m_level(1),
-    m_nbEatenGhosts(0),
-    m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/gameover.ogg"))),
-    m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/ghost.ogg"))),
-    m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/life.ogg"))),
-    m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/energizer.ogg"))),
-    m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/bonus.ogg"))),
-    m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/pill.ogg"))),
-    m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/levelup.ogg")))
+Game::Game()
+    : m_isCheater(false)
+    , m_lives(3)
+    , m_points(0)
+    , m_level(1)
+    , m_nbEatenGhosts(0)
+    , m_soundGameOver(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/gameover.ogg")))
+    , m_soundGhost(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/ghost.ogg")))
+    , m_soundGainLife(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/life.ogg")))
+    , m_soundEnergizer(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/energizer.ogg")))
+    , m_soundBonus(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/bonus.ogg")))
+    , m_soundPill(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/pill.ogg")))
+    , m_soundLevelUp(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("sounds/kapman/levelup.ogg")))
 {
     // Initialize the sound state
     setSoundsEnabled(Settings::sounds());
@@ -215,7 +215,7 @@ void Game::setLevel(int p_level)
     m_isCheater = true;
     m_level = p_level;
     m_maze->resetNbElem();
-    m_timer->start();   // Needed to reinit character positions
+    m_timer->start(); // Needed to reinit character positions
     initCharactersPosition();
     for (int i = 0; i < m_ghosts.size(); ++i) {
         m_ghosts[i]->initSpeed();
@@ -320,11 +320,12 @@ void Game::setPreyTimerDuration()
 void Game::keyPressEvent(QKeyEvent *p_event)
 {
     // At the beginning or when paused, we start the timer when an arrow key is pressed
-    if ((p_event->key() == Qt::Key_Up || p_event->key() == Qt::Key_Down || p_event->key() ==  Qt::Key_Left || p_event->key() == Qt::Key_Right) && !m_timer->isActive()) {
+    if ((p_event->key() == Qt::Key_Up || p_event->key() == Qt::Key_Down || p_event->key() == Qt::Key_Left || p_event->key() == Qt::Key_Right)
+        && !m_timer->isActive()) {
         // If paused
         if (m_state == PAUSED_UNLOCKED) {
             switchPause();
-        } else if (m_state == RUNNING) {    // At the game beginning
+        } else if (m_state == RUNNING) { // At the game beginning
             // Start the game
             m_timer->start();
             Q_EMIT gameStarted();
@@ -443,7 +444,6 @@ void Game::ghostDeath(Ghost *p_ghost)
 
 void Game::winPoints(Element *p_element)
 {
-
     // The value of won Points
     long wonPoints;
 

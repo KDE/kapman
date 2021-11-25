@@ -7,13 +7,13 @@
 #include <KAboutData>
 #include <KCrash>
 
-#include <QApplication>
+#include "kapman_version.h"
+#include "kapmanmainwindow.h"
+#include <KDBusService>
 #include <KLocalizedString>
+#include <QApplication>
 #include <QCommandLineParser>
 #include <kdelibs4configmigrator.h>
-#include <KDBusService>
-#include "kapmanmainwindow.h"
-#include "kapman_version.h"
 
 int main(int argc, char **argv)
 {
@@ -27,9 +27,12 @@ int main(int argc, char **argv)
     migrate.migrate();
     KLocalizedString::setApplicationDomain("kapman");
     // About Kapman
-    KAboutData about(QStringLiteral("kapman"), i18n("Kapman"), QStringLiteral(KAPMAN_VERSION_STRING),
+    KAboutData about(QStringLiteral("kapman"),
+                     i18n("Kapman"),
+                     QStringLiteral(KAPMAN_VERSION_STRING),
                      i18n("Kapman: Go through the levels escaping ghosts!"),
-                     KAboutLicense::GPL, i18n("Copyright (c) 2007-2008 The KapTeam"));
+                     KAboutLicense::GPL,
+                     i18n("Copyright (c) 2007-2008 The KapTeam"));
     // Alphabetical order of Developers of Kapman
     about.addAuthor(i18n("Alexandre Galinier"), i18n("Developer"), QStringLiteral("alex.galinier@gmail.com"));
     about.addAuthor(i18n("Nathalie Liesse"), i18n("Developer"), QStringLiteral("nathalie.liesse@gmail.com"));
@@ -57,4 +60,3 @@ int main(int argc, char **argv)
     // Execute the application
     return app.exec();
 }
-

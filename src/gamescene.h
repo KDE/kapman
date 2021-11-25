@@ -8,11 +8,11 @@
 #ifndef GAMESCENE_H
 #define GAMESCENE_H
 
-#include "game.h"
 #include "elementitem.h"
-#include "mazeitem.h"
+#include "game.h"
 #include "ghostitem.h"
 #include "kapmanitem.h"
+#include "mazeitem.h"
 
 #include <QGraphicsScene>
 #include <QList>
@@ -26,11 +26,9 @@
  */
 class GameScene : public QGraphicsScene
 {
-
     Q_OBJECT
 
 private:
-
     /** The Game instance */
     Game *m_game;
 
@@ -44,7 +42,7 @@ private:
     QList<GhostItem *> m_ghostItems;
 
     /** The ElementItem to be drawn (each Pill and Energizers) */
-    ElementItem ** *m_elementItems;
+    ElementItem ***m_elementItems;
 
     /** The Bonus ElementItem */
     ElementItem *m_bonusItem;
@@ -65,7 +63,6 @@ private:
     KGameTheme *m_theme;
 
 public:
-
     /**
      * Creates a new GameScene instance.
      * @param p_game the Game instance whose elements must be contained in the GameScene in order to be drawn
@@ -150,4 +147,3 @@ private Q_SLOTS:
 };
 
 #endif
-

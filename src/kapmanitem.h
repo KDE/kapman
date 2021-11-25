@@ -17,11 +17,9 @@
  */
 class KapmanItem : public CharacterItem
 {
-
     Q_OBJECT
 
 private:
-
     /** Number of frames to animate the KapmanItem */
     static const int NB_FRAMES;
 
@@ -37,7 +35,6 @@ private:
     bool m_rotationFlag;
 
 public:
-
     /**
      * Creates a new KapmanItem instance.
      * @param p_model the Kapman model
@@ -112,8 +109,6 @@ public Q_SLOTS:
     {
         m_rotationFlag = rotate;
     }
-
 };
 
 #endif
-

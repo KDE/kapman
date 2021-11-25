@@ -15,11 +15,9 @@
  */
 class MazeItem : public QGraphicsSvgItem
 {
-
     Q_OBJECT
 
 public:
-
     /**
      * Creates a new MazeItem instance.
      */
@@ -32,4 +30,3 @@ public:
 };
 
 #endif
-

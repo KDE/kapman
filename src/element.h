@@ -18,22 +18,13 @@ class Kapman;
  */
 class Element : public QObject
 {
-
     Q_OBJECT
 
 public:
-
     /** The Element possible types */
-    enum Type {
-        KAPMAN = 0,
-        GHOST = 1,
-        PILL = 2,
-        ENERGYZER = 3,
-        BONUS = 4
-    };
+    enum Type { KAPMAN = 0, GHOST = 1, PILL = 2, ENERGYZER = 3, BONUS = 4 };
 
 protected:
-
     /** The Element type */
     Type m_type;
 
@@ -59,7 +50,6 @@ protected:
     int m_points;
 
 public:
-
     /**
      * Creates a new Element instance.
      * @param p_x the initial x-coordinate
@@ -128,9 +118,9 @@ public:
     void setY(qreal p_y);
 
     /**
-    * Initializes Element x-coordinate and y-coordinate with
-    * initial values
-    */
+     * Initializes Element x-coordinate and y-coordinate with
+     * initial values
+     */
     void initCoordinate();
 
 Q_SIGNALS:
@@ -144,4 +134,3 @@ Q_SIGNALS:
 };
 
 #endif
-

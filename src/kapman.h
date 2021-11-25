@@ -14,11 +14,9 @@
  */
 class Kapman : public Character
 {
-
     Q_OBJECT
 
 private:
-
     /** Max speed ratio, compared with the initial speed  */
     static const qreal MAX_SPEED_RATIO;
 
@@ -26,7 +24,6 @@ private:
     qreal m_askedXSpeed, m_askedYSpeed;
 
 public:
-
     /**
      * Creates a new Kapman instance.
      * @param p_x the initial x-coordinate
@@ -102,7 +99,6 @@ public:
     void initSpeedInc() override;
 
 private:
-
     /**
      * Updates the Kapman direction with the asked direction
      */

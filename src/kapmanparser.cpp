@@ -6,8 +6,8 @@
 
 #include "kapmanparser.h"
 #include "element.h"
-#include "pill.h"
 #include "energizer.h"
+#include "pill.h"
 #include <QDebug>
 
 KapmanParser::KapmanParser(Game *p_game)
@@ -18,7 +18,6 @@ KapmanParser::KapmanParser(Game *p_game)
 
 KapmanParser::~KapmanParser()
 {
-
 }
 
 bool KapmanParser::parse(QIODevice *input)
@@ -32,14 +31,12 @@ bool KapmanParser::parse(QIODevice *input)
 
         switch (reader.tokenType()) {
         case QXmlStreamReader::StartElement:
-            if (!startElement(reader.namespaceUri(), reader.name(),
-                              reader.qualifiedName(), reader.attributes())) {
+            if (!startElement(reader.namespaceUri(), reader.name(), reader.qualifiedName(), reader.attributes())) {
                 return false;
             }
             break;
         case QXmlStreamReader::EndElement:
-            if (!endElement(reader.namespaceUri(), reader.name(),
-                            reader.qualifiedName())) {
+            if (!endElement(reader.namespaceUri(), reader.name(), reader.qualifiedName())) {
                 return false;
             }
             break;
@@ -168,13 +165,11 @@ bool KapmanParser::endElement(const QStringRef &namespaceURI, const QStringRef &
                 break;
             case '.':
                 m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
-                m_game->getMaze()->setCellElement(m_counterRows, i,
-                                                  new Pill(m_counterRows, i, m_game->getMaze(), QStringLiteral("pill")));
+                m_game->getMaze()->setCellElement(m_counterRows, i, new Pill(m_counterRows, i, m_game->getMaze(), QStringLiteral("pill")));
                 break;
             case 'o':
                 m_game->getMaze()->setCellType(m_counterRows, i, Cell::CORRIDOR);
-                m_game->getMaze()->setCellElement(m_counterRows, i,
-                                                  new Energizer(m_counterRows, i, m_game->getMaze(), QStringLiteral("energizer")));
+                m_game->getMaze()->setCellElement(m_counterRows, i, new Energizer(m_counterRows, i, m_game->getMaze(), QStringLiteral("energizer")));
                 break;
             case 'x':
                 m_game->getMaze()->setCellType(m_counterRows, i, Cell::GHOSTCAMP);
@@ -189,4 +184,3 @@ bool KapmanParser::endElement(const QStringRef &namespaceURI, const QStringRef &
     }
     return true;
 }
-

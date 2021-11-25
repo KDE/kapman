@@ -24,11 +24,9 @@ class QLabel;
  */
 class KapmanMainWindow : public KXmlGuiWindow
 {
-
     Q_OBJECT
 
-private :
-
+private:
     /** The GameView instance that manages the game drawing and the collisions */
     GameView *m_view = nullptr;
 
@@ -41,7 +39,6 @@ private :
     QLabel *mLives = nullptr;
 
 public:
-
     /**
      * Creates a new KapmanMainWindow instance.
      */
@@ -123,4 +120,3 @@ private Q_SLOTS:
 };
 
 #endif
-

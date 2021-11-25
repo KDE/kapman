@@ -9,15 +9,16 @@
 #include "ghost.h"
 #include "settings.h"
 
-#include <QGraphicsScene>
 #include <KgDifficulty>
+#include <QGraphicsScene>
 
 const int KapmanItem::NB_FRAMES = 32;
 const int KapmanItem::ANIM_LOW_SPEED = 500;
 const int KapmanItem::ANIM_MEDIUM_SPEED = 400;
 const int KapmanItem::ANIM_HIGH_SPEED = 300;
 
-KapmanItem::KapmanItem(Kapman *p_model) : CharacterItem(p_model)
+KapmanItem::KapmanItem(Kapman *p_model)
+    : CharacterItem(p_model)
 {
     connect(p_model, &Kapman::directionChanged, this, &KapmanItem::updateDirection);
     connect(p_model, &Kapman::gameUpdated, this, &KapmanItem::manageCollision);
@@ -29,7 +30,7 @@ KapmanItem::KapmanItem(Kapman *p_model) : CharacterItem(p_model)
     m_animationTimer->setLoopCount(0);
     m_animationTimer->setFrameRange(0, NB_FRAMES - 1);
     // Animation speed
-    switch ((int) Kg::difficultyLevel()) {
+    switch ((int)Kg::difficultyLevel()) {
     case KgDifficultyLevel::Easy:
         m_animationTimer->setDuration(KapmanItem::ANIM_LOW_SPEED);
         break;
@@ -63,7 +64,7 @@ void KapmanItem::updateDirection()
     if (model->getXSpeed() > 0) {
         angle = 0;
     } else if (model->getXSpeed() < 0) {
-        angle = 180;    // The default image is right oriented
+        angle = 180; // The default image is right oriented
     }
     if (model->getYSpeed() > 0) {
         angle = 90;
@@ -165,4 +166,3 @@ void KapmanItem::blink()
         m_blinkTimer->stop();
     }
 }
-

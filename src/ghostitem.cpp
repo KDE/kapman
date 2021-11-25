@@ -8,7 +8,8 @@
 #include "ghostitem.h"
 #include "game.h"
 
-GhostItem::GhostItem(Ghost *p_model) : CharacterItem(p_model)
+GhostItem::GhostItem(Ghost *p_model)
+    : CharacterItem(p_model)
 {
     connect(p_model, &Ghost::stateChanged, this, &GhostItem::updateState);
 
@@ -61,8 +62,7 @@ void GhostItem::updateState()
 
 void GhostItem::blink()
 {
-    if (((Ghost *)getModel())->getState() == Ghost::PREY
-            && ((Ghost *)getModel())->preyStateAlmostOver()) {
+    if (((Ghost *)getModel())->getState() == Ghost::PREY && ((Ghost *)getModel())->preyStateAlmostOver()) {
         CharacterItem::blink();
         if (m_nbBlinks % 2 == 0) {
             setElementId(QStringLiteral("scaredghost"));

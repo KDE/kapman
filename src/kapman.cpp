@@ -10,7 +10,8 @@
 
 const qreal Kapman::MAX_SPEED_RATIO = 1.5;
 
-Kapman::Kapman(qreal p_x, qreal p_y, Maze *p_maze) : Character(p_x, p_y, p_maze)
+Kapman::Kapman(qreal p_x, qreal p_y, Maze *p_maze)
+    : Character(p_x, p_y, p_maze)
 {
     m_type = Element::KAPMAN;
     m_maxSpeed = m_normalSpeed * MAX_SPEED_RATIO;
@@ -18,7 +19,6 @@ Kapman::Kapman(qreal p_x, qreal p_y, Maze *p_maze) : Character(p_x, p_y, p_maze)
 
 Kapman::~Kapman()
 {
-
 }
 
 void Kapman::init()
@@ -96,8 +96,7 @@ void Kapman::updateMove()
             // If the kapman gets on a cell center
             if (onCenter()) {
                 // If there is an asked direction (not a half-turn) and the corresponding next cell is accessible
-                if ((m_askedXSpeed != 0 || m_askedYSpeed != 0)
-                    && (m_askedXSpeed != m_xSpeed || m_askedYSpeed != m_ySpeed)
+                if ((m_askedXSpeed != 0 || m_askedYSpeed != 0) && (m_askedXSpeed != m_xSpeed || m_askedYSpeed != m_ySpeed)
                     && (getAskedNextCell().getType() == Cell::CORRIDOR)) {
                     // Move the kapman on the cell center
                     moveOnCenter();
@@ -182,7 +181,7 @@ void Kapman::stopMoving()
 void Kapman::initSpeedInc()
 {
     // Kapman speed increase when level up
-    switch ((int) Kg::difficultyLevel()) {
+    switch ((int)Kg::difficultyLevel()) {
     case KgDifficultyLevel::Easy:
         m_speedIncrease = Character::LOW_SPEED_INC / 2;
         break;

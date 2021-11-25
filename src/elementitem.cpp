@@ -6,7 +6,8 @@
 
 #include "elementitem.h"
 
-ElementItem::ElementItem(Element *p_model) : QGraphicsSvgItem()
+ElementItem::ElementItem(Element *p_model)
+    : QGraphicsSvgItem()
 {
     m_model = p_model;
     // Init the view coordinates
@@ -20,7 +21,6 @@ ElementItem::ElementItem(Element *p_model) : QGraphicsSvgItem()
 ElementItem::~ElementItem()
 {
     delete m_model;
-
 }
 
 Element *ElementItem::getModel() const

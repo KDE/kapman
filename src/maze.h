@@ -10,8 +10,8 @@
 
 #include "cell.h"
 
-#include <QObject>
 #include <QList>
+#include <QObject>
 #include <QPoint>
 
 /**
@@ -19,11 +19,9 @@
  */
 class Maze : public QObject
 {
-
     Q_OBJECT
 
 private:
-
     /** The Cell coordinates where the Ghosts go back when they have been eaten */
     QPoint m_resurrectionCell;
 
@@ -43,7 +41,6 @@ private:
     int m_nbElem;
 
 public:
-
     /**
      * Creates a new Maze instance.
      */
@@ -170,4 +167,3 @@ Q_SIGNALS:
 };
 
 #endif
-

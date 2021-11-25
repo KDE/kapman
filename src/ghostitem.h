@@ -16,11 +16,9 @@
  */
 class GhostItem : public CharacterItem
 {
-
     Q_OBJECT
 
 public:
-
     /**
      * Creates a new GhostItem instance.
      * @param p_model the Ghost model
@@ -58,4 +56,3 @@ public Q_SLOTS:
 };
 
 #endif
-

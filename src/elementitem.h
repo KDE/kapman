@@ -16,7 +16,6 @@
  */
 class ElementItem : public QGraphicsSvgItem
 {
-
     Q_OBJECT
 
 private:
@@ -24,12 +23,10 @@ private:
     QGraphicsTextItem *m_pointsToDisplay = nullptr;
 
 protected:
-
     /** The instance of Element the ElementItem will represent */
     Element *m_model = nullptr;
 
 public:
-
     /**
      * Creates a new ElementItem instance.
      * @param p_model the Element model
@@ -63,4 +60,3 @@ public Q_SLOTS:
 };
 
 #endif
-

@@ -15,11 +15,9 @@
  */
 class Character : public Element
 {
-
     Q_OBJECT
 
 public:
-
     /** Speed on easy level */
     static const qreal LOW_SPEED;
 
@@ -39,7 +37,6 @@ public:
     static const qreal HIGH_SPEED_INC;
 
 protected:
-
     /** The Character x-speed */
     qreal m_xSpeed;
 
@@ -59,7 +56,6 @@ protected:
     qreal m_maxSpeed;
 
 public:
-
     /**
      * Creates a new Character instance.
      * @param p_x the initial x-coordinate
@@ -163,7 +159,6 @@ public:
     void increaseCharactersSpeed();
 
 protected:
-
     /**
      * Initializes the Character speed increment considering the difficulty level.
      */

@@ -16,16 +16,13 @@
  */
 class Energizer : public Element
 {
-
     Q_OBJECT
 
 public:
-
     /** The value of an Energyzer */
     static const int POINTS;
 
 public:
-
     /**
      * Creates a new Energizer instance.
      * @param p_x the x-coordinate
@@ -54,4 +51,3 @@ public:
 };
 
 #endif
-

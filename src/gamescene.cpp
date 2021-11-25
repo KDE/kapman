@@ -6,13 +6,16 @@
 */
 
 #include "gamescene.h"
-#include "cell.h"
 #include "bonus.h"
+#include "cell.h"
 #include "settings.h"
 
 #include <KLocalizedString>
 
-GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(nullptr), m_mazeItem(nullptr)
+GameScene::GameScene(Game *p_game)
+    : m_game(p_game)
+    , m_kapmanItem(nullptr)
+    , m_mazeItem(nullptr)
 {
     connect(p_game, &Game::levelStarted, this, &GameScene::intro);
     connect(p_game, &Game::gameStarted, this, &GameScene::start);
@@ -62,7 +65,7 @@ GameScene::GameScene(Game *p_game) : m_game(p_game), m_kapmanItem(nullptr), m_ma
     // Create the Pill and Energizer items
     m_elementItems = new ElementItem **[m_game->getMaze()->getNbRows()];
     for (int i = 0; i < m_game->getMaze()->getNbRows(); ++i) {
-        m_elementItems[i] = new ElementItem*[m_game->getMaze()->getNbColumns()];
+        m_elementItems[i] = new ElementItem *[m_game->getMaze()->getNbColumns()];
         for (int j = 0; j < m_game->getMaze()->getNbColumns(); ++j) {
             if (m_game->getMaze()->getCell(i, j).getElement() != nullptr) {
                 // Create the element and set the image
@@ -156,7 +159,7 @@ void GameScene::loadTheme()
         return;
     }
 
-    //Update elementIDs, theme properties
+    // Update elementIDs, theme properties
     updateSvgIds();
     updateThemeProperties();
 
@@ -168,8 +171,8 @@ void GameScene::loadTheme()
 
 void GameScene::updateSvgIds()
 {
-    //Needed so new boundingRects() are read for all SVG elements after a theme change
-    // Sanity check, see if game elements already exist
+    // Needed so new boundingRects() are read for all SVG elements after a theme change
+    //  Sanity check, see if game elements already exist
     if (!m_kapmanItem) {
         return;
     }
@@ -289,7 +292,7 @@ void GameScene::setPaused(const bool p_pause, const bool p_fromUser)
         }
         // Stop kapman animation
         m_kapmanItem->pauseAnim();
-    } else {    // If the game has resumed
+    } else { // If the game has resumed
         // If the pause was due to an action from the user
         if (p_fromUser) {
             // If the label was displayed

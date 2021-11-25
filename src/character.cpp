@@ -16,7 +16,10 @@ const qreal Character::LOW_SPEED_INC = 0.005;
 const qreal Character::MEDIUM_SPEED_INC = 0.01;
 const qreal Character::HIGH_SPEED_INC = 0.02;
 
-Character::Character(qreal p_x, qreal p_y, Maze *p_maze) : Element(p_x, p_y, p_maze), m_xSpeed(0), m_ySpeed(0)
+Character::Character(qreal p_x, qreal p_y, Maze *p_maze)
+    : Element(p_x, p_y, p_maze)
+    , m_xSpeed(0)
+    , m_ySpeed(0)
 {
     initSpeed();
     m_maxSpeed = m_normalSpeed; // To avoid bugs, but will be overridden in the Ghost and Kapman constructors
@@ -29,13 +32,13 @@ Character::~Character()
 void Character::move()
 {
     // Take care of the Maze borders
-    if (m_maze->getColFromX(m_x + m_xSpeed) == 0) {                                 // First column
+    if (m_maze->getColFromX(m_x + m_xSpeed) == 0) { // First column
         m_x = (m_maze->getNbColumns() - 1.5) * Cell::SIZE;
     } else if (m_maze->getColFromX(m_x + m_xSpeed) == m_maze->getNbColumns() - 1) { // Last column
         m_x = 1.5 * Cell::SIZE;
-    } else if (m_maze->getRowFromY(m_y + m_ySpeed) == 0) {                          // First row
+    } else if (m_maze->getRowFromY(m_y + m_ySpeed) == 0) { // First row
         m_y = (m_maze->getNbRows() - 1.5) * Cell::SIZE;
-    } else if (m_maze->getRowFromY(m_y + m_ySpeed) == m_maze->getNbRows() - 1) {    // Last row
+    } else if (m_maze->getRowFromY(m_y + m_ySpeed) == m_maze->getNbRows() - 1) { // Last row
         m_y = 1.5 * Cell::SIZE;
     }
     // Move the Character
@@ -82,7 +85,7 @@ void Character::setYSpeed(qreal p_ySpeed)
 void Character::initSpeed()
 {
     // Kapman speed increase when level up
-    switch ((int) Kg::difficultyLevel()) {
+    switch ((int)Kg::difficultyLevel()) {
     case KgDifficultyLevel::Easy:
         m_normalSpeed = Character::LOW_SPEED;
         break;
@@ -108,10 +111,10 @@ void Character::increaseCharactersSpeed()
 
 bool Character::isInLineSight(Character *p_character)
 {
-    int curCallerRow;       // The current row of the Character
-    int curCallerCol;       // The current column of the Character
-    int curCharacterRow;    // The current row of the other Character
-    int curCharacterCol;    // The current column of the other Character
+    int curCallerRow; // The current row of the Character
+    int curCallerCol; // The current column of the Character
+    int curCharacterRow; // The current row of the other Character
+    int curCharacterCol; // The current column of the other Character
 
     curCallerRow = m_maze->getRowFromY(m_y);
     curCallerCol = m_maze->getColFromX(m_x);
@@ -230,7 +233,6 @@ bool Character::isOnCenter()
 
     return m_x == centerX && m_y == centerY;
 }
-
 
 void Character::moveOnCenter()
 {

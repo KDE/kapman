@@ -8,25 +8,24 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "maze.h"
-#include "kapman.h"
-#include "ghost.h"
 #include "bonus.h"
+#include "ghost.h"
+#include "kapman.h"
+#include "maze.h"
 
+#include <KgSound>
+#include <QKeyEvent>
 #include <QPointF>
 #include <QTimer>
-#include <QKeyEvent>
-#include <KgSound>
 
 /**
  * @brief This class manages the game main loop : it regularly checks the key press events, computes the character moves and updates their coordinates.
  */
 class Game : public QObject
 {
-
     Q_OBJECT
 
-public :
+public:
     /** Ratio which modify the timers function of the difficulty */
     static qreal s_durationRatio;
 
@@ -36,16 +35,15 @@ public :
     /** Timer duration for bonus apparition in medium difficulty */
     static int s_bonusDuration;
 
-private :
-
+private:
     /** Number of FPS */
     static const int FPS;
 
     /** The game different states : RUNNING, PAUSED_LOCKED, PAUSED_UNLOCKED */
     enum State {
-        RUNNING,            // Game running
-        PAUSED_LOCKED,      // Game paused and user is not allowed to unpause
-        PAUSED_UNLOCKED     // Game paused and user is allowed to unpause
+        RUNNING, // Game running
+        PAUSED_LOCKED, // Game paused and user is not allowed to unpause
+        PAUSED_UNLOCKED // Game paused and user is allowed to unpause
     };
     /** A flag for the State enum */
     Q_DECLARE_FLAGS(GameStates, State)
@@ -101,7 +99,6 @@ private :
     KgSound m_soundLevelUp;
 
 public:
-
     /**
      * Creates a new Game instance.
      */
@@ -218,7 +215,6 @@ public:
     void setSoundsEnabled(bool p_enabled);
 
 private:
-
     /**
      * Initializes the character coordinates.
      */
@@ -354,4 +350,3 @@ Q_SIGNALS:
 };
 
 #endif
-

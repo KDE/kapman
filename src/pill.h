@@ -18,12 +18,10 @@ class Pill : public Element
 {
     Q_OBJECT
 public:
-
     /** The Pill value */
     static const int POINTS;
 
 public:
-
     /**
      * Creates a new Pill instance.
      */
@@ -42,4 +40,3 @@ public:
 };
 
 #endif
-

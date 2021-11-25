@@ -9,19 +9,19 @@
 #include "gamescene.h"
 #include "settings.h"
 
-#include <QPointer>
 #include <KActionCollection>
+#include <KConfigDialog>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KScoreDialog>
 #include <KStandardGameAction>
 #include <KToggleAction>
-#include <KMessageBox>
-#include <KConfigDialog>
-#include <QInputDialog>
-#include <KLocalizedString>
-#include <QStatusBar>
 #include <KgDifficulty>
-#include <KScoreDialog>
 #include <QAction>
+#include <QInputDialog>
 #include <QLabel>
+#include <QPointer>
+#include <QStatusBar>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
@@ -53,9 +53,9 @@ KapmanMainWindow::KapmanMainWindow()
     m_statusBar->addPermanentWidget(mLives);
 
     // Initialize the KgDifficulty singleton
-    Kg::difficulty()->addStandardLevelRange(
-        KgDifficultyLevel::Easy, KgDifficultyLevel::Hard, //range
-        KgDifficultyLevel::Medium //default
+    Kg::difficulty()->addStandardLevelRange(KgDifficultyLevel::Easy,
+                                            KgDifficultyLevel::Hard, // range
+                                            KgDifficultyLevel::Medium // default
     );
     KgDifficultyGUI::init(this);
     connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KapmanMainWindow::initGame);
@@ -96,7 +96,7 @@ void KapmanMainWindow::initGame()
 
 void KapmanMainWindow::newGame()
 {
-    bool gameRunning;       // True if the game is running (game timer is active), false otherwise
+    bool gameRunning; // True if the game is running (game timer is active), false otherwise
 
     gameRunning = m_game->getTimer()->isActive();
     // If the game is running
@@ -120,7 +120,7 @@ void KapmanMainWindow::newGame()
 
 void KapmanMainWindow::handleGameOver()
 {
-    bool gameRunning;       // True if the game is running (game timer is active), false otherwise
+    bool gameRunning; // True if the game is running (game timer is active), false otherwise
 
     gameRunning = m_game->getTimer()->isActive();
     // If the game is running
@@ -177,8 +177,10 @@ void KapmanMainWindow::showSettings()
         return;
     }
     KConfigDialog *settingsDialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
-    settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload), i18n("Theme"), QStringLiteral("kapman"));
-    settingsDialog->setFaceType(KConfigDialog::Plain); //only one page -> no page selection necessary
+    settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload),
+                            i18n("Theme"),
+                            QStringLiteral("kapman"));
+    settingsDialog->setFaceType(KConfigDialog::Plain); // only one page -> no page selection necessary
     connect(settingsDialog, &KConfigDialog::settingsChanged, this, &KapmanMainWindow::loadSettings);
     settingsDialog->show();
 }
@@ -190,7 +192,7 @@ void KapmanMainWindow::loadSettings()
 
 void KapmanMainWindow::close()
 {
-    bool gameRunning;       // True if the game is running (game timer is active), false otherwise
+    bool gameRunning; // True if the game is running (game timer is active), false otherwise
 
     gameRunning = m_game->getTimer()->isActive();
     // If the game is running
@@ -212,23 +214,17 @@ void KapmanMainWindow::close()
 
 void KapmanMainWindow::displayLevel(unsigned int p_level)
 {
-    mLevel->setText(i18nc(
-                        "Used to display the current level of play to the user",
-                        "Level: %1", p_level));
+    mLevel->setText(i18nc("Used to display the current level of play to the user", "Level: %1", p_level));
 }
 
 void KapmanMainWindow::displayScore(unsigned int p_score)
 {
-    mScore->setText(i18nc(
-                        "Used to inform the user of their current score", "Score: %1",
-                        p_score));
+    mScore->setText(i18nc("Used to inform the user of their current score", "Score: %1", p_score));
 }
 
 void KapmanMainWindow::displayLives(unsigned int p_lives)
 {
-    mLives->setText(i18nc(
-                        "Used to tell the user how many lives they have left", "Lives: %1",
-                        p_lives));
+    mLives->setText(i18nc("Used to tell the user how many lives they have left", "Lives: %1", p_lives));
 }
 
 void KapmanMainWindow::resetStatusBar()

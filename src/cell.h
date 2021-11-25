@@ -16,21 +16,14 @@ class Element;
  */
 class Cell
 {
-
 public:
-
     /** The Cell side size */
     static const qreal SIZE;
 
     /** The Cell possible types */
-    enum Type {
-        WALL = 0,
-        CORRIDOR = 1,
-        GHOSTCAMP = 2
-    };
+    enum Type { WALL = 0, CORRIDOR = 1, GHOSTCAMP = 2 };
 
 private:
-
     /** The Cell type */
     Type m_type;
 
@@ -44,7 +37,6 @@ private:
     Cell *m_parent;
 
 public:
-
     /**
      * Creates a new Cell instance.
      */
@@ -105,4 +97,3 @@ public:
 };
 
 #endif
-

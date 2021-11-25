@@ -6,7 +6,8 @@
 
 #include "characteritem.h"
 
-CharacterItem::CharacterItem(Character *p_model) : ElementItem(p_model)
+CharacterItem::CharacterItem(Character *p_model)
+    : ElementItem(p_model)
 {
     connect(p_model, &Character::eaten, this, &CharacterItem::startBlinking);
 }
@@ -47,4 +48,3 @@ void CharacterItem::blink()
 {
     m_nbBlinks++;
 }
-

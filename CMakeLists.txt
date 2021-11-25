@@ -22,6 +22,10 @@ include(FeatureSummary)
 include(ECMInstallIcons)
 include(ECMSetupVersion)
 include(ECMAddAppIcon)
+include(KDEGitCommitHooks)
+include(KDEClangFormat)
+file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h *.c)
+kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Svg)
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS

@@ -18,11 +18,9 @@
  */
 class GameView : public QGraphicsView
 {
-
     Q_OBJECT
 
 public:
-
     /**
      * Creates a new GameView instance.
      * @param p_game the Game instance whose elements have to be drawn
@@ -41,7 +39,6 @@ public:
     void resizeEvent(QResizeEvent *p_event) override;
 
 protected:
-
     /**
      * Manages the player actions by hanlding the key press events.
      * @param p_event the key press event
@@ -64,4 +61,3 @@ Q_SIGNALS:
 };
 
 #endif
-

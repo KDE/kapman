@@ -7,7 +7,8 @@
 
 #include "mazeitem.h"
 
-MazeItem::MazeItem() : QGraphicsSvgItem()
+MazeItem::MazeItem()
+    : QGraphicsSvgItem()
 {
     // Configure the cache in order to increase the performance
     setCacheMode(DeviceCoordinateCache);
@@ -16,6 +17,4 @@ MazeItem::MazeItem() : QGraphicsSvgItem()
 
 MazeItem::~MazeItem()
 {
-
 }
-

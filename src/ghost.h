@@ -16,23 +16,16 @@
  */
 class Ghost : public Character
 {
-
     Q_OBJECT
 
 public:
-
     /** The ghost possible states */
-    enum State {
-        HUNTER = 0,
-        PREY = 1,
-        EATEN = 2
-    };
+    enum State { HUNTER = 0, PREY = 1, EATEN = 2 };
 
     /** The value of an Ghost */
     static const int POINTS;
 
 private:
-
     /** Max speed ratio, compared with the initial speed  */
     static const qreal MAX_SPEED_RATIO;
 
@@ -48,7 +41,6 @@ private:
     bool m_preyStateAlmostOver;
 
 public:
-
     /**
      * Creates a new Ghost instance.
      * @param p_x the initial x-coordinate
@@ -106,8 +98,8 @@ public:
 
     void setPreyStateAlmostOverEnabled(bool enable);
     bool preyStateAlmostOver() const;
-private:
 
+private:
     /**
      * Makes the Ghost go up.
      */
@@ -148,4 +140,3 @@ Q_SIGNALS:
 };
 
 #endif
-
