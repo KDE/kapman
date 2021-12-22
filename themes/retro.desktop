@@ -1,5 +1,6 @@
 [KGameTheme]
 Name=Retro
+Name[ar]=عتيق
 Name[bs]=Retro
 Name[ca]=Retro
 Name[ca@valencia]=Retro
@@ -51,6 +52,7 @@ Name[x-test]=xxRetroxx
 Name[zh_CN]=怀旧
 Name[zh_TW]=經典
 Description=The old game theme revisited
+Description[ar]=سمة لعبة قديمة
 Description[bs]=Stara tema igre ponovo posjećena
 Description[ca]=L'antic tema del joc renovat
 Description[ca@valencia]=L'antic tema del joc renovat
