@@ -54,16 +54,18 @@ kconfig_add_kcfg_files(kapman settings.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_SOURCE_DIR}/icons/*-apps-kapman.png")
 ecm_add_app_icon(kapman ICONS ${ICONS_SRCS})
 
-target_link_libraries(kapman 
+target_link_libraries(kapman
     KF5KDEGames
     KF5KDEGamesPrivate
     KF5::DBusAddons
     KF5::XmlGui
     KF5::Crash
-    Qt::Svg
-    Qt::Xml
+    Qt${QT_MAJOR_VERSION}::Svg
+    Qt${QT_MAJOR_VERSION}::Xml
 )
-
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kapman Qt6::SvgWidgets)
+endif()
 install(TARGETS kapman ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS org.kde.kapman.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES org.kde.kapman.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
