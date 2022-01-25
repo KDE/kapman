@@ -38,13 +38,19 @@ public:
      * Deletes the GameParser instance.
      */
     ~KapmanParser();
-
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     bool characters(const QStringRef &ch);
 
     bool startElement(const QStringRef &namespaceURI, const QStringRef &localName, const QStringRef &qName, const QXmlStreamAttributes &atts);
 
     bool endElement(const QStringRef &namespaceURI, const QStringRef &localName, const QStringRef &qName);
+#else
+    bool characters(const QStringView &ch);
 
+    bool startElement(const QStringView &namespaceURI, const QStringView &localName, const QStringView &qName, const QXmlStreamAttributes &atts);
+
+    bool endElement(const QStringView &namespaceURI, const QStringView &localName, const QStringView &qName);
+#endif
     bool parse(QIODevice *input);
 };
 
