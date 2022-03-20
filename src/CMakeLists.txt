@@ -57,6 +57,7 @@ ecm_add_app_icon(kapman ICONS ${ICONS_SRCS})
 target_link_libraries(kapman
     KF5KDEGames
     KF5KDEGamesPrivate
+    KF5::CoreAddons
     KF5::DBusAddons
     KF5::XmlGui
     KF5::Crash
