@@ -117,6 +117,8 @@ private Q_SLOTS:
      * Resets the status bar values altogether for convenience.
      */
     void resetStatusBar();
+
+    void viewFullScreen(bool fullScreen);
 };
 
 #endif

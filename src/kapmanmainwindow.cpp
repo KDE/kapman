@@ -22,6 +22,8 @@
 #include <QLabel>
 #include <QPointer>
 #include <QStatusBar>
+#include <KToggleFullScreenAction>
+#include <QMenuBar>
 
 #define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
 #include <libkdegamesprivate/kgamethemeselector.h>
@@ -35,6 +37,9 @@ KapmanMainWindow::KapmanMainWindow()
     KStandardGameAction::gameNew(this, &KapmanMainWindow::newGame, actionCollection());
     KStandardGameAction::highscores(this, &KapmanMainWindow::showHighscores, actionCollection());
     KStandardAction::preferences(this, &KapmanMainWindow::showSettings, actionCollection());
+
+    KStandardAction::fullScreen(this, &KapmanMainWindow::viewFullScreen, this, actionCollection());
+
     KStandardGameAction::quit(this, &KapmanMainWindow::close, actionCollection());
     auto soundAction = new KToggleAction(i18n("&Play Sounds"), this);
     soundAction->setChecked(Settings::sounds());
@@ -61,6 +66,9 @@ KapmanMainWindow::KapmanMainWindow()
     connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KapmanMainWindow::initGame);
     // Setup the window
     setupGUI();
+
+    menuBar()->setVisible(!isFullScreen());
+    statusBar()->setVisible(!isFullScreen());
 
     initGame();
 }
@@ -232,4 +240,12 @@ void KapmanMainWindow::resetStatusBar()
     displayLevel(1);
     displayScore(0);
     displayLives(initLives);
+}
+
+void KapmanMainWindow::viewFullScreen(bool fullScreen)
+{
+    KToggleFullScreenAction::setFullScreen(this, fullScreen);
+
+    menuBar()->setVisible(!fullScreen);
+    statusBar()->setVisible(!fullScreen);
 }
