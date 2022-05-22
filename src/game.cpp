@@ -12,6 +12,7 @@
 
 #include <KgDifficulty>
 #include <QStandardPaths>
+#include <QFile>
 
 const int Game::FPS = 40;
 int Game::s_bonusDuration;
