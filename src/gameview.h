@@ -12,6 +12,8 @@
 #include <QGraphicsView>
 #include <QKeyEvent>
 
+class KgTheme;
+
 /**
  * @brief This class manages the drawing of each element of the Game instance.
  * It creates a GameScene instance associated to the given Game instance in order to manage the elements to be drawn at each moment of the game.
@@ -25,7 +27,7 @@ public:
      * Creates a new GameView instance.
      * @param p_game the Game instance whose elements have to be drawn
      */
-    explicit GameView(Game *p_game);
+    explicit GameView(Game *p_game, const KgTheme *theme);
 
     /**
      * Deletes the GameView instance.

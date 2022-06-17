@@ -16,6 +16,9 @@
 
 static const int initLives = 3;
 
+class KgThemeSelector;
+class KgThemeProvider;
+class KgTheme;
 class QStatusBar;
 class QLabel;
 
@@ -33,6 +36,8 @@ private:
     /** The Game instance that manages the main loop and events */
     Game *m_game = nullptr;
 
+    KgThemeProvider *m_themeProvider = nullptr;
+    KgThemeSelector *m_themeSelector = nullptr;
     QStatusBar *m_statusBar = nullptr;
     QLabel *mLevel = nullptr;
     QLabel *mScore = nullptr;
@@ -86,9 +91,9 @@ private Q_SLOTS:
     void showSettings();
 
     /**
-     * Loads the settings.
+     * Loads the theme.
      */
-    void loadSettings();
+    void onThemeChanged(const KgTheme *theme);
 
     /**
      * Closes the KapmanMainWindow.

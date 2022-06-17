@@ -8,11 +8,12 @@
 #include "gamescene.h"
 #include "bonus.h"
 #include "cell.h"
-#include "settings.h"
+
+#include <KgTheme>
 
 #include <KLocalizedString>
 
-GameScene::GameScene(Game *p_game)
+GameScene::GameScene(Game *p_game, const KgTheme *theme)
     : m_game(p_game)
     , m_kapmanItem(nullptr)
     , m_mazeItem(nullptr)
@@ -27,12 +28,9 @@ GameScene::GameScene(Game *p_game)
     // Connection between Game and GameScene for the display of won points when a bonus or a ghost is eaten
     connect(p_game, &Game::pointsToDisplay, this, &GameScene::displayPoints);
 
-    // Create the theme instance
-    m_theme = new KGameTheme();
-
     // Load the SVG file
     m_renderer = new QSvgRenderer();
-    loadTheme();
+    loadTheme(theme);
 
     // Create the MazeItem
     m_mazeItem = new MazeItem();
@@ -86,7 +84,7 @@ GameScene::GameScene(Game *p_game)
 
     // All elements are created, update theme properties
     updateSvgIds();
-    updateThemeProperties();
+    updateThemeProperties(theme);
 
     // Create the introduction labels
     m_introLabel = new QGraphicsTextItem(i18n("GET READY!!!"));
@@ -142,7 +140,6 @@ GameScene::~GameScene()
     delete m_newLevelLabel;
     delete m_pauseLabel;
     delete m_renderer;
-    delete m_theme;
 }
 
 Game *GameScene::getGame() const
@@ -150,23 +147,17 @@ Game *GameScene::getGame() const
     return m_game;
 }
 
-void GameScene::loadTheme()
+void GameScene::loadTheme(const KgTheme *theme)
 {
-    if (!m_theme->load(Settings::self()->theme())) {
-        return;
-    }
-    if (!m_renderer->load(m_theme->graphics())) {
+    if (!m_renderer->load(theme->graphicsPath())) {
         return;
     }
 
     // Update elementIDs, theme properties
     updateSvgIds();
-    updateThemeProperties();
+    updateThemeProperties(theme);
 
     update(0, 0, width(), height());
-
-    // Update the theme config: if the default theme is selected, no theme entry is written -> the theme selector does not select the theme
-    Settings::self()->config()->group("General").writeEntry("Theme", Settings::self()->theme());
 }
 
 void GameScene::updateSvgIds()
@@ -201,7 +192,7 @@ void GameScene::updateSvgIds()
     }
 }
 
-void GameScene::updateThemeProperties()
+void GameScene::updateThemeProperties(const KgTheme *theme)
 {
     // Sanity check, see if game elements already exist
     if (!m_kapmanItem) {
@@ -209,7 +200,7 @@ void GameScene::updateThemeProperties()
     }
 
     // Set the Rotation flag for KapmanItem
-    if (m_theme->themeProperty(QStringLiteral("RotateKapman")) == QLatin1String("0")) {
+    if (theme->customData(QStringLiteral("RotateKapman")) == QLatin1String("0")) {
         m_kapmanItem->setRotationFlag(false);
     } else {
         m_kapmanItem->setRotationFlag(true);

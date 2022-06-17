@@ -7,8 +7,8 @@
 #include "gameview.h"
 #include "gamescene.h"
 
-GameView::GameView(Game *p_game)
-    : QGraphicsView(new GameScene(p_game))
+GameView::GameView(Game *p_game, const KgTheme *theme)
+    : QGraphicsView(new GameScene(p_game, theme))
 {
     setFrameStyle(QFrame::NoFrame);
     setFocusPolicy(Qt::StrongFocus);

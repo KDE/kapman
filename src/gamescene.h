@@ -18,8 +18,7 @@
 #include <QList>
 #include <QSvgRenderer>
 
-#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
-#include <libkdegamesprivate/kgametheme.h>
+class KgTheme;
 
 /**
  * @brief This class contains all the Game elements to be drawn on the screen by the GameView instance.
@@ -59,15 +58,12 @@ private:
     /** The SVG renderer */
     QSvgRenderer *m_renderer;
 
-    /** The Game theme */
-    KGameTheme *m_theme;
-
 public:
     /**
      * Creates a new GameScene instance.
      * @param p_game the Game instance whose elements must be contained in the GameScene in order to be drawn
      */
-    explicit GameScene(Game *p_game);
+    GameScene(Game *p_game, const KgTheme *theme);
 
     /**
      * Deletes the Game instance.
@@ -82,7 +78,7 @@ public:
     /**
      * Loads the game theme.
      */
-    void loadTheme();
+    void loadTheme(const KgTheme *theme);
 
 private Q_SLOTS:
 
@@ -143,7 +139,7 @@ private Q_SLOTS:
     /**
      * Update theme properties.
      */
-    void updateThemeProperties();
+    void updateThemeProperties(const KgTheme *theme);
 };
 
 #endif

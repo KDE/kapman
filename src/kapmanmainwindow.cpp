@@ -9,14 +9,17 @@
 #include "gamescene.h"
 #include "settings.h"
 
-#include <KActionCollection>
-#include <KConfigDialog>
-#include <KLocalizedString>
-#include <KMessageBox>
+#include <kdegames_version.h>
+#include <KgThemeProvider>
+#include <KgThemeSelector>
 #include <KScoreDialog>
 #include <KStandardGameAction>
-#include <KToggleAction>
 #include <KgDifficulty>
+
+#include <KActionCollection>
+#include <KLocalizedString>
+#include <KMessageBox>
+#include <KToggleAction>
 #include <QAction>
 #include <QInputDialog>
 #include <QLabel>
@@ -25,11 +28,28 @@
 #include <KToggleFullScreenAction>
 #include <QMenuBar>
 
-#define USE_UNSTABLE_LIBKDEGAMESPRIVATE_API
-#include <libkdegamesprivate/kgamethemeselector.h>
-
 KapmanMainWindow::KapmanMainWindow()
 {
+    m_themeProvider = new KgThemeProvider(QByteArray(), this); // empty config key to disable internal config
+    m_themeProvider->discoverThemes(
+#if KDEGAMES_VERSION < QT_VERSION_CHECK(7, 4, 0)
+        "appdata",
+#endif
+        QStringLiteral("themes"),   // theme data location
+        QStringLiteral("default")); // default theme name
+
+    const QByteArray themeIdentifier = Settings::theme().toUtf8();
+    const QList<const KgTheme *> themes = m_themeProvider->themes();
+    for (auto* theme : themes) {
+        if (theme->identifier() == themeIdentifier) {
+            m_themeProvider->setCurrentTheme(theme);
+            break;
+        }
+    }
+    connect(m_themeProvider, &KgThemeProvider::currentThemeChanged, this, &KapmanMainWindow::onThemeChanged);
+
+    m_themeSelector = new KgThemeSelector(m_themeProvider);
+
     // Initialize the game
     m_game = nullptr;
     m_view = nullptr;
@@ -75,6 +95,7 @@ KapmanMainWindow::KapmanMainWindow()
 
 KapmanMainWindow::~KapmanMainWindow()
 {
+    delete m_themeSelector;
     delete m_statusBar;
     delete m_game;
     delete m_view;
@@ -92,7 +113,7 @@ void KapmanMainWindow::initGame()
 
     // Create a new GameView instance
     delete m_view;
-    m_view = new GameView(m_game);
+    m_view = new GameView(m_game, m_themeProvider->currentTheme());
     m_view->setBackgroundBrush(Qt::black);
     setCentralWidget(m_view);
     m_view->setFocus();
@@ -181,21 +202,16 @@ void KapmanMainWindow::setSoundsEnabled(bool p_enabled)
 
 void KapmanMainWindow::showSettings()
 {
-    if (KConfigDialog::showDialog(QStringLiteral("settings"))) {
-        return;
-    }
-    auto settingsDialog = new KConfigDialog(this, QStringLiteral("settings"), Settings::self());
-    settingsDialog->addPage(new KGameThemeSelector(settingsDialog, Settings::self(), KGameThemeSelector::NewStuffDisableDownload),
-                            i18n("Theme"),
-                            QStringLiteral("kapman"));
-    settingsDialog->setFaceType(KConfigDialog::Plain); // only one page -> no page selection necessary
-    connect(settingsDialog, &KConfigDialog::settingsChanged, this, &KapmanMainWindow::loadSettings);
-    settingsDialog->show();
+    m_themeSelector->showAsDialog();
 }
 
-void KapmanMainWindow::loadSettings()
+void KapmanMainWindow::onThemeChanged(const KgTheme *theme)
 {
-    ((GameScene *)m_view->scene())->loadTheme();
+    // sync to settings store
+    Settings::setTheme(QString::fromUtf8(theme->identifier()));
+    Settings::self()->save();
+    // trigger update of resources, then display
+    ((GameScene *)m_view->scene())->loadTheme(theme);
 }
 
 void KapmanMainWindow::close()
