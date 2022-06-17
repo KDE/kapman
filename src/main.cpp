@@ -36,7 +36,9 @@ int main(int argc, char **argv)
                      QStringLiteral(KAPMAN_VERSION_STRING),
                      i18n("Kapman: Go through the levels escaping ghosts!"),
                      KAboutLicense::GPL,
-                     i18n("Copyright (c) 2007-2008 The KapTeam"));
+                     i18n("Copyright (c) 2007-2008 The KapTeam"),
+                     QString(),
+                     QStringLiteral("https://apps.kde.org/kapman"));
     // Alphabetical order of Developers of Kapman
     about.addAuthor(i18n("Alexandre Galinier"), i18n("Developer"), QStringLiteral("alex.galinier@gmail.com"));
     about.addAuthor(i18n("Nathalie Liesse"), i18n("Developer"), QStringLiteral("nathalie.liesse@gmail.com"));
@@ -45,7 +47,6 @@ int main(int argc, char **argv)
     about.addAuthor(i18n("Romain Castan"), i18n("Developer"), QStringLiteral("romaincastan@gmail.com"));
     about.addAuthor(i18n("Thomas Gallinari"), i18n("Developer"), QStringLiteral("tg8187@yahoo.fr"));
     about.addCredit(i18n("Roney Gomes"), i18n("Port to KgSound framework"), QStringLiteral("roney477@gmail.com"));
-    about.setHomepage(QStringLiteral("https://www.kde.org/applications/games/kapman/"));
 
     // Command line arguments
     QCommandLineParser parser;

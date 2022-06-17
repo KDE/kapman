@@ -159,6 +159,7 @@
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman</url>
   <url type="help">https://docs.kde.org/?application=kapman</url>
   <url type="donation">https://www.kde.org/community/donations/?app=kapman&amp;source=appdata</url>
+  <url type="homepage">https://apps.kde.org/kapman/</url>
   <screenshots>
     <screenshot type="default">
       <image>https://cdn.kde.org/screenshots/kapman/kapman.png</image>
