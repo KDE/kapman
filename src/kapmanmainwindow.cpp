@@ -8,24 +8,26 @@
 #include "kapmanmainwindow.h"
 #include "gamescene.h"
 #include "settings.h"
-
+// KDEGames
 #include <kdegames_version.h>
 #include <KgThemeProvider>
 #include <KgThemeSelector>
 #include <KScoreDialog>
 #include <KStandardGameAction>
 #include <KgDifficulty>
-
+// KF
+#include <KStandardGuiItem>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <KToggleAction>
+#include <KToggleFullScreenAction>
+// Qt
 #include <QAction>
 #include <QInputDialog>
 #include <QLabel>
 #include <QPointer>
 #include <QStatusBar>
-#include <KToggleFullScreenAction>
 #include <QMenuBar>
 
 KapmanMainWindow::KapmanMainWindow()
@@ -135,7 +137,10 @@ void KapmanMainWindow::newGame()
     }
 
     // Confirm before starting a new game
-    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game?"), i18nc("@title:window", "New Game")) == KMessageBox::Yes) {
+    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game?"),
+                                  i18nc("@title:window", "New Game"),
+                                  KGuiItem(i18nc("@action;button", "Quit Game"), QStringLiteral("window-close")),
+                                  KStandardGuiItem::cancel()) == KMessageBox::Yes) {
         // Start a new game
         initGame();
     } else {
@@ -225,7 +230,9 @@ void KapmanMainWindow::close()
         m_game->pause();
     }
     // Confirm before closing
-    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit Kapman?"), i18nc("To quit Kapman", "Quit")) == KMessageBox::Yes) {
+    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit Kapman?"),
+                                  i18nc("To quit Kapman", "Quit"),
+                                  KStandardGuiItem::quit(), KStandardGuiItem::cancel()) == KMessageBox::Yes) {
         KXmlGuiWindow::close();
     } else {
         // If the game was running
