@@ -8,7 +8,6 @@
 #include "element.h"
 #include "energizer.h"
 #include "pill.h"
-#include <QDebug>
 
 KapmanParser::KapmanParser(Game *p_game)
 {
