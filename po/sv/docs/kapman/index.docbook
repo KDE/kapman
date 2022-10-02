@@ -1,0 +1,620 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Swedish "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>Handbok &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+> <firstname
+>Stefan</firstname
+> <surname
+>Asserhäll</surname
+> <affiliation
+><address
+><email
+>stefan.asserhall@bredband.net</email
+></address
+></affiliation
+> <contrib
+>Översättare</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-04</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kapman; är en klon av det välkända spelet <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>spelhall</keyword>
+<keyword
+>en spelare</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>spöke</keyword>
+<keyword
+>piller</keyword>
+<keyword
+>energitabletter</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Inledning</title>
+<note
+><title
+>Speltyp:</title
+><para
+>Spelhall</para
+></note>
+<note
+><title
+>Antal möjliga spelare:</title
+><para
+>En</para
+></note>
+<para
+>&kapman; är en klon av det välkända spelet <application
+>Pac-Man</application
+>. Du måste ta dig igenom nivåerna och undkomma spöken i en labyrint. Du förlorar ett liv när ett spöke äter upp dig, men du kan äta spöken under några sekunder efter att ha ätit en energitablett. Du får poäng när du äter piller, energitabletter och bonus, och du får ett liv varje gång du har vunnit 10 000 poäng. När du har ätit alla piller och energitabletter på en nivå, går du till nästa nivå, och hastigheten hos spelare och spöken ökar. Spelet slutar när du har förlorat alla liv. </para>
+<screenshot>
+<screeninfo
+>En skärmbild av &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>En skärmbild av &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Hur man spelar</title>
+<note
+><title
+>Syfte:</title
+><para
+>Gå igenom nivåerna genom att äta alla piller och energitabletter.</para
+></note>
+<para
+>&kapman; laddar första nivån när du startar spelet. Tryck på en piltangent för att starta spelet. Du rör dig rakt fram utan att trycka på någon tangent. Tryck på en piltangent för att svänga. Du bör inte svänga i sista ögonblicket, utan vara förutseende och svänga så fort som möjligt. För att äta ett piller, en energitablett, ett bonus eller till och med ett spöke, måste du komma i kontakt med det. När alla piller och energitabletter har ätits går du vidare till nästa nivå. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Spelregler, strategi och tips</title>
+<sect1 id="rules">
+<title
+>Regler</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>För att gå till nästa nivå måste du äta alla piller och energitabletter i labyrinten.</para
+></listitem>
+<listitem
+><para
+>Bonus visas när du har ätit 1/3 och 2/3 av alla piller och energitabletter. Det försvinner efter några sekunder (10 sekunder på den första nivån, men det minskar allt eftersom nivån ökar) om du inte har ätit det.</para
+></listitem>
+<listitem
+><para
+>Allt eftersom nivån ökar, ökar både din och spökenas hastighet. Dock blir spökena snabbare och snabbare i förhållande till dig.</para
+></listitem>
+<listitem
+><para
+>Om du kommer i beröring med ett spöke förlorar du ett liv, och nuvarande nivå startas om (men uppätna piller och energitabletter dyker inte upp igen).</para
+></listitem>
+<listitem
+><para
+>Om du är i ett spökes blickfång (det vill säga: ingen vägg mellan dig och spöket, och båda rör sig i samma riktning), jagar spöket dig. Annars rör sig spöken slumpmässigt.</para
+></listitem>
+<listitem
+><para
+>När du äter en energitablett, saktar spökena in och du kan äta dem. Om du äter ett spöke, går det tillbaka till sitt hem och sitt normala beteende. Efter några sekunder (10 sekunder på den första nivån, men det minskar allt eftersom nivån ökar), går spökena som inte har ätits tillbaka till sitt normala beteende.</para
+></listitem>
+<listitem
+><para
+>Du får poäng när du äter någonting:</para>
+<table>
+<title
+>Objektens värde</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Piller</entry>
+<entry
+>10 poäng</entry>
+</row>
+<row>
+<entry
+>Energitablett</entry>
+<entry
+>20 poäng</entry>
+</row>
+<row>
+<entry
+>Bonus</entry>
+<entry
+>Nuvarande nivå * 100 poäng</entry>
+</row>
+<row>
+<entry
+>Spöke</entry>
+<entry
+>Det beror på antalet spöken du har ätit sedan den senaste energitabletten åts: <itemizedlist>
+<listitem
+><para
+>Första spöket: 100 poäng</para
+></listitem>
+<listitem
+><para
+>Andra spöket: 200 poäng</para
+></listitem>
+<listitem
+><para
+>Tredje spöket: 400 poäng</para
+></listitem>
+<listitem
+><para
+>Fjärde spöket: 800 poäng</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Du får ytterligare ett liv varje gång du har vunnit 10 000 poäng.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategi och tips</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>För att äta någonting måste du röra vid dess centrum, inte bara några få bildpunkter. Försäkra dig alltså om att du verkligen har ätit det du vill, innan du vänder om.</para
+></listitem>
+<listitem
+><para
+>På de första nivåerna ger inte bonus så många poäng, och spökena är inte särskilt snabba, så du bör koncentrera dig på att äta så många spöken du kan.</para
+></listitem>
+<listitem
+><para
+>Efter omkring tio nivåer, är spökena snabbare och bonus ger fler poäng, alltså bör du försöka äta bonus om möjligt. Tveka inte att äta en energitablett när du ser bonus, för att inte bli störd av spökena.</para
+></listitem>
+<listitem
+><para
+>På samma sätt bör du försöka äta en energitablett innan du går till farliga ställen (som nära spökenas hem).</para
+></listitem>
+<listitem
+><para
+>När spökena är för snabba, bör du undvika att äta dem om du är nära deras hem. De kan komma tillbaka snabbare än du tror.</para
+></listitem>
+<listitem
+><para
+>Tveka inte att stanna på samma ställe några sekunder, medan du väntar på att spökena ska gå långt bort från ställen du behöver gå till.</para
+></listitem>
+<listitem
+><para
+>Du kan hitta hur man kan fuska i källkoden. Men var försiktig: om du uppnår ett nytt bästa resultat men har fuskat, registreras inte ditt resultat.</para
+></listitem>
+<listitem
+><para
+>Sist men inte minst: Ha det så kul!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Översikt av gränssnittet</title>
+<sect1 id="menu">
+<title
+>Menyalternativ</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+><guimenuitem
+>Ny</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Startar ett nytt spel.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+><guimenuitem
+>Visa bästa resultat</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar dialogrutan med bästa resultat.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Spel</guimenu
+><guimenuitem
+>Byt nivå</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Visar nivåvalsdialogrutan. Var försiktig: att ändra aktuell nivå gör att spelet betraktar dig som fuskare, så du kommer inte att kunna registreras i tabellen med bästa resultat.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spel</guimenu
+><guimenuitem
+>Avsluta</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avslutar</action
+> &kapman;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+><guimenuitem
+>Spela ljud</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Spelar ljud eller är tyst.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Inställningar</guimenu
+><guisubmenu
+>Svårighetsnivå</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Justerar spelets svårighet till <guimenuitem
+>Lätt</guimenuitem
+>, <guimenuitem
+>Normal</guimenuitem
+> eller <guimenuitem
+>Svår</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>Dessutom har &kapman; de vanliga menyalternativen <guimenu
+>Inställningar</guimenu
+> och <guimenu
+>Hjälp</guimenu
+> i &kde;. För mer information, läs avsnitten  <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menyn Inställningar</ulink
+> och <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menyn Hjälp</ulink
+> i &kde;:s Grunder. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Förvalda tangentbindningar</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Sväng uppåt</action
+> - <keysym
+>Uppåtpil</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Sväng neråt</action
+> - <keysym
+>Neråtpil</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Sväng åt höger</action
+> - <keysym
+>Högerpil</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Sväng åt vänster</action
+> - <keysym
+>Vänsterpil</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Paus</action
+> - <keycap
+>P</keycap
+> eller <keycap
+>Esc</keycap
+></para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Vanliga frågor</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Jag vill ändra hur spelet ser ut. Kan man göra det?</para>
+</question>
+<answer>
+<para
+>Du kan välja &kapman;s tema i dialogrutan <menuchoice
+><guimenu
+>Inställningar</guimenu
+><guimenuitem
+>Anpassa &kapman;...</guimenuitem
+></menuchoice
+>. Se kapitlet <link linkend="configuration"
+>Spelanpassning</link
+> för mer information.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Kan man hoppa över en nivå?</para>
+</question>
+<answer>
+<para
+>Det finns två sätt att byta nuvarande nivå. I båda fallen kommer du att anses som fuskare, och kommer inte att kunna registrera något bästa resultat. Det första är att fuska. Du får hitta hur man gör själv. Det andra sättet är att välja nivån du vill ha i dialogrutan <menuchoice
+><guimenu
+>Spel</guimenu
+><guimenuitem
+>Byt nivå</guimenuitem
+></menuchoice
+>. Se avsnittet <link linkend="menu"
+>Menyrad</link
+> för mer information.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Kan man ändra förvalda snabbtangenter?</para>
+</question>
+<answer>
+<para
+>För närvarande är det inte möjligt, men det kommer att vara en ny funktion i en framtida version av &kapman;. Se avsnittet <link linkend="keybindings"
+>Spelanpassning</link
+> för mer information.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Jag måste avsluta spelet nu, men jag är inte klar än. Kan man spara det man har gjort?</para>
+</question>
+<answer>
+<para
+>Det kan man inte, och det är avsiktligt. Vi anser att spelet skulle vara för lätt om man kunde spara spelet och ladda in det igen när man har förlorat liv.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Hur kan man få flera liv?</para>
+</question>
+<answer>
+<para
+>Det finns två sätt att få nya liv. Det första är att fuska. Du får hitta hur man gör själv. Det andra sättet är att skaffa poäng. För varje 10 000 intjänade poäng får du ytterligare ett liv. Se avsnittet <link linkend="rules"
+>Regler</link
+> för mer information.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Spelanpassning</title>
+<para
+>Du kan välja temat du vill använda för att spela &kapman;. Välj <menuchoice
+><guimenu
+>Inställningar</guimenu
+> <guimenuitem
+>Anpassa &kapman;...</guimenuitem
+></menuchoice
+> för att göra det. &kapman;s inställningsdialogruta visas och därefter kan du välja tema. Det ändras omedelbart när du godkänner ditt val, det finns inget behov av att starta om spelet. Du kan klicka på knappen <guibutton
+>Förval</guibutton
+> för att återställa standardtemat. </para>
+<screenshot>
+<screeninfo
+>&kapman;s inställningsdialogruta</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&kapman;s inställningsdialogruta</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Tack till och licens</title>
+<para
+>&kapman; </para>
+<para
+>Program copyright 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Program copyright 2008 Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Program copyright 2008 Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Program copyright 2008 Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Grafik copyright 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Dokumentation copyright 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Översättning Stefan Asserhäll <email
+>stefan.asserhall@bredband.net</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

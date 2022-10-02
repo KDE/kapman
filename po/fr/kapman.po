@@ -1,0 +1,232 @@
+# translation of kapman.po to Français
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Sébastien Renard <Sebastien.Renard@digitalfox.org>, 2008.
+# Sebastien Renard <Sebastien.Renard@Solucom.fr>, 2009.
+# Sébastien Renard <renard@kde.org>, 2012.
+# xavier <xavier.besnard@neuf.fr>, 2013, 2021, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kapman\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-08 00:43+0000\n"
+"PO-Revision-Date: 2022-07-09 09:34+0200\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
+"Language-Team: French <kde-francophone@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 22.04.3\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Sébastien Renard"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "renard@kde.org"
+
+# unreviewed-context
+#: gamescene.cpp:90
+#, kde-format
+msgid "GET READY!!!"
+msgstr "Soyez prêt !"
+
+#: gamescene.cpp:94
+#, kde-format
+msgid "Press any arrow key to start"
+msgstr "Appuyez sur une touche de flèche pour commencer"
+
+#: gamescene.cpp:104
+#, kde-format
+msgid "PAUSED"
+msgstr "En pause"
+
+#: gamescene.cpp:228
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level %1"
+msgstr "Niveau %1"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: kapman.kcfg:9
+#, kde-format
+msgid "The graphical theme to be used."
+msgstr "Le thème graphique à utiliser."
+
+#. i18n: ectx: label, entry (Sounds), group (General)
+#: kapman.kcfg:13
+#, kde-format
+msgid "Whether sound effects should be played."
+msgstr "Définit si les effets sonores doivent être joués ou non."
+
+#: kapmanmainwindow.cpp:66
+#, kde-format
+msgid "&Play Sounds"
+msgstr "&Jouer les sons"
+
+#: kapmanmainwindow.cpp:70
+#, kde-format
+msgid "&Change Level"
+msgstr "&Changer de niveau"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:248
+#, kde-format
+msgctxt "Used to display the current level of play to the user"
+msgid "Level: %1"
+msgstr "Niveau : %1"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:77 kapmanmainwindow.cpp:253
+#, kde-format
+msgctxt "Used to inform the user of their current score"
+msgid "Score: %1"
+msgstr "Score : %1"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:79 kapmanmainwindow.cpp:258
+#, kde-format
+msgctxt "Used to tell the user how many lives they have left"
+msgid "Lives: %1"
+msgstr "Vie(s) : %1"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:140
+#, kde-format
+msgid "Are you sure you want to quit the current game?"
+msgstr "Voulez-vous vraiment quitter la partie actuelle ?"
+
+#: kapmanmainwindow.cpp:141
+#, kde-format
+msgctxt "@title:window"
+msgid "New Game"
+msgstr "Nouvelle partie"
+
+#: kapmanmainwindow.cpp:142
+#, kde-format
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "Quitter une partie"
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Your score is %1 point."
+msgid_plural "Your score is %1 points."
+msgstr[0] "Votre score est de %1 point."
+msgstr[1] "Votre score est de %1 points."
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Game Over"
+msgstr "Le jeu est terminé"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "You cheated, no Highscore for you ;)"
+msgstr "Vous avez triché. Aucune inscription aux meilleurs scores !"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "Cheater!"
+msgstr "Tricheur !"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgid "Change Level"
+msgstr "Changer de niveau"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level"
+msgstr "Niveau"
+
+# unreviewed-context
+#: kapmanmainwindow.cpp:233
+#, kde-format
+msgid "Are you sure you want to quit Kapman?"
+msgstr "Voulez-vous vraiment quitter Kapman ?"
+
+#: kapmanmainwindow.cpp:234
+#, kde-format
+msgctxt "To quit Kapman"
+msgid "Quit"
+msgstr "Quitter"
+
+#: main.cpp:35
+#, kde-format
+msgid "Kapman"
+msgstr "Kapman"
+
+# unreviewed-context
+#: main.cpp:37
+#, kde-format
+msgid "Kapman: Go through the levels escaping ghosts!"
+msgstr "Kapman : parcourez les niveaux en échappant aux fantômes !"
+
+#: main.cpp:39
+#, kde-format
+msgid "Copyright (c) 2007-2008 The KapTeam"
+msgstr "Copyright (c) 2007-2008 KapTeam"
+
+#: main.cpp:43
+#, kde-format
+msgid "Alexandre Galinier"
+msgstr "Alexandre Galinier"
+
+#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#, kde-format
+msgid "Developer"
+msgstr "Développeur"
+
+#: main.cpp:44
+#, kde-format
+msgid "Nathalie Liesse"
+msgstr "Nathalie Liesse"
+
+#: main.cpp:45
+#, kde-format
+msgid "Ömer Fadıl USTA"
+msgstr "Omer Fadil USTA"
+
+#: main.cpp:46
+#, kde-format
+msgid "Pierre-Benoit Besse"
+msgstr "Pierre-Benoit Besse"
+
+#: main.cpp:47
+#, kde-format
+msgid "Romain Castan"
+msgstr "Romain Castan"
+
+#: main.cpp:48
+#, kde-format
+msgid "Thomas Gallinari"
+msgstr "Thomas Gallinari"
+
+#: main.cpp:49
+#, kde-format
+msgid "Roney Gomes"
+msgstr "Roney Gomes"
+
+#: main.cpp:49
+#, kde-format
+msgid "Port to KgSound framework"
+msgstr "Portage vers l'infrastructure « KgSound »"
+
+#~ msgid "Theme"
+#~ msgstr "Thème"
+
+#~ msgid "Game difficulty level."
+#~ msgstr "Niveau de difficulté du jeu."

@@ -1,0 +1,752 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&kapman;">
+  <!ENTITY package "kdegames">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Polish "INCLUDE">
+]>
+
+<book lang="&language;">
+<bookinfo>
+<title
+>Podręcznik gry &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+> <firstname
+>Krzysztof</firstname
+><surname
+>Woźniak</surname
+><affiliation
+><address
+><email
+>wozniakk@ceti.pl</email
+></address
+></affiliation
+><contrib
+>Polskie tłumaczenie</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2008-09-30</date>
+<releaseinfo
+>1.0</releaseinfo>
+
+<abstract>
+<para
+>&kapman; jest klonem dobrze znanej gry <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>zręcznościowa</keyword>
+<keyword
+>jeden gracz</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>duch</keyword>
+<keyword
+>pigułka</keyword>
+<keyword
+>energia</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Wprowadzenie</title>
+<note
+><title
+>Rodzaj gry:</title
+><para
+>Zręcznościowa</para
+></note>
+<note
+><title
+>Liczba graczy:</title
+><para
+>Jeden</para
+></note>
+<para
+>&kapman; jest klonem dobrze znanej gry <application
+>Pac-Man</application
+>. Musisz przechodzić poziomy uciekając przed duchami w labiryncie. Tracisz życie, gdy duch cię pożre, ale Ty też  możesz zjadać duchy przez kilka sekund po zjedzeniu energizera. Zdobywasz punkty zjadając pigułki, energizery i bonusy, uzyskujesz także dodatkowe życie za każde 10000 zdobytych punktów. Po zjedzeniu wszystkich pigułek i energizerów na danym poziomie, przechodzisz do następnego, w którym gracz i duchy poruszają się szybciej. Gra kończy się po utraceniu wszystkich żyć. </para>
+<screenshot>
+<screeninfo
+>Zrzut ekranu gry &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Zrzut ekranu gry &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Jak grać</title>
+<note
+><title
+>Cel gry:</title
+><para
+>Przechodź przez kolejne poziomy zjadając pigułki i energizery.</para
+></note>
+<para
+>Po uruchomieniu &kapman; uruchamia się pierwszy poziom gry. Aby rozpocząć grę należy nacisnąć klawisz strzałki. Do przodu przesuwasz się bez naciskania żadnego klawisza. Aby się obrócić, należy nacisnąć klawisz strzałki. Staraj się nie obracać w ostatnim momencie, ale przewidywać kolejne ruchy i obracać się jak najszybciej.. Aby zjeść pigułkę, energizera, bonus lub nawet duszka, musisz się z nim zetknąć. Jeżeli wszystkiepigułki i energizery zostały zjedzone, przechodzisz do kolejnego poziomu. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Reguły, strategia i wskazówki</title>
+<sect1 id="rules">
+<title
+>Zasady</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Aby przejść do kolejnego poziomu, musisz zjeść wszystkie pigułki i energizery w labiryncie.</para
+></listitem>
+<listitem
+><para
+>Bonus pojawia się po zjedzeniu 1/3 i 2/3 wszystkich pigułek i energizerów. Znika po kilku sekundach (10 sekund na pierwszym poziomie, ale odpowiednio mniej na kolejnych) jeżeli nie zostanie zjedzony.</para
+></listitem>
+<listitem
+><para
+>W miarę przechodzenia kolejnych poziomów, zarówno prędkość gracza jak i duchów zwiększa się. Duchy jednakże zwiększają swoją prędkość szybciej niż gracz.</para
+></listitem>
+<listitem
+><para
+>Jeżeli zetkniesz się z duchem, tracisz życie, a bieżący poziom uruchomiony zostaje ponownie (zjedzone pigułki i energizery nie pojawiają się).</para
+></listitem>
+<listitem
+><para
+>Jeżeli znajdujesz się w polu widzenia ducha (tzn. między tobą i duchem nie ma żadnej ściany i poruszacie się w tym samym kierunku), duch rozpoczyna pościg. W innym wypadku ruchy duchów są losowe.</para
+></listitem>
+<listitem
+><para
+>Po zjedzeniu energizera, duchy zwalniają i mogą być przez ciebie zjedzone. Po zjedzeniu ducha, wraca on do domu duchów w środku labiryntu i znów zachowuje się normalnie. Po kilku sekundach (10 sekund na pierwszym poziomie, ale odpowiednio mniej na każdym kolejnym), nie zjedzone duchy wracają do swojego normalnego zachowania.</para
+></listitem>
+<listitem
+><para
+>Zdobywasz punkty zjadając przedmioty:</para>
+<table>
+<title
+>Wartości elementów </title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Pigułka</entry>
+<entry
+>10 punktów</entry>
+</row>
+<row>
+<entry
+>Energia</entry>
+<entry
+>20 punktów</entry>
+</row>
+<row>
+<entry
+>Bonus</entry>
+<entry
+>Aktualny poziom * 100 punktów</entry>
+</row>
+<row>
+<entry
+>Duszek</entry>
+<entry
+>Ilość punktów zależy od liczby duchów zjedzonych przez Ciebie od czasu zjedzenia ostatniego energizera: <itemizedlist>
+<listitem
+><para
+>pierwszy duszek: 100 punktów</para
+></listitem>
+<listitem
+><para
+>drugi duszek: 200 punktów</para
+></listitem>
+<listitem
+><para
+>trzeci duszek: 400 punktów</para
+></listitem>
+<listitem
+><para
+>czwarty duszek: 800 punktów</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Uzyskujesz nowe życie za każde 10000 zdobytych punktów.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategia i wskazówki</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Aby zjeść przedmiot, musisz przejść przez jego środek, nie wystarczy go dotknąć kilkoma pikselami. Upewnij się że na pewno zjadłeś to co chciałeś, zanim zawrócisz.</para
+></listitem>
+<listitem
+><para
+>Na pierwszych poziomach, bonus nie daje dużo punktów, duchy nie są zbyt szybkie, dlatego należy skoncentrować się na zjedzeniu tylu duchów ile to możliwe.</para
+></listitem>
+<listitem
+><para
+>Po kilku poziomach, duchy stają się szybsze a bonus daje więcej punktów, dlatego też staraj się wtedy zjeść bonus jeżeli to tylko możliwe. Nie wahaj się zjadać energizera, żeby duchy nie przeszkadzały ci w zjedzeniu bonusa.</para
+></listitem>
+<listitem
+><para
+>Analogicznie, staraj się zjeść energizera przed udaniem się w niebezpieczne miejsca (np. niedaleko domu duchów).</para
+></listitem>
+<listitem
+><para
+>Gdy duchy są zbyt szybkie, należy unikać zjadania ich gdy są blisko domu. Mogą wrócić do ciebie szybciej niż ci się wydaje.</para
+></listitem>
+<listitem
+><para
+>Nie wahaj się czekać w jednym miejscu przez kilka sekund, w oczekiwaniu aż duchy oddalą się od miejsca, do którego chcesz iść.</para
+></listitem>
+<listitem
+><para
+>Możesz znaleźć różne ułatwienia (cheatcodes) w kodzie źródłowym programu. Jednak uważaj: jeżeli zdobędziesz najlepszy wynik za ich pomocą, nie zostanie on zapisany.</para
+></listitem>
+<listitem
+><para
+>I na koniec: Baw się dobrze !</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Interfejs</title>
+<sect1 id="menubar">
+<title
+>Pasek menu</title>
+<sect2>
+<title
+>Menu <guimenu
+>Gra</guimenu
+></title>
+<para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Nowa</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Rozpoczyna nową grę.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Pokaż najlepsze wyniki</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Wyświetla okno dialogowe z listą najlepszych wyników.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Gra</guimenu
+><guimenuitem
+>Zmień poziom</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Wyświetla okno dialogowe wyboru poziomu. Uważaj: zmian bieżącego poziomu jest oszukiwaniem, dlatego najwyższy wynik, który wtedy osiągniesz nie zostanie zarejestrowany.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+> <keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Gra</guimenu
+> <guimenuitem
+>Zakończ</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Kończy pracę</action
+> z grą &kapman;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title
+>Menu <guimenu
+>Ustawienia</guimenu
+></title>
+<para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Odtwarzaj dźwięki</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Włącza lub wyłącza odtwarzanie dźwięków.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Pokaż pasek stanu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Pokazuje/ukrywa pasek stanu.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guisubmenu
+>Poziom trudności</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Dostosowuje poziom trudności gry.</action
+></para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guisubmenu
+>Poziom trudności</guisubmenu
+> <guimenuitem
+>Łatwy</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guisubmenu
+>Poziom trudności</guisubmenu
+> <guimenuitem
+>Średni</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guisubmenu
+>Poziom trudności</guisubmenu
+> <guimenuitem
+>Trudny</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+></para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Konfiguracja skrótów...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Otwiera okno konfiguracji skrótów.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guimenuitem
+>Konfiguracja pasków narzędzi...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Otwiera okno konfiguracji pasków narzędzi.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Ustawienia</guimenu
+> <guimenuitem
+>Konfiguracja Kapman...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Otwiera okno konfiguracji programu &kapman;.</action
+></para
+></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title
+>Menu <guimenu
+>Pomoc</guimenu
+></title>
+&help.menu.documentation; </sect2>
+</sect1>
+<sect1 id="keybindings">
+<title
+>Domyślne dowiązania klawiszy</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Skręć do góry</action
+> - <keysym
+>Strzałka w górę</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Skręć na dół</action
+> - <keysym
+>Strzałka w dół</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Skręć w prawo</action
+> - <keysym
+>Strzałka w prawo</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Skręć w lewo</action
+> - <keysym
+>Strzałka w lewo</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Wstrzymaj</action
+> - <keycap
+>P</keycap
+> lub <keycap
+>Esc</keycap
+></para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Pytania i odpowiedzi</title>
+&reporting.bugs; &updating.documentation; <qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Chciałbym zmienić wygląd gry. Czy mogę?</para>
+</question>
+<answer>
+<para
+>Możesz wybrać motyw wyglądu gry &kapman; za pomocą okna dialogowego wywoływanego z menu <menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guimenuitem
+>Konfiguracja Kapman...</guimenuitem
+></menuchoice
+>. Więcej na ten temat w sekcji <link linkend="configuration"
+>Konfiguracja gry</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Jak mogę pominąć poziom?</para>
+</question>
+<answer>
+<para
+>Są dwa sposoby zmiany bieżącego poziomu. W obydwu przypadkach będziesz potraktowany jak oszust, i program nie zapisze osiągniętego najwyższego wyniku. Pierwszym sposobem jest użycie kodu ułatwienia (który musisz sobie sam znaleźć). Drugim sposobem jest wybranie pożądanego poziomu z menu <menuchoice
+><guimenu
+>Gra</guimenu
+><guimenuitem
+>Zmień poziom</guimenuitem
+></menuchoice
+>. Więcej na ten temat w sekcji <link linkend="menubar"
+>Menu</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Jak mogę zmienić domyślne skróty klawiszowe?</para>
+</question>
+<answer>
+<para
+>W chwili obecnej jest to niemożliwe. Ale będzie to nowa funkcja w przyszłej wersji gry &kapman;. Więcej na temat stosowanych klawiszy w sekcji <link linkend="keybindings"
+>Domyślne dowiązania klawiszy</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Muszę zakończyć grę w trakcie rozgrywki. Czy mogę zapisać jej stan?</para>
+</question>
+<answer>
+<para
+>Nie możesz, i jest to zamierzone działanie. Myślimy, że gra byłaby zbyt łatwa jeżeli mógłbyś zapisywać grę i wczytywać po utraceniu życia.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Jak mogę uzyskać więcej żyć?</para>
+</question>
+<answer>
+<para
+>Są dwa sposoby na uzyskanie dodatkowego życia. Pierwszy, za pomocą kodu ułatwienia (którego musisz sam poszukać). Innym sposobem jest zdobywanie punktów. Za każde zdobyte 10000 punktów uzyskujesz dodatkowe życie. Więcej na ten temat w sekcji <link linkend="rules"
+>Zasady</link
+>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Konfiguracja gry</title>
+<para
+>Możesz wybrać motyw wyglądu gry &kapman;. Aby to zrobić, wybierz z menu<menuchoice
+><guimenu
+>Ustawienia</guimenu
+><guimenuitem
+>Konfiguracja Kapman...</guimenuitem
+></menuchoice
+>. Wyświetli się okno dialogowe konfiguracji &kapman; (widoczne poniżej), z pomocą którego możesz wybrać motyw. Jest natychmiast zmieniany po dokonaniu wyboru, nie ma potrzeby uruchamiania gry ponownie. Możesz kliknąć przycisk<guibutton
+>Domyślne</guibutton
+> aby przywrócić domyślny wygląd gry. </para>
+<screenshot>
+<screeninfo
+>Okno dialogowe konfiguracji &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Okno dialogowe konfiguracji &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Zasługi i licencje</title>
+<para
+>&kapman; </para>
+<para
+>Prawa autorskie do programu (c) 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Prawa autorskie do programu (c) 2008 Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Prawa autorskie do programu (c) 2008 Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Prawa autorskie do programu (c) Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Prawa autorskie do grafiki (c) 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Prawa autorskie do dokumentacji (c) 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Polskie tłumaczenie dokumentacji: Krzysztof Woźniak<email
+>wozniakk@ceti.pl</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Instalacja</title>
+
+&install.intro.documentation;
+
+<sect1 id="Compilation">
+<title
+>Kompilacja i instalacja</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

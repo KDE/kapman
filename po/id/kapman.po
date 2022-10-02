@@ -1,0 +1,218 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kapman package.
+# Wantoyo <wantoyek@gmail.com>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kapman\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-08 00:43+0000\n"
+"PO-Revision-Date: 2019-09-07 18:11+0700\n"
+"Last-Translator: Wantoyo <wantoyek@gmail.com>\n"
+"Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Wantoyo"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "wantoyek@gmail.com"
+
+#: gamescene.cpp:90
+#, kde-format
+msgid "GET READY!!!"
+msgstr "SIAP-SIAP!!!"
+
+#: gamescene.cpp:94
+#, kde-format
+msgid "Press any arrow key to start"
+msgstr "Tekan tuts panah mana pun untuk memulai"
+
+#: gamescene.cpp:104
+#, kde-format
+msgid "PAUSED"
+msgstr "DIJEDA"
+
+#: gamescene.cpp:228
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level %1"
+msgstr "Level %1"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: kapman.kcfg:9
+#, kde-format
+msgid "The graphical theme to be used."
+msgstr "Tema grafik yang akan digunakan."
+
+#. i18n: ectx: label, entry (Sounds), group (General)
+#: kapman.kcfg:13
+#, kde-format
+msgid "Whether sound effects should be played."
+msgstr "Apakah efek suara harus dibunyikan?"
+
+#: kapmanmainwindow.cpp:66
+#, fuzzy, kde-format
+#| msgid "&Play sounds"
+msgid "&Play Sounds"
+msgstr "&Bunyikan suara"
+
+#: kapmanmainwindow.cpp:70
+#, fuzzy, kde-format
+#| msgid "&Change level"
+msgid "&Change Level"
+msgstr "&Ubah level"
+
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:248
+#, kde-format
+msgctxt "Used to display the current level of play to the user"
+msgid "Level: %1"
+msgstr "Level: %1"
+
+#: kapmanmainwindow.cpp:77 kapmanmainwindow.cpp:253
+#, kde-format
+msgctxt "Used to inform the user of their current score"
+msgid "Score: %1"
+msgstr "Skor: %1"
+
+#: kapmanmainwindow.cpp:79 kapmanmainwindow.cpp:258
+#, kde-format
+msgctxt "Used to tell the user how many lives they have left"
+msgid "Lives: %1"
+msgstr "Nyawa: %1"
+
+#: kapmanmainwindow.cpp:140
+#, kde-format
+msgid "Are you sure you want to quit the current game?"
+msgstr "Apakah kamu yakin bahwa kamu ingin memberhentikan permainan saat ini?"
+
+#: kapmanmainwindow.cpp:141
+#, fuzzy, kde-format
+#| msgid "New game"
+msgctxt "@title:window"
+msgid "New Game"
+msgstr "Permainan baru"
+
+#: kapmanmainwindow.cpp:142
+#, fuzzy, kde-format
+#| msgctxt "To quit Kapman"
+#| msgid "Quit"
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "Berhenti"
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Your score is %1 point."
+msgid_plural "Your score is %1 points."
+msgstr[0] "Skor kamu adalah %1 poin."
+msgstr[1] "Skor kamu adalah %1 poin."
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Game Over"
+msgstr "Permainan Berakhir"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "You cheated, no Highscore for you ;)"
+msgstr "Kamu curang, tidak ada Skor Tertinggi untukmu ;)"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "Cheater!"
+msgstr "Pencurang!"
+
+#: kapmanmainwindow.cpp:189
+#, fuzzy, kde-format
+#| msgid "Change level"
+msgid "Change Level"
+msgstr "Ubah level"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level"
+msgstr "Level"
+
+#: kapmanmainwindow.cpp:233
+#, kde-format
+msgid "Are you sure you want to quit Kapman?"
+msgstr "Apakah kamu yakin bahwa kamu ingin memberhentikan Kapman?"
+
+#: kapmanmainwindow.cpp:234
+#, kde-format
+msgctxt "To quit Kapman"
+msgid "Quit"
+msgstr "Berhenti"
+
+#: main.cpp:35
+#, kde-format
+msgid "Kapman"
+msgstr "Kapman"
+
+#: main.cpp:37
+#, kde-format
+msgid "Kapman: Go through the levels escaping ghosts!"
+msgstr "Kapman: Menuju melalui level yang  melarikan diri dari hantu-hantu!"
+
+#: main.cpp:39
+#, kde-format
+msgid "Copyright (c) 2007-2008 The KapTeam"
+msgstr "Hakcipta (c) 2007-2008 Para KapTeam"
+
+#: main.cpp:43
+#, kde-format
+msgid "Alexandre Galinier"
+msgstr "Alexandre Galinier"
+
+#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#, kde-format
+msgid "Developer"
+msgstr "Pengembang"
+
+#: main.cpp:44
+#, kde-format
+msgid "Nathalie Liesse"
+msgstr "Nathalie Liesse"
+
+#: main.cpp:45
+#, kde-format
+msgid "Ömer Fadıl USTA"
+msgstr "Ömer Fadıl USTA"
+
+#: main.cpp:46
+#, kde-format
+msgid "Pierre-Benoit Besse"
+msgstr "Pierre-Benoit Besse"
+
+#: main.cpp:47
+#, kde-format
+msgid "Romain Castan"
+msgstr "Romain Castan"
+
+#: main.cpp:48
+#, kde-format
+msgid "Thomas Gallinari"
+msgstr "Thomas Gallinari"
+
+#: main.cpp:49
+#, kde-format
+msgid "Roney Gomes"
+msgstr "Roney Gomes"
+
+#: main.cpp:49
+#, kde-format
+msgid "Port to KgSound framework"
+msgstr "Port ke kerangkakerja KgSound"
+
+#~ msgid "Theme"
+#~ msgstr "Tema"

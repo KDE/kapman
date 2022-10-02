@@ -1,0 +1,676 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % German "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>Das Handbuch zu &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+><firstname
+>Thomas</firstname
+><surname
+>Gallinari</surname
+></personname
+><email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Johannes</firstname
+><surname
+>Obermayr</surname
+><affiliation
+><address
+><email
+>johannesobermayr@gmx.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-04</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kapman; ist eine Kopie des sehr bekannten Spiels <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>Arcade</keyword>
+<keyword
+>ein Spieler</keyword>
+<keyword
+>Pac-Man</keyword>
+<keyword
+>Pacman</keyword>
+<keyword
+>Geist</keyword>
+<keyword
+>Pille</keyword>
+<keyword
+>Appetitanreger</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Einführung</title>
+<note
+><title
+>Spielart:</title
+><para
+>Arcade</para
+></note>
+<note
+><title
+>Anzahl der Spieler:</title
+><para
+>Einer</para
+></note>
+<para
+>&kapman; ist eine Kopie des sehr bekannten Spiels <application
+>Pac-Man</application
+>. In den unterschiedlichen Ebenen muss man in einem Labyrinth den Geistern entkommen. Ein Leben verliert man, wenn man von einem Geist gefressen wird. Jedoch können die Geister nach dem Fressen eines <firstterm
+>Appetitanregers</firstterm
+> auch für einige Sekunden gefressen werden. Durch das Fressen der <firstterm
+>Pillen</firstterm
+>, <firstterm
+>Appetitanreger</firstterm
+> und <firstterm
+>Zusatzkost</firstterm
+> werden die Punkte gesammelt. Für je 10.000 Punkte erhält man ein zusätzliches Leben. Wenn alle <firstterm
+>Pillen</firstterm
+> und <firstterm
+>Appetitanreger</firstterm
+> in der jeweiligen Ebene gefressen wurden, steigt man in die nächste Ebene auf, in der die Geschwindigkeit der Figur und Geister steigt. Das Spiel endet, wenn alle Leben verbraucht sind.  </para>
+<screenshot>
+<screeninfo
+>Ein Bildschirmfoto von &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Ein Bildschirmfoto von &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Spielanleitung</title>
+<note
+><title
+>Spielziel:</title
+><para
+>Durch die Ebenen bewegen und dabei alle <firstterm
+>Pillen</firstterm
+> und <firstterm
+>Appetitanreger</firstterm
+> fressen.</para
+></note>
+<para
+>Sobald das Spiel gestartet ist, lädt &kapman; die erste Ebene. Um ein Spiel zu starten, muss eine Pfeiltaste gedrückt werden. Danach bewegt sich die Spielfigur solange in diese Richtung fort, bis mittels einer anderen Pfeiltaste die Richtung gewechselt wird. Die Betätigung der Pfeiltaste sollte nicht erst im letzten Moment geschehen, sondern vielmehr etwas davor, damit der Richtungswechsel bei der nächsten Gelegenheit durchgeführt wird. Um die <firstterm
+>Pillen</firstterm
+>, <firstterm
+>Appetitanreger</firstterm
+> oder <firstterm
+>Geister</firstterm
+> zu fressen, muss die Figur mit ihnen in Berührung kommen. Wenn alle <firstterm
+>Pillen</firstterm
+> und <firstterm
+>Appetitanreger</firstterm
+> gefressen wurden, steigt man in die nächste Ebene auf. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Spielregeln, Strategien und Tipps</title>
+<sect1 id="rules">
+<title
+>Spielregeln</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Um in die nächste Ebene zu gelangen, müssen alle <firstterm
+>Pillen</firstterm
+> und <firstterm
+>Appetitanreger</firstterm
+> im Labyrinth gefressen werden.</para
+></listitem>
+<listitem
+><para
+>Eine Zusatzkost erscheint, nachdem 1/3 bzw. 2/3 der <firstterm
+>Pillen</firstterm
+> und <firstterm
+>Appetitanreger</firstterm
+> gefressen wurden. Diese verschwinden wieder, wenn sie nach ein paar Sekunden nicht gefressen wurden (nach 10 Sekunden in der ersten Ebene - schneller mit zunehmender Ebene).</para
+></listitem>
+<listitem
+><para
+>Mit dem Aufstieg in eine höhere Ebene erhöht sich die Geschwindigkeit der Spielfigur und der Geister. Hierbei ist zu beachten, dass die Geister schneller werden als die Spielfigur.</para
+></listitem>
+<listitem
+><para
+>Bei Berührung mit einem Geist verliert man ein Leben und die aktuelle Ebene beginnt von Neuem (bereits gefressene <firstterm
+>Pillen</firstterm
+> und <firstterm
+>Appetitanreger</firstterm
+> erscheinen jedoch nicht wieder).</para
+></listitem>
+<listitem
+><para
+>Befindet sich ein Geist hinter der Spielfigur und bewegt sich dieser in dieselbe Richtung - ohne dass hierbei eine Wand zwischen beiden ist - wird der Geist die Spielfigur jagen. Ansonsten bewegen sich die Geister in zufälligen Richtungen fort. </para
+></listitem>
+<listitem
+><para
+>Nachdem ein <firstterm
+>Appetitanreger</firstterm
+> gefressen wurde, werden die Geister langsamer und können von der Spielfigur gefressen werden. Nachdem ein Geist gefressen wurde, erscheint er wieder in der Mitte des Spielfelds und bewegt sich in seiner ursprünglichen Weise fort. Nach ein paar Sekunden (10 in der ersten Ebene - immer weniger mit steigender Ebene) werden die nicht gefressenen Geister in ihr ursprüngliches Verhalten zurückgesetzt.</para
+></listitem>
+<listitem
+><para
+>Durch das Fressen der Gegenstände erhält man Punkte:</para>
+<table>
+<title
+>Punkte für Gegenstände</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Pillen</entry>
+<entry
+>10 Punkte</entry>
+</row>
+<row>
+<entry
+>Appetitanreger</entry>
+<entry
+>20 Punkte</entry>
+</row>
+<row>
+<entry
+>Zusatzkost</entry>
+<entry
+>Aktuelle Ebene * 100 Punkte</entry>
+</row>
+<row>
+<entry
+>Geist</entry>
+<entry
+>Die Punkte sind abhängig davon, wie viele Geister seit dem Fressen des <firstterm
+>Appetitanregers</firstterm
+> gefressen wurden: <itemizedlist>
+<listitem
+><para
+>1. Geist: 100 Punkte</para
+></listitem>
+<listitem
+><para
+>2. Geist: 200 Punkte</para
+></listitem>
+<listitem
+><para
+>3. Geist: 400 Punkte</para
+></listitem>
+<listitem
+><para
+>4. Geist: 800 Punkte</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Je 10.000 Punkte erhält man ein weiteres Leben.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategien und Tipps</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Um einen Gegenstand zu fressen, muss man mit seinem Kern in Berührung kommen (ein paar Pixel reichen nicht aus). Es sollte daher sicher gestellt werden, dass der gewünschte Gegenstand auch tatsächlich gefressen wurde, bevor ein Richtungswechsel durchgeführt wird.</para
+></listitem>
+<listitem
+><para
+>In den unteren Ebenen können mit der <firstterm
+>Zusatzkost</firstterm
+> nicht viele Punkte gesammelt werden. Da sich hier die Geister nicht besonders schnell bewegen, sollte sich vielmehr auf diese konzentriert werden.</para
+></listitem>
+<listitem
+><para
+>Nach ungefähr zehn Ebenen bewegen sich die Geister schneller und die <firstterm
+>Zusatzkost</firstterm
+> ist ergiebiger. Daher sollte ab jetzt versucht werden, zunächst die <firstterm
+>Zusatzkost</firstterm
+> zu fressen. Ein <firstterm
+>Appetitanreger</firstterm
+> kann hierbei helfen, damit man nicht von den Geistern gestört wird.</para
+></listitem>
+<listitem
+><para
+>Gleichermaßen sollte zunächst ein <firstterm
+>Appetitanreger</firstterm
+> gefressen werden, bevor man sich an unsichere Stellen begibt (z. B. in die Nähe der <firstterm
+>Geisterkammer</firstterm
+>).</para
+></listitem>
+<listitem
+><para
+>Werden die Geister zu schnell, sollte vom Fressen der Geister in der nähe der <firstterm
+>Geisterkammer</firstterm
+> Abstand genommen werden, da sie schneller zurück kommen, als man denkt ...</para
+></listitem>
+<listitem
+><para
+>Manchmal sollte ein paar Sekunden an einer Stelle verweilt werden, damit die noch zu besuchenden Bereiche sicher erreicht werden können.</para
+></listitem>
+<listitem
+><para
+>Möglichkeiten zum <firstterm
+>Mogeln</firstterm
+> können im Quelltext gefunden werden. Es sollte jedoch Vorsicht walten: Beim <firstterm
+>Mogeln</firstterm
+> erfolgt kein Eintrag in die Bestenliste.</para
+></listitem>
+<listitem
+><para
+>Zu guter Letzt: Spaß haben!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Programmübersicht</title>
+<sect1 id="menu">
+<title
+>Menüeinträge</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Neu</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hiermit wird ein neues Spiel gestartet.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Bestenliste anzeigen</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hiermit wird die Bestenliste angezeigt.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Ebene wechseln</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hiermit wird der Dialog zur Auswahl der Ebene geöffnet. Es ist Vorsicht geboten: Beim Wechsel der aktuellen Ebene wird das Spiel als gemogelt bezeichnet und es kann kein Eintrag in der Bestenliste erfolgen.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Spiel</guimenu
+><guimenuitem
+>Beenden</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+>Hiermit wird &kapman; beendet.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>Klänge wiedergeben</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Hiermit wird eingestellt, ob die Klänge wiedergegeben werden.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guisubmenu
+>Schwierigkeitsgrad</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Stellt den Schwierigkeitsgrad des Spiels auf <guimenuitem
+>Einfach</guimenuitem
+>, <guimenuitem
+>Mittel</guimenuitem
+> oder <guimenuitem
+>Schwierig</guimenuitem
+></action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>Zusätzlich hat &kapman; die bekannten &kde;-Einträge im Menü <guimenu
+>Einstellungen</guimenu
+> und <guimenu
+>Hilfe</guimenu
+>, weitere Informationen dazu finden Sie in den Abschnitten über die Menüs <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Einstellungen</ulink
+> und <ulink url="help:/fundamentals/menus.html#menus-help"
+>Hilfe</ulink
+> der &kde;-Grundlagen. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Standardmäßige Tastaturbelegung</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Nach oben</action
+> - &Up;</para
+></listitem>
+<listitem
+><para
+><action
+>Nach unten</action
+> - &Down;</para
+></listitem>
+<listitem
+><para
+><action
+>Nach rechts</action
+> - &Right;</para
+></listitem>
+<listitem
+><para
+><action
+>Nach links</action
+> - &Left;</para
+></listitem>
+<listitem
+><para
+><action
+>Pause</action
+> - <keycap
+>P</keycap
+> oder &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Häufig gestellte Fragen</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Kann das Aussehen des Spiels verändert werden?</para>
+</question>
+<answer>
+<para
+>Das Design von &kapman; kann im Dialog <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kapman; einrichten</guimenuitem
+></menuchoice
+>  ausgewählt werden. Weitere Informationen hierzu können dem Abschnitt <link linkend="configuration"
+>Spieleinstellungen</link
+> entnommen werden.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Können Ebenen übersprungen werden?</para>
+</question>
+<answer>
+<para
+>Für den Wechsel der aktuellen Ebene gibt es zwei Möglichkeiten. In beiden Fällen wird man als <firstterm
+>Mogler</firstterm
+> bezeichnet und erhält keinen Eintrag in der Bestenliste. Die erste Möglichkeit ist die Eingabe eines - im Quellkode selbst zu findenden - Cheatkodes. Des Weiteren kann die gewünschte Ebene auch im Dialog <menuchoice
+><guimenu
+>Spiel</guimenu
+><guimenuitem
+>Ebene wechseln</guimenuitem
+></menuchoice
+> gewählt werden. Weitere Informationen hierzu können dem Abschnitt <link linkend="menu"
+>Menü</link
+> entnommen werden.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Können die voreingestellten Tastaturkürzel verändert werden?</para>
+</question>
+<answer>
+<para
+>Die Tastaturkürzel können derzeit noch nicht verändert werden, jedoch erfolgt die Integration in einer künftigen Version von &kapman;. Weitere Informationen zur akuellen Tastenbelegung können dem Abschnitt <link linkend="keybindings"
+>Standardmäßige Tastaturbelegung</link
+> entnommen werden.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Das Spiel muss unterbrochen werden - Kann es gespeichert werden?</para>
+</question>
+<answer>
+<para
+>Nein. Diese Funktion wurde absichtlich weggelassen, da das Spiel zu einfach sein würde, wenn es gespeichert und nach dem Verlust der Leben wieder geladen werden könnte.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Wie gibt es mehr Leben?</para>
+</question>
+<answer>
+<para
+>Es gibt zwei Möglichkeiten um an zusätzliche Leben zu kommen. Entweder durch <firstterm
+>Mogeln</firstterm
+> (selbst herausfinden) oder durch gesammelte Punkte (je 10.000 Punkte ein weiteres Leben). Weitere Informationen hierzu können dem Abschnitt <link linkend="rules"
+>Regeln</link
+> entnommen werden.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Spieleinstellungen</title>
+<para
+>Im Dialog <menuchoice
+><guimenu
+>Einstellungen</guimenu
+><guimenuitem
+>&kapman; einrichten </guimenuitem
+></menuchoice
+> kann das gewünschte Design gewählt werden. Nach dem Drücken auf <guibutton
+>Anwenden</guibutton
+> oder <guibutton
+>OK</guibutton
+> wird die getroffene Auswahl augenblicklich übernommen (es ist kein Neustart des Spiels erforderlich). Mit <guibutton
+>Voreinstellungen</guibutton
+> wird das standardmäßige Design wiederhergestellt. </para>
+<screenshot>
+<screeninfo
+>Der Einstellungsdialog von &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Der Einstellungsdialog von &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Danksagungen und Lizenz</title>
+<para
+>&kapman; </para>
+<para
+>Programm © 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Programm © 2008 Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Programm © 2008 Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Programm © 2008 Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Grafiken © 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Dokumentation © 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Übersetzung: Johannes Obermayr <email
+>johannesobermayr@gmx.de</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

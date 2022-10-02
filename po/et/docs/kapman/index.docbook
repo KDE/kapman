@@ -1,0 +1,632 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&kapman;">
+  <!ENTITY package "kdegames">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Estonian  "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>&kapman;i käsiraamat</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Marek</firstname
+> <surname
+>Laane</surname
+> <affiliation
+><address
+><email
+>bald@smail.ee</email
+></address
+></affiliation
+><contrib
+>Tõlge eesti keelde</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2013-05-05</date>
+<releaseinfo
+>1.0.1 (&kde; 4.11)</releaseinfo>
+
+<abstract>
+<para
+>&kapman; on tuntud mängu <application
+>Pac-Man</application
+> kloon.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>arkaadmäng</keyword>
+<keyword
+>üks mängija</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>tont</keyword>
+<keyword
+>kuulike</keyword>
+<keyword
+>energiakuulike</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Sissejuhatus</title>
+<note
+><title
+>Mängu tüüp:</title
+><para
+>arkaadmäng</para
+></note>
+<note
+><title
+>Mängijate arv:</title
+><para
+>Üks</para
+></note>
+<para
+>&kapman; on tuntud mängu <application
+>Pac-Man</application
+> kloon. Selles tuleb tasemeid läbida, põgenedes labürindis tontide eest. Kui tont su alla neelab, kaotad elu, kuid samas võid ka ise tondi mõneks hetkeks alla neelata, kui oled alla neelanud energiakuulikese. Punkte saab kuulikeste, energiakuulikeste ja boonuste allaneelamise eest ning iga 10 000 punkti kogumise järel saab juurde ühe elu. Kui oled tasemel alla neelanud kõik kuulikesed ja energiakuulikesed, liigud edasi järgmisele tasemele, kus nii mängija kui ka tontide kiirus suureneb. Mäng lõpeb, kui oled kaotanud kõik elud. </para>
+<screenshot>
+<screeninfo
+>&kapman;i ekraanipilt</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&kapman;i ekraanipilt</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Kuidas mängida</title>
+<note
+><title
+>Eesmärk:</title
+><para
+>läbida tasemed, neelates alla kõik kuulikesed ja energiakuulikesed.</para
+></note>
+<para
+>&kapman; laadib käivitamisel kohe esimese taseme. Mängu alustamiseks vajuta mõnda nooleklahvi. Ilma klahvi vajutamata liigud otse edasi. Suuna muutmiseks vajuta nooleklahvi. Pöörama ei peaks viimasel hetkel, vaid juba aegsasti ning niipea kui võimalik. Kuulikese, energiakuulikese, boonuse või isegi tondi allaneelamiseks peab nendega kokku puutuma. Kui kõik kuulikesed ja energiakuulikesed on alla neelatud, liigud edasi järgmisele tasemele. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Mängureeglid, strateegia ja nõuanded</title>
+<sect1 id="rules">
+<title
+>Reeglid</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Järgmisele tasemele jõudmiseks tuleb alla neelata kõik labürindis leiduvad kuulikesed ja energiakuulikesed.</para
+></listitem>
+<listitem
+><para
+>Boonus ilmub siis, kui oled alla neelanud 1/3 ja 2/3 kuulikestest ja energiakuulikestest. See kaob mõne sekundi pärast (10 sekundi pärast esimesel tasemel, hilisematel kiiremini), kui sa ei jõua seda alla neelata.</para
+></listitem>
+<listitem
+><para
+>Tasemete edenedes kasvab nii sinu kui ka tontide kiirus. Tonte on aga kindlasti rohkem ja nad on sinust kiiremad.</para
+></listitem>
+<listitem
+><para
+>Kui puutud tondiga kokku, kaotad elu ning pead taset uuesti alustama (eelnevalt alla neelatud kuulikesed ja energiakuulikesed ei taastu).</para
+></listitem>
+<listitem
+><para
+>Kui oled tondi nägemisulatuses, see tähendab teie vahel ei asu seina ja te mõlemad liigute ühes suunas, asub tont sind jälitama. Muidu liiguvad tondid üsna suvaliselt.</para
+></listitem>
+<listitem
+><para
+>Kui oled alla neelanud energiakuulikese, aeglustuvad tondid ja sa võid neid alla neelata. Kui neelad tondi alla, naaseb ta oma koju ja tavapärase käitumise juurde. Mõne sekundi pärast (10 sekundit esimesel tasemel, hiljem vähem) taastub nende tontide tavaline käitumine, keda sa ei ole jõudnud alla neelata.</para
+></listitem>
+<listitem
+><para
+>Allaneelamise eest saab punkte järgmiselt:</para>
+<table>
+<title
+>Elementide väärtused</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Kuulike</entry>
+<entry
+>10 punkti</entry>
+</row>
+<row>
+<entry
+>Energiakuulike</entry>
+<entry
+>30 punkti</entry>
+</row>
+<row>
+<entry
+>Boonus</entry>
+<entry
+>Aktiivne tase * 100 punkti</entry>
+</row>
+<row>
+<entry
+>Tont</entry>
+<entry
+>Sõltub tontide arvust, keda neelad alla pärast energiakuulikese allaneelamist: <itemizedlist>
+<listitem
+><para
+>Esimene tont: 100 punkti</para
+></listitem>
+<listitem
+><para
+>Teine tont: 200 punkti</para
+></listitem>
+<listitem
+><para
+>Kolmas tont: 400 punkti</para
+></listitem>
+<listitem
+><para
+>Neljas tont: 800 punkti</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Iga kogutud 10 000 punkti annab juurde ühe elu.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strateegia ja nõuanded</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Millegi allaneelamiseks tuleb sattuda kokkupuutesse selle keskpunktiga, mitte seda ainult riivata. Seepärast tasub alati kontrollida, et oled soovitu ikka alla neelanud, enne kui edasi liikuda.</para
+></listitem>
+<listitem
+><para
+>Esimestel tasemetel ei anna boonused just väga palju punkte ja tondid pole kuigi kiired, nii et tasuks keskenduda võimalikult paljude tontide allaneelamisele.</para
+></listitem>
+<listitem
+><para
+>Umbes kümnenda taseme paiku muutuvad tondid tunduvalt kiiremaks ja boonused annavad rohkem punkte, nii et tasuks igal juhul boonus alla neelata. Kui näed boonust, ära kõhkle alla neelamast energiakuulikest - ja ära lase ennast selle juures tontidest segada.</para
+></listitem>
+<listitem
+><para
+>Samuti tasuks kindlasti alla neelata energiakuulike, enne kui suundud mõnda ohtlikumasse kohta, näiteks tondi kodu lähedusse.</para
+></listitem>
+<listitem
+><para
+>Kui tondid on juba väga kiired, tasuks vältida nende allaneelamist nende kodu lähedal, sest sel juhul võivad nad loodetust kiiremini tagasi jõuda.</para
+></listitem>
+<listitem
+><para
+>Vajaduse korral oota rahulikult ühes kohas mitu sekundit, et tondid liiguksid võimalikult kaugemale kohast, kuhu soovid minna.</para
+></listitem>
+<listitem
+><para
+>Lähtekoodis leiab ka võimalusi petmiseks. Kuid pea meeles: kui saavutad rekordi petmise abil, ei registreerita seda.</para
+></listitem>
+<listitem
+><para
+>Ja lõpuks - naudi seda kõike!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Liidese tutvustus</title>
+<sect1 id="menu">
+<title
+>Menüükirjed</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mäng</guimenu
+> <guimenuitem
+>Uus</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Alustab uut mängu.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Mäng</guimenu
+><guimenuitem
+>Näita rekordeid</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab rekordite dialoogi.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Mäng</guimenu
+><guimenuitem
+>Muuda taset</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avab taseme muutmise dialoogi. Aga ole ettevaatlik: aktiivse taseme muutmine sunnib mängu arvama, et kavatsed petta, mistõttu ka rekordi püstitamise korral ei kanta seda edetabelisse.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Mäng</guimenu
+><guimenuitem
+>Välju</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Lõpetab</action
+> &kapman;i töö.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+>Helide esitamine</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Lülitab helide esitamise sisse või välja.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Seadistused</guimenu
+><guisubmenu
+>Raskusaste</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Võimaldab määrata mängu raskusastmeks <guimenuitem
+>Lihtne</guimenuitem
+>, <guimenuitem
+>Keskmine</guimenuitem
+> või <guimenuitem
+>Raske</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>Lisaks on &kapman;il tavapärased &kde; <guimenu
+>seadistuste</guimenu
+> ja <guimenu
+>abi</guimenu
+>menüü elemendid, mille kohta leiab rohkem teavet &kde; põhialuste käsiraamatu osadest <ulink url="help:/fundamentals/ui.html#menus-settings"
+>Menüü Seadistused</ulink
+> ja <ulink url="help:/fundamentals/ui.html#menus-help"
+>Menüü Abi</ulink
+>. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Vaikimisi kiirklahvid</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Pööramine üles</action
+> - <keysym
+>Nool üles</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Pööramine alla</action
+> - <keysym
+>Nool alla</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Pööramine paremale</action
+> - <keysym
+>Nool paremale</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Pööramine vasakule</action
+> - <keysym
+>Nool vasakule</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Paus</action
+> - <keycap
+>P</keycap
+> või &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Küsimused ja vastused</title>
+&reporting.bugs; &updating.documentation; <qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Ma soovin muuta mängu välimust. On see võimalik?</para>
+</question>
+<answer>
+<para
+>&kapman;i teema saab valida menüükäsuga <menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+>Kapmani seadistamine...</guimenuitem
+></menuchoice
+> Sellest kõneleb lähemalt peatükk <link linkend="configuration"
+>Mängu seadistamine</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Kas taset saab ka vahele jätta?</para>
+</question>
+<answer>
+<para
+>Aktiivset taset saab muuta kahel viisil. Mõlemal juhul peetakse sind petturiks ning mängu tulemust ei kanta edetabelisse. Esiteks võib kasutada vastavat koodi, mille leidmise jätan sinu enda ülesandeks. Teiseks saab taseme valida menüükäsuga <menuchoice
+><guimenu
+>Mäng</guimenu
+><guimenuitem
+>Muuda taset</guimenuitem
+></menuchoice
+>. Täpsemalt kõneleb sellest osa <link linkend="menu"
+>Menüüriba</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Kas vaikimisi kiirklahve saab muuta?</para>
+</question>
+<answer>
+<para
+>See ei ole veel võimalik, kuid mõnes &kapman;i tulevases versioonis võib see ka teoks saada. Täpsemalt kõneleb kiirklahvidest osa <link linkend="keybindings"
+>Vaikimisi kiirklahvid</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Ma pean mängust väljuma, aga mäng ei ole veel läbi. Kas ma saan oma seisu salvestada?</para>
+</question>
+<answer>
+<para
+>Ei ja see on teadlik otsus. Me arvame, et mäng oleks liiga lihtne, kui võiksid elude kaotamisel seda muudkui salvestada ja uuesti käivitada.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Kuidas elusid juurde saada?</para>
+</question>
+<answer>
+<para
+>Elusid saab juurde kahel viisil. Esiteks võib kasutada petmiskoodi, aga selle leidmise jätan juba sinu enda ülesandeks. Teiseks saab neid juurde punktide arvel. Iga 10 000 punkti eest saab ühe elu. Täpsemalt räägib sellest osa <link linkend="rules"
+>Reeglid</link
+>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Mängu seadistamine</title>
+<para
+>Sul on võimalik valida &kapman;i teema. Selleks vali menüükäsk <menuchoice
+><guimenu
+>Seadistused</guimenu
+><guimenuitem
+>Kapmani seadistamine...</guimenuitem
+></menuchoice
+> Selle peale ilmub &kapman;i seadistustedialoog, kus saabki teema valida. Teemat muudetakse otsekohe, selle rakendamiseks ei ole vaja mängu taaskäivitada. Vaikimisi teema taastamiseks klõpsa nupule <guibutton
+>Vaikeväärtused</guibutton
+>. </para>
+<screenshot>
+<screeninfo
+>&kapman;i seadistustedialoog</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>&kapman;i seadistustedialoog</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Autorid ja litsents</title>
+<para
+>&kapman; </para>
+<para
+>Rakenduse autoriõigus 2008: Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Rakenduse autoriõigus 2008: Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Rakenduse autoriõigus 2008: Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Rakenduse autoriõigus 2008: Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Graafika autoriõigus 2008: Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Dokumentatsiooni autoriõigus 2008: Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Tõlge eesti keelde: Marek Laane <email
+>bald@smail.ee</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Paigaldamine</title>
+
+&install.intro.documentation;
+
+<sect1 id="Compilation">
+<title
+>Kompileerimine ja paigaldamine</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

@@ -1,0 +1,634 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Brazilian-Portuguese "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>Manual do &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Paulo de</firstname
+><surname
+>Almeida</surname
+><affiliation
+><address
+><email
+>paulodealmeida@gmail.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>André Marcelo</firstname
+><surname
+>Alvarenga</surname
+><affiliation
+><address
+><email
+>alvarenga@kde.org</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>09/05/2016</date>
+<releaseinfo
+>1.1.0 (Applications 16.04)</releaseinfo>
+
+<abstract>
+<para
+>O &kapman; é um clone do famoso jogo <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>arcade</keyword>
+<keyword
+>um jogador</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>fantasma</keyword>
+<keyword
+>pílula</keyword>
+<keyword
+>energizante</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+<note
+><title
+>Tipo de jogo:</title
+><para
+>Arcade</para
+></note>
+<note
+><title
+>Número de jogadores possíveis:</title
+><para
+>Um</para
+></note>
+<para
+>O &kapman; é um clone do conhecido jogo <application
+>Pac-Man</application
+>. Você deve passear pelos níveis escapando dos fantasmas em um labirinto. Você perde uma vida quando um fantasma o apanha, mas terá alguns segundos para comer os fantasmas se pegar um energizante. Você ganha pontos quando come pílulas, energizantes e bônus, e ganha uma vida a cada 10.000 pontos. Quando você tiver comido todas as pílulas e energizantes de um nível, você vai para o próximo, e as velocidades do jogador e dos fantasmas aumentam. O jogo termina quando você perder todas as suas vidas. </para>
+<screenshot>
+<screeninfo
+>Uma imagem do &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Uma imagem do &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Como jogar</title>
+<note
+><title
+>Objetivo:</title
+><para
+>Passear pelos níveis comendo todas as pílulas e energizantes.</para
+></note>
+<para
+>O &kapman; irá carregar o primeiro nível quando você começar o jogo. Para iniciar o jogo, pressione as tecla direcionais do teclado. Você se move para frente sem pressionar qualquer tecla. Para virar, pressione uma das teclas direcionais. Você não deve virar no último momento, mas antecipar de modo a virar o mais depressa possível. Para comer uma pílula, um energizante, um bônus, ou mesmo um fantasma, você precisa tocá-los. Quando todas as pílulas e energizantes tiverem sido comidos, você passa para o próximo nível. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Regras do jogo, estratégias e dicas</title>
+<sect1 id="rules">
+<title
+>Regras</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Para passar ao próximo nível, você deve comer todas as pílulas e energizantes no labirinto.</para
+></listitem>
+<listitem
+><para
+>Um bônus aparece quando você tiver comido 1/3 e 2/3 das pílulas e energizantes. Ele desaparece após alguns segundos (10 segundos no primeiro nível, mas diminui à medida que avançar os níveis) se você não comê-lo.</para
+></listitem>
+<listitem
+><para
+>À medida que avançar os níveis, tanto a sua velocidade quanto a velocidade dos fantasmas aumenta. No entanto, os fantasmas serão cada vez mais rápidos que você.</para
+></listitem>
+<listitem
+><para
+>Se tocar em um fantasma, você perde uma vida e reinicia no nível atual (mas as pílulas e energizantes comidos não irão reaparecer).</para
+></listitem>
+<listitem
+><para
+>Se você está na linha de visão de um fantasma (ou seja: nenhum muro entre o você e o fantasma, e ambos indo na mesma direção), o fantasma irá caçar você. Caso contrário, os fantasmas têm um movimento aleatório.</para
+></listitem>
+<listitem
+><para
+>Quando você come um energizante, os fantasmas ficam lentos e você pode comê-los. Se você comer um fantasma, ele vai voltar para sua casa e ao seu comportamento normal. Após alguns segundos (10 segundos no primeiro nível, mas diminui à medida que avançar os níveis), os fantasmas que não tenham sido comidos voltam ao seu comportamento normal.</para
+></listitem>
+<listitem
+><para
+>Você ganha pontos ao comer um item:</para>
+<table>
+<title
+>Valor dos itens</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Pílula</entry>
+<entry
+>10 pontos</entry>
+</row>
+<row>
+<entry
+>Energizante</entry>
+<entry
+>20 pontos</entry>
+</row>
+<row>
+<entry
+>Bônus</entry>
+<entry
+>Nível atual * 100 pontos</entry>
+</row>
+<row>
+<entry
+>Fantasma</entry>
+<entry
+>Depende do número de fantasmas que você comeu durante o efeito do energizante: <itemizedlist>
+<listitem
+><para
+>1º fantasma: 100 pontos</para
+></listitem>
+<listitem
+><para
+>2º fantasma: 200 pontos</para
+></listitem>
+<listitem
+><para
+>3º fantasma: 400 pontos</para
+></listitem>
+<listitem
+><para
+>4º fantasma: 800 pontos</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Você ganha mais uma vida a cada 10.000 pontos.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Estratégias e dicas</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Para comer um item, você deve atingir o seu centro, e não só alguns pixels. Por isso, tenha certeza de que realmente comeu o que você queria, antes de voltar.</para
+></listitem>
+<listitem
+><para
+>Nos primeiros níveis, o bônus não gera muitos pontos e os fantasmas não são muito rápidos, por isso você deve se concentrar em comer o máximo de fantasmas que conseguir.</para
+></listitem>
+<listitem
+><para
+>Após aproximadamente dez níveis, os fantasmas são mais rápidos e o bônus gera mais pontos, então você deve tentar comer o bônus sempre que possível. Não hesite em comer um energizante quando você ver o bônus, para não ser perturbado pelos fantasmas.</para
+></listitem>
+<listitem
+><para
+>Da mesma forma, você deve tentar comer um energizante antes de ir para os lugares perigosos (como perto da casa fantasma).</para
+></listitem>
+<listitem
+><para
+>Quando os fantasmas estiverem muito rápidos, você deve evitar comê-los se estiver perto da casa deles. Eles podem voltar mais rápido do que você pensa.</para
+></listitem>
+<listitem
+><para
+>Não hesite em permanecer no mesmo lugar por alguns segundos, esperando os fantasmas irem para longe do lugar onde você precisa ir.</para
+></listitem>
+<listitem
+><para
+>Você pode encontrar códigos de trapaça a partir do código-fonte. Mas cuidado: se você fizer uma nova pontuação elevada e estiver trapaceando, sua pontuação mais alta não será registrada.</para
+></listitem>
+<listitem
+><para
+>E por último: divirta-se!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Apresentação da interface</title>
+<sect1 id="menu">
+<title
+>Itens dos menus</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Novo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Inicia um novo jogo.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mostrar recordes</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Exibe o diálogo dos recordes.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mudar de nível</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Abre a janela de seleção de nível. Tenha cuidado: Alterar o nível atual fará o jogo considerá-lo um trapaceiro, portanto, você não será capaz de registrar na tabela de pontos.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+><guimenu
+>Jogo</guimenu
+><guimenuitem
+>Sair</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Sai</action
+> do &kapman;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+><guimenuitem
+>Reproduzir sons</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Reproduz sons ou fica em silêncio.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configurações</guimenu
+><guisubmenu
+>Dificuldade</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Ajusta a dificuldade do jogo para <guimenuitem
+>Fácil</guimenuitem
+>, <guimenuitem
+>Médio</guimenuitem
+> ou <guimenuitem
+>Difícil</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>O &kapman; possui os itens de menu normais do &kde; para a <guimenu
+>Configurações</guimenu
+> e <guimenu
+>Ajuda</guimenu
+>; para mais informações, leia as seções sobre o <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Configurações</ulink
+> e o <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Ajuda</ulink
+> dos Fundamentos do &kde;. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Atalhos de teclado padrão</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Virar para cima</action
+> - <keysym
+>Seta para cima</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Virar para baixo</action
+> - <keysym
+>Seta para baixo</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Virar à direita</action
+> - <keysym
+>Seta para direita</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Virar à esquerda</action
+> - <keysym
+>Seta para esquerda</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Pausar</action
+> - <keycap
+>P</keycap
+> ou &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Perguntas e respostas</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Eu quero alterar o visual do jogo. Como faço isso?</para>
+</question>
+<answer>
+<para
+>Você pode selecionar um tema para o &kapman; em <menuchoice
+><guimenu
+>Configurações</guimenu
+><guimenuitem
+>Configurar o Kapman...</guimenuitem
+></menuchoice
+>. Veja o capítulo <link linkend="configuration"
+>Configuração do jogo</link
+> para mais detalhes.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso pular um nível?</para>
+</question>
+<answer>
+<para
+>Existem dois modos de alterar o nível atual. Em ambos, você será considerado um trapaceador e não poderá registrar suas pontuações nos recordes. O primeiro modo é usando um código. Este eu deixo para você descobrir. O outro modo é selecionando o nível que você quer na página <menuchoice
+><guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mudar de nível</guimenuitem
+></menuchoice
+>. Veja a seção <link linkend="menu"
+>Barra de menus</link
+> para mais detalhes.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso alterar os atalhos de teclado padrão?</para>
+</question>
+<answer>
+<para
+>Atualmente não é possível, mas será um novo recurso em uma versão futura do &kapman;. Veja a seção <link linkend="keybindings"
+>Atalhos de teclado padrão</link
+> para mais detalhes.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Preciso sair do jogo agora, mas eu ainda não terminei. Posso salvar meu progresso?</para>
+</question>
+<answer>
+<para
+>Você não pode, e isto foi decidido desta forma. Pensamos que seria muito fácil se você pudesse salvar o jogo e recuperá-lo caso perdesse vidas.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Como posso obter mais vidas?</para>
+</question>
+<answer>
+<para
+>Existem duas formas de ganhar vidas. A primeira é usando um código de trapaça. Este eu deixo para você descobrir. O outro modo é ganhando pontos. A cada 10.000 pontos você ganha mais uma vida. Veja a seção <link linkend="rules"
+>Regras</link
+> para mais detalhes.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Configuração do jogo</title>
+<para
+>Você pode selecionar o tema que deseja para jogar o &kapman;. Para fazer isto, selecione <menuchoice
+><guimenu
+>Configurações</guimenu
+><guimenuitem
+>Configurar o Kapman...</guimenuitem
+></menuchoice
+>. A página de configuração do &kapman; (veja abaixo) irá aparecer e você poderá selecionar o tema. Ele é imediatamente alterado de acordo com a sua escolha, sem precisar reiniciar o jogo. Você pode clicar no botão <guibutton
+>Padrões</guibutton
+> para restaurar o tema padrão. </para>
+<screenshot>
+<screeninfo
+>Página de configuração do &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>A página de configuração do &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Créditos e Licença</title>
+<para
+>&kapman; </para>
+<para
+>Direitos autorais do programa 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Direitos autorais do programa 2008 Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Direitos autorais do programa 2008 Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Direitos autorais do programa 2008 Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Direitos autorais dos gráficos 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Direitos autorais da documentação 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Tradução de Paulo de Almeida <email
+>paulodealmeida@gmail.com</email
+> e André Marcelo Alvarenga <email
+>alvarenga@kde.org</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

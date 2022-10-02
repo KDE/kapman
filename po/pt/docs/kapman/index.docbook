@@ -1,0 +1,750 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kappname "&kapman;">
+  <!ENTITY package "kdegames">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Portuguese "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>O Manual do &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>José</firstname
+><surname
+>Pires</surname
+><affiliation
+><address
+><email
+>zepires@gmail.com</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2008-09-30</date>
+<releaseinfo
+>1.0</releaseinfo>
+
+<abstract>
+<para
+>O &kapman; é um clone do famoso jogo <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>arcada</keyword>
+<keyword
+>um jogador</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>fantasma</keyword>
+<keyword
+>pílula</keyword>
+<keyword
+>energia</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introdução</title>
+<note
+><title
+>Tipo de jogo:</title
+><para
+>Arcada</para
+></note>
+<note
+><title
+>Número de jogadores possíveis:</title
+><para
+>Um</para
+></note>
+<para
+>O &kapman; é um clone do conhecido jogo <application
+>Pac-Man</application
+>. Deverá percorrer os níveis de um labirinto, à medida que foge dos fantasmas. Irá perder uma vida quando um fantasma o apanhar; por outro lado, poderá comer os fantasmas durante alguns segundos se tiver apanhado um item de energia. Irá ganhar pontos ao apanhar pílulas, itens de energia e bónus, assim como irá ganhar uma vida a cada 10 000 pontos. Quando tiver apanhado todas as pílulas e itens de energia de um nível, irá passar ao seguinte, onde as velocidades do jogador e dos fantasmas irá aumentar. O jogo termina quando tiver perdido todas as suas vidas. </para>
+<screenshot>
+<screeninfo
+>Uma imagem do &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Uma imagem do &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Como Jogar</title>
+<note
+><title
+>Objectivo:</title
+><para
+>Siga pelos níveis, comendo todas as pílulas e itens de energia pelo caminho.</para
+></note>
+<para
+>O &kapman; irá carregar o primeiro nível quando iniciar o jogo. Para o iniciar de facto, carregue numa tecla de cursor. Irá seguir logo em frente sem carregar em qualquer tecla. Para virar, pressione uma tecla de cursor. Não deverá virar no último momento, mas sim antecipar de modo a virar o mais depressa possível. Para comer uma pílula, um item de energia, um bónus ou mesmo um fantasma, deverá entrar em contacto com o mesmo. Quando todas as pílulas e itens de energia tiverem sido comidos, irá passar para o nível seguinte. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Regras do Jogo, Estratégias e Sugestões</title>
+<sect1 id="rules">
+<title
+>Regras</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Para passar ao nível seguinte, deverá comer todas as pílulas e itens de energia do labirinto.</para
+></listitem>
+<listitem
+><para
+>Aparecerá um bónus quando tiver comido 1/3 e 2/3 das pílulas e itens de energia. O mesmo desaparece ao fim de alguns segundos (10 segundos no primeiro nível, embora decresça à medida que o nível avance) se não o tiver comido.</para
+></listitem>
+<listitem
+><para
+>À medida que o nível avance, tanto a sua velocidade como a dos fantasmas aumenta. Contudo, os fantasmas ficarão cada vez mais rápidos que você.</para
+></listitem>
+<listitem
+><para
+>Se tocar nalgum fantasma, irá perder uma vida e o nível actual é reiniciado (mas as pílulas e itens de energia comidos não voltarão a aparecer).</para
+></listitem>
+<listitem
+><para
+>Se estiver em linha de vista com um fantasma (isto é : sem paredes entre o fantasma, e se forem na mesma direcção), o fantasma caçá-lo-á. Caso contrário, os fantasmas terão um movimento aleatório.</para
+></listitem>
+<listitem
+><para
+>Quando apanha um item de energia, os fantasmas tornam-se mais lentos para que os possa capturar. Se apanhar um, este voltará para a sua casa e com o seu comportamento normal. Ao fim de alguns segundos (10 segundos no primeiro nível, mas decrescente à medida que os níveis avançam), os fantasmas que não tiverem sido comidos irão voltar ao seu comportamento normal.</para
+></listitem>
+<listitem
+><para
+>O jogador ganha pontos ao comer um item:</para>
+<table>
+<title
+>Valores dos itens</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Pílula</entry>
+<entry
+>10 pontos</entry>
+</row>
+<row>
+<entry
+>Energia</entry>
+<entry
+>20 pontos</entry>
+</row>
+<row>
+<entry
+>Bónus</entry>
+<entry
+>Nível actual * 100 pontos</entry>
+</row>
+<row>
+<entry
+>Fantasma</entry>
+<entry
+>Depende do número de fantasmas que comeu desde que apanhou o último item de energia: <itemizedlist>
+<listitem
+><para
+>1o fantasma: 100 pontos</para
+></listitem>
+<listitem
+><para
+>2o fantasma: 200 pontos</para
+></listitem>
+<listitem
+><para
+>3o fantasma: 400 pontos</para
+></listitem>
+<listitem
+><para
+>4o fantasma: 800 pontos</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Irá obter mais uma vida a cada 10 000 pontos que ganhar.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Estratégias e Dicas</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Para comer um item, deverá atingir o seu centro e não apenas uma parte dele. Por isso, certifique-se que realmente comeu o que desejava antes de voltar para trás.</para
+></listitem>
+<listitem
+><para
+>Nos primeiros níveis, o bónus não gera muitos pontos e os fantasmas também não são muito rápidos, pelo que se deverá concentrar em comer o máximo de fantasmas que conseguir.</para
+></listitem>
+<listitem
+><para
+>Ao fim de cerca de dez níveis, os fantasmas são mais rápidos e o bónus gera mais pontos, pelo que deverá tentar apanhar o bónus sempre que possível. Não hesite em comer um item de energia quando puder ver o bónus, de modo a não ser incomodado pelos fantasmas.</para
+></listitem>
+<listitem
+><para
+>Da mesma forma, deverá tentar comer um item de energia antes de ir para os locais perigosos (como a proximidade da casa dos fantasmas).</para
+></listitem>
+<listitem
+><para
+>Quando os fantasmas forem demasiado rápidos, deverá evitar comê-los perto da sua casa. Eles poderão voltar mais depressa do que pensa.</para
+></listitem>
+<listitem
+><para
+>Não hesite em ficar no mesmo lugar durante alguns segundos, à espera que os fantasmas se afastem do local onde precisa de ir.</para
+></listitem>
+<listitem
+><para
+>Poderá encontrar códigos de batota a partir do código-fonte. Contudo, tenha cuidado: se tiver um novo recorde mas se tiver feito batota, o seu recorde não será registado.</para
+></listitem>
+<listitem
+><para
+>Por último: Divirta-se !</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Apresentação à Interface</title>
+<sect1 id="menubar">
+<title
+>Barra de Menu</title>
+<sect2>
+<title
+>O Menu <guimenu
+>Jogo</guimenu
+></title>
+<para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Novo</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Inicia um novo jogo.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mostrar os Recordes</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Invoca a janela de recordes.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mudar de Nível</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Invoca a janela de selecção dos níveis. Tenha cuidado: se mudar o nível actual, o jogo considerá-lo-á um batoteiro, pelo que não irá aparecer registado na tabela de recordes.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Jogo</guimenu
+><guimenuitem
+>Sair</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Sai</action
+> do &kapman;.</para
+></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title
+>O Menu <guimenu
+>Configuração</guimenu
+></title>
+<para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Tocar os Sons</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Reproduz os sons ou fica em silêncio.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Mostrar a Barra de Estado</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Mostra ou esconde a barra de ferramentas.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guisubmenu
+>Dificuldade</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Ajusta a dificuldade do jogo.</action
+></para>
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guisubmenu
+>Dificuldade</guisubmenu
+><guimenuitem
+>Fácil</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guisubmenu
+>Dificuldade</guisubmenu
+><guimenuitem
+>Médio</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guisubmenu
+>Dificuldade</guisubmenu
+><guimenuitem
+>Difícil</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+></para
+></listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Configurar os Atalhos...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Invoca o utilitário de configuração dos atalhos.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Configurar as Barras de Ferramentas...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Invoca o utilitário de configuração das barras de ferramentas.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Configurar o Kapman...</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Invoca o utilitário de configuração do &kapman;.</action
+></para
+></listitem>
+</varlistentry>
+</variablelist>
+</para>
+</sect2>
+<sect2>
+<title
+>O Menu <guimenu
+>Ajuda</guimenu
+></title>
+&help.menu.documentation; </sect2>
+</sect1>
+<sect1 id="keybindings">
+<title
+>Atalhos de Teclado por Omissão</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Ir para cima</action
+> - <keysym
+>Cima</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Ir para baixo</action
+> - <keysym
+>Baixo</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Ir para a direita</action
+> - <keysym
+>Direita</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Ir para a esquerda</action
+> - <keysym
+>Esquerda</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Pausa</action
+> - <keycap
+>P</keycap
+> ou &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Perguntas e Respostas</title>
+&reporting.bugs; &updating.documentation; <qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Quero alterar a forma como este jogo aparece. Posso fazê-lo?</para>
+</question>
+<answer>
+<para
+>Poderá seleccionar o tema do &kapman; na janela em <menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Configurar o Kapman...</guimenuitem
+></menuchoice
+>. Veja o capítulo <link linkend="configuration"
+>Configuração do Jogo</link
+> para saber mais detalhes.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso saltar um nível?</para>
+</question>
+<answer>
+<para
+>Existem duas formas de alterar o nível actual. Em ambos os casos, será considerado um batoteiro, pelo que não irá conseguir registar-se nos recordes. A primeira forma é usar um código de batota. A forma de obter fica ao critério do jogador. A outra forma é seleccionar o nível que deseja na janela em <menuchoice
+><guimenu
+>Jogo</guimenu
+><guimenuitem
+>Mudar o Nível</guimenuitem
+></menuchoice
+>. Veja a secção do <link linkend="menubar"
+>Menu</link
+> para saber mais detalhes.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso alterar os atalhos de teclado predefinidos?</para>
+</question>
+<answer>
+<para
+>Não é possível por agora. Contudo, será uma funcionalidade nova numa versão futura do &kapman;. Veja a secção de <link linkend="keybindings"
+>Atalhos Predefinidos</link
+> para saber mais detalhes.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Tenho de sair do jogo agora, mas ainda não terminei. Posso gravar a minha situação actual?</para>
+</question>
+<answer>
+<para
+>Não pode, de forma deliberada. Desse modo, seria demasiado fácil se pudesse gravar o jogo e carregá-lo de novo caso perdesse vidas.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Como posso obter mais vidas?</para>
+</question>
+<answer>
+<para
+>Existem duas formas de obter vidas. A primeira é usando um código de batota. A forma de o obter fica ao critério do jogador. A outra forma é ganhando pontos. A cada 10 000 pontos, irá obter uma vida extra. Veja a secção de <link linkend="rules"
+>Regras</link
+> para saber mais detalhes.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Configuração do Jogo</title>
+<para
+>Poderá seleccionar o tema que deseja para jogar o &kapman;. Para o fazer, seleccione a opção do menu <menuchoice
+><guimenu
+>Configuração</guimenu
+><guimenuitem
+>Configurar o Kapman...</guimenuitem
+></menuchoice
+>. A janela de configuração do &kapman; (ver em baixo) irá aparecer e nela poderá seleccionar o tema. Poderá carregar no botão de <guibutton
+>Predefinições</guibutton
+> para repor o tema por omissão. </para>
+<screenshot>
+<screeninfo
+>A janela de configuração do &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>A janela de configuração do &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Créditos e Licença</title>
+<para
+>&kapman; </para>
+<para
+>Programa com 'copyright' 2008 de Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Programa com 'copyright' 2008 de Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Programa com 'copyright' 2008 de Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Programa com 'copyright 2008' de Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Imagens com 'copyright' 2008 de Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Documentação com 'copyright' 2008 de Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Tradução de José Nuno Pires <email
+>zepires@gmail.com</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+<appendix id="installation">
+<title
+>Instalação</title>
+
+&install.intro.documentation;
+
+<sect1 id="Compilation">
+<title
+>Compilação e Instalação</title>
+&install.compile.documentation; </sect1>
+</appendix>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

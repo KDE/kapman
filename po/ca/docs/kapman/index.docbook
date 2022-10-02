@@ -1,0 +1,594 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>El manual del &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+&traductor.Antoni.Bella; 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>4 de juny de 2021</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>El &kapman; és un clon del conegut joc <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>arcade</keyword>
+<keyword
+>un jugador</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>fantasma</keyword>
+<keyword
+>píndola</keyword>
+<keyword
+>energitzant</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introducció</title>
+<note
+><title
+>Tipus de joc:</title
+><para
+>Arcade</para
+></note>
+<note
+><title
+>Nombre de possibles jugadors:</title
+><para
+>Un</para
+></note>
+<para
+>El &kapman; és un clon del conegut joc <application
+>Pac-Man</application
+>. Haureu de travessar els nivells escapant dels fantasmes en un laberint. Perdreu una vida quan un fantasma us mengi, però podeu menjar-vos els fantasmes durant alguns segons quan us mengeu un energitzant. Guanyareu punts quan us mengeu les pastilles, els energitzants i les bonificacions, i guanyareu una vida per cada 10.000 punts. Quan us hàgiu menjat totes les píndoles i els energitzants d'un nivell, passareu al nivell següent i augmentarà la velocitat del jugador i del fantasma. El joc finalitzarà quan hàgiu perdut totes les vides. </para>
+<screenshot>
+<screeninfo
+>Una captura de pantalla del &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Una captura de pantalla del &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Com jugar</title>
+<note
+><title
+>Objectiu:</title
+><para
+>Aneu a través dels nivells menjant totes les píndoles i els energitzants.</para
+></note>
+<para
+>El &kapman; carregarà el nivell u una vegada inicieu el joc. Per a iniciar-lo, premeu una tecla de fletxa. Sense prémer cap tecla avançareu en línia recta. Per a girar, premeu una tecla de fletxa. No s'ha de girar en l'últim moment, sinó anticipar i girar tan aviat com es pugui. Per a menjar una pastilla, un energitzant, una bonificació o fins i tot un fantasma, haureu de contactar-hi. Quan s'hagin menjat totes les píndoles i els energitzants, passareu al nivell següent. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Les regles del joc, estratègies i consells</title>
+<sect1 id="rules">
+<title
+>Regles</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Per a passar al nivell següent, haureu de menjar-vos totes les píndoles i els energitzants del laberint.</para
+></listitem>
+<listitem
+><para
+>Apareixerà una bonificació quan hàgiu menjat 1/3 i 2/3 de les píndoles i dels energitzants. Si no l'heu menjat, desapareixerà pocs segons després (10 segons en el primer nivell, però disminuirà a mesura que pugeu de nivell).</para
+></listitem>
+<listitem
+><para
+>A mesura que pugeu de nivell, tant la vostra velocitat com la velocitat dels fantasmes augmentarà. No obstant això, els fantasmes seran cada vegada més ràpids que vosaltres.</para
+></listitem>
+<listitem
+><para
+>Si contacteu amb un fantasma, perdreu una vida i el nivell actual es reiniciarà (però les píndoles i l'energitzant menjats no tornaran a aparèixer).</para
+></listitem>
+<listitem
+><para
+>Si esteu en la línia de visió d'un fantasma (és a dir: no hi ha cap mur entre el fantasma i ambdós aneu en la mateixa direcció), el fantasma us caçarà. Altrament, els fantasmes tenen un moviment aleatori.</para
+></listitem>
+<listitem
+><para
+>Quan mengeu un energitzant, els fantasmes disminuiran la velocitat i podreu menjar-vos-els. Si mengeu un fantasma, aquest tornarà a casa seva i al seu comportament normal passats alguns segons (10 segons en el primer nivell, però anirà disminuint a mesura que augmenti el nivell), els fantasmes que no han estat menjats tornaran al seu comportament normal.</para
+></listitem>
+<listitem
+><para
+>Guanyareu punts en menjar un element:</para>
+<table>
+<title
+>Valors dels elements</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Píndola</entry>
+<entry
+>10 punts</entry>
+</row>
+<row>
+<entry
+>Energitzant</entry>
+<entry
+>20 punts</entry>
+</row>
+<row>
+<entry
+>Bonificació</entry>
+<entry
+>Nivell actual * 100 punts</entry>
+</row>
+<row>
+<entry
+>Fantasma</entry>
+<entry
+>Depèn de la quantitat de fantasmes que us hàgiu menjat des que vàreu menjar l'últim energitzant: <itemizedlist>
+<listitem
+><para
+>1r fantasma: 100 punts</para
+></listitem>
+<listitem
+><para
+>2n fantasma: 200 punts</para
+></listitem>
+<listitem
+><para
+>3r fantasma: 400 punts</para
+></listitem>
+<listitem
+><para
+>4t fantasma: 800 punts</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Obtindreu una vida més per cada 10.000 punts que guanyeu.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Les estratègies i consells</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Per a menjar-vos un element, haureu de tocar-lo amb el seu centre, no només amb uns pocs píxels. De manera que assegureu-vos d'haver-vos menjat realment el que volíeu, abans de tornar enrere.</para
+></listitem>
+<listitem
+><para
+>En els primers nivells, la bonificació no farà gaires punts i els fantasmes no són gaire ràpids, per la qual cosa haureu de concentrar-vos en menjar la quantitat més gran de fantasmes que pugueu.</para
+></listitem>
+<listitem
+><para
+>Després d'uns deu nivells, els fantasmes són més ràpids i la bonificació generarà més punts, de manera que haureu d'intentar menjar la bonificació quan sigui possible. No dubteu a menjar un energitzant quan estigui a mà, per a no ser molestat pels fantasmes.</para
+></listitem>
+<listitem
+><para
+>De la mateixa manera, haureu d'intentar menjar un energitzant abans d'anar als llocs perillosos (com prop de la casa dels fantasmes).</para
+></listitem>
+<listitem
+><para
+>Quan els fantasmes siguin massa ràpids, haureu d'evitar menjar-vos-els si esteu a prop de casa seva. Podrien anar enrere més ràpid del que creieu.</para
+></listitem>
+<listitem
+><para
+>No dubteu a quedar-vos en el mateix lloc uns quants segons, esperant que els fantasmes s'allunyin del lloc al qual heu d'anar.</para
+></listitem>
+<listitem
+><para
+>En el codi font trobareu codis de trucs. Però aneu amb compte: si obteniu una puntuació alta però heu fet trampa, aquesta puntuació més alta no s'enregistrarà.</para
+></listitem>
+<listitem
+><para
+>Finalment, però no menys important: Divertiu-vos!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Resum de la interfície</title>
+<sect1 id="menu">
+<title
+>Elements de menú</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Nova</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Comença una partida nova.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Mostra les puntuacions</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre el diàleg de les puntuacions més altes.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Joc</guimenu
+><guimenuitem
+>Canvia el nivell</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Obre el diàleg de selecció de nivell. Compte: canviar el nivell actual farà que el joc us consideri un trampós, de manera que no podreu enregistrar-ho a la taula de puntuacions altes.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+> </shortcut
+> <guimenu
+>Joc</guimenu
+> <guimenuitem
+>Surt</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Surt</action
+> del &kapman;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guimenuitem
+>Reprodueix els sons</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Reprodueix els sons o silencia.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Arranjament</guimenu
+> <guisubmenu
+>Dificultat</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Ajusta la dificultat del joc a <guimenuitem
+>Fàcil</guimenuitem
+>, <guimenuitem
+>Mitjana</guimenuitem
+> o <guimenuitem
+>Difícil</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>De manera addicional, el &kapman; té la configuració comuna al &kde; i els elements dels menús <guimenu
+>Arranjament</guimenu
+> i <guimenu
+>Ajuda</guimenu
+>. Per a obtenir més informació, llegiu les seccions sobre <ulink url="help:/fundamentals/menus.html#menus-settings"
+>El menú Arranjament</ulink
+> i <ulink url="help:/fundamentals/menus.html#menus-help"
+>El menú Ajuda</ulink
+> en els Fonaments del &kde;. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Dreceres predeterminades</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Anar amunt</action
+> - &Up;</para
+></listitem>
+<listitem
+><para
+><action
+>Anar avall</action
+> - &Down;</para
+></listitem>
+<listitem
+><para
+><action
+>Anar a la dreta</action
+> - &Right;</para
+></listitem>
+<listitem
+><para
+><action
+>Anar a l'esquerra</action
+> - &Left;</para
+></listitem>
+<listitem
+><para
+><action
+>Fer una pausa</action
+> - <keycap
+>P</keycap
+> o &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Preguntes i respostes</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Vull canviar l'aparença d'aquest joc. Puc fer-ho?</para>
+</question>
+<answer>
+<para
+>Podeu seleccionar el tema del &kapman; en el diàleg <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura el &kapman;...</guimenuitem
+></menuchoice
+>. Per a més detalls, vegeu el capítol <link linkend="configuration"
+>Configuració del joc</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Puc saltar-me un nivell?</para>
+</question>
+<answer>
+<para
+>Hi ha dues maneres de canviar el nivell actual. En ambdós casos, se us considerarà un trampós i no podreu enregistrar les puntuacions més altes. La primera manera és emprar un codi de truc. Deixo que el trobeu. L'altra manera és seleccionar el nivell que voleu en el diàleg <menuchoice
+><guimenu
+>Joc</guimenu
+><guimenuitem
+>Canvia el nivell</guimenuitem
+></menuchoice
+>. Per a més detalls, vegeu <link linkend="menu"
+>Barra de menús</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Puc canviar les dreceres de teclat predeterminades?</para>
+</question>
+<answer>
+<para
+>No, per ara no és possible. Però serà una característica nova en una versió futura del &kapman;. Per a més detalls, vegeu <link linkend="keybindings"
+>Dreceres predeterminades</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>He de sortir del joc ara, però encara no he acabat. Puc desar el meu progrés?</para>
+</question>
+<answer>
+<para
+>No es pot, i això és deliberat. Creiem que el joc seria massa fàcil si el poguéssiu desar i tornar a carregar a mesura que perdeu vides.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Com puc aconseguir més vides?</para>
+</question>
+<answer>
+<para
+>Hi ha dues maneres d'aconseguir vides. La primera és fer servir un codi de truc. Et deixo trobar-lo. L'altra manera és guanyar punts. Cada 10.000 punts, obtindreu una vida més. Per a més detalls, vegeu la secció <link linkend="rules"
+>Regles</link
+>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Configuració del joc</title>
+<para
+>Al &kapman; podreu seleccionar el tema amb el qual voleu jugar. Per a fer-ho, seleccioneu <menuchoice
+><guimenu
+>Arranjament</guimenu
+><guimenuitem
+>Configura el &kapman;...</guimenuitem
+></menuchoice
+>. Apareixerà el diàleg de configuració del &kapman; (vegeu a sota) i després podreu seleccionar el tema. Es canviarà immediatament en validar la vostra elecció, no cal reiniciar el joc. Podeu fer clic al botó &nbsp;<guibutton
+>Per omissió</guibutton
+> per a restaurar el tema predeterminat. </para>
+<screenshot>
+<screeninfo
+>El diàleg de configuració del &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>El diàleg de configuració del &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Crèdits i llicència</title>
+<para
+>&kapman; </para>
+<para
+>Copyright del programa 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Copyright del programa 2008 Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Copyright del programa 2008 Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Copyright del programa 2008 Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Copyright dels gràfics 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Copyright de la documentació 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Traductor de la documentació: &credits.Antoni.Bella;</para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

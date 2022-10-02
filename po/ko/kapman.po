@@ -1,0 +1,215 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Shinjo Park <kde@peremen.name>, 2011, 2014, 2015, 2020, 2021, 2022.
+#
+# bong, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-08 00:43+0000\n"
+"PO-Revision-Date: 2022-07-13 14:14+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "강지윤,강동인,김봉상,김정민,정재훈"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr ""
+"ggwldbs@gmail.com,k.bongsang@gmail.com,xespri@gmail.com,kid0307@gmail.com,"
+"gnsdlrk12@gmail.com"
+
+#: gamescene.cpp:90
+#, kde-format
+msgid "GET READY!!!"
+msgstr "준비~~!!!!"
+
+#: gamescene.cpp:94
+#, kde-format
+msgid "Press any arrow key to start"
+msgstr "화살표 방향키 아무거나 누르세요"
+
+#: gamescene.cpp:104
+#, kde-format
+msgid "PAUSED"
+msgstr "일시 정지"
+
+#: gamescene.cpp:228
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level %1"
+msgstr "레벨 %1"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: kapman.kcfg:9
+#, kde-format
+msgid "The graphical theme to be used."
+msgstr "사용할 그래픽 테마입니다."
+
+#. i18n: ectx: label, entry (Sounds), group (General)
+#: kapman.kcfg:13
+#, kde-format
+msgid "Whether sound effects should be played."
+msgstr "사운드 효과를 사용할지 여부입니다."
+
+#: kapmanmainwindow.cpp:66
+#, kde-format
+msgid "&Play Sounds"
+msgstr "소리 재생(&P)"
+
+#: kapmanmainwindow.cpp:70
+#, kde-format
+msgid "&Change Level"
+msgstr "레벨 선택(&C)"
+
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:248
+#, kde-format
+msgctxt "Used to display the current level of play to the user"
+msgid "Level: %1"
+msgstr "레벨: %1"
+
+#: kapmanmainwindow.cpp:77 kapmanmainwindow.cpp:253
+#, kde-format
+msgctxt "Used to inform the user of their current score"
+msgid "Score: %1"
+msgstr "점수: %1"
+
+#: kapmanmainwindow.cpp:79 kapmanmainwindow.cpp:258
+#, kde-format
+msgctxt "Used to tell the user how many lives they have left"
+msgid "Lives: %1"
+msgstr "생명: %1"
+
+#: kapmanmainwindow.cpp:140
+#, kde-format
+msgid "Are you sure you want to quit the current game?"
+msgstr "현재 게임을 끝내시겠습니까?"
+
+#: kapmanmainwindow.cpp:141
+#, kde-format
+msgctxt "@title:window"
+msgid "New Game"
+msgstr "새 게임"
+
+#: kapmanmainwindow.cpp:142
+#, kde-format
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "게임 끝내기"
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Your score is %1 point."
+msgid_plural "Your score is %1 points."
+msgstr[0] "당신의 점수는 %1점 입니다."
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Game Over"
+msgstr "게임 오버"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "You cheated, no Highscore for you ;)"
+msgstr "치트키를 쓸 경우 높은 점수를 얻을 수 없습니다. ;)"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "Cheater!"
+msgstr "사기꾼!"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgid "Change Level"
+msgstr "레벨 변경"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level"
+msgstr "레벨"
+
+#: kapmanmainwindow.cpp:233
+#, kde-format
+msgid "Are you sure you want to quit Kapman?"
+msgstr "Kapman을 종료하시겠습니까?"
+
+#: kapmanmainwindow.cpp:234
+#, kde-format
+msgctxt "To quit Kapman"
+msgid "Quit"
+msgstr "끝내기"
+
+#: main.cpp:35
+#, kde-format
+msgid "Kapman"
+msgstr "Kapman"
+
+#: main.cpp:37
+#, kde-format
+msgid "Kapman: Go through the levels escaping ghosts!"
+msgstr "Kapman: 레벨을 통과하려면 고스트를 피해 탈출하세요!"
+
+#: main.cpp:39
+#, kde-format
+msgid "Copyright (c) 2007-2008 The KapTeam"
+msgstr "Copyright (c) 2007-2008 The KapTeam"
+
+#: main.cpp:43
+#, kde-format
+msgid "Alexandre Galinier"
+msgstr "Alexandre Galinier"
+
+#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#, kde-format
+msgid "Developer"
+msgstr "개발자"
+
+#: main.cpp:44
+#, kde-format
+msgid "Nathalie Liesse"
+msgstr "Nathalie Liesse"
+
+#: main.cpp:45
+#, kde-format
+msgid "Ömer Fadıl USTA"
+msgstr "Ömer Fadıl USTA"
+
+#: main.cpp:46
+#, kde-format
+msgid "Pierre-Benoit Besse"
+msgstr "Pierre-Benoit Besse"
+
+#: main.cpp:47
+#, kde-format
+msgid "Romain Castan"
+msgstr "Romain Castan"
+
+#: main.cpp:48
+#, kde-format
+msgid "Thomas Gallinari"
+msgstr "Thomas Gallinari"
+
+#: main.cpp:49
+#, kde-format
+msgid "Roney Gomes"
+msgstr "Roney Gomes"
+
+#: main.cpp:49
+#, kde-format
+msgid "Port to KgSound framework"
+msgstr "KgSound 프레임워크 포팅"
+
+#~ msgid "Theme"
+#~ msgstr "테마"

@@ -1,0 +1,620 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Italian "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>Manuale di &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Andrea</firstname
+><surname
+>Celli</surname
+><affiliation
+><address
+><email
+>andrea.celli@libero.it</email
+></address
+></affiliation
+><firstname
+>Valter</firstname
+><surname
+>Mura</surname
+><affiliation
+><address
+><email
+>valtermura@gmail.com</email
+></address
+></affiliation
+><contrib
+>Traduzione italiana</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>2021-06-04</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kapman; è un clone del notissimo gioco <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>arcade</keyword>
+<keyword
+>Per un giocatore</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>fantasma</keyword>
+<keyword
+>pillola</keyword>
+<keyword
+>energetico</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Introduzione</title>
+<note
+><title
+>Tipo di gioco:</title
+><para
+>Arcade</para
+></note>
+<note
+><title
+>Numero di giocatori ammessi:</title
+><para
+>Uno</para
+></note>
+<para
+>&kapman; è un clone del famoso gioco <application
+>Pac-Man</application
+>. Devi passare da un livello all'altro sfuggendo i fantasmi che popolano un labirinto. Perderai una vita ogni volta che un fantasma ti mangia, ma tu potrai mangiare i fantasmi per pochi secondi dopo aver assunto un energetico. Guadagni dei punti quando mangi pillole, energetici e bonus, in più otterrai una nuova vita ogni 10,000 punti. Quando avrai mangiato tutte le pillole e gli energetici di un livello, potrai passare a quello successivo. Qui aumenterà la velocità sia del giocatore che dei fantasmi. Il gioco terminerà quando avrai perso tutte le tue vite. </para>
+<screenshot>
+<screeninfo
+>Una schermata di &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Una schermata di &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Come si gioca</title>
+<note
+><title
+>Scopo:</title
+><para
+>Passare da un livello all'altro mangiando tutte le pillole e gli energetici.</para
+></note>
+<para
+>&kapman; caricherà sempre il primo livello quando si apre il gioco. Per iniziare a giocare basta premere un tasto freccia. Se non fai nulla, continuerai a muoverti in avanti. Per girare, premi la freccetta adatta. Non devi girare all'ultimo momento. Se anticipi il comando girerai più rapidamente. Per mangiare una pillola, una carica energetica, un bonus o perfino un fantasma, dovrai solo toccarlo. Quando avrai mangiato tutte le pillole e le cariche di energia, passerai al livello successivo. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Regole di gioco, strategie e suggerimenti</title>
+<sect1 id="rules">
+<title
+>Regole</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Per passare al livello successivo devi aver mangiato tutte le pillole e le cariche di energia presenti nel labirinto.</para
+></listitem>
+<listitem
+><para
+>Apparirà un bonus quando avrai mangiato 1/3 e 2/3 delle pillole e delle cariche energetiche. Però, sparirà dopo pochi secondi (10 secondi al primo livello, più rapidamente man mano che il livello aumenta) se non lo avrai mangiato in tempo.</para
+></listitem>
+<listitem
+><para
+>Al progredire del livello, aumenterà sia la tua velocità che quella dei fantasmi. Nondimeno, i fantasmi saranno ancor più veloci di te.</para
+></listitem>
+<listitem
+><para
+>Se urti un fantasma, perdi una vita e viene riavviato il livello attuale. Però, non riappariranno le pillole e le cariche di energia già mangiate.</para
+></listitem>
+<listitem
+><para
+>Se un fantasma ti può vedere (cioè non ci sono muri in mezzo e andate entrambi nella stessa direzione), ti darà la caccia. Altrimenti, si muoverà in modo casuale.</para
+></listitem>
+<listitem
+><para
+>Quando mangi una carica energetica i fantasmi rallentano e tu puoi mangiarli. Quando mangi un fantasma, questo torna alla sua dimora e riprende il suo comportamento normale. Dopo qualche secondo (10 al primo livello, più rapidamente all'aumentare del livello) i fantasmi non mangiati riprendono il loro comportamento normale.</para
+></listitem>
+<listitem
+><para
+>Guadagni dei punti quando mangi qualcosa:</para>
+<table>
+<title
+>Valore dei cibi</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Pillole</entry>
+<entry
+>10 punti</entry>
+</row>
+<row>
+<entry
+>Cariche energetiche</entry>
+<entry
+>20 punti</entry>
+</row>
+<row>
+<entry
+>Bonus</entry>
+<entry
+>Livello in corso * 100 punti</entry>
+</row>
+<row>
+<entry
+>Fantasma</entry>
+<entry
+>Dipende da quanti fantasmi hai catturato dopo aver mangiato l'ultimo energetico: <itemizedlist>
+<listitem
+><para
+>1° fantasma: 100 punti</para
+></listitem>
+<listitem
+><para
+>2° fantasma: 200 punti</para
+></listitem>
+<listitem
+><para
+>3° fantasma: 400 punti</para
+></listitem>
+<listitem
+><para
+>4° fantasma: 800 punti</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>Otterrai una vita in più ogni 10.000 punti.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Strategie e trucchi</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Per mangiare qualcosa devi raggiungerne il centro, non solo sfiorarlo. Quindi, assicurati di aver effettivamente mangiato quello che volevi prima di allontanarti.</para
+></listitem>
+<listitem
+><para
+>Ai primi livelli, i bonus non danno molti punti e i fantasmi sono abbastanza lenti. Quindi, concentrati sui fantasmi e cerca di mangiarne più che puoi.</para
+></listitem>
+<listitem
+><para
+>Dopo una decina di livelli, i fantasmi sono troppo veloci e i bonus danno molti punti. Quindi cerca di mangiare tutti i bonus possibili. Quando vedi un bonus, non perdere l'eventuale possibilità di mangiare un energetico. Ti serve per non essere disturbato dai fantasmi.</para
+></listitem>
+<listitem
+><para
+>Analogamente, cerca di mangiare un energetico prima avvicinarti a posti pericolosi (ad es. la casa dei fantasmi).</para
+></listitem>
+<listitem
+><para
+>Quando i fantasmi sono troppo veloci e sei vicino alla loro casa, evita di mangiarli. Potrebbero tornarti addosso prima di quanto tu creda.</para
+></listitem>
+<listitem
+><para
+>È una buona idea fermarsi qualche secondo in un posto per aspettare che i fantasmi si allontanino da dove devi andare.</para
+></listitem>
+<listitem
+><para
+>Puoi trovare dei trucchi illegali nel codice sorgente. Ma stai attento che, se ottieni un punteggio elevato barando, questo non verrà registrato.</para
+></listitem>
+<listitem
+><para
+>Per finire, la cosa più importante: Buona fortuna!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Panoramica dell'interfaccia</title>
+<sect1 id="menu">
+<title
+>Le voci del menu</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Partita</guimenu
+><guimenuitem
+>Nuova</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Avvia una nuova partita</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Partita </guimenu
+><guimenuitem
+>Mostra la classifica</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Fa apparire la finestra dei punteggi.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Partita</guimenu
+><guimenuitem
+>Cambia livello</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Fa apparire la finestra di dialogo per scegliere il livello. Stai attento: il sistema considera i cambi di livello come un tentativo di barare. Quindi il punteggio ottenuto non sarà registrato nella classifica.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Partita</guimenu
+><guimenuitem
+>Esci</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Esce</action
+> da &kapman;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Attiva suoni</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Per sentire o eliminare gli effetti sonori.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guisubmenu
+>Difficoltà</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Regolare il livello di difficoltà del gioco a <guimenuitem
+>Facile</guimenuitem
+>, <guimenuitem
+>Medio</guimenuitem
+> o <guimenuitem
+>Difficile</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>Inoltre &kapman; ha le voci di menu <guimenu
+>Impostazioni</guimenu
+> e <guimenu
+>Aiuto</guimenu
+> comuni a tutto &kde;. Per ulteriori informazioni leggere le sezioni relative <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Menu Impostazioni</ulink
+> e <ulink url="help:/fundamentals/menus.html#menus-help"
+>Menu Aiuto</ulink
+> dei Fondamentali di &kde;. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Associazioni di tasti predefinite</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Gira verso l'alto</action
+> - Freccia &Up;</para
+></listitem>
+<listitem
+><para
+><action
+>Gira verso il basso</action
+> - Freccia &Down;</para
+></listitem>
+<listitem
+><para
+><action
+>Gira a destra</action
+> - Freccia &Right;</para
+></listitem>
+<listitem
+><para
+><action
+>Gira a sinistra</action
+> - Freccia &Left;</para
+></listitem>
+<listitem
+><para
+><action
+>Pausa</action
+> - <keycap
+>P</keycap
+> o &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Domande e risposte</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Vorrei cambiare l'aspetto del gioco. Posso farlo?</para>
+</question>
+<answer>
+<para
+>Puoi scegliere il tema per &kapman; dalla finestra che si apre dal menu <menuchoice
+><guimenu
+>Impostazioni</guimenu
+> <guimenuitem
+>Configura &kapman;...</guimenuitem
+></menuchoice
+>. Vedi il paragrafo <link linkend="configuration"
+>Configurazione del gioco</link
+> per maggiori dettagli.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso saltare un livello?</para>
+</question>
+<answer>
+<para
+>Ci sono due modi per cambiare di livello. Entrambi, però, vengono considerati un tentativo di barare. Quindi il risultato ottenuto non verrà inserito nella classifica dei migliori. Il primo è quello di utilizzare un "cheatcode". Sei libero di cercarlo. Il secondo è di selezionare il livello che desideri dalla finestra che si apre dal menu <menuchoice
+><guimenu
+>Partita</guimenu
+><guimenuitem
+>Cambia livello</guimenuitem
+></menuchoice
+>. Vedi la sezione <link linkend="menu"
+>Barra dei menu</link
+> per maggiori dettagli.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso cambiare le scorciatoie da tastiera predefinite?</para>
+</question>
+<answer>
+<para
+>Per il momento non è possibile. Ma questa possibilità sarà presente nelle prossime versioni di &kapman;. Vedi la sezione <link linkend="keybindings"
+>Associazioni di tasti predefinite</link
+> per maggiori dettagli.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Devo lasciare subito la partita, ma non ho finito. Posso salvare il punto a cui sono arrivato?</para>
+</question>
+<answer>
+<para
+>Non è possibile per una precisa scelta. Pensiamo che il gioco diventerebbe troppo facile se tu potessi salvare il gioco e farlo ripartire quando perdi una vita.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Posso ottenere altre vite?</para>
+</question>
+<answer>
+<para
+>Ci sono due modi per ottenere altre vite. Il primo è quello di utilizzare un "cheatcode". Sei libero di cercarlo. L'altro è quello di totalizzare molti punti. Ogni 10.000 punti otterrai una vita in più. Vedi la sezione <link linkend="rules"
+>Regole</link
+> per maggiori dettagli.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Configurazione del gioco</title>
+<para
+>Puoi scegliere il tema che vuoi per giocare a &kapman;. Per farlo basta selezionare <menuchoice
+><guimenu
+>Impostazioni</guimenu
+><guimenuitem
+>Configura &kapman;...</guimenuitem
+></menuchoice
+>. Comparirà la finestra di configurazione per &kapman; (vedi sotto) e potrai scegliere un tema. Verrà cambiato immediatamente, dopo aver confermato la scelta. Non serve riavviare il gioco. Puoi premere il tasto <guibutton
+>Predefinito</guibutton
+> per ripristinare il tema predefinito. </para>
+<screenshot>
+<screeninfo
+>La finestra di configurazione per &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>La finestra di configurazione per &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Riconoscimenti e licenza</title>
+<para
+>&kapman; </para>
+<para
+>Programma © 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Programma © 2008 Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+> </para>
+<para
+>Programma © 2008 Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+> </para>
+<para
+>Programma © 2008 Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+> </para>
+<para
+>Grafica ©2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Documentazione © 2008 Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+> </para>
+<para
+>Traduzioni italiane di Andrea Celli <email
+>andrea.celli@libero.it</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->

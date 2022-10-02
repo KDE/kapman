@@ -1,0 +1,222 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jasmin Shah <jasmin@amitshah.net>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kapman\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-08 00:43+0000\n"
+"PO-Revision-Date: 2009-06-20 09:51+0530\n"
+"Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 0.3\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "જાસ્મિન શાહ"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "jasmin@amitshah.net"
+
+#: gamescene.cpp:90
+#, kde-format
+msgid "GET READY!!!"
+msgstr "તૈયાર થઇ જાઓ!!!"
+
+#: gamescene.cpp:94
+#, kde-format
+msgid "Press any arrow key to start"
+msgstr "શરૂ કરવા કોઇપણ ઍરો બટન દબાવો"
+
+#: gamescene.cpp:104
+#, kde-format
+msgid "PAUSED"
+msgstr "સ્થગિત કરો"
+
+#: gamescene.cpp:228
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level %1"
+msgstr "સ્તર %1"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: kapman.kcfg:9
+#, kde-format
+msgid "The graphical theme to be used."
+msgstr "વાપરવા માટેની ગ્રાફિકલ થીમ."
+
+#. i18n: ectx: label, entry (Sounds), group (General)
+#: kapman.kcfg:13
+#, kde-format
+msgid "Whether sound effects should be played."
+msgstr "અવાજો જોઇએ છે કે નહીં."
+
+#: kapmanmainwindow.cpp:66
+#, fuzzy, kde-format
+#| msgid "&Play sounds"
+msgid "&Play Sounds"
+msgstr "અવાજો વગાડો (&P)"
+
+#: kapmanmainwindow.cpp:70
+#, fuzzy, kde-format
+#| msgid "&Change level"
+msgid "&Change Level"
+msgstr "સ્તર બદલો (&C)"
+
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:248
+#, kde-format
+msgctxt "Used to display the current level of play to the user"
+msgid "Level: %1"
+msgstr "કઠિણતા: %1"
+
+#: kapmanmainwindow.cpp:77 kapmanmainwindow.cpp:253
+#, kde-format
+msgctxt "Used to inform the user of their current score"
+msgid "Score: %1"
+msgstr "ગુણ: %1"
+
+#: kapmanmainwindow.cpp:79 kapmanmainwindow.cpp:258
+#, kde-format
+msgctxt "Used to tell the user how many lives they have left"
+msgid "Lives: %1"
+msgstr "જીવન: %1"
+
+#: kapmanmainwindow.cpp:140
+#, kde-format
+msgid "Are you sure you want to quit the current game?"
+msgstr "તમને ખાત્રી છે તમારે હાલની રમત છોડવી છે?"
+
+#: kapmanmainwindow.cpp:141
+#, fuzzy, kde-format
+#| msgid "New game"
+msgctxt "@title:window"
+msgid "New Game"
+msgstr "નવી રમત"
+
+#: kapmanmainwindow.cpp:142
+#, fuzzy, kde-format
+#| msgctxt "To quit Kapman"
+#| msgid "Quit"
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "છોડો"
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Your score is %1 point."
+msgid_plural "Your score is %1 points."
+msgstr[0] "તમારો ગુણ %1 પોઇન્ટ છે."
+msgstr[1] "તમારા ગુણો %1 પોઇન્ટ્સ છે."
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Game Over"
+msgstr "રમત પૂરી"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "You cheated, no Highscore for you ;)"
+msgstr "તમે દગો કર્ચો, તમને સર્વોત્તમ ગુણ મળશે નહીં ;)"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "Cheater!"
+msgstr "દગાબાજ!"
+
+#: kapmanmainwindow.cpp:189
+#, fuzzy, kde-format
+#| msgid "Change level"
+msgid "Change Level"
+msgstr "સ્તર બદલો"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level"
+msgstr "સ્તર"
+
+#: kapmanmainwindow.cpp:233
+#, kde-format
+msgid "Are you sure you want to quit Kapman?"
+msgstr "તમને ખાત્રી છે તમારે કેપમેનમાંથી બહાર નીકળવું છે?"
+
+#: kapmanmainwindow.cpp:234
+#, kde-format
+msgctxt "To quit Kapman"
+msgid "Quit"
+msgstr "છોડો"
+
+#: main.cpp:35
+#, kde-format
+msgid "Kapman"
+msgstr "કેપમેન"
+
+#: main.cpp:37
+#, kde-format
+msgid "Kapman: Go through the levels escaping ghosts!"
+msgstr "કેપમેન: ભૂતોથી બચી આગળ વધો!"
+
+#: main.cpp:39
+#, kde-format
+msgid "Copyright (c) 2007-2008 The KapTeam"
+msgstr "કોપીરાઇટ (c) ૨૦૦૭-૨૦૦૮ ધ કેપટીમ"
+
+#: main.cpp:43
+#, kde-format
+msgid "Alexandre Galinier"
+msgstr "એલેઝેંઽર ગેલિનિયર"
+
+#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#, kde-format
+msgid "Developer"
+msgstr "રચનાકાર"
+
+#: main.cpp:44
+#, kde-format
+msgid "Nathalie Liesse"
+msgstr "નેથલી લિસ્સી"
+
+#: main.cpp:45
+#, kde-format
+msgid "Ömer Fadıl USTA"
+msgstr "ઓમર ફદિલ USTA"
+
+#: main.cpp:46
+#, kde-format
+msgid "Pierre-Benoit Besse"
+msgstr "પિયરી-બેનોઇટ બેસ્સે"
+
+#: main.cpp:47
+#, kde-format
+msgid "Romain Castan"
+msgstr "રોમેન કેસટેન"
+
+#: main.cpp:48
+#, kde-format
+msgid "Thomas Gallinari"
+msgstr "થોમસ ગલ્લિનરી"
+
+#: main.cpp:49
+#, kde-format
+msgid "Roney Gomes"
+msgstr ""
+
+#: main.cpp:49
+#, kde-format
+msgid "Port to KgSound framework"
+msgstr ""
+
+#~ msgid "Theme"
+#~ msgstr "થીમ"
+
+#~ msgid "Game difficulty level."
+#~ msgstr "રમતનું કઠિણતા સ્તર."

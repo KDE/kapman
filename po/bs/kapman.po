@@ -1,0 +1,223 @@
+# Bosnian translation for kdegames
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the kdegames package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdegames\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-08 00:43+0000\n"
+"PO-Revision-Date: 2014-11-04 08:53+0000\n"
+"Last-Translator: Emina Huskic <ehuskic1@etf.unsa.ba>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Launchpad (build 17341)\n"
+"X-Launchpad-Export-Date: 2015-02-15 05:58+0000\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Muslimovic Jasmin,Samir Ribić,Emina Huskic"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "Mj@etf.ba,samir.ribic@etf.unsa.ba,ehuskic1@etf.unsa.ba"
+
+#: gamescene.cpp:90
+#, kde-format
+msgid "GET READY!!!"
+msgstr "SPREMITE SE!!!"
+
+#: gamescene.cpp:94
+#, kde-format
+msgid "Press any arrow key to start"
+msgstr "Pritisnite bilo koju strelicu za početak"
+
+#: gamescene.cpp:104
+#, kde-format
+msgid "PAUSED"
+msgstr "PAUZIRANO"
+
+#: gamescene.cpp:228
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level %1"
+msgstr "Nivo %1"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: kapman.kcfg:9
+#, kde-format
+msgid "The graphical theme to be used."
+msgstr "Grafička tema za koristiti."
+
+#. i18n: ectx: label, entry (Sounds), group (General)
+#: kapman.kcfg:13
+#, kde-format
+msgid "Whether sound effects should be played."
+msgstr "Da li puštati zvučne efekte."
+
+#: kapmanmainwindow.cpp:66
+#, fuzzy, kde-format
+#| msgid "&Play sounds"
+msgid "&Play Sounds"
+msgstr "&Pusti zvuk"
+
+#: kapmanmainwindow.cpp:70
+#, fuzzy, kde-format
+#| msgid "&Change level"
+msgid "&Change Level"
+msgstr "&Promijeni nivo"
+
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:248
+#, kde-format
+msgctxt "Used to display the current level of play to the user"
+msgid "Level: %1"
+msgstr "Nivo: %1"
+
+#: kapmanmainwindow.cpp:77 kapmanmainwindow.cpp:253
+#, kde-format
+msgctxt "Used to inform the user of their current score"
+msgid "Score: %1"
+msgstr "Rezultat: %1"
+
+#: kapmanmainwindow.cpp:79 kapmanmainwindow.cpp:258
+#, kde-format
+msgctxt "Used to tell the user how many lives they have left"
+msgid "Lives: %1"
+msgstr "Života: %1"
+
+#: kapmanmainwindow.cpp:140
+#, kde-format
+msgid "Are you sure you want to quit the current game?"
+msgstr "Želite li zaista da prekinete trenutnu igru?"
+
+#: kapmanmainwindow.cpp:141
+#, fuzzy, kde-format
+#| msgid "New game"
+msgctxt "@title:window"
+msgid "New Game"
+msgstr "Nova igra"
+
+#: kapmanmainwindow.cpp:142
+#, fuzzy, kde-format
+#| msgctxt "To quit Kapman"
+#| msgid "Quit"
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "Izlaz"
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Your score is %1 point."
+msgid_plural "Your score is %1 points."
+msgstr[0] "Postigli ste %1 poen."
+msgstr[1] "Postigli ste %1 poena."
+msgstr[2] "Postigli ste %1 poena."
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Game Over"
+msgstr "Kraj igre"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "You cheated, no Highscore for you ;)"
+msgstr "Varali ste, ništa od upisa u najrezultate ;)"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "Cheater!"
+msgstr "Varalice!"
+
+#: kapmanmainwindow.cpp:189
+#, fuzzy, kde-format
+#| msgid "Change level"
+msgid "Change Level"
+msgstr "Promjena nivoa"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level"
+msgstr "Nivo"
+
+#: kapmanmainwindow.cpp:233
+#, kde-format
+msgid "Are you sure you want to quit Kapman?"
+msgstr "Želite li napustiti Kapman?"
+
+#: kapmanmainwindow.cpp:234
+#, kde-format
+msgctxt "To quit Kapman"
+msgid "Quit"
+msgstr "Izlaz"
+
+#: main.cpp:35
+#, kde-format
+msgid "Kapman"
+msgstr "Kapman"
+
+#: main.cpp:37
+#, kde-format
+msgid "Kapman: Go through the levels escaping ghosts!"
+msgstr "Kapman: bježanje od duhova kroz nivoe!"
+
+#: main.cpp:39
+#, kde-format
+msgid "Copyright (c) 2007-2008 The KapTeam"
+msgstr "Autorska prava (c) 2007-2008 Kap tim"
+
+#: main.cpp:43
+#, kde-format
+msgid "Alexandre Galinier"
+msgstr "Alexandre Galinier"
+
+#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#, kde-format
+msgid "Developer"
+msgstr "Razvojni programer"
+
+#: main.cpp:44
+#, kde-format
+msgid "Nathalie Liesse"
+msgstr "Nathalie Liesse"
+
+#: main.cpp:45
+#, kde-format
+msgid "Ömer Fadıl USTA"
+msgstr "Ömer Fadıl USTA"
+
+#: main.cpp:46
+#, kde-format
+msgid "Pierre-Benoit Besse"
+msgstr "Pierre-Benoit Besse"
+
+#: main.cpp:47
+#, kde-format
+msgid "Romain Castan"
+msgstr "Romain Castan"
+
+#: main.cpp:48
+#, kde-format
+msgid "Thomas Gallinari"
+msgstr "Thomas Gallinari"
+
+#: main.cpp:49
+#, kde-format
+msgid "Roney Gomes"
+msgstr "Roney Gomes"
+
+#: main.cpp:49
+#, kde-format
+msgid "Port to KgSound framework"
+msgstr "Prebacivanje na KgSound framework"
+
+#~ msgid "Theme"
+#~ msgstr "Tema"

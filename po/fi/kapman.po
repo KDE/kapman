@@ -1,0 +1,223 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Tommi Nieminen <translator@legisign.org>, 2011, 2021, 2022.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2013, 2014, 2015.
+#
+# KDE Finnish translation sprint participants:
+# Author: Artnay
+# Author: Lliehu
+msgid ""
+msgstr ""
+"Project-Id-Version: kapman\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-08 00:43+0000\n"
+"PO-Revision-Date: 2022-07-27 19:33+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-POT-Import-Date: 2012-12-01 22:23:59+0000\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Tommi Nieminen,Lasse Liehu"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "translator@legisign.org,lasse.liehu@gmail.com"
+
+#: gamescene.cpp:90
+#, kde-format
+msgid "GET READY!!!"
+msgstr "VALMIINA!!!"
+
+#: gamescene.cpp:94
+#, kde-format
+msgid "Press any arrow key to start"
+msgstr "Aloita painamalla jotakin nuolinäppäintä"
+
+#: gamescene.cpp:104
+#, kde-format
+msgid "PAUSED"
+msgstr "KESKEYTETTY"
+
+#: gamescene.cpp:228
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level %1"
+msgstr "Taso %1"
+
+#. i18n: ectx: label, entry (Theme), group (General)
+#: kapman.kcfg:9
+#, kde-format
+msgid "The graphical theme to be used."
+msgstr "Käytettävä graafinen teema."
+
+#. i18n: ectx: label, entry (Sounds), group (General)
+#: kapman.kcfg:13
+#, kde-format
+msgid "Whether sound effects should be played."
+msgstr "Käytetäänkö äänitehosteita."
+
+#: kapmanmainwindow.cpp:66
+#, kde-format
+msgid "&Play Sounds"
+msgstr "K&äytä ääniä"
+
+#: kapmanmainwindow.cpp:70
+#, kde-format
+msgid "&Change Level"
+msgstr "&Vaihda tasoa"
+
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:248
+#, kde-format
+msgctxt "Used to display the current level of play to the user"
+msgid "Level: %1"
+msgstr "Taso: %1"
+
+#: kapmanmainwindow.cpp:77 kapmanmainwindow.cpp:253
+#, kde-format
+msgctxt "Used to inform the user of their current score"
+msgid "Score: %1"
+msgstr "Tulos: %1"
+
+#: kapmanmainwindow.cpp:79 kapmanmainwindow.cpp:258
+#, kde-format
+msgctxt "Used to tell the user how many lives they have left"
+msgid "Lives: %1"
+msgstr "Henkiä: %1"
+
+#: kapmanmainwindow.cpp:140
+#, kde-format
+msgid "Are you sure you want to quit the current game?"
+msgstr "Haluatko varmasti lopettaa käynnissä olevan pelin?"
+
+#: kapmanmainwindow.cpp:141
+#, kde-format
+msgctxt "@title:window"
+msgid "New Game"
+msgstr "Uusi peli"
+
+#: kapmanmainwindow.cpp:142
+#, kde-format
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "Lopeta peli"
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Your score is %1 point."
+msgid_plural "Your score is %1 points."
+msgstr[0] "Lopputuloksesi on %1 piste."
+msgstr[1] "Lopputuloksesi on %1 pistettä."
+
+#: kapmanmainwindow.cpp:166
+#, kde-format
+msgid "Game Over"
+msgstr "Peli loppui"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "You cheated, no Highscore for you ;)"
+msgstr "Huijasit, joten et nouse listoille ;)"
+
+#: kapmanmainwindow.cpp:169
+#, kde-format
+msgid "Cheater!"
+msgstr "Huijari!"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgid "Change Level"
+msgstr "Vaihda tasoa"
+
+#: kapmanmainwindow.cpp:189
+#, kde-format
+msgctxt "The number of the game level"
+msgid "Level"
+msgstr "Taso"
+
+#: kapmanmainwindow.cpp:233
+#, kde-format
+msgid "Are you sure you want to quit Kapman?"
+msgstr "Haluatko varmasti lopettaa Kapmanin?"
+
+#: kapmanmainwindow.cpp:234
+#, kde-format
+msgctxt "To quit Kapman"
+msgid "Quit"
+msgstr "Lopeta"
+
+# pmap: =/gen=Kapmanin/
+# pmap: =/elat=Kapmanista/
+#: main.cpp:35
+#, kde-format
+msgid "Kapman"
+msgstr "Kapman"
+
+#: main.cpp:37
+#, kde-format
+msgid "Kapman: Go through the levels escaping ghosts!"
+msgstr "Kapman: Siirry tasolta toiselle aaveita karkuun!"
+
+#: main.cpp:39
+#, kde-format
+msgid "Copyright (c) 2007-2008 The KapTeam"
+msgstr "Copyright © 2007–2008 KapTeam"
+
+#: main.cpp:43
+#, kde-format
+msgid "Alexandre Galinier"
+msgstr "Alexandre Galinier"
+
+#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#, kde-format
+msgid "Developer"
+msgstr "Kehittäjä"
+
+#: main.cpp:44
+#, kde-format
+msgid "Nathalie Liesse"
+msgstr "Nathalie Liesse"
+
+#: main.cpp:45
+#, kde-format
+msgid "Ömer Fadıl USTA"
+msgstr "Ömer Fadıl USTA"
+
+#: main.cpp:46
+#, kde-format
+msgid "Pierre-Benoit Besse"
+msgstr "Pierre-Benoit Besse"
+
+#: main.cpp:47
+#, kde-format
+msgid "Romain Castan"
+msgstr "Romain Castan"
+
+#: main.cpp:48
+#, kde-format
+msgid "Thomas Gallinari"
+msgstr "Thomas Gallinari"
+
+#: main.cpp:49
+#, kde-format
+msgid "Roney Gomes"
+msgstr "Roney Gomes"
+
+#: main.cpp:49
+#, kde-format
+msgid "Port to KgSound framework"
+msgstr "Ohjelman siirto käyttämään KgSound-kehystä"
+
+#~ msgid "Theme"
+#~ msgstr "Teema"
+
+#~ msgid "Game difficulty level."
+#~ msgstr "Pelin vaikeustaso."

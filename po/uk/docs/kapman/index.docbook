@@ -1,0 +1,619 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>Підручник з &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>9 травня 2016 року</date>
+<releaseinfo
+>1.1.0 (Програми 16.04)</releaseinfo>
+
+<abstract>
+<para
+>&kapman; — це клон добре відомої гри <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>аркада</keyword>
+<keyword
+>один гравець</keyword>
+<keyword
+>пак-мен</keyword>
+<keyword
+>пакмен</keyword>
+<keyword
+>привид</keyword>
+<keyword
+>пілюля</keyword>
+<keyword
+>активізатор</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Вступ</title>
+<note
+><title
+>Тип гри:</title
+><para
+>Аркади</para
+></note>
+<note
+><title
+>Можлива кількість гравців:</title
+><para
+>Один</para
+></note>
+<para
+>&kapman; є клоном добре відомої гри <application
+>Pac-Man</application
+>. Ви маєте провести вашого героя лабіринтом, уникаючи контактів з привидами. Якщо привид з’їсть вашого героя, він втратить одне життя, але ваш герой може і сам їсти привидів декілька секунд після того, як проковтне активізатор. За кожне ковтання пілюлі, активізатора і бонуса ваш герой отримуватиме призові очки, а за кожні 10.000 очок отримуватиме додаткове життя. Після ковтання всіх пілюль та активізаторів на поточному рівні ваш герой перейде на наступний рівень, на якому швидкість героя і привидів буде більшою, ніж на попередньому. Гру буде завершено, коли ваш герой втратить всі свої життя. </para>
+<screenshot>
+<screeninfo
+>Знімок &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Знімок &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Як грати</title>
+<note
+><title
+>Мета:</title
+><para
+>Проходьте рівні годуючи свого героя пілюлями і активізаторами.</para
+></note>
+<para
+>Одразу після запуску програми &kapman; завантажить перший рівень гри. Щоб розпочати гру, натисніть будь-яку з клавіш зі стрілками. Повертайте вашого героя не у останній момент перед контактом з привидом, а трохи раніше, передбачаючи дії привиду. Щоб проковтнути пілюлю, активізатор, бонус або привиду, ваш герой має увійти з ними у контакт. Коли герой проковтне всі пілюлі і активізатори, його буде переведено на наступний рівень. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Правила гри, стратегія та поради</title>
+<sect1 id="rules">
+<title
+>Правила</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Щоб перейти на наступний рівень, вашому герою потрібно з’їсти всі пілюлі і активізатори у лабіринті.</para
+></listitem>
+<listitem
+><para
+>Після ковтання 1/3 і 2/3 пілюль та активізаторів з’являтимуться бонуси. За декілька секунд бонуси зникатимуть (тривалість їх існування дорівнює 10 секундам на першому рівні, але ця величина зменшуватиметься зі зростанням номера рівня), якщо ваш герой не встигне їх проковтнути.</para
+></listitem>
+<listitem
+><para
+>Зі зростанням номера рівня зростає швидкість вашого героя і привидів. Але, пам’ятайте, що швидкість героя зростатиме повільніше за швидкість привидів.</para
+></listitem>
+<listitem
+><para
+>Якщо ваш герой торкнеться привиду, він втратить одне життя, проходження поточного рівня слід буде розпочати з початку (але пілюлі і активізатори, які проковтнув ваш герой, не буде поновлено).</para
+></listitem>
+<listitem
+><para
+>Якщо ваш герой потрапить у поле зору привиду (тобто між ними не буде стіни, і вони рухатимуться у одному напрямку), привид почне переслідувати героя. У всіх інших випадках привиди рухаються у випадкових напрямках.</para
+></listitem>
+<listitem
+><para
+>Після того, як герой ковтне активізатор, привиди сповільняться, і герой зможе їх ковтати. Після ковтання привид повертається до своєї домівки і поводиться як звичайно. За декілька секунд (тривалість цього періоду складає 10 секунд на першому рівні, але ця величина зменшуватиметься зі зростанням номера рівня), привиди, яких не вдалося проковтнути, повертають до звичайної швидкості пересування.</para
+></listitem>
+<listitem
+><para
+>Очки, які ви отримаєте на поїдання елемента:</para>
+<table>
+<title
+>Кількість очок за елемент</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Пілюля</entry>
+<entry
+>10 очок</entry>
+</row>
+<row>
+<entry
+>Активізатор</entry>
+<entry
+>20 очок</entry>
+</row>
+<row>
+<entry
+>Бонус</entry>
+<entry
+>Поточний рівень * 100 очок</entry>
+</row>
+<row>
+<entry
+>Привид</entry>
+<entry
+>Це число залежить від кількості привидів, яких ви встигли з’їсти з часу, коли ваш герой востаннє проковтнув активізатор: <itemizedlist>
+<listitem
+><para
+>Перший привид: 100 очок</para
+></listitem>
+<listitem
+><para
+>Другий привид: 200 очок</para
+></listitem>
+<listitem
+><para
+>Третій привид: 400 очок</para
+></listitem>
+<listitem
+><para
+>Четвертий привид: 800 очок</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>За кожні зароблені 10.000 очок ви отримуватимете додаткове життя.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Стратегія та поради</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Щоб проковтнути елемент, ваш герой має торкнутися його своїм центром, а не лише декількома пікселями. Отже, переконайтеся, що він встиг з’їсти потрібну річ, перш ніж йти від неї.</para
+></listitem>
+<listitem
+><para
+>На перших рівнях бонус не дає багато очок, а привиди не дуже й швидкі, отже ви можете зосередитися на поїданні якомога більшої кількості привидів.</para
+></listitem>
+<listitem
+><para
+>Рівнів за десять по тому привиди стануть швидшими, а бонуси даватимуть більше очок, отже, вам слід, за можливості, робити так, щоб ваш герой проковтнув бонус. Крім того, коли побачите бонус, намагайтеся проковтнути активізатор, щоб привиди вас не турбували.</para
+></listitem>
+<listitem
+><para
+>Вашому героєві також слід ковтати активізатор, перш ніж рушати до небезпечних місць (наприклад, поряд з домівкою привидів).</para
+></listitem>
+<listitem
+><para
+>Якщо привиди є занадто швидкими, вашому героєві не слід їх їсти, якщо він знаходиться поруч з домівкою привидів. Привиди можуть повернутися швидше, ніж вам здається.</para
+></listitem>
+<listitem
+><para
+>Ви можете зачекати декілька секунд не рухаючи героя, щоб привиди віддалилися від місця, куди ви хочете його спрямувати.</para
+></listitem>
+<listitem
+><para
+>Коди зламу до гри можна знайти у вихідних текстах програм. Але пам’ятайте: якщо ви за допомогою цих кодів покажете найкращий результат, його не буде зараховано до таблиці найкращих результатів.</para
+></listitem>
+<listitem
+><para
+>Ну, і останнє, але не менш важливе: насолоджуйтеся грою!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Огляд інтерфейсу</title>
+<sect1 id="menu">
+<title
+>Пункти меню</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+><guimenuitem
+>Створити</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Починає нову гру.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+> <guimenuitem
+>Показати найкращі результати</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкриває діалогове вікно зі списком найкращих результатів.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Гра</guimenu
+> <guimenuitem
+>Змінити рівень</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Відкриває діалогове вікно вибору рівня. Пам’ятайте: зміна поточного рівня вважатиметься рушієм гри шахрайством, тому ваш результат не увійде до списку найкращих результатів.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Гра</guimenu
+><guimenuitem
+>Вийти</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Завершує роботу</action
+> &kapman;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+><guimenuitem
+>Відтворювати звуки</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Визначає, чи слід відтворювати звуки у програмі.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Параметри</guimenu
+><guisubmenu
+>Складність</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Встановлює складність гри: <guimenuitem
+>Проста</guimenuitem
+>, <guimenuitem
+>Середня</guimenuitem
+> чи <guimenuitem
+>Складна</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>Крім того, у &kapman; передбачено типові для &kde; пункти меню <guimenu
+>Параметри</guimenu
+> і <guimenu
+>Довідка</guimenu
+>. Щоб дізнатися більше, ознайомтеся з розділами щодо <ulink url="help:/fundamentals/menus.html#menus-settings"
+>меню «Параметри»</ulink
+> та <ulink url="help:/fundamentals/menus.html#menus-help"
+>меню «Довідка»</ulink
+> підручника з основ роботи у &kde;. </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Типові клавіатурні скорочення</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Повернути вгору</action
+> — <keysym
+>Стрілка вгору</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Повернути вниз</action
+> — <keysym
+>Стрілка вниз</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Повернути праворуч</action
+> — <keysym
+>Стрілка праворуч</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Повернути ліворуч</action
+> — <keysym
+>Стрілка ліворуч</keysym
+></para
+></listitem>
+<listitem
+><para
+><action
+>Пауза</action
+> — <keycap
+>P</keycap
+> або &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Запитання і відповіді</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Я хочу змінити вигляд цієї гри. Як це зробити?</para>
+</question>
+<answer>
+<para
+>Тему гри &kapman; можна обрати за допомогою пункту меню <menuchoice
+><guimenu
+>Параметри</guimenu
+> <guimenuitem
+>Налаштувати Kapman...</guimenuitem
+></menuchoice
+>. Докладніше про це можна дізнатися з розділу <link linkend="configuration"
+>Налаштування гри</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Чи можу я пропусти певний рівень?</para>
+</question>
+<answer>
+<para
+>Існує два способи змінити поточний рівень. У обох випадках, рушій гри вважатиме ці дії шахрайськими, отже, ваш результат не потрапить до списку найкращих результатів. За першого способу вам слід скористатися кодом зламу. Знайдіть його самі. Іншим способом є вибір потрібного вам рівня за допомогою пункту меню <menuchoice
+><guimenu
+>Гра</guimenu
+> <guimenuitem
+>Змінити рівень</guimenuitem
+></menuchoice
+>. Докладніше про останній зі способів можна дізнатися у розділі, присвяченому <link linkend="menu"
+>меню</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Чи можу я змінити клавіатурні скорочення?</para>
+</question>
+<answer>
+<para
+>У поточній версії гри це неможливо. Але це стане можливим у наступних версіях &kapman;. Докладніші відомості можна отримати з розділу <link linkend="keybindings"
+>Типові клавіатурні скорочення</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Я змушений (змушена) перервати гру, але гру ще не завершено. Чи можу я зберегти поточний стан?</para>
+</question>
+<answer>
+<para
+>Програму спеціально написано так, щоб ви не могли цього зробити. Авторам здається, що гра стала б занадто простою, якби ви могли зберігати гру або потім завантажувати її знову у разі втрати життя вашим героєм.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Як мені збільшити кількість життів у грі?</para>
+</question>
+<answer>
+<para
+>Існує два способи отримати додаткове життя. Перший полягає у використанні відповідного коду зламу. Можете самі його знайти. Інший полягає у отриманні великої кількості виграшних очок. За кожні 10.000 очок ваш герой отримуватиме додаткове життя. Докладніше про це можна дізнатися з розділу <link linkend="rules"
+>Правила</link
+>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Налаштування гри</title>
+<para
+>Ви можете обрати тему вікна гри у &kapman;. Щоб зробити це, скористайтеся пунктом меню <menuchoice
+><guimenu
+>Параметри</guimenu
+><guimenuitem
+>Налаштувати Kapman...</guimenuitem
+></menuchoice
+>. Буде відкрито діалогове вікно налаштування &kapman; (його знімок показано нижче). За допомогою цього вікна ви зможете обрати тему. Вікно програми набуде вигляду, який визначається відповідною темою, негайно після підтвердження вами свого вибору, перезапускати гру не потрібно. Щоб відновити типову тему гри, ви можете скористатися кнопкою <guibutton
+>Типова</guibutton
+>. </para>
+<screenshot>
+<screeninfo
+>Діалогове вікно налаштування &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Діалогове вікно налаштування &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Подяки і ліцензія</title>
+<para
+>&kapman; </para>
+<para
+>Авторські права на програму належать Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+>, ©2008 </para>
+<para
+>Авторські права на програму належать Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+>, ©2008 </para>
+<para
+>Авторські права на програму належать Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+>, ©2008 </para>
+<para
+>Авторські права на програму належать Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+>, ©2008 </para>
+<para
+>Авторські права на графічні роботи у програмі належать Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+>, ©2008. </para>
+<para
+>Авторські права на документацію до програми належать Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+>, ©2008 </para>
+<para
+>Переклад українською: Юрій Чорноіван <email
+>yurchor@ukr.net</email
+></para
+> 
+&underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
