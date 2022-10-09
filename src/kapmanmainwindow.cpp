@@ -16,6 +16,7 @@
 #include <KStandardGameAction>
 #include <KgDifficulty>
 // KF
+#include <kwidgetsaddons_version.h>
 #include <KStandardGuiItem>
 #include <KActionCollection>
 #include <KLocalizedString>
@@ -137,10 +138,20 @@ void KapmanMainWindow::newGame()
     }
 
     // Confirm before starting a new game
-    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit the current game?"),
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    if (KMessageBox::warningTwoActions(this,
+#else
+    if (KMessageBox::warningYesNo(this,
+#endif
+                                  i18n("Are you sure you want to quit the current game?"),
                                   i18nc("@title:window", "New Game"),
                                   KGuiItem(i18nc("@action;button", "Quit Game"), QStringLiteral("window-close")),
-                                  KStandardGuiItem::cancel()) == KMessageBox::Yes) {
+                                  KStandardGuiItem::cancel())
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        == KMessageBox::PrimaryAction) {
+#else
+        == KMessageBox::Yes) {
+#endif
         // Start a new game
         initGame();
     } else {
@@ -230,9 +241,19 @@ void KapmanMainWindow::close()
         m_game->pause();
     }
     // Confirm before closing
-    if (KMessageBox::warningYesNo(this, i18n("Are you sure you want to quit Kapman?"),
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    if (KMessageBox::warningTwoActions(this,
+#else
+    if (KMessageBox::warningYesNo(this,
+#endif
+                                  i18n("Are you sure you want to quit Kapman?"),
                                   i18nc("To quit Kapman", "Quit"),
-                                  KStandardGuiItem::quit(), KStandardGuiItem::cancel()) == KMessageBox::Yes) {
+                                  KStandardGuiItem::quit(), KStandardGuiItem::cancel())
+#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+        == KMessageBox::PrimaryAction) {
+#else
+        == KMessageBox::Yes) {
+#endif
         KXmlGuiWindow::close();
     } else {
         // If the game was running
