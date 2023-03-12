@@ -54,8 +54,13 @@ kconfig_add_kcfg_files(kapman settings.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_SOURCE_DIR}/icons/*-apps-kapman.png")
 ecm_add_app_icon(kapman ICONS ${ICONS_SRCS})
 
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kapman KDEGames6)
+else()
+    target_link_libraries(kapman KF5KDEGames)
+endif()
+
 target_link_libraries(kapman
-    KF5KDEGames
     KF${KF_MAJOR_VERSION}::CoreAddons
     KF${KF_MAJOR_VERSION}::DBusAddons
     KF${KF_MAJOR_VERSION}::XmlGui
