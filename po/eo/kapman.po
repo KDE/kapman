@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-20 00:43+0000\n"
-"PO-Revision-Date: 2009-11-14 16:05+0100\n"
-"Last-Translator: Emmanuelle Richard <emmanuelle@esperanto-jeunes.org>\n"
+"PO-Revision-Date: 2023-03-20 22:31+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -43,10 +43,10 @@ msgid "PAUSED"
 msgstr "Paŭsigita"
 
 #: gamescene.cpp:228
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "The number of the game level"
 msgid "Level %1"
-msgstr "Nivelo: %1"
+msgstr "Nivelo %1"
 
 #. i18n: ectx: label, entry (Theme), group (General)
 #: kapman.kcfg:9
@@ -61,30 +61,29 @@ msgid "Whether sound effects should be played."
 msgstr "Ĉu ludi sonorefektojn."
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
+#, kde-format
 msgid "&Play Sounds"
-msgstr "&Ludi Sonojn"
+msgstr ""
 
 #: kapmanmainwindow.cpp:71
-#, fuzzy, kde-format
-#| msgid "&Change level"
+#, kde-format
 msgid "&Change Level"
-msgstr "&Ŝanĝi nivelon"
+msgstr ""
 
 #: kapmanmainwindow.cpp:76 kapmanmainwindow.cpp:269
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Used to display the current level of play to the user"
 msgid "Level: %1"
 msgstr "Nivelo: %1"
 
 #: kapmanmainwindow.cpp:78 kapmanmainwindow.cpp:274
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Used to inform the user of their current score"
 msgid "Score: %1"
 msgstr "Poentoj: %1"
 
 #: kapmanmainwindow.cpp:80 kapmanmainwindow.cpp:279
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Used to tell the user how many lives they have left"
 msgid "Lives: %1"
 msgstr "Vivoj: %1"
@@ -95,19 +94,16 @@ msgid "Are you sure you want to quit the current game?"
 msgstr "Ĉu vi vere volas eliri la nunan ludon?"
 
 #: kapmanmainwindow.cpp:147
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New Game"
-msgstr "Nova ludo"
+msgstr ""
 
 #: kapmanmainwindow.cpp:148
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
-msgstr "Eliri"
+msgstr ""
 
 #: kapmanmainwindow.cpp:177
 #, kde-format
@@ -117,9 +113,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #: kapmanmainwindow.cpp:177
-#, fuzzy, kde-format
+#, kde-format
 msgid "Game Over"
-msgstr "Ludo finita."
+msgstr ""
 
 #: kapmanmainwindow.cpp:180
 #, kde-format
@@ -132,16 +128,15 @@ msgid "Cheater!"
 msgstr "Fripono!"
 
 #: kapmanmainwindow.cpp:200
-#, fuzzy, kde-format
-#| msgid "Change level"
+#, kde-format
 msgid "Change Level"
-msgstr "Ŝanĝi nivelon"
+msgstr "Ŝanĝi Nivelon"
 
 #: kapmanmainwindow.cpp:200
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "The number of the game level"
 msgid "Level"
-msgstr "Nivelo: %1"
+msgstr "Nivelo"
 
 #: kapmanmainwindow.cpp:249
 #, kde-format
@@ -213,10 +208,3 @@ msgstr ""
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Theme"
-#~ msgstr "Etoso"
-
-#~ msgid "Game difficulty level."
-#~ msgstr "Facileca nivelo."
