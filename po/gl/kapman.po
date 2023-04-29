@@ -1,25 +1,26 @@
 # translation of kapman.po to Galician
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # mvillarino <mvillarino@users.sourceforge.net>, 2008.
 # Xosé <xosecalvo@gmail.com>, 2009, 2012.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2009, 2017.
 # Marce Villarino <mvillarino@kde-espana.org>, 2014.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2019, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-20 00:43+0000\n"
-"PO-Revision-Date: 2019-02-17 11:38+0100\n"
+"PO-Revision-Date: 2023-04-28 19:31+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -65,14 +66,12 @@ msgid "Whether sound effects should be played."
 msgstr "Se se deben reproducir os efectos de son."
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Play sounds"
+#, kde-format
 msgid "&Play Sounds"
 msgstr "&Reproducir os sons"
 
 #: kapmanmainwindow.cpp:71
-#, fuzzy, kde-format
-#| msgid "&Change level"
+#, kde-format
 msgid "&Change Level"
 msgstr "&Cambiar de nivel"
 
@@ -100,19 +99,16 @@ msgid "Are you sure you want to quit the current game?"
 msgstr "Seguro que queres saír da partida actual?"
 
 #: kapmanmainwindow.cpp:147
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New Game"
 msgstr "Nova partida"
 
 #: kapmanmainwindow.cpp:148
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
-msgstr "Saír"
+msgstr "Saír do xogo"
 
 #: kapmanmainwindow.cpp:177
 #, kde-format
@@ -137,8 +133,7 @@ msgid "Cheater!"
 msgstr "Trampulleiro!"
 
 #: kapmanmainwindow.cpp:200
-#, fuzzy, kde-format
-#| msgid "Change level"
+#, kde-format
 msgid "Change Level"
 msgstr "Cambiar de nivel"
 
@@ -169,6 +164,7 @@ msgstr "Kapman"
 msgid "Kapman: Go through the levels escaping ghosts!"
 msgstr "Kapman: supera os niveis escapando das pantasmas!"
 
+# well-spelled: Kapman
 #: main.cpp:39
 #, kde-format
 msgid "Copyright (c) 2007-2008 The KapTeam"
