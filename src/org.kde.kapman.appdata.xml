@@ -13,6 +13,7 @@
   <name xml:lang="de">Kapman</name>
   <name xml:lang="el">Kapman</name>
   <name xml:lang="en-GB">Kapman</name>
+  <name xml:lang="eo">Kapman</name>
   <name xml:lang="es">Kapman</name>
   <name xml:lang="et">Kapman</name>
   <name xml:lang="eu">Kapman</name>
@@ -51,6 +52,7 @@
   <summary xml:lang="de">Pac-Man-Klone</summary>
   <summary xml:lang="el">Κλώνος του Pac-Man</summary>
   <summary xml:lang="en-GB">Pac-Man Clone</summary>
+  <summary xml:lang="eo">Pac-Man-klono</summary>
   <summary xml:lang="es">Clon de Pac-Man</summary>
   <summary xml:lang="et">Pac-Mani kloon</summary>
   <summary xml:lang="eu">Pac-Man-en klona</summary>
@@ -90,6 +92,7 @@
     <p xml:lang="de">Kapman ist eine Kopie des sehr bekannten Spiels Pac-Man.</p>
     <p xml:lang="el">Το Kapman είναι ένας κλώνος του γνωστού παιχνιδιού Pac-Man.</p>
     <p xml:lang="en-GB">Kapman is a clone of the well known game Pac-Man.</p>
+    <p xml:lang="eo">Kapman estas klono de la famkonata ludo Pac-Man.</p>
     <p xml:lang="es">Kapman es un clon del conocido juego Pac-Man.</p>
     <p xml:lang="et">Kapman on tuntud mängu Pac-Man kloon.</p>
     <p xml:lang="eu">Kapman ondo ezaguna den Pac-Man jokoaren klon bat da.</p>
