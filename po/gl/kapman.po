@@ -57,7 +57,7 @@ msgstr "Nivel %1"
 #: kapman.kcfg:9
 #, kde-format
 msgid "The graphical theme to be used."
-msgstr "O tema visual que se empregará."
+msgstr "O tema visual que se usará."
 
 #. i18n: ectx: label, entry (Sounds), group (General)
 #: kapman.kcfg:13
