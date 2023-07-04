@@ -237,3 +237,5 @@ void Character::moveOnCenter()
     setX((m_maze->getColFromX(m_x) + 0.5) * Cell::SIZE);
     setY((m_maze->getRowFromY(m_y) + 0.5) * Cell::SIZE);
 }
+
+#include "moc_character.cpp"

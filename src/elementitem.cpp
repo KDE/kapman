@@ -44,3 +44,5 @@ void ElementItem::update(qreal p_x, qreal p_y)
     // Updates the view coordinates
     setPos(x, y);
 }
+
+#include "moc_elementitem.cpp"

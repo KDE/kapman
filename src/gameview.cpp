@@ -35,3 +35,5 @@ void GameView::keyPressEvent(QKeyEvent *p_event)
 {
     Q_EMIT keyPressed(p_event);
 }
+
+#include "moc_gameview.cpp"

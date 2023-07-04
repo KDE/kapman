@@ -224,3 +224,5 @@ QPoint Maze::getResurrectionCell() const
 {
     return m_resurrectionCell;
 }
+
+#include "moc_maze.cpp"

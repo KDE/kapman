@@ -71,3 +71,5 @@ void GhostItem::blink()
         }
     }
 }
+
+#include "moc_ghostitem.cpp"

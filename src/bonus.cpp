@@ -28,3 +28,5 @@ void Bonus::setPoints(const int p_points)
 {
     m_points = p_points;
 }
+
+#include "moc_bonus.cpp"

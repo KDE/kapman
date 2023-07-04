@@ -239,3 +239,5 @@ bool Ghost::preyStateAlmostOver() const
 {
     return m_preyStateAlmostOver;
 }
+
+#include "moc_ghost.cpp"

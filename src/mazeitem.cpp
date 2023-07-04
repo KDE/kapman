@@ -16,3 +16,5 @@ MazeItem::MazeItem()
 }
 
 MazeItem::~MazeItem() = default;
+
+#include "moc_mazeitem.cpp"

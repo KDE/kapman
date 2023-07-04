@@ -191,3 +191,5 @@ void Kapman::initSpeedInc()
         break;
     }
 }
+
+#include "moc_kapman.cpp"

@@ -293,3 +293,5 @@ void KapmanMainWindow::viewFullScreen(bool fullScreen)
     menuBar()->setVisible(!fullScreen);
     statusBar()->setVisible(!fullScreen);
 }
+
+#include "moc_kapmanmainwindow.cpp"

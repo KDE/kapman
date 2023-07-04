@@ -69,3 +69,5 @@ void Element::initCoordinate()
     setX(m_xInit);
     setY(m_yInit);
 }
+
+#include "moc_element.cpp"

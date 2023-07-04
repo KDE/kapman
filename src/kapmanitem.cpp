@@ -166,3 +166,5 @@ void KapmanItem::blink()
         m_blinkTimer->stop();
     }
 }
+
+#include "moc_kapmanitem.cpp"

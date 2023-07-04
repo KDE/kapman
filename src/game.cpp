@@ -572,3 +572,5 @@ void Game::endPreyState()
 
     setPreyTimerDuration();
 }
+
+#include "moc_game.cpp"

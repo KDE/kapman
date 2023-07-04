@@ -27,3 +27,5 @@ void Pill::doActionOnCollision(Kapman *p_kapman)
     // Tell to the maze that an element was eaten
     m_maze->decrementNbElem();
 }
+
+#include "moc_pill.cpp"

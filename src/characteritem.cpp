@@ -48,3 +48,5 @@ void CharacterItem::blink()
 {
     m_nbBlinks++;
 }
+
+#include "moc_characteritem.cpp"

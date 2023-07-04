@@ -367,3 +367,5 @@ void GameScene::hidePoints()
     // Remove the oldest item from the list
     delete m_wonPointsLabels.takeLast();
 }
+
+#include "moc_gamescene.cpp"
