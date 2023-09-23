@@ -9,26 +9,17 @@
 
 #include "kapman_version.h"
 #include "kapmanmainwindow.h"
+
 #include <KDBusService>
 #include <KLocalizedString>
+
 #include <QApplication>
 #include <QCommandLineParser>
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-#include <kdelibs4configmigrator.h>
-#endif
+
 int main(int argc, char **argv)
 {
-    // Fixes blurry icons with fractional scaling
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#endif
     QApplication app(argc, argv);
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    Kdelibs4ConfigMigrator migrate(QStringLiteral("kapman"));
-    migrate.setConfigFiles(QStringList() << QStringLiteral("kapmanrc"));
-    migrate.setUiFiles(QStringList() << QStringLiteral("kapmanui.rc"));
-    migrate.migrate();
-#endif
+
     KLocalizedString::setApplicationDomain("kapman");
     // About Kapman
     KAboutData about(QStringLiteral("kapman"),

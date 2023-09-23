@@ -9,14 +9,12 @@
 #include "gamescene.h"
 #include "settings.h"
 // KDEGames
-#include <kdegames_version.h>
 #include <KgThemeProvider>
 #include <KgThemeSelector>
 #include <KScoreDialog>
 #include <KStandardGameAction>
 #include <KgDifficulty>
 // KF
-#include <kwidgetsaddons_version.h>
 #include <KStandardGuiItem>
 #include <KActionCollection>
 #include <KLocalizedString>
@@ -35,9 +33,6 @@ KapmanMainWindow::KapmanMainWindow()
 {
     m_themeProvider = new KgThemeProvider(QByteArray(), this); // empty config key to disable internal config
     m_themeProvider->discoverThemes(
-#if KDEGAMES_VERSION < QT_VERSION_CHECK(7, 4, 0)
-        "appdata",
-#endif
         QStringLiteral("themes"),   // theme data location
         QStringLiteral("default")); // default theme name
 
@@ -138,20 +133,12 @@ void KapmanMainWindow::newGame()
     }
 
     // Confirm before starting a new game
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (KMessageBox::warningTwoActions(this,
-#else
-    if (KMessageBox::warningYesNo(this,
-#endif
                                   i18n("Are you sure you want to quit the current game?"),
                                   i18nc("@title:window", "New Game"),
                                   KGuiItem(i18nc("@action;button", "Quit Game"), QStringLiteral("window-close")),
                                   KStandardGuiItem::cancel())
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         == KMessageBox::PrimaryAction) {
-#else
-        == KMessageBox::Yes) {
-#endif
         // Start a new game
         initGame();
     } else {
@@ -241,19 +228,11 @@ void KapmanMainWindow::close()
         m_game->pause();
     }
     // Confirm before closing
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     if (KMessageBox::warningTwoActions(this,
-#else
-    if (KMessageBox::warningYesNo(this,
-#endif
                                   i18n("Are you sure you want to quit Kapman?"),
                                   i18nc("To quit Kapman", "Quit"),
                                   KStandardGuiItem::quit(), KStandardGuiItem::cancel())
-#if KWIDGETSADDONS_VERSION >= QT_VERSION_CHECK(5, 100, 0)
         == KMessageBox::PrimaryAction) {
-#else
-        == KMessageBox::Yes) {
-#endif
         KXmlGuiWindow::close();
     } else {
         // If the game was running
