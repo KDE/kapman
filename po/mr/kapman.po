@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-20 00:43+0000\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2013-03-22 14:59+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -60,49 +60,49 @@ msgstr ""
 msgid "Whether sound effects should be played."
 msgstr ""
 
-#: kapmanmainwindow.cpp:67
+#: kapmanmainwindow.cpp:62
 #, fuzzy, kde-format
 #| msgid "&Play sounds"
 msgid "&Play Sounds"
 msgstr "आवाज चालवा (&P)"
 
-#: kapmanmainwindow.cpp:71
+#: kapmanmainwindow.cpp:66
 #, fuzzy, kde-format
 #| msgid "&Change level"
 msgid "&Change Level"
 msgstr "पातळी बदला (&C)"
 
-#: kapmanmainwindow.cpp:76 kapmanmainwindow.cpp:269
+#: kapmanmainwindow.cpp:71 kapmanmainwindow.cpp:248
 #, kde-format
 msgctxt "Used to display the current level of play to the user"
 msgid "Level: %1"
 msgstr "पातळी : %1"
 
-#: kapmanmainwindow.cpp:78 kapmanmainwindow.cpp:274
+#: kapmanmainwindow.cpp:73 kapmanmainwindow.cpp:253
 #, kde-format
 msgctxt "Used to inform the user of their current score"
 msgid "Score: %1"
 msgstr "अंक : %1"
 
-#: kapmanmainwindow.cpp:80 kapmanmainwindow.cpp:279
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:258
 #, kde-format
 msgctxt "Used to tell the user how many lives they have left"
 msgid "Lives: %1"
 msgstr "जीवन : %1"
 
-#: kapmanmainwindow.cpp:146
+#: kapmanmainwindow.cpp:137
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
 msgstr ""
 
-#: kapmanmainwindow.cpp:147
+#: kapmanmainwindow.cpp:138
 #, fuzzy, kde-format
 #| msgid "New game"
 msgctxt "@title:window"
 msgid "New Game"
 msgstr "नवीन खेळ"
 
-#: kapmanmainwindow.cpp:148
+#: kapmanmainwindow.cpp:139
 #, fuzzy, kde-format
 #| msgctxt "To quit Kapman"
 #| msgid "Quit"
@@ -110,107 +110,107 @@ msgctxt "@action;button"
 msgid "Quit Game"
 msgstr "बाहेर पडा"
 
-#: kapmanmainwindow.cpp:177
+#: kapmanmainwindow.cpp:164
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
 msgstr[0] ""
 msgstr[1] ""
 
-#: kapmanmainwindow.cpp:177
+#: kapmanmainwindow.cpp:164
 #, kde-format
 msgid "Game Over"
 msgstr "खेळ समाप्त"
 
-#: kapmanmainwindow.cpp:180
+#: kapmanmainwindow.cpp:167
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
 msgstr ""
 
-#: kapmanmainwindow.cpp:180
+#: kapmanmainwindow.cpp:167
 #, kde-format
 msgid "Cheater!"
 msgstr ""
 
-#: kapmanmainwindow.cpp:200
+#: kapmanmainwindow.cpp:187
 #, fuzzy, kde-format
 #| msgid "Change level"
 msgid "Change Level"
 msgstr "पातळी बदला"
 
-#: kapmanmainwindow.cpp:200
+#: kapmanmainwindow.cpp:187
 #, kde-format
 msgctxt "The number of the game level"
 msgid "Level"
 msgstr "पातळी"
 
-#: kapmanmainwindow.cpp:249
+#: kapmanmainwindow.cpp:232
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
 msgstr "केपमेन मधून तुम्हाला नक्की बाहेर पडायचे आहे का?"
 
-#: kapmanmainwindow.cpp:250
+#: kapmanmainwindow.cpp:233
 #, kde-format
 msgctxt "To quit Kapman"
 msgid "Quit"
 msgstr "बाहेर पडा"
 
-#: main.cpp:35
+#: main.cpp:26
 #, kde-format
 msgid "Kapman"
 msgstr "केपमेन"
 
-#: main.cpp:37
+#: main.cpp:28
 #, kde-format
 msgid "Kapman: Go through the levels escaping ghosts!"
 msgstr ""
 
-#: main.cpp:39
+#: main.cpp:30
 #, kde-format
 msgid "Copyright (c) 2007-2008 The KapTeam"
 msgstr ""
 
-#: main.cpp:43
+#: main.cpp:34
 #, kde-format
 msgid "Alexandre Galinier"
 msgstr ""
 
-#: main.cpp:43 main.cpp:44 main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48
+#: main.cpp:34 main.cpp:35 main.cpp:36 main.cpp:37 main.cpp:38 main.cpp:39
 #, kde-format
 msgid "Developer"
 msgstr "विकासकर्ता"
 
-#: main.cpp:44
+#: main.cpp:35
 #, kde-format
 msgid "Nathalie Liesse"
 msgstr ""
 
-#: main.cpp:45
+#: main.cpp:36
 #, kde-format
 msgid "Ömer Fadıl USTA"
 msgstr ""
 
-#: main.cpp:46
+#: main.cpp:37
 #, kde-format
 msgid "Pierre-Benoit Besse"
 msgstr ""
 
-#: main.cpp:47
+#: main.cpp:38
 #, kde-format
 msgid "Romain Castan"
 msgstr ""
 
-#: main.cpp:48
+#: main.cpp:39
 #, kde-format
 msgid "Thomas Gallinari"
 msgstr ""
 
-#: main.cpp:49
+#: main.cpp:40
 #, kde-format
 msgid "Roney Gomes"
 msgstr ""
 
-#: main.cpp:49
+#: main.cpp:40
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr ""

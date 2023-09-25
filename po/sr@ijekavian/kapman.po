@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-05-10 03:21+0200\n"
+"POT-Creation-Date: 2023-09-25 01:39+0000\n"
 "PO-Revision-Date: 2016-02-27 21:47+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -31,22 +31,22 @@ msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
 msgstr "slsimic@gmail.com"
 
-#: gamescene.cpp:100
+#: gamescene.cpp:90
 #, kde-format
 msgid "GET READY!!!"
 msgstr "ПОЗОР!!!"
 
-#: gamescene.cpp:104
+#: gamescene.cpp:94
 #, kde-format
 msgid "Press any arrow key to start"
 msgstr "Притисните стрелицу за почетак"
 
-#: gamescene.cpp:114
+#: gamescene.cpp:104
 #, kde-format
 msgid "PAUSED"
 msgstr "ПАУЗИРАНО"
 
-#: gamescene.cpp:245
+#: gamescene.cpp:228
 #, kde-format
 msgctxt "The number of the game level"
 msgid "Level %1"
@@ -65,48 +65,60 @@ msgid "Whether sound effects should be played."
 msgstr "Да ли пуштати звучне ефекте."
 
 # >> @option:check
-#: kapmanmainwindow.cpp:50
-#, kde-format
-msgid "&Play sounds"
+#: kapmanmainwindow.cpp:62
+#, fuzzy, kde-format
+#| msgid "&Play sounds"
+msgid "&Play Sounds"
 msgstr "&Пуштај звукове"
 
-#: kapmanmainwindow.cpp:54
-#, kde-format
-msgid "&Change level"
+#: kapmanmainwindow.cpp:66
+#, fuzzy, kde-format
+#| msgid "&Change level"
+msgid "&Change Level"
 msgstr "&Промијени ниво"
 
 # >> @info:status +
-#: kapmanmainwindow.cpp:59 kapmanmainwindow.cpp:219
+#: kapmanmainwindow.cpp:71 kapmanmainwindow.cpp:248
 #, kde-format
 msgctxt "Used to display the current level of play to the user"
 msgid "Level: %1"
 msgstr "ниво: %1"
 
 # >> @info:status +
-#: kapmanmainwindow.cpp:61 kapmanmainwindow.cpp:225
+#: kapmanmainwindow.cpp:73 kapmanmainwindow.cpp:253
 #, kde-format
 msgctxt "Used to inform the user of their current score"
 msgid "Score: %1"
 msgstr "резултат: %1"
 
 # >> @info:status +
-#: kapmanmainwindow.cpp:63 kapmanmainwindow.cpp:232
+#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:258
 #, kde-format
 msgctxt "Used to tell the user how many lives they have left"
 msgid "Lives: %1"
 msgstr "живота: %1"
 
-#: kapmanmainwindow.cpp:121
+#: kapmanmainwindow.cpp:137
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
 msgstr "Желите ли заиста да напустите текућу партију?"
 
-#: kapmanmainwindow.cpp:121
-#, kde-format
-msgid "New game"
+#: kapmanmainwindow.cpp:138
+#, fuzzy, kde-format
+#| msgid "New game"
+msgctxt "@title:window"
+msgid "New Game"
 msgstr "Нова игра"
 
-#: kapmanmainwindow.cpp:133
+#: kapmanmainwindow.cpp:139
+#, fuzzy, kde-format
+#| msgctxt "To quit Kapman"
+#| msgid "Quit"
+msgctxt "@action;button"
+msgid "Quit Game"
+msgstr "Напусти"
+
+#: kapmanmainwindow.cpp:164
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
@@ -115,105 +127,104 @@ msgstr[1] "Постигли сте %1 поена."
 msgstr[2] "Постигли сте %1 поена."
 msgstr[3] "Постигли сте %1 поен."
 
-#: kapmanmainwindow.cpp:133
+#: kapmanmainwindow.cpp:164
 #, kde-format
 msgid "Game Over"
 msgstr "Крај игре"
 
-#: kapmanmainwindow.cpp:136
+#: kapmanmainwindow.cpp:167
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
 msgstr "Варали сте, ништа од уписа у најрезултате ;)"
 
-#: kapmanmainwindow.cpp:136
+#: kapmanmainwindow.cpp:167
 #, kde-format
 msgid "Cheater!"
 msgstr "Варалице!"
 
 # >> @title:window
-#: kapmanmainwindow.cpp:157
-#, kde-format
-msgid "Change level"
+#: kapmanmainwindow.cpp:187
+#, fuzzy, kde-format
+#| msgid "Change level"
+msgid "Change Level"
 msgstr "Промјена нивоа"
 
-#: kapmanmainwindow.cpp:157
+#: kapmanmainwindow.cpp:187
 #, kde-format
 msgctxt "The number of the game level"
 msgid "Level"
 msgstr "Ниво"
 
-#: kapmanmainwindow.cpp:182
-#, kde-format
-msgid "Theme"
-msgstr "Тема"
-
-#: kapmanmainwindow.cpp:204
+#: kapmanmainwindow.cpp:232
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
 msgstr "Желите ли заиста да напустите Капмен?"
 
-#: kapmanmainwindow.cpp:204
+#: kapmanmainwindow.cpp:233
 #, kde-format
 msgctxt "To quit Kapman"
 msgid "Quit"
 msgstr "Напусти"
 
-#: main.cpp:41
+#: main.cpp:26
 #, kde-format
 msgid "Kapman"
 msgstr "Капмен"
 
-#: main.cpp:42
+#: main.cpp:28
 #, kde-format
 msgid "Kapman: Go through the levels escaping ghosts!"
 msgstr "Капмен: кроз нивое бјежећи од духова!"
 
-#: main.cpp:43
+#: main.cpp:30
 #, kde-format
 msgid "Copyright (c) 2007-2008 The KapTeam"
 msgstr "© 2007–2008, тим Капмена"
 
-#: main.cpp:45
+#: main.cpp:34
 #, kde-format
 msgid "Alexandre Galinier"
 msgstr "Александре Галније"
 
-#: main.cpp:45 main.cpp:46 main.cpp:47 main.cpp:48 main.cpp:49 main.cpp:50
+#: main.cpp:34 main.cpp:35 main.cpp:36 main.cpp:37 main.cpp:38 main.cpp:39
 #, kde-format
 msgid "Developer"
 msgstr "Програмер"
 
-#: main.cpp:46
+#: main.cpp:35
 #, kde-format
 msgid "Nathalie Liesse"
 msgstr "Натали Лијес"
 
-#: main.cpp:47
+#: main.cpp:36
 #, kde-format
 msgid "Ömer Fadıl USTA"
 msgstr "Омер Фадил Уста"
 
-#: main.cpp:48
+#: main.cpp:37
 #, kde-format
 msgid "Pierre-Benoit Besse"
 msgstr "Пјер Беноа Бес"
 
-#: main.cpp:49
+#: main.cpp:38
 #, kde-format
 msgid "Romain Castan"
 msgstr "Ромен Кастан"
 
-#: main.cpp:50
+#: main.cpp:39
 #, kde-format
 msgid "Thomas Gallinari"
 msgstr "Томас Гајинари"
 
-#: main.cpp:51
+#: main.cpp:40
 #, kde-format
 msgid "Roney Gomes"
 msgstr "Рони Гомес"
 
-#: main.cpp:51
+#: main.cpp:40
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr "Преношење на радни оквир KgSound"
+
+#~ msgid "Theme"
+#~ msgstr "Тема"
