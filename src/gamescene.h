@@ -18,7 +18,7 @@
 #include <QList>
 #include <QSvgRenderer>
 
-class KgTheme;
+class KGameTheme;
 
 /**
  * @brief This class contains all the Game elements to be drawn on the screen by the GameView instance.
@@ -63,7 +63,7 @@ public:
      * Creates a new GameScene instance.
      * @param p_game the Game instance whose elements must be contained in the GameScene in order to be drawn
      */
-    GameScene(Game *p_game, const KgTheme *theme);
+    GameScene(Game *p_game, const KGameTheme *theme);
 
     /**
      * Deletes the Game instance.
@@ -78,7 +78,7 @@ public:
     /**
      * Loads the game theme.
      */
-    void loadTheme(const KgTheme *theme);
+    void loadTheme(const KGameTheme *theme);
 
 private Q_SLOTS:
 
@@ -139,7 +139,7 @@ private Q_SLOTS:
     /**
      * Update theme properties.
      */
-    void updateThemeProperties(const KgTheme *theme);
+    void updateThemeProperties(const KGameTheme *theme);
 };
 
 #endif

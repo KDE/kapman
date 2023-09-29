@@ -7,7 +7,7 @@
 #include "gameview.h"
 #include "gamescene.h"
 
-GameView::GameView(Game *p_game, const KgTheme *theme)
+GameView::GameView(Game *p_game, const KGameTheme *theme)
     : QGraphicsView(new GameScene(p_game, theme))
 {
     setFrameStyle(QFrame::NoFrame);

@@ -12,8 +12,8 @@
 #include <KGameDifficulty>
 #include <KScoreDialog>
 #include <KStandardGameAction>
-#include <KgThemeProvider>
-#include <KgThemeSelector>
+#include <KGameThemeProvider>
+#include <KGameThemeSelector>
 // KF
 #include <KStandardGuiItem>
 #include <KActionCollection>
@@ -31,22 +31,22 @@
 
 KapmanMainWindow::KapmanMainWindow()
 {
-    m_themeProvider = new KgThemeProvider(QByteArray(), this); // empty config key to disable internal config
+    m_themeProvider = new KGameThemeProvider(QByteArray(), this); // empty config key to disable internal config
     m_themeProvider->discoverThemes(
         QStringLiteral("themes"),   // theme data location
         QStringLiteral("default")); // default theme name
 
     const QByteArray themeIdentifier = Settings::theme().toUtf8();
-    const QList<const KgTheme *> themes = m_themeProvider->themes();
+    const QList<const KGameTheme *> themes = m_themeProvider->themes();
     for (auto* theme : themes) {
         if (theme->identifier() == themeIdentifier) {
             m_themeProvider->setCurrentTheme(theme);
             break;
         }
     }
-    connect(m_themeProvider, &KgThemeProvider::currentThemeChanged, this, &KapmanMainWindow::onThemeChanged);
+    connect(m_themeProvider, &KGameThemeProvider::currentThemeChanged, this, &KapmanMainWindow::onThemeChanged);
 
-    m_themeSelector = new KgThemeSelector(m_themeProvider);
+    m_themeSelector = new KGameThemeSelector(m_themeProvider);
 
     // Initialize the game
     m_game = nullptr;
@@ -208,7 +208,7 @@ void KapmanMainWindow::showSettings()
     m_themeSelector->showAsDialog();
 }
 
-void KapmanMainWindow::onThemeChanged(const KgTheme *theme)
+void KapmanMainWindow::onThemeChanged(const KGameTheme *theme)
 {
     // sync to settings store
     Settings::setTheme(QString::fromUtf8(theme->identifier()));

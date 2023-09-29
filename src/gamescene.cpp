@@ -9,11 +9,11 @@
 #include "bonus.h"
 #include "cell.h"
 
-#include <KgTheme>
+#include <KGameTheme>
 
 #include <KLocalizedString>
 
-GameScene::GameScene(Game *p_game, const KgTheme *theme)
+GameScene::GameScene(Game *p_game, const KGameTheme *theme)
     : m_game(p_game)
     , m_kapmanItem(nullptr)
     , m_mazeItem(nullptr)
@@ -147,7 +147,7 @@ Game *GameScene::getGame() const
     return m_game;
 }
 
-void GameScene::loadTheme(const KgTheme *theme)
+void GameScene::loadTheme(const KGameTheme *theme)
 {
     if (!m_renderer->load(theme->graphicsPath())) {
         return;
@@ -192,7 +192,7 @@ void GameScene::updateSvgIds()
     }
 }
 
-void GameScene::updateThemeProperties(const KgTheme *theme)
+void GameScene::updateThemeProperties(const KGameTheme *theme)
 {
     // Sanity check, see if game elements already exist
     if (!m_kapmanItem) {
