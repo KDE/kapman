@@ -13,7 +13,7 @@
 #include "kapman.h"
 #include "maze.h"
 
-#include <KgSound>
+#include <KGameSound>
 #include <QKeyEvent>
 #include <QPointF>
 #include <QTimer>
@@ -90,13 +90,13 @@ private:
     /** Flag if sound is enabled */
     bool m_soundEnabled;
 
-    KgSound m_soundGameOver;
-    KgSound m_soundGhost;
-    KgSound m_soundGainLife;
-    KgSound m_soundEnergizer;
-    KgSound m_soundBonus;
-    KgSound m_soundPill;
-    KgSound m_soundLevelUp;
+    KGameSound m_soundGameOver;
+    KGameSound m_soundGhost;
+    KGameSound m_soundGainLife;
+    KGameSound m_soundEnergizer;
+    KGameSound m_soundBonus;
+    KGameSound m_soundPill;
+    KGameSound m_soundLevelUp;
 
 public:
     /**
