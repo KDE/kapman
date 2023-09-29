@@ -7,7 +7,7 @@
 
 #include "ghost.h"
 
-#include <KgDifficulty>
+#include <KGameDifficulty>
 #include <QPointF>
 #include <QRandomGenerator>
 #include <cstdlib>
@@ -217,14 +217,14 @@ void Ghost::doActionOnCollision(Kapman *)
 void Ghost::initSpeedInc()
 {
     // Ghosts speed increase when level up
-    switch ((int)Kg::difficultyLevel()) {
-    case KgDifficultyLevel::Easy:
+    switch ((int)KGameDifficulty::globalLevel()) {
+    case KGameDifficultyLevel::Easy:
         m_speedIncrease = Character::LOW_SPEED_INC;
         break;
-    case KgDifficultyLevel::Medium:
+    case KGameDifficultyLevel::Medium:
         m_speedIncrease = Character::MEDIUM_SPEED_INC;
         break;
-    case KgDifficultyLevel::Hard:
+    case KGameDifficultyLevel::Hard:
         m_speedIncrease = Character::HIGH_SPEED_INC;
         break;
     }

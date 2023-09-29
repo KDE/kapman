@@ -6,7 +6,7 @@
 
 #include "kapman.h"
 
-#include <KgDifficulty>
+#include <KGameDifficulty>
 
 const qreal Kapman::MAX_SPEED_RATIO = 1.5;
 
@@ -179,14 +179,14 @@ void Kapman::stopMoving()
 void Kapman::initSpeedInc()
 {
     // Kapman speed increase when level up
-    switch ((int)Kg::difficultyLevel()) {
-    case KgDifficultyLevel::Easy:
+    switch ((int)KGameDifficulty::globalLevel()) {
+    case KGameDifficultyLevel::Easy:
         m_speedIncrease = Character::LOW_SPEED_INC / 2;
         break;
-    case KgDifficultyLevel::Medium:
+    case KGameDifficultyLevel::Medium:
         m_speedIncrease = Character::MEDIUM_SPEED_INC / 2;
         break;
-    case KgDifficultyLevel::Hard:
+    case KGameDifficultyLevel::Hard:
         m_speedIncrease = Character::HIGH_SPEED_INC / 2;
         break;
     }

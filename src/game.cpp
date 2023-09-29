@@ -10,9 +10,9 @@
 #include "kapmanparser.h"
 #include "settings.h"
 
-#include <KgDifficulty>
-#include <QStandardPaths>
+#include <KGameDifficulty>
 #include <QFile>
+#include <QStandardPaths>
 
 const int Game::FPS = 40;
 int Game::s_bonusDuration;
@@ -42,8 +42,8 @@ Game::Game()
     // Difference ratio between low/high and medium speed
     s_durationRatio = 1.0;
 
-    // Tells the KgDifficulty singleton that the game is not running
-    Kg::difficulty()->setGameRunning(false);
+    // Tells the KGameDifficulty singleton that the game is not running
+    KGameDifficulty::global()->setGameRunning(false);
 
     // Create the Maze instance
     m_maze = new Maze();
@@ -59,15 +59,15 @@ Game::Game()
     connect(m_kapman, &Kapman::sWinPoints, this, &Game::winPoints);
 
     // Initialize the characters speed timers duration considering the difficulty level
-    switch (Kg::difficultyLevel()) {
-    case KgDifficultyLevel::Easy:
+    switch (KGameDifficulty::globalLevel()) {
+    case KGameDifficultyLevel::Easy:
         // Ratio low/medium speed
         s_durationRatio = Character::MEDIUM_SPEED / Character::LOW_SPEED;
         break;
-    case KgDifficultyLevel::Medium:
+    case KGameDifficultyLevel::Medium:
         s_durationRatio = 1;
         break;
-    case KgDifficultyLevel::Hard:
+    case KGameDifficultyLevel::Hard:
         // Ratio high/medium speed
         s_durationRatio = Character::MEDIUM_SPEED / Character::HIGH_SPEED;
         break;
@@ -331,8 +331,8 @@ void Game::keyPressEvent(QKeyEvent *p_event)
             m_timer->start();
             Q_EMIT gameStarted();
         }
-        // Tells the KgDifficulty singleton that the game now runs
-        Kg::difficulty()->setGameRunning(true);
+        // Tells the KGameDifficulty singleton that the game now runs
+        KGameDifficulty::global()->setGameRunning(true);
     }
     // Behaviour when the game has begun
     switch (p_event->key()) {

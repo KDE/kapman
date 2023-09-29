@@ -9,11 +9,11 @@
 #include "gamescene.h"
 #include "settings.h"
 // KDEGames
-#include <KgThemeProvider>
-#include <KgThemeSelector>
+#include <KGameDifficulty>
 #include <KScoreDialog>
 #include <KStandardGameAction>
-#include <KgDifficulty>
+#include <KgThemeProvider>
+#include <KgThemeSelector>
 // KF
 #include <KStandardGuiItem>
 #include <KActionCollection>
@@ -75,13 +75,13 @@ KapmanMainWindow::KapmanMainWindow()
     mLives = new QLabel(i18nc("Used to tell the user how many lives they have left", "Lives: %1", initLives));
     m_statusBar->addPermanentWidget(mLives);
 
-    // Initialize the KgDifficulty singleton
-    Kg::difficulty()->addStandardLevelRange(KgDifficultyLevel::Easy,
-                                            KgDifficultyLevel::Hard, // range
-                                            KgDifficultyLevel::Medium // default
+    // Initialize the KGameDifficulty singleton
+    KGameDifficulty::global()->addStandardLevelRange(KGameDifficultyLevel::Easy,
+                                                     KGameDifficultyLevel::Hard, // range
+                                                     KGameDifficultyLevel::Medium // default
     );
-    KgDifficultyGUI::init(this);
-    connect(Kg::difficulty(), &KgDifficulty::currentLevelChanged, this, &KapmanMainWindow::initGame);
+    KGameDifficultyGUI::init(this);
+    connect(KGameDifficulty::global(), &KGameDifficulty::currentLevelChanged, this, &KapmanMainWindow::initGame);
     // Setup the window
     setupGUI();
 
@@ -168,7 +168,7 @@ void KapmanMainWindow::handleGameOver()
     } else {
         // Add the score to the highscores table
         QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
-        dialog->initFromDifficulty(Kg::difficulty());
+        dialog->initFromDifficulty(KGameDifficulty::global());
         KScoreDialog::FieldInfo scoreInfo;
         scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
         scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
@@ -193,7 +193,7 @@ void KapmanMainWindow::changeLevel()
 void KapmanMainWindow::showHighscores()
 {
     QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
-    dialog->initFromDifficulty(Kg::difficulty());
+    dialog->initFromDifficulty(KGameDifficulty::global());
     dialog->exec();
     delete dialog;
 }
