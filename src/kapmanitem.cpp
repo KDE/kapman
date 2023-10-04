@@ -86,7 +86,7 @@ void KapmanItem::manageCollision()
 {
     QList<QGraphicsItem *> collidingList = collidingItems();
 
-    // The signal is emitted only if the list contains more than 1 items (to exclude the case
+    // The signal is emitted only if the list contains more than 1 item (to exclude the case
     // when the kapman only collides with the maze)
     if (collidingList.size() > 1) {
         for (int i = 0; i < collidingList.size(); ++i) {

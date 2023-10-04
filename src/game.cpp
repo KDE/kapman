@@ -426,7 +426,7 @@ void Game::resumeAfterKapmanDeath()
     start();
     // Remove a possible bonus
     Q_EMIT bonusOff();
-    // If their is no lives left, we start a new game
+    // If there are no lives left, we start a new game
     if (m_lives <= 0) {
         Q_EMIT gameOver();
     } else {

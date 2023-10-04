@@ -82,7 +82,7 @@ KapmanMainWindow::KapmanMainWindow()
     );
     KGameDifficultyGUI::init(this);
     connect(KGameDifficulty::global(), &KGameDifficulty::currentLevelChanged, this, &KapmanMainWindow::initGame);
-    // Setup the window
+    // Set up the window
     setupGUI();
 
     menuBar()->setVisible(!isFullScreen());

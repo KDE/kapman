@@ -199,23 +199,23 @@ bool Character::onCenter()
     bool willGoPast = false;
 
     // Will the character go past the center of the cell it's on ?
-    // If goes right
+    // If it goes right
     if (m_xSpeed > 0) {
         willGoPast = (m_x <= centerX && m_x + m_xSpeed >= centerX);
     }
-    // If goes left
+    // If it goes left
     else if (m_xSpeed < 0) {
         willGoPast = (m_x >= centerX && m_x + m_xSpeed <= centerX);
     }
-    // If goes down
+    // If it goes down
     else if (m_ySpeed > 0) {
         willGoPast = (m_y <= centerY && m_y + m_ySpeed >= centerY);
     }
-    // If goes up
+    // If it goes up
     else if (m_ySpeed < 0) {
         willGoPast = (m_y >= centerY && m_y + m_ySpeed <= centerY);
     }
-    // If does not moe
+    // If it does not move
     else {
         willGoPast = (m_x == centerX && m_y == centerY);
     }

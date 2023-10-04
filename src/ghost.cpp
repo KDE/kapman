@@ -106,7 +106,7 @@ void Ghost::updateMove()
                 m_ySpeed = -m_ySpeed;
             } else if ((m_xSpeed != 0 && m_xSpeed != directionsList[nb].x())
                        || (m_ySpeed != 0 && m_ySpeed != directionsList[nb].y())) { // If the chosen direction isn't forward
-                // We move the ghost on the center of the cell and update the directions
+                // We move the ghost in the center of the cell and update the directions
                 moveOnCenter();
                 m_xSpeed = directionsList[nb].x();
                 m_ySpeed = directionsList[nb].y();
