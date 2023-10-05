@@ -60,6 +60,7 @@ target_link_libraries(kapman
     KF6::DBusAddons
     KF6::XmlGui
     KF6::Crash
+    KF6::I18n
     Qt6::Svg
     Qt6::SvgWidgets
     Qt6::Xml
