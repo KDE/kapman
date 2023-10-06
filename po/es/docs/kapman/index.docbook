@@ -509,7 +509,7 @@
 <qandaentry>
 <question>
 <para
->¿Puedo cambiar los accesos rápidos de teclado por defecto?</para>
+>¿Puedo cambiar los atajos de teclado predeterminados?</para>
 </question>
 <answer>
 <para
@@ -553,7 +553,7 @@
 ><guimenuitem
 > Configurar &kapman;...</guimenuitem
 ></menuchoice
->. El diálogo de configuración de &kapman; (ver abajo) aparece y usted puede seleccionar el tema. Este se cambia inmediatamente en cuanto acepta su elección, sin necesidad de reiniciar el juego. Puede hacer click en el botón <guibutton
+>. Se mostrará el diálogo de configuración de &kapman; (ver abajo) donde podrá seleccionar el tema. Este se cambia inmediatamente en cuanto acepta su elección, sin necesidad de reiniciar el juego. Puede hacer click en el botón <guibutton
 >Predeterminado</guibutton
 > para restaurar el tema por defecto. </para>
 <screenshot>
