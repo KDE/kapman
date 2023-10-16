@@ -7,7 +7,7 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include <QtGlobal>
+#include <QtTypes>
 
 class Element;
 
