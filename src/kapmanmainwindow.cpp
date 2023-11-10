@@ -10,7 +10,7 @@
 #include "settings.h"
 // KDEGames
 #include <KGameDifficulty>
-#include <KScoreDialog>
+#include <KGameHighScoreDialog>
 #include <KGameStandardAction>
 #include <KGameThemeProvider>
 #include <KGameThemeSelector>
@@ -167,11 +167,11 @@ void KapmanMainWindow::handleGameOver()
         KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));
     } else {
         // Add the score to the highscores table
-        QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+        QPointer<KGameHighScoreDialog> dialog = new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score | KGameHighScoreDialog::Level, this);
         dialog->initFromDifficulty(KGameDifficulty::global());
-        KScoreDialog::FieldInfo scoreInfo;
-        scoreInfo[KScoreDialog::Level].setNum(m_game->getLevel());
-        scoreInfo[KScoreDialog::Score].setNum(m_game->getScore());
+        KGameHighScoreDialog::FieldInfo scoreInfo;
+        scoreInfo[KGameHighScoreDialog::Level].setNum(m_game->getLevel());
+        scoreInfo[KGameHighScoreDialog::Score].setNum(m_game->getScore());
         // If the new score is a highscore then display the highscore dialog
         if (dialog->addScore(scoreInfo)) {
             dialog->exec();
@@ -192,7 +192,7 @@ void KapmanMainWindow::changeLevel()
 
 void KapmanMainWindow::showHighscores()
 {
-    QPointer<KScoreDialog> dialog = new KScoreDialog(KScoreDialog::Name | KScoreDialog::Score | KScoreDialog::Level, this);
+    QPointer<KGameHighScoreDialog> dialog = new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score | KGameHighScoreDialog::Level, this);
     dialog->initFromDifficulty(KGameDifficulty::global());
     dialog->exec();
     delete dialog;
