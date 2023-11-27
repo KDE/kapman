@@ -1,20 +1,28 @@
-set(themes
-    invisible.desktop
-    invisible_preview.png
-    invisible.svgz
-    matches.desktop
-    matches_preview.png
-    matches.svgz
-    mountain.copyright
-    mountain.desktop
-    mountain_preview.png
-    mountain.svgz
-    mummies_crypt.desktop
-    mummies_crypt_preview.png
-    mummies_crypt.svgz
-    retro.desktop
-    retro_preview.png
-    retro.svgz
-)
+# SPDX-FileCopyrightText: 2023 Friedrich W. H. Kossebau <kossebau@kde.org>
+#
+# SPDX-License-Identifier: BSD-3-Clause
 
-install(FILES ${themes} DESTINATION ${KDE_INSTALL_DATADIR}/kapman/themes)
+function(install_theme name)
+    cmake_parse_arguments(ARG "" "SVG;PREVIEW" "" ${ARGN})
+    if (NOT ARG_SVG)
+        set(ARG_SVG "${name}.svg")
+    endif()
+    if (NOT ARG_PREVIEW)
+        set(ARG_PREVIEW "${name}_preview.png")
+    endif()
+    set(svgz "${CMAKE_CURRENT_BINARY_DIR}/${ARG_SVG}z")
+    generate_svgz(${ARG_SVG} ${svgz} "theme-")
+    install(
+        FILES
+            ${name}.desktop
+            ${ARG_PREVIEW}
+            ${svgz}
+        DESTINATION ${KDE_INSTALL_DATADIR}/kapman/themes
+    )
+endfunction()
+
+install_theme(invisible)
+install_theme(matches)
+install_theme(mountain)
+install_theme(mummies_crypt)
+install_theme(retro)
