@@ -110,4 +110,9 @@ FileName=mountain.svgz
 Preview=mountain_preview.png
 Author=Nicu Buculei, Eugene Trounev, Thomas Gallinari, Mauricio Piacentini
 AuthorEmail=kde-games-devel@kde.org
+Website=https://apps.kde.org/kapman
+BugReportUrl=https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman
+Version=1.1
+Copyright=2009 Nicu Buculei, 2009 Eugene Trounev, 2009 Thomas Gallinari, 2009 Mauricio Piacentini
+License=GPL-2.0-or-later
 RotateKapman=0

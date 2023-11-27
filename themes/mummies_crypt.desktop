@@ -101,4 +101,8 @@ FileName=mummies_crypt.svgz
 Preview=mummies_crypt_preview.png
 Author=Sean Wilson
 AuthorEmail=suseux@gmail.com
+Website=https://apps.kde.org/kapman
+BugReportUrl=https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman
+Version=1.6
+Copyright=2009 Sean Wilson
 RotateKapman=0

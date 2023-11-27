@@ -108,4 +108,8 @@ FileName=invisible.svgz
 Preview=invisible_preview.png
 Author=Thomas Gallinari
 AuthorEmail=tg8187@yahoo.fr
+Website=https://apps.kde.org/kapman
+BugReportUrl=https://bugs.kde.org/enter_bug.cgi?format=guided&amp;product=kapman
+Version=1.0
+Copyright=2008 Thomas Gallinari
 RotateKapman=1
