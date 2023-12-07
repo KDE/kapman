@@ -40,7 +40,7 @@
 <abstract>
 <para
 >&kapman; est un clone du jeu bien connu <application
->Pac-Man</application
+>Pacman</application
 >.</para>
 </abstract>
 
@@ -56,9 +56,9 @@
 <keyword
 >Un seul joueur</keyword>
 <keyword
->Pac-man</keyword>
+>Pacman</keyword>
 <keyword
->pacman</keyword>
+>Pacman</keyword>
 <keyword
 >fantôme</keyword>
 <keyword
@@ -86,7 +86,7 @@
 ></note>
 <para
 >&kapman; est un clone du jeu bien connu <application
->Pac-Man</application
+>Pacman</application
 >. Vous devez passer par des niveaux en échappant à des fantômes dans un labyrinthe. Vous perdez une vie quand un fantôme vous mange mais vous pouvez manger des fantômes pendant quelques secondes quand vous prenez un énergisant. Vous gagnez des points en prenant des pilules, des énergisants ou des bonus. Vous obtenez une vie de plus à chaque palier de 10 000 points. Quand vous avez mangé toutes les pilules et les énergisants sur un niveau, vous passez au niveau suivant mais la vitesse du jeu augmente pour le joueur et les fantômes. Le jeu se termine quand vous avez perdu toutes vos vies..  </para>
 <screenshot>
 <screeninfo
