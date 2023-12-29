@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-25 01:39+0000\n"
-"PO-Revision-Date: 2023-09-25 12:38+0200\n"
+"PO-Revision-Date: 2023-12-28 19:38+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: kapman.kcfg:13
 #, kde-format
 msgid "Whether sound effects should be played."
-msgstr ""
+msgstr "Si effectos de sono deberea esser reproducite."
 
 #: kapmanmainwindow.cpp:62
 #, kde-format
@@ -97,7 +97,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "New Game"
-msgstr ""
+msgstr "Nove Joco"
 
 #: kapmanmainwindow.cpp:139
 #, kde-format
@@ -152,7 +152,7 @@ msgstr "Quita"
 #: main.cpp:26
 #, kde-format
 msgid "Kapman"
-msgstr ""
+msgstr "Kapman"
 
 #: main.cpp:28
 #, kde-format
@@ -202,7 +202,7 @@ msgstr ""
 #: main.cpp:40
 #, kde-format
 msgid "Roney Gomes"
-msgstr ""
+msgstr "Roney Gomes"
 
 #: main.cpp:40
 #, kde-format
