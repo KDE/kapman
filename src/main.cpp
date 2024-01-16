@@ -20,7 +20,8 @@ int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
 
-    KLocalizedString::setApplicationDomain("kapman");
+    KLocalizedString::setApplicationDomain(QByteArrayLiteral("kapman"));
+
     // About Kapman
     KAboutData about(QStringLiteral("kapman"),
                      i18n("Kapman"),
