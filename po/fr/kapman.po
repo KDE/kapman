@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-25 01:39+0000\n"
+"POT-Creation-Date: 2024-01-17 00:36+0000\n"
 "PO-Revision-Date: 2023-01-06 11:06+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: fr\n"
@@ -165,63 +165,63 @@ msgctxt "To quit Kapman"
 msgid "Quit"
 msgstr "Quitter"
 
-#: main.cpp:26
+#: main.cpp:27
 #, kde-format
 msgid "Kapman"
 msgstr "Kapman"
 
 # unreviewed-context
-#: main.cpp:28
+#: main.cpp:29
 #, kde-format
 msgid "Kapman: Go through the levels escaping ghosts!"
 msgstr "Kapman : parcourez les niveaux en échappant aux fantômes !"
 
-#: main.cpp:30
+#: main.cpp:31
 #, kde-format
 msgid "Copyright (c) 2007-2008 The KapTeam"
 msgstr "Copyright (c) 2007-2008 L'équipe de développement de Kapman"
 
-#: main.cpp:34
+#: main.cpp:35
 #, kde-format
 msgid "Alexandre Galinier"
 msgstr "Alexandre Galinier"
 
-#: main.cpp:34 main.cpp:35 main.cpp:36 main.cpp:37 main.cpp:38 main.cpp:39
+#: main.cpp:35 main.cpp:36 main.cpp:37 main.cpp:38 main.cpp:39 main.cpp:40
 #, kde-format
 msgid "Developer"
 msgstr "Développeur"
 
-#: main.cpp:35
+#: main.cpp:36
 #, kde-format
 msgid "Nathalie Liesse"
 msgstr "Nathalie Liesse"
 
-#: main.cpp:36
+#: main.cpp:37
 #, kde-format
 msgid "Ömer Fadıl USTA"
 msgstr "Omer Fadil USTA"
 
-#: main.cpp:37
+#: main.cpp:38
 #, kde-format
 msgid "Pierre-Benoit Besse"
 msgstr "Pierre-Benoit Besse"
 
-#: main.cpp:38
+#: main.cpp:39
 #, kde-format
 msgid "Romain Castan"
 msgstr "Romain Castan"
 
-#: main.cpp:39
+#: main.cpp:40
 #, kde-format
 msgid "Thomas Gallinari"
 msgstr "Thomas Gallinari"
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Roney Gomes"
 msgstr "Roney Gomes"
 
-#: main.cpp:40
+#: main.cpp:41
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr "Portage vers l'infrastructure « KgSound »"
