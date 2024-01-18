@@ -40,16 +40,20 @@ int main(int argc, char **argv)
     about.addAuthor(i18n("Thomas Gallinari"), i18n("Developer"), QStringLiteral("tg8187@yahoo.fr"));
     about.addCredit(i18n("Roney Gomes"), i18n("Port to KgSound framework"), QStringLiteral("roney477@gmail.com"));
 
+    KAboutData::setApplicationData(about);
+    // Set the application icon
+    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("kapman")));
+
+    KCrash::initialize();
+
     // Command line arguments
     QCommandLineParser parser;
-    KAboutData::setApplicationData(about);
-    KCrash::initialize();
     about.setupCommandLine(&parser);
     parser.process(app);
     about.processCommandLine(&parser);
+
     KDBusService service;
-    // Set the application icon
-    app.setWindowIcon(QIcon::fromTheme(QStringLiteral("kapman")));
+
     // Create the main window
     auto window = new KapmanMainWindow();
     // Show the main window
