@@ -3,6 +3,9 @@
   <id>org.kde.kapman.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0+</project_license>
+  <developer id="org.kde">
+    <name translate="no">KDE</name>
+  </developer>
   <name>Kapman</name>
   <name xml:lang="ar">كابمان</name>
   <name xml:lang="ast">Kapman</name>
