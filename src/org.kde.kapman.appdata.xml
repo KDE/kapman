@@ -31,6 +31,7 @@
   <name xml:lang="it">Kapman</name>
   <name xml:lang="ka">Kapman</name>
   <name xml:lang="ko">Kapman</name>
+  <name xml:lang="lv">Kapman</name>
   <name xml:lang="nl">Kapman</name>
   <name xml:lang="nn">Kapman</name>
   <name xml:lang="pl">Kapman</name>
@@ -72,6 +73,7 @@
   <summary xml:lang="it">Clone di Pac-Man</summary>
   <summary xml:lang="ka">Pac-Man -ის კლონი</summary>
   <summary xml:lang="ko">팩맨 클론</summary>
+  <summary xml:lang="lv">„Pac-Man“ klons</summary>
   <summary xml:lang="nl">Kloon van Pac-Man</summary>
   <summary xml:lang="nn">Klon av Pac-Man</summary>
   <summary xml:lang="pl">Klon Pac-mana</summary>
@@ -114,6 +116,7 @@
     <p xml:lang="it">Kapman è un clone del famoso gioco Pac-Man.</p>
     <p xml:lang="ka">Kapman ცნობილი თამაშის, Pac-Man-ის კლონია.</p>
     <p xml:lang="ko">Kapman은 잘 알려진 팩맨 게임 클론입니다.</p>
+    <p xml:lang="lv">„Kapman“ ir labi zināmās spēles „Pac-Man“ klons.</p>
     <p xml:lang="nl">Kapman is een kloon van het welbekende spel Pac-Man.</p>
     <p xml:lang="nn">Kapman er ein klon av det kjende spelet Pac-Man.</p>
     <p xml:lang="pl">Kapman jest klonem dobrze znanej gry Pac-Man.</p>
@@ -157,6 +160,7 @@
     <p xml:lang="it">Devi correre attraverso il labirinto e mangiare tutte le pillole, senza essere catturato da un fantasma. Mangiando un energetico, per pochi secondi, Kapman sarà in grado di mangiare i fantasmi. Quando in un livello finiscono le pillole e gli energetici si passa al livello successivo in cui aumenterà leggermente la velocità del gioco.</p>
     <p xml:lang="ka">თქვენ უნდა გაიაროთ ლაბირინთი, რომ ჭამოთ ყველა აბი მოჩვენებით დატყვევების გარეშე. ენერგიული ჭამით, კაპმანი რამდენიმე წამის განმავლობაში იღებს მოჩვენებების ჭამის უნარს. როდესაც სცენა გაწმენდილია აბებისა და ენერგიულიგან, მოთამაშე გადადის შემდეგ ეტაპზე ოდნავ გაზრდილი თამაშის სიჩქარით.</p>
     <p xml:lang="ko">귀신에게 잡아먹히기 전에 미로를 돌아다니면서 모든 알약을 먹어야 합니다. 에너지 보충제를 먹으면 Kapman은 귀신을 잡아먹을 수 있는 능력을 잠시 동안 얻습니다. 모든 알약과 에너지 보충제를 먹으면 다음 판이 시작되며 게임 속도가 빨라집니다.</p>
+    <p xml:lang="lv">Spēles uzdevums ir skriet cauri labirintam, izvairoties no spokiem. Apēdot enerģētisko tableti, „Kapman“ uz dažām sekundēm iegūst spēju apēst spokus. Kad spēles laukumā nav nevienas parastās un enerģētiskās tabletes, spēlētājs ir izgājis līmeni un var turpināt ar nākamo, kurā viss noris ātrāk.</p>
     <p xml:lang="nl">U moet door een doolhof rennen om alle pillen op te eten zonder gevangen te worden door een spook. Door een energiegever te eten krijgt Kapman de mogelijkheid spoken gedurende een paar seconden op te eten. Wanneer een niveau is ontdaan van pillen en energiegevers, zal de speler naar het volgende niveau gaan met een iets verhoogde spelsnelheid.</p>
     <p xml:lang="nn">Du må springa gjennom ein labyrint og eta piller utan å verta fanga av spøkjelse. Viss du et ein energipille, får du evna til å eta spøkjelse i nokre sekund. Når du har rydda brettet for piller, vert du teken til neste brett, der alt går litt fortare.</p>
     <p xml:lang="pl">Musisz biec przez labirynt zjadając pigułki, tak aby nie dać się złapać duchom. Po zjedzeniu energetyzatora, Kapman na kilka sekund zyskuje możliwość jedzenia duchów. Po oczyszczeniu poziomu z pigułek i energetyzatora gracz przenosi się na następny poziom z trochę szybszym tempem gry.</p>
