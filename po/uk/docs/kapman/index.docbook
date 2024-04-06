@@ -47,9 +47,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->9 травня 2016 року</date>
+>4 червня 2021 року</date>
 <releaseinfo
->1.1.0 (Програми 16.04)</releaseinfo>
+>KDE Gear 21.04</releaseinfo>
 
 <abstract>
 <para
@@ -598,8 +598,7 @@
 >Переклад українською: Юрій Чорноіван <email
 >yurchor@ukr.net</email
 ></para
-> 
-&underFDL; &underGPL; </chapter>
+> &underFDL; &underGPL; </chapter>
 
 &documentation.index;
 
