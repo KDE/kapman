@@ -59,7 +59,8 @@ KapmanMainWindow::KapmanMainWindow()
     KStandardAction::fullScreen(this, &KapmanMainWindow::viewFullScreen, this, actionCollection());
 
     KGameStandardAction::quit(this, &KapmanMainWindow::close, actionCollection());
-    auto soundAction = new KToggleAction(i18nc("@option:check", "Play Sounds"), this);
+    auto soundAction = new KToggleAction(QIcon::fromTheme(QStringLiteral("speaker")),
+                                         i18nc("@option:check", "Play Sounds"), this);
     soundAction->setChecked(Settings::sounds());
     actionCollection()->addAction(QStringLiteral("sounds"), soundAction);
     connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
