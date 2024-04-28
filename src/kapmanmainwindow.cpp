@@ -59,11 +59,11 @@ KapmanMainWindow::KapmanMainWindow()
     KStandardAction::fullScreen(this, &KapmanMainWindow::viewFullScreen, this, actionCollection());
 
     KGameStandardAction::quit(this, &KapmanMainWindow::close, actionCollection());
-    auto soundAction = new KToggleAction(i18n("&Play Sounds"), this);
+    auto soundAction = new KToggleAction(i18nc("@option:check", "Play Sounds"), this);
     soundAction->setChecked(Settings::sounds());
     actionCollection()->addAction(QStringLiteral("sounds"), soundAction);
     connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
-    auto levelAction = new QAction(i18n("&Change Level"), this);
+    auto levelAction = new QAction(i18nc("@action", "&Change Level…"), this);
     actionCollection()->addAction(QStringLiteral("level"), levelAction);
     connect(levelAction, &QAction::triggered, this, &KapmanMainWindow::changeLevel);
     // Add a statusbar to show level,score,lives information
@@ -184,7 +184,7 @@ void KapmanMainWindow::handleGameOver()
 
 void KapmanMainWindow::changeLevel()
 {
-    const int newLevel = QInputDialog::getInt(this, i18n("Change Level"), i18nc("The number of the game level", "Level"), m_game->getLevel(), 1, 1000000, 1);
+    const int newLevel = QInputDialog::getInt(this, i18nc("@title:window", "Change Level"), i18nc("@label:textbox The number of the game level", "Level:"), m_game->getLevel(), 1, 1000000, 1);
     if (newLevel > 0) {
         m_game->setLevel(newLevel);
     }
@@ -230,7 +230,7 @@ void KapmanMainWindow::close()
     // Confirm before closing
     if (KMessageBox::warningTwoActions(this,
                                   i18n("Are you sure you want to quit Kapman?"),
-                                  i18nc("To quit Kapman", "Quit"),
+                                  i18nc("@title:window To quit Kapman", "Quit"),
                                   KStandardGuiItem::quit(), KStandardGuiItem::cancel())
         == KMessageBox::PrimaryAction) {
         KXmlGuiWindow::close();
