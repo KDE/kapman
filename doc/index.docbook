@@ -221,7 +221,7 @@ of the &kde; Fundamentals.
 <para>I want to change the way this game looks. Can I?</para>
 </question>
 <answer>
-<para>You can select the &kapman; theme in the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kapman;...</guimenuitem></menuchoice> dialog. See the <link linkend="configuration">Game Configuration</link> chapter for more details.</para>
+<para>You can select the &kapman; theme in the <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kapman;…</guimenuitem></menuchoice> dialog. See the <link linkend="configuration">Game Configuration</link> chapter for more details.</para>
 </answer>
 </qandaentry>
 <qandaentry>
@@ -261,7 +261,7 @@ of the &kde; Fundamentals.
 
 <chapter id="configuration"><title>Game Configuration</title>
 <para>
-	You can select the theme you want to play &kapman;. To do that, select <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kapman;...</guimenuitem></menuchoice>. The &kapman; configuration dialog (see below) appears and you can then select the theme. It is immediately changed on validating your choice, no need to restart the game. You can click on the <guibutton>Defaults</guibutton> button to restore the default theme.
+	You can select the theme you want to play &kapman;. To do that, select <menuchoice><guimenu>Settings</guimenu> <guimenuitem>Configure &kapman;…</guimenuitem></menuchoice>. The &kapman; configuration dialog (see below) appears and you can then select the theme. It is immediately changed on validating your choice, no need to restart the game. You can click on the <guibutton>Defaults</guibutton> button to restore the default theme.
 </para>
 <screenshot>
 <screeninfo>The &kapman; configuration dialog</screeninfo>
