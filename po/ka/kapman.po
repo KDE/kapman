@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-04-29 00:37+0000\n"
 "PO-Revision-Date: 2022-10-02 08:22+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -61,92 +61,102 @@ msgstr "გრაფიკული თემა."
 msgid "Whether sound effects should be played."
 msgstr "დაიკვრება თუ არა ხმოვანი ეფექტები."
 
-#: kapmanmainwindow.cpp:62
-#, kde-format
-msgid "&Play Sounds"
+#: kapmanmainwindow.cpp:63
+#, fuzzy, kde-format
+#| msgid "&Play Sounds"
+msgctxt "@option:check"
+msgid "Play Sounds"
 msgstr "&ხმის დაკვრა"
 
-#: kapmanmainwindow.cpp:66
-#, kde-format
-msgid "&Change Level"
+#: kapmanmainwindow.cpp:67
+#, fuzzy, kde-format
+#| msgid "&Change Level"
+msgctxt "@action"
+msgid "&Change Level…"
 msgstr "&დონის შეცვლა"
 
-#: kapmanmainwindow.cpp:71 kapmanmainwindow.cpp:248
+#: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
 msgctxt "Used to display the current level of play to the user"
 msgid "Level: %1"
 msgstr "დონე: %1"
 
-#: kapmanmainwindow.cpp:73 kapmanmainwindow.cpp:253
+#: kapmanmainwindow.cpp:74 kapmanmainwindow.cpp:254
 #, kde-format
 msgctxt "Used to inform the user of their current score"
 msgid "Score: %1"
 msgstr "ქულები: %1"
 
-#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:258
+#: kapmanmainwindow.cpp:76 kapmanmainwindow.cpp:259
 #, kde-format
 msgctxt "Used to tell the user how many lives they have left"
 msgid "Lives: %1"
 msgstr "სიცოცხლეები: %1"
 
-#: kapmanmainwindow.cpp:137
+#: kapmanmainwindow.cpp:138
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
 msgstr "დარწმუნებული ბრძნდებით, რომ გნებავთ, გახვიდეთ მიმდინარე თამაშიდან?"
 
-#: kapmanmainwindow.cpp:138
+#: kapmanmainwindow.cpp:139
 #, kde-format
 msgctxt "@title:window"
 msgid "New Game"
 msgstr "დაიწყეთ ახალი თამაში"
 
-#: kapmanmainwindow.cpp:139
+#: kapmanmainwindow.cpp:140
 #, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
 msgstr "თამაშიდან გასვლა"
 
-#: kapmanmainwindow.cpp:164
+#: kapmanmainwindow.cpp:165
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
 msgstr[0] "თქვენი საუკეთესო მიღწევა %1 ქულაა."
 msgstr[1] "თქვენი საუკეთესო მიღწევა %1 ქულაა."
 
-#: kapmanmainwindow.cpp:164
+#: kapmanmainwindow.cpp:165
 #, kde-format
 msgid "Game Over"
 msgstr "თამაში დასრულდა"
 
-#: kapmanmainwindow.cpp:167
+#: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
 msgstr "არასამართლიანად თამაშობთ. ქულები არ მოგენიჭებათ ;)"
 
-#: kapmanmainwindow.cpp:167
+#: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "Cheater!"
 msgstr "არასამართლიანო!"
 
-#: kapmanmainwindow.cpp:187
-#, kde-format
+#: kapmanmainwindow.cpp:188
+#, fuzzy, kde-format
+#| msgid "Change Level"
+msgctxt "@title:window"
 msgid "Change Level"
 msgstr "დონის შეცვლა"
 
-#: kapmanmainwindow.cpp:187
-#, kde-format
-msgctxt "The number of the game level"
-msgid "Level"
+#: kapmanmainwindow.cpp:188
+#, fuzzy, kde-format
+#| msgctxt "The number of the game level"
+#| msgid "Level"
+msgctxt "@label:textbox The number of the game level"
+msgid "Level:"
 msgstr "დონე"
 
-#: kapmanmainwindow.cpp:232
+#: kapmanmainwindow.cpp:233
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
 msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ, გახვიდეთ Kapman-დან?"
 
-#: kapmanmainwindow.cpp:233
-#, kde-format
-msgctxt "To quit Kapman"
+#: kapmanmainwindow.cpp:234
+#, fuzzy, kde-format
+#| msgctxt "To quit Kapman"
+#| msgid "Quit"
+msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "დატოვება"
 

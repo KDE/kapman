@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-17 00:36+0000\n"
+"POT-Creation-Date: 2024-04-29 00:37+0000\n"
 "PO-Revision-Date: 2022-08-03 09:47+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -61,92 +61,102 @@ msgstr "Det grafiska temat som ska användas."
 msgid "Whether sound effects should be played."
 msgstr "Om ljudeffekter ska spelas."
 
-#: kapmanmainwindow.cpp:62
-#, kde-format
-msgid "&Play Sounds"
+#: kapmanmainwindow.cpp:63
+#, fuzzy, kde-format
+#| msgid "&Play Sounds"
+msgctxt "@option:check"
+msgid "Play Sounds"
 msgstr "S&pela ljud"
 
-#: kapmanmainwindow.cpp:66
-#, kde-format
-msgid "&Change Level"
+#: kapmanmainwindow.cpp:67
+#, fuzzy, kde-format
+#| msgid "&Change Level"
+msgctxt "@action"
+msgid "&Change Level…"
 msgstr "&Byt nivå"
 
-#: kapmanmainwindow.cpp:71 kapmanmainwindow.cpp:248
+#: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
 msgctxt "Used to display the current level of play to the user"
 msgid "Level: %1"
 msgstr "Nivå: %1"
 
-#: kapmanmainwindow.cpp:73 kapmanmainwindow.cpp:253
+#: kapmanmainwindow.cpp:74 kapmanmainwindow.cpp:254
 #, kde-format
 msgctxt "Used to inform the user of their current score"
 msgid "Score: %1"
 msgstr "Poäng: %1"
 
-#: kapmanmainwindow.cpp:75 kapmanmainwindow.cpp:258
+#: kapmanmainwindow.cpp:76 kapmanmainwindow.cpp:259
 #, kde-format
 msgctxt "Used to tell the user how many lives they have left"
 msgid "Lives: %1"
 msgstr "Liv: %1"
 
-#: kapmanmainwindow.cpp:137
+#: kapmanmainwindow.cpp:138
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
 msgstr "Är du säker på att du vill avsluta pågående spel?"
 
-#: kapmanmainwindow.cpp:138
+#: kapmanmainwindow.cpp:139
 #, kde-format
 msgctxt "@title:window"
 msgid "New Game"
 msgstr "Nytt spel"
 
-#: kapmanmainwindow.cpp:139
+#: kapmanmainwindow.cpp:140
 #, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
 msgstr "Avsluta spel"
 
-#: kapmanmainwindow.cpp:164
+#: kapmanmainwindow.cpp:165
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
 msgstr[0] "Ditt resultat är %1 poäng."
 msgstr[1] "Ditt resultat är %1 poäng."
 
-#: kapmanmainwindow.cpp:164
+#: kapmanmainwindow.cpp:165
 #, kde-format
 msgid "Game Over"
 msgstr "Spelet är slut"
 
-#: kapmanmainwindow.cpp:167
+#: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
 msgstr "Du fuskade, ingen plats på poängtoppen för dig."
 
-#: kapmanmainwindow.cpp:167
+#: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "Cheater!"
 msgstr "Fuskare!"
 
-#: kapmanmainwindow.cpp:187
-#, kde-format
+#: kapmanmainwindow.cpp:188
+#, fuzzy, kde-format
+#| msgid "Change Level"
+msgctxt "@title:window"
 msgid "Change Level"
 msgstr "Byt nivå"
 
-#: kapmanmainwindow.cpp:187
-#, kde-format
-msgctxt "The number of the game level"
-msgid "Level"
+#: kapmanmainwindow.cpp:188
+#, fuzzy, kde-format
+#| msgctxt "The number of the game level"
+#| msgid "Level"
+msgctxt "@label:textbox The number of the game level"
+msgid "Level:"
 msgstr "Nivå"
 
-#: kapmanmainwindow.cpp:232
+#: kapmanmainwindow.cpp:233
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
 msgstr "Är du säker på att du vill avsluta Kapman?"
 
-#: kapmanmainwindow.cpp:233
-#, kde-format
-msgctxt "To quit Kapman"
+#: kapmanmainwindow.cpp:234
+#, fuzzy, kde-format
+#| msgctxt "To quit Kapman"
+#| msgid "Quit"
+msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Avsluta"
 
