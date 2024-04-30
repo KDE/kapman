@@ -6,7 +6,7 @@
 # Sofía Priego <spriego@darksylvania.net>, %Y.
 # Ignacio Poggi <ignaciop.3@gmail.com>, 2008.
 # Enrique Matias Sanchez (Quique) <cronopios@gmail.com>, 2009.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2009, 2012, 2021, 2022.
+# SPDX-FileCopyrightText: 2009, 2012, 2021, 2022, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 # Huever, 2009.
 # Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
 msgid ""
@@ -14,14 +14,14 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2022-07-10 15:43+0100\n"
+"PO-Revision-Date: 2024-04-29 18:23+0100\n"
 "Last-Translator: Sofía Priego <spriego@darksylvania.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 24.02.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #, kde-format
@@ -40,12 +40,12 @@ msgstr ""
 #: gamescene.cpp:90
 #, kde-format
 msgid "GET READY!!!"
-msgstr "¡PREPÁRESE!"
+msgstr "¡PREPÁRATE!"
 
 #: gamescene.cpp:94
 #, kde-format
 msgid "Press any arrow key to start"
-msgstr "Pulse cualquier tecla de cursor para empezar"
+msgstr "Pulsa cualquier tecla de cursor para empezar"
 
 #: gamescene.cpp:104
 #, kde-format
@@ -62,13 +62,13 @@ msgstr "Nivel %1"
 #: kapman.kcfg:9
 #, kde-format
 msgid "The graphical theme to be used."
-msgstr "El tema gráfico a usar."
+msgstr "El tema gráfico que se usará."
 
 #. i18n: ectx: label, entry (Sounds), group (General)
 #: kapman.kcfg:13
 #, kde-format
 msgid "Whether sound effects should be played."
-msgstr "Si se deben reproducir los efectos de sonido."
+msgstr "Indica si se deben reproducir los efectos de sonido."
 
 #: kapmanmainwindow.cpp:62
 #, kde-format
@@ -101,7 +101,7 @@ msgstr "Vidas: %1"
 #: kapmanmainwindow.cpp:137
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
-msgstr "¿Seguro que desea salir de la partida actual?"
+msgstr "¿Seguro que quieres salir de la partida actual?"
 
 #: kapmanmainwindow.cpp:138
 #, kde-format
@@ -119,8 +119,8 @@ msgstr "Salir de la partida"
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
-msgstr[0] "Su puntuación es de %1 punto."
-msgstr[1] "Su puntuación es de %1 puntos."
+msgstr[0] "Tu puntuación es de %1 punto."
+msgstr[1] "Tu puntuación es de %1 puntos."
 
 #: kapmanmainwindow.cpp:164
 #, kde-format
@@ -130,7 +130,7 @@ msgstr "Fin de la partida"
 #: kapmanmainwindow.cpp:167
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
-msgstr "Ha hecho trampas, así que no obtendrá ningún récord ;)"
+msgstr "Has hecho trampas, por lo que no tendrás una puntuación alta ;)"
 
 #: kapmanmainwindow.cpp:167
 #, kde-format
@@ -151,7 +151,7 @@ msgstr "Nivel"
 #: kapmanmainwindow.cpp:232
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
-msgstr "¿Seguro que desea salir de Kapman?"
+msgstr "¿Seguro que quieres salir de Kapman?"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -167,7 +167,7 @@ msgstr "Kapman"
 #: main.cpp:29
 #, kde-format
 msgid "Kapman: Go through the levels escaping ghosts!"
-msgstr "Kapman: Recorra los niveles escapando de los fantasmas"
+msgstr "Kapman: Recorre los niveles escapando de los fantasmas"
 
 #: main.cpp:31
 #, kde-format
