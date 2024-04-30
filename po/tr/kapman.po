@@ -4,13 +4,13 @@
 # Translators:
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kdegames-kde4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2022-07-08 12:05+0300\n"
+"PO-Revision-Date: 2024-04-29 15:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.04.2\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -33,7 +33,7 @@ msgstr "tulliana@gmail.com, emir_sari@icloud.com"
 #: gamescene.cpp:90
 #, kde-format
 msgid "GET READY!!!"
-msgstr "HAZIRLANIN !!!"
+msgstr "HAZIRLAN!"
 
 #: gamescene.cpp:94
 #, kde-format
@@ -64,18 +64,16 @@ msgid "Whether sound effects should be played."
 msgstr "Ses efektlerinin çalınıp çalınmayacağı."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Sesleri çal"
+msgstr "Sesleri çal"
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Düzeyi Değiştir"
+msgstr "&Düzeyi Değiştir…"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -135,19 +133,16 @@ msgid "Cheater!"
 msgstr "Hileci !"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
 msgstr "Düzeyi Değiştir"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Düzey"
+msgstr "Düzey:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -155,9 +150,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "Kapman oyunundan çıkmak istediğinizden emin misiniz?"
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Çık"
@@ -175,7 +168,7 @@ msgstr "Kapman: Hayaletlerden kaçarak düzeyleri geçin!"
 #: main.cpp:31
 #, kde-format
 msgid "Copyright (c) 2007-2008 The KapTeam"
-msgstr "Telif Hakları (c) 2007-2008 KapTakımı"
+msgstr "Telif Hakları (c) 2007–2008 KapTakımı"
 
 #: main.cpp:35
 #, kde-format
@@ -200,7 +193,7 @@ msgstr "Ömer Fadıl USTA"
 #: main.cpp:38
 #, kde-format
 msgid "Pierre-Benoit Besse"
-msgstr "Pierre-Benoit Besse"
+msgstr "Pierre–Benoit Besse"
 
 #: main.cpp:39
 #, kde-format
@@ -220,7 +213,7 @@ msgstr "Roney Gomes"
 #: main.cpp:41
 #, kde-format
 msgid "Port to KgSound framework"
-msgstr "KgSound kod kitaplığına aktarım"
+msgstr "KgSound çatısına geçiş"
 
 #~ msgid "Theme"
 #~ msgstr "Tema"

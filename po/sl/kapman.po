@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2022-07-09 15:38+0200\n"
+"PO-Revision-Date: 2024-04-29 10:36+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -66,18 +66,16 @@ msgid "Whether sound effects should be played."
 msgstr "Ali naj se predvajajo zvočni učinki."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Predvajaj zvoke"
+msgstr "Predvajaj zvoke"
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Spremeni stopnjo"
+msgstr "Spremeni raven"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -139,19 +137,16 @@ msgid "Cheater!"
 msgstr "Goljuf!"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
-msgstr "Spremeni stopnjo"
+msgstr "Spremeni raven"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Stopnja"
+msgstr "Raven:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -159,12 +154,10 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "Ali res želite končati igro Kapman?"
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
-msgstr "Končaj"
+msgstr "Zapusti"
 
 #: main.cpp:27
 #, kde-format

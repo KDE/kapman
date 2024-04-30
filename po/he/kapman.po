@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2024-04-05 23:44+0300\n"
+"PO-Revision-Date: 2024-04-29 22:14+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -62,18 +62,16 @@ msgid "Whether sound effects should be played."
 msgstr "האם להשמיע אפקטים קוליים."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "השמעת &צלילים"
+msgstr "השמעת צלילים"
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "מעבר &שלב"
+msgstr "החלפת &שלב…"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -135,19 +133,16 @@ msgid "Cheater!"
 msgstr "איזו רמאות!"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
-msgstr "מעבר שלב"
+msgstr "החלפת שלב"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "שלב"
+msgstr "שלב:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -155,9 +150,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "לצאת מקפמן?"
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "יציאה"

@@ -453,7 +453,7 @@
 ><guimenu
 >Arranjament</guimenu
 ><guimenuitem
->Configura el &kapman;...</guimenuitem
+>Configura el &kapman;…</guimenuitem
 ></menuchoice
 >. Per a més detalls, vegeu el capítol <link linkend="configuration"
 >Configuració del joc</link
@@ -523,7 +523,7 @@
 ><guimenu
 >Arranjament</guimenu
 ><guimenuitem
->Configura el &kapman;...</guimenuitem
+>Configura el &kapman;…</guimenuitem
 ></menuchoice
 >. Apareixerà el diàleg de configuració del &kapman; (vegeu a sota) i després podreu seleccionar el tema. Es canviarà immediatament en validar la vostra elecció, no cal reiniciar el joc. Podeu fer clic al botó &nbsp;<guibutton
 >Per omissió</guibutton

@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kapman package.
 #
-# giovanni <g.sora@tiscali.it>, 2023.
+# giovanni <g.sora@tiscali.it>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2023-12-28 19:38+0100\n"
+"PO-Revision-Date: 2024-04-29 14:51+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -61,11 +61,10 @@ msgid "Whether sound effects should be played."
 msgstr "Si effectos de sono deberea esser reproducite."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "Re&produce sonos"
+msgstr "Reproduce sonos"
 
 #: kapmanmainwindow.cpp:67
 #, kde-format
@@ -106,7 +105,7 @@ msgstr "Nove Joco"
 #, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
-msgstr ""
+msgstr "Quita Joco"
 
 #: kapmanmainwindow.cpp:165
 #, kde-format
@@ -137,12 +136,10 @@ msgid "Change Level"
 msgstr ""
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Nivello"
+msgstr "Nivello:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -150,9 +147,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr ""
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Quita"
@@ -200,12 +195,12 @@ msgstr ""
 #: main.cpp:39
 #, kde-format
 msgid "Romain Castan"
-msgstr ""
+msgstr "Romain Castan"
 
 #: main.cpp:40
 #, kde-format
 msgid "Thomas Gallinari"
-msgstr ""
+msgstr "Thomas Gallinari"
 
 #: main.cpp:41
 #, kde-format
