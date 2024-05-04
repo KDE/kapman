@@ -89,21 +89,21 @@ GameScene::GameScene(Game *p_game, const KGameTheme *theme)
     // Create the introduction labels
     m_introLabel = new QGraphicsTextItem(i18n("GET READY!!!"));
     m_introLabel->setFont(QFont(QStringLiteral("Helvetica"), 25, QFont::Bold, false));
-    m_introLabel->setDefaultTextColor(QColor(QLatin1String("#FFFF00")));
+    m_introLabel->setDefaultTextColor(QColor(0xFF, 0xFF, 0x00));
     m_introLabel->setZValue(4);
     m_introLabel2 = new QGraphicsTextItem(i18n("Press any arrow key to start"));
     m_introLabel2->setFont(QFont(QStringLiteral("Helvetica"), 15, QFont::Bold, false));
-    m_introLabel2->setDefaultTextColor(QColor(QLatin1String("#FFFF00")));
+    m_introLabel2->setDefaultTextColor(QColor(0xFF, 0xFF, 0x00));
     m_introLabel2->setZValue(4);
     // Create the new level label
     m_newLevelLabel = new QGraphicsTextItem();
     m_newLevelLabel->setFont(QFont(QStringLiteral("Helvetica"), 35, QFont::Bold, false));
-    m_newLevelLabel->setDefaultTextColor(QColor(QLatin1String("#FFFF00")));
+    m_newLevelLabel->setDefaultTextColor(QColor(0xFF, 0xFF, 0x00));
     m_newLevelLabel->setZValue(4);
     // Create the pause label
     m_pauseLabel = new QGraphicsTextItem(i18n("PAUSED"));
     m_pauseLabel->setFont(QFont(QStringLiteral("Helvetica"), 35, QFont::Bold, false));
-    m_pauseLabel->setDefaultTextColor(QColor(QLatin1String("#FFFF00")));
+    m_pauseLabel->setDefaultTextColor(QColor(0xFF, 0xFF, 0x00));
     m_pauseLabel->setZValue(4);
 
     // Display the MazeItem
@@ -354,7 +354,7 @@ void GameScene::displayPoints(long p_wonPoints, qreal p_xPos, qreal p_yPos)
     QGraphicsTextItem *tempRef = m_wonPointsLabels.first();
 
     // Positioning and customization of the point label
-    tempRef->setDefaultTextColor(QColor(QLatin1String("#FFFF00")));
+    tempRef->setDefaultTextColor(QColor(0xFF, 0xFF, 0x00));
     tempRef->setFont(QFont(QStringLiteral("Helvetica"), 15, QFont::Normal, false));
     tempRef->setPos(p_xPos - (tempRef->boundingRect().width() / 2), p_yPos - (tempRef->boundingRect().height() / 2));
     tempRef->setZValue(-1);
