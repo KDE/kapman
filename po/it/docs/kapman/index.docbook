@@ -477,7 +477,7 @@
 ><guimenu
 >Impostazioni</guimenu
 > <guimenuitem
->Configura &kapman;...</guimenuitem
+>Configura &kapman;…</guimenuitem
 ></menuchoice
 >. Vedi il paragrafo <link linkend="configuration"
 >Configurazione del gioco</link
@@ -547,7 +547,7 @@
 ><guimenu
 >Impostazioni</guimenu
 ><guimenuitem
->Configura &kapman;...</guimenuitem
+>Configura &kapman;…</guimenuitem
 ></menuchoice
 >. Comparirà la finestra di configurazione per &kapman; (vedi sotto) e potrai scegliere un tema. Verrà cambiato immediatamente, dopo aver confermato la scelta. Non serve riavviare il gioco. Puoi premere il tasto <guibutton
 >Predefinito</guibutton

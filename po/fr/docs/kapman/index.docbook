@@ -455,7 +455,7 @@
 ><guimenuitem
 >Configurer &kapman;...</guimenuitem
 ></menuchoice
->. Pour plus de détails, veuillez regarder le chapitre <link linkend="configuration"
+>. Pour plus de détails, veuillez consulter le chapitre <link linkend="configuration"
 >Configuration du jeu</link
 >.</para>
 </answer>
@@ -519,14 +519,14 @@
 ><title
 >Configuration du jeu</title>
 <para
->Vous pouvez sélectionner le thème que vous souhaitez jouer avec &kapman;. Pour cela, sélectionnez <menuchoice
+>Vous pouvez sélectionner le thème avec lequel vous souhaitez jouer à &kapman;. Pour cela, veuillez sélectionner <menuchoice
 ><guimenu
->Paramètres</guimenu
+>Configuration</guimenu
 > <guimenuitem
 >Configurer &kapman;...</guimenuitem
 ></menuchoice
 >. La boîte de dialogue de configuration de &kapman; (Voir ci-dessous) apparaît et vous pouvez alors sélectionner le thème. Il est immédiatement appliqué lors de la validation de votre choix. Il n'est pas nécessaire de re-démarrer le jeu. Vous pouvez cliquer sur le bouton <guibutton
->Défaut</guibutton
+>Par défaut</guibutton
 > pour revenir au thème par défaut. </para>
 <screenshot>
 <screeninfo
