@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kapman package.
 #
-# giovanni <g.sora@tiscali.it>, 2023.
+# SPDX-FileCopyrightText: 2023, 2024 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-17 00:36+0000\n"
-"PO-Revision-Date: 2023-12-28 19:38+0100\n"
+"PO-Revision-Date: 2024-06-26 11:18+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -68,7 +68,7 @@ msgstr "Re&produce sonos"
 #: kapmanmainwindow.cpp:66
 #, kde-format
 msgid "&Change Level"
-msgstr ""
+msgstr "&Cambia Nivello"
 
 #: kapmanmainwindow.cpp:71 kapmanmainwindow.cpp:248
 #, kde-format
@@ -103,7 +103,7 @@ msgstr "Nove Joco"
 #, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
-msgstr ""
+msgstr "Quita Joco"
 
 #: kapmanmainwindow.cpp:164
 #, kde-format
@@ -177,7 +177,7 @@ msgstr "Disveloppator"
 #: main.cpp:36
 #, kde-format
 msgid "Nathalie Liesse"
-msgstr ""
+msgstr "Nathalie Liesse"
 
 #: main.cpp:37
 #, kde-format
@@ -187,17 +187,17 @@ msgstr ""
 #: main.cpp:38
 #, kde-format
 msgid "Pierre-Benoit Besse"
-msgstr ""
+msgstr "Pierre-Benoit Besse"
 
 #: main.cpp:39
 #, kde-format
 msgid "Romain Castan"
-msgstr ""
+msgstr "Romain Castan"
 
 #: main.cpp:40
 #, kde-format
 msgid "Thomas Gallinari"
-msgstr ""
+msgstr "Thomas Gallinari"
 
 #: main.cpp:41
 #, kde-format
