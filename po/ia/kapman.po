@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kapman package.
 #
-# giovanni <g.sora@tiscali.it>, 2023, 2024.
+# SPDX-FileCopyrightText: 2023, 2024 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2024-04-29 14:51+0200\n"
+"PO-Revision-Date: 2024-07-12 16:12+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -70,7 +70,7 @@ msgstr "Reproduce sonos"
 #, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr ""
+msgstr "&Cambia Nivello…"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -133,7 +133,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
-msgstr ""
+msgstr "Cambia Nivello"
 
 #: kapmanmainwindow.cpp:188
 #, kde-format
@@ -165,12 +165,12 @@ msgstr ""
 #: main.cpp:31
 #, kde-format
 msgid "Copyright (c) 2007-2008 The KapTeam"
-msgstr ""
+msgstr "Copyright (c) 2007-2008 Le Equipa de Kap"
 
 #: main.cpp:35
 #, kde-format
 msgid "Alexandre Galinier"
-msgstr ""
+msgstr "Alexandre Galinier"
 
 #: main.cpp:35 main.cpp:36 main.cpp:37 main.cpp:38 main.cpp:39 main.cpp:40
 #, kde-format
@@ -180,7 +180,7 @@ msgstr "Disveloppator"
 #: main.cpp:36
 #, kde-format
 msgid "Nathalie Liesse"
-msgstr ""
+msgstr "Nathalie Liesse"
 
 #: main.cpp:37
 #, kde-format
@@ -190,7 +190,7 @@ msgstr ""
 #: main.cpp:38
 #, kde-format
 msgid "Pierre-Benoit Besse"
-msgstr ""
+msgstr "Pierre-Benoit Besse"
 
 #: main.cpp:39
 #, kde-format
