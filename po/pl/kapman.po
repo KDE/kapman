@@ -2,17 +2,17 @@
 # translation of kapman.po to
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Franciszek Janowski <nobange@poczta.onet.pl>, 2008.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2008.
 # Maciej Wikło <maciej.wiklo@wp.pl>, 2009.
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2012, 2014, 2021, 2022.
+# SPDX-FileCopyrightText: 2012, 2014, 2021, 2022, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2022-07-28 20:42+0200\n"
+"PO-Revision-Date: 2024-07-14 13:40+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -21,6 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -66,18 +67,16 @@ msgid "Whether sound effects should be played."
 msgstr "Czy mają być odtwarzane efekty dźwiękowe."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Odtwarzaj dźwięki"
+msgstr "Odtwarzaj dźwięki"
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Zmień poziom"
+msgstr "&Zmień poziom…"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -138,19 +137,16 @@ msgid "Cheater!"
 msgstr "Oszust!"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
 msgstr "Zmień poziom"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Poziom"
+msgstr "Poziom:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -158,9 +154,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "Na pewno chcesz zakończyć Kapmana?"
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Zakończ"
