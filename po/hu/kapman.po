@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.3\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2024-02-07 10:26+0100\n"
+"PO-Revision-Date: 2024-07-27 22:01+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.01.95\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -64,18 +64,16 @@ msgid "Whether sound effects should be played."
 msgstr "Hangeffektusok használata vagy kikapcsolása."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Hangok"
+msgstr "Hangok lejátszása"
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Váltás más szintre"
+msgstr "Szint&módosítás…"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -135,19 +133,16 @@ msgid "Cheater!"
 msgstr "Csalás"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
-msgstr "Más szintre"
+msgstr "Szint módosítása"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Szint"
+msgstr "Szint:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
@@ -155,9 +150,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "Biztosan ki szeretne lépni a játékból?"
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Kilépés"
