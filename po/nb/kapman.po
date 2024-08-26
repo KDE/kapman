@@ -139,8 +139,6 @@ msgstr ""
 
 #: kapmanmainwindow.cpp:188
 #, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
 msgstr "Brett"
@@ -152,8 +150,6 @@ msgstr "Er du sikker på at du vil avslutte Kapman?"
 
 #: kapmanmainwindow.cpp:234
 #, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Avslutt"
