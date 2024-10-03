@@ -4,20 +4,20 @@
 # Artem Sereda <overmind88@gmail.com>, 2008, 2009.
 # Артём Середа <overmind88@gmail.com>, 2009, 2013.
 # Alexander Potashev <aspotashev@gmail.com>, 2015.
-# Olesya Gerasimenko <translation-team@basealt.ru>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Olesya Gerasimenko <translation-team@basealt.ru>
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2022-09-06 16:28+0300\n"
+"PO-Revision-Date: 2024-10-02 12:12+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -27,12 +27,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Артём Середа"
+msgstr "Артём Середа, Олеся Герасименко"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "overmind88@gmail.com"
+msgstr "overmind88@gmail.com, translation-team@basealt.ru"
 
 #: gamescene.cpp:90
 #, kde-format
@@ -68,18 +68,16 @@ msgid "Whether sound effects should be played."
 msgstr "Должны ли проигрываться звуковые эффекты."
 
 #: kapmanmainwindow.cpp:63
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Воспроизводить звуки"
+msgstr "Звуковое сопровождение"
 
 #: kapmanmainwindow.cpp:67
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Сменить уровень"
+msgstr "&Сменить уровень…"
 
 #: kapmanmainwindow.cpp:72 kapmanmainwindow.cpp:249
 #, kde-format
@@ -102,7 +100,7 @@ msgstr "Жизни: %1"
 #: kapmanmainwindow.cpp:138
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
-msgstr "Вы действительно хотите закончить текущую игру?"
+msgstr "Действительно закончить текущую игру?"
 
 #: kapmanmainwindow.cpp:139
 #, kde-format
@@ -141,32 +139,27 @@ msgid "Cheater!"
 msgstr "Мошенник!"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
-msgstr "Сменить уровень"
+msgstr "Смена уровня"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Уровень"
+msgstr "Уровень:"
 
 #: kapmanmainwindow.cpp:233
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
-msgstr "Вы действительно хотите выйти из Kapman?"
+msgstr "Действительно выйти из Kapman?"
 
 #: kapmanmainwindow.cpp:234
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
-msgstr "Выйти"
+msgstr "Выход"
 
 #: main.cpp:27
 #, kde-format
