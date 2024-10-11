@@ -2,12 +2,13 @@
 # This file is distributed under the same license as the kapman package.
 #
 # SPDX-FileCopyrightText: 2023, 2024 giovanni <g.sora@tiscali.it>
+# giovanni <g.sora@tiscali.it>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2024-07-12 16:12+0200\n"
+"PO-Revision-Date: 2024-10-10 12:34+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -30,12 +31,12 @@ msgstr "g.sora@tiscali.it"
 #: gamescene.cpp:90
 #, kde-format
 msgid "GET READY!!!"
-msgstr ""
+msgstr "PREPARA TE !!!"
 
 #: gamescene.cpp:94
 #, kde-format
 msgid "Press any arrow key to start"
-msgstr ""
+msgstr "Pressa ulle clave flecha per initiar"
 
 #: gamescene.cpp:104
 #, kde-format
@@ -52,7 +53,7 @@ msgstr "Nivello %1"
 #: kapman.kcfg:9
 #, kde-format
 msgid "The graphical theme to be used."
-msgstr ""
+msgstr "Le thema graohic essera usate."
 
 #. i18n: ectx: label, entry (Sounds), group (General)
 #: kapman.kcfg:13
@@ -93,7 +94,7 @@ msgstr "Vitas: %1"
 #: kapmanmainwindow.cpp:138
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
-msgstr ""
+msgstr "Tu es secur que tu vole abandonar le joco currente?"
 
 #: kapmanmainwindow.cpp:139
 #, kde-format
@@ -127,7 +128,7 @@ msgstr ""
 #: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "Cheater!"
-msgstr ""
+msgstr "Fraudator!"
 
 #: kapmanmainwindow.cpp:188
 #, kde-format
@@ -144,7 +145,7 @@ msgstr "Nivello:"
 #: kapmanmainwindow.cpp:233
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
-msgstr ""
+msgstr "Tu es secur que tu vole quitar Kapman?"
 
 #: kapmanmainwindow.cpp:234
 #, kde-format
@@ -185,7 +186,7 @@ msgstr "Nathalie Liesse"
 #: main.cpp:37
 #, kde-format
 msgid "Ömer Fadıl USTA"
-msgstr ""
+msgstr "Ömer Fadıl USTA"
 
 #: main.cpp:38
 #, kde-format
