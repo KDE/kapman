@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2024-10-10 12:34+0200\n"
+"PO-Revision-Date: 2024-10-11 12:38+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -112,8 +112,8 @@ msgstr "Quita Joco"
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu punctuage es %1 puncto."
+msgstr[1] "Tu punctuage es %1 punctos."
 
 #: kapmanmainwindow.cpp:165
 #, kde-format
@@ -123,7 +123,7 @@ msgstr "Joco Terminate"
 #: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
-msgstr ""
+msgstr "Tu fraudava , nulle  AltePunctos ;)"
 
 #: kapmanmainwindow.cpp:168
 #, kde-format
@@ -161,7 +161,7 @@ msgstr "Kapman"
 #: main.cpp:29
 #, kde-format
 msgid "Kapman: Go through the levels escaping ghosts!"
-msgstr ""
+msgstr "Kapman: Vade trans nivellos escappante phantasmas!"
 
 #: main.cpp:31
 #, kde-format
@@ -211,4 +211,4 @@ msgstr "Roney Gomes"
 #: main.cpp:41
 #, kde-format
 msgid "Port to KgSound framework"
-msgstr ""
+msgstr "Porto a framework de KgSound"
