@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-29 00:37+0000\n"
-"PO-Revision-Date: 2024-07-12 16:12+0200\n"
+"PO-Revision-Date: 2024-10-11 12:59+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -30,12 +30,12 @@ msgstr "g.sora@tiscali.it"
 #: gamescene.cpp:90
 #, kde-format
 msgid "GET READY!!!"
-msgstr ""
+msgstr "PREPARA TE !!!"
 
 #: gamescene.cpp:94
 #, kde-format
 msgid "Press any arrow key to start"
-msgstr ""
+msgstr "Pressa ulle clave flecha per initiar"
 
 #: gamescene.cpp:104
 #, kde-format
@@ -52,7 +52,7 @@ msgstr "Nivello %1"
 #: kapman.kcfg:9
 #, kde-format
 msgid "The graphical theme to be used."
-msgstr ""
+msgstr "Le thema graohic essera usate."
 
 #. i18n: ectx: label, entry (Sounds), group (General)
 #: kapman.kcfg:13
@@ -93,7 +93,7 @@ msgstr "Vitas: %1"
 #: kapmanmainwindow.cpp:138
 #, kde-format
 msgid "Are you sure you want to quit the current game?"
-msgstr ""
+msgstr "Tu es secur que tu vole abandonar le joco currente?"
 
 #: kapmanmainwindow.cpp:139
 #, kde-format
@@ -111,8 +111,8 @@ msgstr "Quita Joco"
 #, kde-format
 msgid "Your score is %1 point."
 msgid_plural "Your score is %1 points."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu punctuage es %1 puncto."
+msgstr[1] "Tu punctuage es %1 punctos."
 
 #: kapmanmainwindow.cpp:165
 #, kde-format
@@ -122,12 +122,12 @@ msgstr "Joco Terminate"
 #: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
-msgstr ""
+msgstr "Tu fraudava , nulle  AltePunctos ;)"
 
 #: kapmanmainwindow.cpp:168
 #, kde-format
 msgid "Cheater!"
-msgstr ""
+msgstr "Fraudator!"
 
 #: kapmanmainwindow.cpp:188
 #, kde-format
@@ -144,7 +144,7 @@ msgstr "Nivello:"
 #: kapmanmainwindow.cpp:233
 #, kde-format
 msgid "Are you sure you want to quit Kapman?"
-msgstr ""
+msgstr "Tu es secur que tu vole quitar Kapman?"
 
 #: kapmanmainwindow.cpp:234
 #, kde-format
@@ -160,7 +160,7 @@ msgstr "Kapman"
 #: main.cpp:29
 #, kde-format
 msgid "Kapman: Go through the levels escaping ghosts!"
-msgstr ""
+msgstr "Kapman: Vade trans nivellos escappante phantasmas!"
 
 #: main.cpp:31
 #, kde-format
@@ -185,7 +185,7 @@ msgstr "Nathalie Liesse"
 #: main.cpp:37
 #, kde-format
 msgid "Ömer Fadıl USTA"
-msgstr ""
+msgstr "Ömer Fadıl USTA"
 
 #: main.cpp:38
 #, kde-format
@@ -210,4 +210,4 @@ msgstr "Roney Gomes"
 #: main.cpp:41
 #, kde-format
 msgid "Port to KgSound framework"
-msgstr ""
+msgstr "Porto a framework de KgSound"
