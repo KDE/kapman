@@ -21,7 +21,11 @@ public:
     static const qreal SIZE;
 
     /** The Cell possible types */
-    enum Type { WALL = 0, CORRIDOR = 1, GHOSTCAMP = 2 };
+    enum Type {
+        WALL = 0,
+        CORRIDOR = 1,
+        GHOSTCAMP = 2
+    };
 
 private:
     /** The Cell type */

@@ -15,30 +15,29 @@
 #include <KGameThemeProvider>
 #include <KGameThemeSelector>
 // KF
-#include <KStandardGuiItem>
 #include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
+#include <KStandardGuiItem>
 #include <KToggleAction>
 #include <KToggleFullScreenAction>
 // Qt
 #include <QAction>
 #include <QInputDialog>
 #include <QLabel>
+#include <QMenuBar>
 #include <QPointer>
 #include <QStatusBar>
-#include <QMenuBar>
 
 KapmanMainWindow::KapmanMainWindow()
 {
     m_themeProvider = new KGameThemeProvider(QByteArray(), this); // empty config key to disable internal config
-    m_themeProvider->discoverThemes(
-        QStringLiteral("themes"),   // theme data location
-        QStringLiteral("default")); // default theme name
+    m_themeProvider->discoverThemes(QStringLiteral("themes"), // theme data location
+                                    QStringLiteral("default")); // default theme name
 
     const QByteArray themeIdentifier = Settings::theme().toUtf8();
     const QList<const KGameTheme *> themes = m_themeProvider->themes();
-    for (auto* theme : themes) {
+    for (auto *theme : themes) {
         if (theme->identifier() == themeIdentifier) {
             m_themeProvider->setCurrentTheme(theme);
             break;
@@ -59,8 +58,7 @@ KapmanMainWindow::KapmanMainWindow()
     KStandardAction::fullScreen(this, &KapmanMainWindow::viewFullScreen, this, actionCollection());
 
     KGameStandardAction::quit(this, &KapmanMainWindow::close, actionCollection());
-    auto soundAction = new KToggleAction(QIcon::fromTheme(QStringLiteral("speaker")),
-                                         i18nc("@option:check", "Play Sounds"), this);
+    auto soundAction = new KToggleAction(QIcon::fromTheme(QStringLiteral("speaker")), i18nc("@option:check", "Play Sounds"), this);
     soundAction->setChecked(Settings::sounds());
     actionCollection()->addAction(QStringLiteral("sounds"), soundAction);
     connect(soundAction, &KToggleAction::triggered, this, &KapmanMainWindow::setSoundsEnabled);
@@ -135,10 +133,10 @@ void KapmanMainWindow::newGame()
 
     // Confirm before starting a new game
     if (KMessageBox::warningTwoActions(this,
-                                  i18n("Are you sure you want to quit the current game?"),
-                                  i18nc("@title:window", "New Game"),
-                                  KGuiItem(i18nc("@action;button", "Quit Game"), QStringLiteral("window-close")),
-                                  KStandardGuiItem::cancel())
+                                       i18n("Are you sure you want to quit the current game?"),
+                                       i18nc("@title:window", "New Game"),
+                                       KGuiItem(i18nc("@action;button", "Quit Game"), QStringLiteral("window-close")),
+                                       KStandardGuiItem::cancel())
         == KMessageBox::PrimaryAction) {
         // Start a new game
         initGame();
@@ -168,7 +166,8 @@ void KapmanMainWindow::handleGameOver()
         KMessageBox::information(this, i18n("You cheated, no Highscore for you ;)"), i18n("Cheater!"));
     } else {
         // Add the score to the highscores table
-        QPointer<KGameHighScoreDialog> dialog = new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score | KGameHighScoreDialog::Level, this);
+        QPointer<KGameHighScoreDialog> dialog =
+            new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score | KGameHighScoreDialog::Level, this);
         dialog->initFromDifficulty(KGameDifficulty::global());
         KGameHighScoreDialog::FieldInfo scoreInfo;
         scoreInfo[KGameHighScoreDialog::Level].setNum(m_game->getLevel());
@@ -185,7 +184,13 @@ void KapmanMainWindow::handleGameOver()
 
 void KapmanMainWindow::changeLevel()
 {
-    const int newLevel = QInputDialog::getInt(this, i18nc("@title:window", "Change Level"), i18nc("@label:textbox The number of the game level", "Level:"), m_game->getLevel(), 1, 1000000, 1);
+    const int newLevel = QInputDialog::getInt(this,
+                                              i18nc("@title:window", "Change Level"),
+                                              i18nc("@label:textbox The number of the game level", "Level:"),
+                                              m_game->getLevel(),
+                                              1,
+                                              1000000,
+                                              1);
     if (newLevel > 0) {
         m_game->setLevel(newLevel);
     }
@@ -193,7 +198,8 @@ void KapmanMainWindow::changeLevel()
 
 void KapmanMainWindow::showHighscores()
 {
-    QPointer<KGameHighScoreDialog> dialog = new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score | KGameHighScoreDialog::Level, this);
+    QPointer<KGameHighScoreDialog> dialog =
+        new KGameHighScoreDialog(KGameHighScoreDialog::Name | KGameHighScoreDialog::Score | KGameHighScoreDialog::Level, this);
     dialog->initFromDifficulty(KGameDifficulty::global());
     dialog->exec();
     delete dialog;
@@ -230,9 +236,10 @@ void KapmanMainWindow::close()
     }
     // Confirm before closing
     if (KMessageBox::warningTwoActions(this,
-                                  i18n("Are you sure you want to quit Kapman?"),
-                                  i18nc("@title:window To quit Kapman", "Quit"),
-                                  KStandardGuiItem::quit(), KStandardGuiItem::cancel())
+                                       i18n("Are you sure you want to quit Kapman?"),
+                                       i18nc("@title:window To quit Kapman", "Quit"),
+                                       KStandardGuiItem::quit(),
+                                       KStandardGuiItem::cancel())
         == KMessageBox::PrimaryAction) {
         KXmlGuiWindow::close();
     } else {

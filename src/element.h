@@ -22,7 +22,13 @@ class Element : public QObject
 
 public:
     /** The Element possible types */
-    enum Type { KAPMAN = 0, GHOST = 1, PILL = 2, ENERGYZER = 3, BONUS = 4 };
+    enum Type {
+        KAPMAN = 0,
+        GHOST = 1,
+        PILL = 2,
+        ENERGYZER = 3,
+        BONUS = 4
+    };
 
 protected:
     /** The Element type */

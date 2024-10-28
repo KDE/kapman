@@ -20,7 +20,11 @@ class Ghost : public Character
 
 public:
     /** The ghost possible states */
-    enum State { HUNTER = 0, PREY = 1, EATEN = 2 };
+    enum State {
+        HUNTER = 0,
+        PREY = 1,
+        EATEN = 2
+    };
 
     /** The value of an Ghost */
     static const int POINTS;
