@@ -48,6 +48,7 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     ConfigWidgets
     WidgetsAddons
     XmlGui
+    IconThemes
 )
 
 find_package(KDEGames6 6.0.0 REQUIRED)

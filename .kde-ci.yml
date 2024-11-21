@@ -14,6 +14,7 @@ Dependencies:
     'frameworks/ki18n': '@latest-kf6'
     'frameworks/kwidgetsaddons': '@latest-kf6'
     'frameworks/kxmlgui': '@latest-kf6'
+    'frameworks/kiconthemes': '@latest-kf6'
     'games/libkdegames': '@same'
 
 Options:

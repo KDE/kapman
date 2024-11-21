@@ -61,6 +61,7 @@ target_link_libraries(kapman
     KF6::XmlGui
     KF6::Crash
     KF6::I18n
+    KF6::IconThemes
     Qt6::Svg
     Qt6::SvgWidgets
     Qt6::Xml
