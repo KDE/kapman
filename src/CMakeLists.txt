@@ -54,6 +54,17 @@ kconfig_add_kcfg_files(kapman settings.kcfgc)
 file(GLOB ICONS_SRCS "${CMAKE_SOURCE_DIR}/icons/*-apps-kapman.png")
 ecm_add_app_icon(kapman ICONS ${ICONS_SRCS})
 
+if(APPLE)
+    set_target_properties(kapman PROPERTIES
+        MACOSX_BUNDLE_DISPLAY_NAME "Kapman"
+        MACOSX_BUNDLE_BUNDLE_NAME "Kapman"
+        MACOSX_BUNDLE_LONG_VERSION_STRING "Kapman ${RELEASE_SERVICE_VERSION}"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${RELEASE_SERVICE_VERSION}"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.kapman"
+        MACOSX_BUNDLE_COPYRIGHT "2024 The Kapman Developers")
+endif()
+
 target_link_libraries(kapman
     KDEGames6
     KF6::CoreAddons
