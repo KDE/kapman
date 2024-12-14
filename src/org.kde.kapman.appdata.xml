@@ -39,6 +39,7 @@
   <name xml:lang="pt">Kapman</name>
   <name xml:lang="pt-BR">Kapman</name>
   <name xml:lang="ru">Kapman</name>
+  <name xml:lang="sa">कैपिंग</name>
   <name xml:lang="sk">Kapman</name>
   <name xml:lang="sl">Kapman</name>
   <name xml:lang="sr">Капмен</name>
@@ -83,6 +84,7 @@
   <summary xml:lang="pt">Clone do Pac-Man</summary>
   <summary xml:lang="pt-BR">Clone do Pac-Man</summary>
   <summary xml:lang="ru">Клон игры Pac-Man</summary>
+  <summary xml:lang="sa">पैक-मैन क्लोन</summary>
   <summary xml:lang="sk">Klon Pac-mana</summary>
   <summary xml:lang="sl">Dvojnik Pac-Mana</summary>
   <summary xml:lang="sr">Клон Пакмена</summary>
@@ -128,6 +130,7 @@
     <p xml:lang="pt">O Kapman é um clone do conhecido jogo Pac-Man.</p>
     <p xml:lang="pt-BR">Kapman é um clone do famoso jogo Pac-Man.</p>
     <p xml:lang="ru">Kapman — клон известной игры Pac-Man.</p>
+    <p xml:lang="sa">कपमैन् सुप्रसिद्धस्य क्रीडायाः पैक्-मैन् इत्यस्य क्लोन् अस्ति ।</p>
     <p xml:lang="sk">Kapman je klon dobre známej hry Pac-Man.</p>
     <p xml:lang="sl">Kapman je dvojnik dobro poznane igre Pac-Man.</p>
     <p xml:lang="sr">Капмен је клон добро познате игре Пакмен.</p>
@@ -174,6 +177,7 @@
     <p xml:lang="pt">Tem de percorrer o labirinto para comer todas as peças sem ser capturado por um fantasma. Ao comer um item de energia, o Kapman fica capaz de comer os fantasmas durante alguns segundos. Quando um dado nível fica limpo de peças e itens de energia, o jogador passa para o nível seguinte, com uma velocidade ligeiramente maior.</p>
     <p xml:lang="pt-BR">Você deve percorrer o labirinto para comer todas as pílulas sem ser capturado por um fantasma. Ao comer um energizante, o Kapman poderá comer os fantasmas durante alguns segundos. Quando um nível fica limpo de pílulas e energizantes, o jogador passa para o nível seguinte, com uma velocidade ligeiramente maior.</p>
     <p xml:lang="ru">Нужно провести игрового персонажа по лабиринту и собрать все таблетки. При съедании энерджайзера персонаж на несколько секунд получает способность съедать привидений. Когда лабиринт освобождён от таблеток и энерджайзеров, игрок переводится на следующий уровень, и скорость игры немного увеличивается.</p>
+    <p xml:lang="sa">भूतेन न गृहीताः सर्वाणि गोल्यः खादितुम् चक्रव्यूहं धावितव्यम् । ऊर्जाप्रदं खादित्वा कपमैन् कतिपयसेकेण्ड् यावत् भूतभक्षणस्य क्षमताम् प्राप्नोति । यदा कश्चन मञ्चः गोल्यः ऊर्जाप्रदः च निर्मलः भवति तदा क्रीडकः किञ्चित् वर्धितायाः क्रीडावेगेन अग्रिमचरणं प्रति नेयते ।</p>
     <p xml:lang="sk">Musíte bežať cez bludisko a jesť pilulky bez toho, aby vás chytil duch. Ak zjete energizér, Kapman získa schopnosť jesť duchov na niekoľko sekúnd. Keď sa vyčistí bludisko od piluliek a energizérov, hráč sa presunie do ďalšej úrovne s mierne zvýšenou rýchlosťou hry.</p>
     <p xml:lang="sl">Prebiti se morate skozi labirint in pri tem pojesti vse tablete, brez da bi vas pri tem ujel duh. Če vzamete poživilo, lahko Kapman za omejen čas poje duhove, ki mu prekrižajo pot. Ko je labirint počiščen tablet in poživil, igralec preide na naslednjo raven, pri tem pa se rahlo poveča hitrost igre.</p>
     <p xml:lang="sr">Морате да протрчите кроз лавиринт и поједете све пилуле, а да вас притом не ухвате духови. Ако прогутате енергизатор, добијате на неколико секунди могућност да једете духове. Када се деоница рашчисти од пилула и енергизатора, бивате пребачени на наредну деоницу са мало повећаном брзином игре.</p>
