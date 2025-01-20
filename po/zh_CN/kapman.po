@@ -64,13 +64,13 @@ msgstr "是否播放音效。"
 #, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr ""
+msgstr "播放声音"
 
 #: kapmanmainwindow.cpp:65
 #, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr ""
+msgstr "更改等级...(&C)"
 
 #: kapmanmainwindow.cpp:70 kapmanmainwindow.cpp:256
 #, kde-format
@@ -138,7 +138,7 @@ msgstr "更改等级"
 #, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr ""
+msgstr "等级："
 
 #: kapmanmainwindow.cpp:239
 #, kde-format
