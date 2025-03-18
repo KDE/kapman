@@ -1,14 +1,12 @@
-# translation of kapman.po to Spanish
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kapman.po package.
+# Copyright (C) 2025 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kapman package.
 #
-# Sofia Priego <spriego@darksylvania.net>, %Y.
-# Sofía Priego <spriego@darksylvania.net>, %Y.
-# Ignacio Poggi <ignaciop.3@gmail.com>, 2008.
-# Enrique Matias Sanchez (Quique) <cronopios@gmail.com>, 2009.
+# SPDX-FileCopyrightText: 2008 Ignacio Poggi <ignaciop.3@gmail.com>
+# SPDX-FileCopyrightText: 2009 Enrique Matias Sanchez (Quique) <cronopios@gmail.com>
 # SPDX-FileCopyrightText: 2009, 2012, 2021, 2022, 2024 Eloy Cuadra <ecuadra@eloihr.net>
-# Huever, 2009.
-# Kira J. Fernandez <kirajfdez@gmail.com>, 2010.
+# SPDX-FileCopyrightText: 2010 Kira J. Fernandez <kirajfdez@gmail.com>
+# SPDX-FileCopyrightText: 2024, 2025 Sofía Priego <spriego@darksylvania.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
@@ -80,7 +78,7 @@ msgstr "Reproducir sonidos"
 #, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Cambiar de nivel..."
+msgstr "&Cambiar de nivel…"
 
 #: kapmanmainwindow.cpp:70 kapmanmainwindow.cpp:256
 #, kde-format
@@ -221,6 +219,3 @@ msgstr "Roney Gomes"
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr "Adaptación a la infraestructura KgSound"
-
-#~ msgid "Theme"
-#~ msgstr "Tema"
