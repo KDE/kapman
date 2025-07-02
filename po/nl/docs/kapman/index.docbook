@@ -530,14 +530,14 @@
 > klikken om terug te keren naar het standaard thema. </para>
 <screenshot>
 <screeninfo
->De instellingendialoog van &kapman;</screeninfo>
+>De configuratiedialoog van &kapman;</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="config.png" format="PNG"/>
 </imageobject>
 <textobject>
 <phrase
->De instellingendialoog van &kapman;</phrase>
+>De configuratiedialoog van &kapman;</phrase>
 </textobject>
 </mediaobject>
 </screenshot>
