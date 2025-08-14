@@ -126,7 +126,7 @@ msgstr "انتهت اللعبة"
 #: kapmanmainwindow.cpp:166
 #, kde-format
 msgid "You cheated, no Highscore for you ;)"
-msgstr "لقد غششت ، لن توضع في أعلى النقاط ;)"
+msgstr "لقد غششت، لن توضع في أعلى النقاط ;)"
 
 #: kapmanmainwindow.cpp:166
 #, kde-format
