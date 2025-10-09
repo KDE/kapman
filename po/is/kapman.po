@@ -2,13 +2,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2009, 2015, 2024.
+# SPDX-FileCopyrightText: 2009, 2015, 2024, 2025 Sveinn í Felli <sveinki@nett.is>
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:38+0000\n"
-"PO-Revision-Date: 2024-02-19 15:11+0000\n"
+"PO-Revision-Date: 2025-10-08 12:54+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
 "Language: is\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 "\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -64,18 +64,16 @@ msgid "Whether sound effects should be played."
 msgstr "Hvort spila eigi hljóðbrellur."
 
 #: kapmanmainwindow.cpp:61
-#, fuzzy, kde-format
-#| msgid "&Play Sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "Spila &hljóð"
+msgstr "Spila hljóð"
 
 #: kapmanmainwindow.cpp:65
-#, fuzzy, kde-format
-#| msgid "&Change Level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "S&kipta um borð"
+msgstr "S&kipta um borð…"
 
 #: kapmanmainwindow.cpp:70 kapmanmainwindow.cpp:256
 #, kde-format
@@ -135,19 +133,16 @@ msgid "Cheater!"
 msgstr "Svindlari!"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change Level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
 msgstr "Skipta um borð"
 
 #: kapmanmainwindow.cpp:189
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Borð"
+msgstr "Borð:"
 
 #: kapmanmainwindow.cpp:239
 #, kde-format
@@ -155,9 +150,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "Ertu viss um að þú viljir hætta í Kapman?"
 
 #: kapmanmainwindow.cpp:240
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Hætta"
