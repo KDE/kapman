@@ -3,10 +3,10 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Albert Astals Cid <aacid@kde.org>, 2009.
-# Manuel Tortosa <manutortosa@gmail.com>, 2009.
-# Josep M. Ferrer <txemaq@gmail.com>, 2012, 2013, 2020, 2021, 2022, 2024.
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2021.
+# SPDX-FileCopyrightText: 2009 Albert Astals Cid <aacid@kde.org>
+# SPDX-FileCopyrightText: 2009 Manuel Tortosa <manutortosa@gmail.com>
+# SPDX-FileCopyrightText: 2012, 2013, 2020, 2021, 2022, 2024 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2020, 2021 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
