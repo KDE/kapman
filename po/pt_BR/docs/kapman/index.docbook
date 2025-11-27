@@ -61,9 +61,9 @@
 >&FDLNotice;</legalnotice>
 
 <date
->09/05/2016</date>
+>04/06/2021</date>
 <releaseinfo
->1.1.0 (Applications 16.04)</releaseinfo>
+>KDE Gear 21.04</releaseinfo>
 
 <abstract>
 <para
@@ -432,33 +432,25 @@
 ><para
 ><action
 >Virar para cima</action
-> - <keysym
->Seta para cima</keysym
-></para
+> - Seta &Up;</para
 ></listitem>
 <listitem
 ><para
 ><action
 >Virar para baixo</action
-> - <keysym
->Seta para baixo</keysym
-></para
+> - Seta &Down;</para
 ></listitem>
 <listitem
 ><para
 ><action
 >Virar à direita</action
-> - <keysym
->Seta para direita</keysym
-></para
+> - Seta &Right;</para
 ></listitem>
 <listitem
 ><para
 ><action
 >Virar à esquerda</action
-> - <keysym
->Seta para esquerda</keysym
-></para
+> - Seta &Left;</para
 ></listitem>
 <listitem
 ><para
@@ -489,7 +481,7 @@
 ><guimenu
 >Configurações</guimenu
 ><guimenuitem
->Configurar o Kapman...</guimenuitem
+>Configurar o &kapman;…</guimenuitem
 ></menuchoice
 >. Veja o capítulo <link linkend="configuration"
 >Configuração do jogo</link
@@ -559,7 +551,7 @@
 ><guimenu
 >Configurações</guimenu
 ><guimenuitem
->Configurar o Kapman...</guimenuitem
+>Configurar o &kapman;…</guimenuitem
 ></menuchoice
 >. A página de configuração do &kapman; (veja abaixo) irá aparecer e você poderá selecionar o tema. Ele é imediatamente alterado de acordo com a sua escolha, sem precisar reiniciar o jogo. Você pode clicar no botão <guibutton
 >Padrões</guibutton
