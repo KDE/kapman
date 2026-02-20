@@ -61,18 +61,16 @@ msgid "Whether sound effects should be played."
 msgstr "Cé acu a úsáidfear maisíochtaí fuaime nó nach n-úsáidfear."
 
 #: kapmanmainwindow.cpp:61
-#, fuzzy, kde-format
-#| msgid "&Play sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Seinn fuaimeanna"
+msgstr ""
 
 #: kapmanmainwindow.cpp:65
-#, fuzzy, kde-format
-#| msgid "&Change level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Athraigh an leibhéal"
+msgstr ""
 
 #: kapmanmainwindow.cpp:70 kapmanmainwindow.cpp:256
 #, kde-format
@@ -98,19 +96,16 @@ msgid "Are you sure you want to quit the current game?"
 msgstr "An bhfuil tú cinnte gur mian leat an cluiche reatha a scor?"
 
 #: kapmanmainwindow.cpp:137
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New Game"
-msgstr "Cluiche nua"
+msgstr ""
 
 #: kapmanmainwindow.cpp:138
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
-msgstr "Scoir"
+msgstr ""
 
 #: kapmanmainwindow.cpp:163
 #, kde-format
@@ -138,19 +133,16 @@ msgid "Cheater!"
 msgstr "Caimiléir!"
 
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
-msgstr "Athraigh an leibhéal"
+msgstr ""
 
 #: kapmanmainwindow.cpp:189
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Leibhéal"
+msgstr ""
 
 #: kapmanmainwindow.cpp:239
 #, kde-format
@@ -158,12 +150,10 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "An bhfuil tú cinnte gur mian leat Kapman a scor?"
 
 #: kapmanmainwindow.cpp:240
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
-msgstr "Scoir"
+msgstr ""
 
 #: main.cpp:45
 #, kde-format
@@ -224,9 +214,3 @@ msgstr "Roney Gomes"
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr "Leagan a úsáideann frámaíocht KgSound"
-
-#~ msgid "Theme"
-#~ msgstr "Téama"
-
-#~ msgid "Game difficulty level."
-#~ msgstr "Leibhéal deacrachta an chluiche."
