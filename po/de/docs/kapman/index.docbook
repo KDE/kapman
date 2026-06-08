@@ -525,9 +525,9 @@
 ><guimenu
 >Einstellungen</guimenu
 ><guimenuitem
->&kapman; einrichten …</guimenuitem
+>&kapman; einrichten</guimenuitem
 ></menuchoice
-> ausgewählt werden. Weitere Informationen hierzu können dem Abschnitt <link linkend="configuration"
+>  ausgewählt werden. Weitere Informationen hierzu können dem Abschnitt <link linkend="configuration"
 >Spieleinstellungen</link
 > entnommen werden.</para>
 </answer>
@@ -599,7 +599,7 @@
 ><guimenu
 >Einstellungen</guimenu
 ><guimenuitem
->&kapman; einrichten … </guimenuitem
+>&kapman; einrichten </guimenuitem
 ></menuchoice
 > kann das gewünschte Design gewählt werden. Nach dem Drücken auf <guibutton
 >Anwenden</guibutton
