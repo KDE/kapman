@@ -159,8 +159,8 @@ void Game::switchPause(bool p_locked)
         pause(p_locked);
         Q_EMIT pauseChanged(true, true);
     }
-    // If the Game is already paused
-    else {
+    // If the Game is already paused and user is allowed to unpause
+    else if (m_state == PAUSED_UNLOCKED) {
         // Resume the Game
         start();
         Q_EMIT pauseChanged(false, true);
