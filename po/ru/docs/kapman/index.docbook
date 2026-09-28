@@ -1,0 +1,610 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Russian "INCLUDE">
+]>
+
+<book id="kapman" lang="&language;">
+<bookinfo>
+<title
+>Руководство пользователя &kapman;</title>
+
+<authorgroup>
+<author
+><personname
+> <firstname
+>Thomas</firstname
+> <surname
+>Gallinari</surname
+> </personname
+> <email
+>tg8187@yahoo.fr</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Александр</firstname
+><surname
+>Яворский</surname
+><affiliation
+><address
+><email
+>kekcuha@gmail.com</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+
+<copyright>
+<year
+>2008</year>
+<holder
+>Thomas Gallinari</holder>
+</copyright>
+<legalnotice
+>&FDLNotice;</legalnotice>
+
+<date
+>4 июня 2021 г.</date>
+<releaseinfo
+>KDE Gear 21.04</releaseinfo>
+
+<abstract>
+<para
+>&kapman; — клон известной игры <application
+>Pac-Man</application
+>.</para>
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdegames</keyword>
+<keyword
+>Kapman</keyword>
+<keyword
+>аркада</keyword>
+<keyword
+>один игрок</keyword>
+<keyword
+>pac-man</keyword>
+<keyword
+>pacman</keyword>
+<keyword
+>призрак</keyword>
+<keyword
+>таблетка</keyword>
+<keyword
+>энерджайзер</keyword>
+</keywordset>
+
+</bookinfo>
+
+<chapter id="introduction">
+<title
+>Введение</title>
+<note
+><title
+>Тип игры:</title
+><para
+>Аркада</para
+></note>
+<note
+><title
+>Количество игроков:</title
+><para
+>Один</para
+></note>
+<para
+>&kapman; — клон известной игры <application
+>Pac-Man</application
+>. Нужно проходить уровни, убегая от призраков в лабиринте. Если призрак вас съест, вы теряете жизнь, но, съев энерджайзер, вы на несколько секунд сами можете есть призраков. Очки начисляются за съеденные таблетки, энерджайзеры и бонусы, а за каждые 10 000 очков даётся ещё одна жизнь. Когда все таблетки и энерджайзеры на уровне съедены, начинается следующий уровень, и скорость игрока и призраков растёт. Игра заканчивается, когда потеряны все жизни. </para>
+<screenshot>
+<screeninfo
+>Снимок экрана &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="kapman.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Снимок экрана &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="howto">
+<title
+>Как играть</title>
+<note
+><title
+>Цель:</title
+><para
+>Проходить уровни, съедая все таблетки и энерджайзеры.</para
+></note>
+<para
+>После начала игры &kapman; загружает первый уровень. Чтобы начать игру, нажмите клавишу со стрелкой. Персонаж движется вперёд сам, без нажатия клавиш. Чтобы повернуть, нажмите клавишу со стрелкой. Не поворачивайте в последний момент — нажмите заранее, и поворот произойдёт при первой возможности. Чтобы съесть таблетку, энерджайзер, бонус или даже призрака, нужно до него дотронуться. Когда все таблетки и энерджайзеры съедены, начинается следующий уровень. </para>
+</chapter>
+
+<chapter id="rules_and_tips"
+><title
+>Правила игры, стратегия и советы</title>
+<sect1 id="rules">
+<title
+>Правила</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Чтобы перейти на следующий уровень, нужно съесть все таблетки и энерджайзеры в лабиринте.</para
+></listitem>
+<listitem
+><para
+>Бонус появляется, когда съедена треть и две трети таблеток и энерджайзеров. Если его не съесть, через несколько секунд он исчезает (на первом уровне через 10 секунд, а с ростом уровня быстрее).</para
+></listitem>
+<listitem
+><para
+>С каждым уровнем растёт скорость и игрока, и призраков, но призраки ускоряются сильнее.</para
+></listitem>
+<listitem
+><para
+>Если вы столкнётесь с призраком, то потеряете жизнь, а текущий уровень начнётся заново (съеденные таблетки и энерджайзеры при этом не возвращаются).</para
+></listitem>
+<listitem
+><para
+>Если вы в поле зрения призрака (то есть между вами нет стены и вы оба движетесь в одном направлении), призрак будет вас преследовать. В остальное время призраки движутся случайно.</para
+></listitem>
+<listitem
+><para
+>Когда вы съедаете энерджайзер, призраки замедляются, и их можно есть. Съеденный призрак возвращается в свой дом и снова ведёт себя как обычно. Через несколько секунд (на первом уровне через 10 секунд, а с ростом уровня быстрее) несъеденные призраки тоже возвращаются к обычному поведению.</para
+></listitem>
+<listitem
+><para
+>Очки начисляются за съеденные объекты:</para>
+<table>
+<title
+>Стоимость объектов</title>
+<tgroup cols="2">
+<tbody>
+<row>
+<entry
+>Таблетка</entry>
+<entry
+>10 очков</entry>
+</row>
+<row>
+<entry
+>Энерджайзер</entry>
+<entry
+>20 очков</entry>
+</row>
+<row>
+<entry
+>Бонус</entry>
+<entry
+>Номер уровня × 100 очков</entry>
+</row>
+<row>
+<entry
+>Призрак</entry>
+<entry
+>Зависит от того, сколько призраков съедено после последнего энерджайзера: <itemizedlist>
+<listitem
+><para
+>1-й призрак: 100 очков</para
+></listitem>
+<listitem
+><para
+>2-й призрак: 200 очков</para
+></listitem>
+<listitem
+><para
+>3-й призрак: 400 очков</para
+></listitem>
+<listitem
+><para
+>4-й призрак: 800 очков</para
+></listitem>
+</itemizedlist>
+</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem
+><para
+>За каждые 10 000 очков даётся ещё одна жизнь.</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+
+<sect1 id="tips">
+<title
+>Стратегия и советы</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+>Чтобы съесть объект, нужно дотронуться до его центра, а не задеть его краем. Поэтому, прежде чем поворачивать назад, убедитесь, что действительно съели то, что хотели.</para
+></listitem>
+<listitem
+><para
+>На первых уровнях бонус приносит мало очков, а призраки не очень быстрые, так что старайтесь съесть как можно больше призраков.</para
+></listitem>
+<listitem
+><para
+>Примерно после десятого уровня призраки становятся быстрее, а бонус приносит больше очков, поэтому старайтесь по возможности съедать бонус. Не стесняйтесь съесть энерджайзер, когда появился бонус, чтобы призраки не мешали.</para
+></listitem>
+<listitem
+><para
+>Точно так же перед походом в опасные места (например, к дому призраков) лучше съесть энерджайзер.</para
+></listitem>
+<listitem
+><para
+>Когда призраки становятся слишком быстрыми, не ешьте их рядом с их домом: они могут вернуться быстрее, чем вы думаете.</para
+></listitem>
+<listitem
+><para
+>Не бойтесь постоять несколько секунд на месте, дожидаясь, пока призраки уйдут подальше от того места, куда вам нужно.</para
+></listitem>
+<listitem
+><para
+>Коды для жульничества можно найти в исходном коде. Но учтите: если вы жульничали, новый рекорд не попадёт в таблицу.</para
+></listitem>
+<listitem
+><para
+>И последнее по порядку, но не по значению: получайте удовольствие!</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="interface"
+><title
+>Обзор интерфейса</title>
+<sect1 id="menu">
+<title
+>Пункты меню</title>
+
+<variablelist>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>N</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+><guimenuitem
+>Начать игру</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Начать новую игру.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>H</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+><guimenuitem
+>Показать лучшие результаты</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Открыть таблицу лучших результатов.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Игра</guimenu
+><guimenuitem
+>Сменить уровень…</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Открыть диалог выбора уровня. Учтите: если сменить текущий уровень, игра сочтёт вас жуликом, и результат не попадёт в таблицу лучших результатов.</action
+></para
+></listitem>
+</varlistentry>
+<varlistentry>
+<term
+><menuchoice
+><shortcut
+><keycombo action="simul"
+>&Ctrl;<keycap
+>Q</keycap
+></keycombo
+></shortcut
+> <guimenu
+>Игра</guimenu
+><guimenuitem
+>Выход</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Выйти</action
+> из &kapman;.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+><guimenuitem
+>Звуковое сопровождение</guimenuitem
+> </menuchoice
+></term>
+<listitem
+><para
+><action
+>Включить или выключить звук.</action
+></para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><menuchoice
+><guimenu
+>Настройка</guimenu
+><guisubmenu
+>Уровень сложности</guisubmenu
+> </menuchoice
+></term>
+<listitem>
+<para
+><action
+>Выбрать уровень сложности: <guimenuitem
+>Лёгкий</guimenuitem
+>, <guimenuitem
+>Средний</guimenuitem
+> или <guimenuitem
+>Трудный</guimenuitem
+>.</action
+></para>
+</listitem>
+</varlistentry>
+</variablelist>
+<para
+>Кроме того, в &kapman; есть стандартные для &kde; меню <guimenu
+>Настройка</guimenu
+> и <guimenu
+>Справка</guimenu
+>, описанные в разделах <ulink url="help:/fundamentals/menus.html#menus-settings"
+>Меню «Настройка»</ulink
+> и <ulink url="help:/fundamentals/menus.html#menus-help"
+>Меню «Справка»</ulink
+> руководства «Основы &kde;». </para>
+</sect1>
+
+<sect1 id="keybindings">
+<title
+>Комбинации клавиш по умолчанию</title>
+<para>
+<itemizedlist>
+<listitem
+><para
+><action
+>Повернуть вверх</action
+> — &Up;</para
+></listitem>
+<listitem
+><para
+><action
+>Повернуть вниз</action
+> — &Down;</para
+></listitem>
+<listitem
+><para
+><action
+>Повернуть направо</action
+> — &Right;</para
+></listitem>
+<listitem
+><para
+><action
+>Повернуть налево</action
+> — &Left;</para
+></listitem>
+<listitem
+><para
+><action
+>Пауза</action
+> — <keycap
+>P</keycap
+> или &Esc;</para
+></listitem>
+</itemizedlist>
+</para>
+</sect1>
+</chapter>
+
+<chapter id="faq">
+<title
+>Вопросы и ответы</title>
+
+<qandaset id="faqlist">
+<qandaentry>
+<question>
+<para
+>Я хочу изменить оформление игры. Это возможно?</para>
+</question>
+<answer>
+<para
+>Тему оформления &kapman; можно выбрать в диалоге <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить &kapman;…</guimenuitem
+></menuchoice
+>. Подробнее — в главе <link linkend="configuration"
+>Параметры игры</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Можно ли пропустить уровень?</para>
+</question>
+<answer>
+<para
+>Сменить текущий уровень можно двумя способами. В обоих случаях вас сочтут жуликом, и результат не попадёт в таблицу лучших результатов. Первый способ — код для жульничества; найти его предоставляем вам самим. Второй — выбрать нужный уровень в диалоге <menuchoice
+><guimenu
+>Игра</guimenu
+><guimenuitem
+>Сменить уровень…</guimenuitem
+></menuchoice
+>. Подробнее — в разделе <link linkend="menu"
+>Пункты меню</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Можно ли изменить комбинации клавиш по умолчанию?</para>
+</question>
+<answer>
+<para
+>Пока нельзя, но такая возможность появится в одной из следующих версий &kapman;. Подробнее — в разделе <link linkend="keybindings"
+>Комбинации клавиш по умолчанию</link
+>.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Мне нужно выйти из игры, но я ещё не закончил. Можно ли сохранить игру?</para>
+</question>
+<answer>
+<para
+>Нельзя, и это сделано намеренно: игра стала бы слишком простой, если бы можно было сохраняться и загружаться после потери жизни.</para>
+</answer>
+</qandaentry>
+<qandaentry>
+<question>
+<para
+>Как получить больше жизней?</para>
+</question>
+<answer>
+<para
+>Получить дополнительные жизни можно двумя способами. Первый — код для жульничества; найти его предоставляем вам самим. Второй — набирать очки: за каждые 10 000 очков даётся ещё одна жизнь. Подробнее — в разделе <link linkend="rules"
+>Правила</link
+>.</para>
+</answer>
+</qandaentry>
+</qandaset>
+</chapter>
+
+<chapter id="configuration"
+><title
+>Параметры игры</title>
+<para
+>Тему оформления &kapman; можно выбрать в пункте меню <menuchoice
+><guimenu
+>Настройка</guimenu
+> <guimenuitem
+>Настроить &kapman;…</guimenuitem
+></menuchoice
+>. Откроется диалог настройки &kapman; (см. ниже), в котором выбирается тема. Она меняется сразу после подтверждения выбора, перезапускать игру не нужно. Чтобы вернуть тему по умолчанию, нажмите кнопку <guibutton
+>По умолчанию</guibutton
+>. </para>
+<screenshot>
+<screeninfo
+>Диалог настройки &kapman;</screeninfo>
+<mediaobject>
+<imageobject>
+<imagedata fileref="config.png" format="PNG"/>
+</imageobject>
+<textobject>
+<phrase
+>Диалог настройки &kapman;</phrase>
+</textobject>
+</mediaobject>
+</screenshot>
+</chapter>
+
+<chapter id="credits"
+><title
+>Авторские права и лицензия</title>
+<para
+>&kapman; </para>
+<para
+>© Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+>, 2008 (программа) </para>
+<para
+>© Pierre-Benoit Besse <email
+>besse.pb@gmail.com</email
+>, 2008 (программа) </para>
+<para
+>© Alexandre Galinier <email
+>blluetroy@hotmail.com</email
+>, 2008 (программа) </para>
+<para
+>© Nathalie Liesse <email
+>nathalie.liesse@gmail.com</email
+>, 2008 (программа) </para>
+<para
+>© Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+>, 2008 (графика) </para>
+<para
+>© Thomas Gallinari <email
+>tg8187@yahoo.fr</email
+>, 2008 (документация) </para>
+<para
+>Перевод на русский — Александр Яворский<email
+>kekcuha@gmail.com</email
+></para
+> &underFDL; &underGPL; </chapter>
+
+&documentation.index;
+
+</book>
+
+<!--
+Local Variables:
+mode: xml
+sgml-minimize-attributes:nil
+sgml-general-insert-case:lower
+sgml-indent-step:0
+sgml-indent-data:nil
+End:
+
+vim:tabstop=2:shiftwidth=2:expandtab
+kate: space-indent on; indent-width 2; tab-width 2; indent-mode none;
+-->
