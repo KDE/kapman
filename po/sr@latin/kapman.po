@@ -2,13 +2,14 @@
 # Slobodan Simic <slsimic@gmail.com>, 2009.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2009, 2012, 2016.
 # Dalibor Djuric <daliborddjuric@gmail.com>, 2010.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kapman\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2016-02-27 21:47+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-09 22:30+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@latin\n"
 "MIME-Version: 1.0\n"
@@ -24,12 +25,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Slobodan Simić"
+msgstr "Slobodan Simić,Nemanja Hiršl"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "slsimic@gmail.com"
+msgstr "slsimic@gmail.com,nemhirsl@gmail.com"
 
 #: gamescene.cpp:90
 #, kde-format
@@ -66,18 +67,16 @@ msgstr "Da li puštati zvučne efekte."
 
 # >> @option:check
 #: kapmanmainwindow.cpp:61
-#, fuzzy, kde-format
-#| msgid "&Play sounds"
+#, kde-format
 msgctxt "@option:check"
 msgid "Play Sounds"
-msgstr "&Puštaj zvukove"
+msgstr "Puštaj zvukove"
 
 #: kapmanmainwindow.cpp:65
-#, fuzzy, kde-format
-#| msgid "&Change level"
+#, kde-format
 msgctxt "@action"
 msgid "&Change Level…"
-msgstr "&Promeni nivo"
+msgstr "&Promeni nivo…"
 
 # >> @info:status +
 #: kapmanmainwindow.cpp:70 kapmanmainwindow.cpp:256
@@ -106,19 +105,16 @@ msgid "Are you sure you want to quit the current game?"
 msgstr "Želite li zaista da napustite tekuću partiju?"
 
 #: kapmanmainwindow.cpp:137
-#, fuzzy, kde-format
-#| msgid "New game"
+#, kde-format
 msgctxt "@title:window"
 msgid "New Game"
 msgstr "Nova igra"
 
 #: kapmanmainwindow.cpp:138
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@action;button"
 msgid "Quit Game"
-msgstr "Napusti"
+msgstr "Napusti partiju"
 
 #: kapmanmainwindow.cpp:163
 #, kde-format
@@ -146,19 +142,16 @@ msgstr "Varalice!"
 
 # >> @title:window
 #: kapmanmainwindow.cpp:188
-#, fuzzy, kde-format
-#| msgid "Change level"
+#, kde-format
 msgctxt "@title:window"
 msgid "Change Level"
 msgstr "Promena nivoa"
 
 #: kapmanmainwindow.cpp:189
-#, fuzzy, kde-format
-#| msgctxt "The number of the game level"
-#| msgid "Level"
+#, kde-format
 msgctxt "@label:textbox The number of the game level"
 msgid "Level:"
-msgstr "Nivo"
+msgstr "Nivo:"
 
 #: kapmanmainwindow.cpp:239
 #, kde-format
@@ -166,9 +159,7 @@ msgid "Are you sure you want to quit Kapman?"
 msgstr "Želite li zaista da napustite Kapman?"
 
 #: kapmanmainwindow.cpp:240
-#, fuzzy, kde-format
-#| msgctxt "To quit Kapman"
-#| msgid "Quit"
+#, kde-format
 msgctxt "@title:window To quit Kapman"
 msgid "Quit"
 msgstr "Napusti"
@@ -232,6 +223,3 @@ msgstr "Roni Gomes"
 #, kde-format
 msgid "Port to KgSound framework"
 msgstr "Prenošenje na radni okvir KgSound"
-
-#~ msgid "Theme"
-#~ msgstr "Tema"
